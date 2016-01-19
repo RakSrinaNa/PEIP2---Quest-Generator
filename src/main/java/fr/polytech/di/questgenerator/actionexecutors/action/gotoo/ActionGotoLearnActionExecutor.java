@@ -16,6 +16,6 @@ public class ActionGotoLearnActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(new Action(depth, Actions.LEARN), new Action(depth, Actions.GOTO));
+		return new Quest(new Action(depth, Actions.LEARN), new Action(depth, Actions.GOTO, false));
 	}
 }

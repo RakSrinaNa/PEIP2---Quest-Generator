@@ -16,6 +16,6 @@ public class AbilityPracticeSkillActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(new Action(depth, Actions.USE));
+		return new Quest(new Action(depth, Actions.USE, false));
 	}
 }

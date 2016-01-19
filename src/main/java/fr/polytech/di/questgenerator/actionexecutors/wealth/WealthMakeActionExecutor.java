@@ -16,6 +16,6 @@ public class WealthMakeActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(new Action(depth, Actions.REPAIR));
+		return new Quest(new Action(depth, Actions.REPAIR, false));
 	}
 }

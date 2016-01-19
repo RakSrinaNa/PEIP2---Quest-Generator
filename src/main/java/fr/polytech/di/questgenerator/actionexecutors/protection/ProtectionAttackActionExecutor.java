@@ -16,6 +16,6 @@ public class ProtectionAttackActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.DAMAGE), new Action(depth, Actions.GOTO), new Action(depth, Actions.REPORT));
+		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.DAMAGE, false), new Action(depth, Actions.GOTO), new Action(depth, Actions.REPORT, false));
 	}
 }

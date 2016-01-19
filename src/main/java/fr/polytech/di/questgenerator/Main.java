@@ -16,13 +16,14 @@ public class Main
 	{
 		Quest q = QuestGenerator.createNewRandomQuest();
 		Stream.of(q.getAsString()).forEach(System.out::println);
-		try(FileWriter fw = new FileWriter("quest" + System.currentTimeMillis() + ".txt"))
+		try(FileWriter fw = new FileWriter("qout\\v2\\quest" + System.currentTimeMillis() + ".txt"))
 		{
 			for(String line : q.getAsString())
 				fw.write(line + "\n");
 		}
 		catch(IOException ignored)
 		{
+			ignored.printStackTrace();
 		}
 	}
 }

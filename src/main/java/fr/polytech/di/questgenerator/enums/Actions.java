@@ -1,7 +1,9 @@
 package fr.polytech.di.questgenerator.enums;
 
 import fr.polytech.di.questgenerator.Main;
+import fr.polytech.di.questgenerator.actionexecutors.action.ActionCaptureActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.ActionQuestActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.action.ActionReportActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetEpsillonActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetGatherActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetStealActionExecutor;
@@ -28,7 +30,7 @@ import java.util.*;
 public enum Actions
 {
 	NONE(0, ""),
-	CAPTURE(1, "Capture {0}"),
+	CAPTURE(1, "Capture {0}", ActionCaptureActionExecutor.class),
 	DAMAGE(1, "Damage {0}"),
 	DEFEND(1, "Defend {0}"),
 	ESCORT(1, "Escort {0}"),
@@ -47,7 +49,7 @@ public enum Actions
 	READ(1, "Read {0}"),
 	REPAIR(1, "Repair {0}"),
 	REPORT(1, "Report to {0}"),
-	SPY(1, "Spy {0}"),
+	SPY(1, "Spy {0}", ActionReportActionExecutor.class),
 	STEAL(2, "Steal {0} from {1}", ActionStealStealthActionExecutor.class, ActionStealTakeActionExecutor.class),
 	STEALTH(1, "Stealth {0}"),
 	TAKE(2, "Take {0} from {1}"),

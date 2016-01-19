@@ -1,9 +1,8 @@
 package fr.polytech.di.questgenerator.objects;
 
 import fr.polytech.di.questgenerator.enums.Actions;
+import java.util.Collections;
 import java.util.LinkedHashSet;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
@@ -17,16 +16,15 @@ public class Quest
 		if(actions == null || actions.length < 1)
 			throw new IllegalArgumentException("Actions must not be empty");
 		this.actions = new LinkedHashSet<>(actions.length);
-		for(Action action : actions)
-			this.actions.add(action);
+		Collections.addAll(this.actions, actions);
 	}
 
 	public static Quest getEpsillon(int depth)
 	{
-		return new Quest(new Action(depth, Actions.NONE, Optional.empty()));
+		return new Quest(new Action(depth, Actions.NONE, false));
 	}
 
-	public Set<Action> getActions()
+	public LinkedHashSet<Action> getActions()
 	{
 		return this.actions;
 	}

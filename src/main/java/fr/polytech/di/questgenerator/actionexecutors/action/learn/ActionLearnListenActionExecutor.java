@@ -16,6 +16,6 @@ public class ActionLearnListenActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.SUBQUEST), new Action(depth, Actions.LISTEN));
+		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.SUBQUEST), new Action(depth, Actions.LISTEN, false));
 	}
 }

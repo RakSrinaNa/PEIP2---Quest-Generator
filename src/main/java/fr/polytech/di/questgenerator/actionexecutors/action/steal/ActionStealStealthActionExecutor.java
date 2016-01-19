@@ -16,6 +16,6 @@ public class ActionStealStealthActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.STEALTH), new Action(depth, Actions.TAKE));
+		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.STEALTH, false), new Action(depth, Actions.TAKE, false));
 	}
 }

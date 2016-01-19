@@ -1,4 +1,4 @@
-package fr.polytech.di.questgenerator.actionexecutors.protection;
+package fr.polytech.di.questgenerator.actionexecutors.action;
 
 import fr.polytech.di.questgenerator.enums.Actions;
 import fr.polytech.di.questgenerator.enums.Objectives;
@@ -11,11 +11,11 @@ import java.util.Optional;
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class ProtectionGuardActionExecutor implements ActionExecutor
+public class ActionKillActionExecutor implements ActionExecutor
 {
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.DEFEND, false));
+		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.KILL, false));
 	}
 }

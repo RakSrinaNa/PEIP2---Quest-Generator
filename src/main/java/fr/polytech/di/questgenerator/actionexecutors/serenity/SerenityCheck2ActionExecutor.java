@@ -16,6 +16,6 @@ public class SerenityCheck2ActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.TAKE), new Action(depth, Actions.GOTO), new Action(depth, Actions.GIVE));
+		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.TAKE, false), new Action(depth, Actions.GOTO), new Action(depth, Actions.GIVE, false));
 	}
 }
