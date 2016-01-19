@@ -16,6 +16,6 @@ public class ActionSubquestQuestActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(depth, new Action(depth, Actions.GOTO), new Action(depth, Actions.QUEST), new Action(depth, Actions.GOTO));
+		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.SUBQUEST), new Action(depth, Actions.GOTO));
 	}
 }

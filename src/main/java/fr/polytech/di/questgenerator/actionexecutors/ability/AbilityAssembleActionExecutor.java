@@ -16,6 +16,6 @@ public class AbilityAssembleActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(depth, new Action(depth, Actions.REPAIR), new Action(depth, Actions.USE));
+		return new Quest(new Action(depth, Actions.REPAIR), new Action(depth, Actions.USE));
 	}
 }

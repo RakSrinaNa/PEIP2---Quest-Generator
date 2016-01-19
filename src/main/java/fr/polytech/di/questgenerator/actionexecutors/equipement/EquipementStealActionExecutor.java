@@ -16,6 +16,6 @@ public class EquipementStealActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(depth, new Action(depth, Actions.STEAL));
+		return new Quest(new Action(depth, Actions.STEAL));
 	}
 }

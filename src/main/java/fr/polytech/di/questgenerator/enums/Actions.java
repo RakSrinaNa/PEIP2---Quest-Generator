@@ -1,6 +1,7 @@
 package fr.polytech.di.questgenerator.enums;
 
 import fr.polytech.di.questgenerator.Main;
+import fr.polytech.di.questgenerator.actionexecutors.action.ActionQuestActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetEpsillonActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetGatherActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetStealActionExecutor;
@@ -41,7 +42,8 @@ public enum Actions
 	KILL(1, "Kill {0}"),
 	LEARN(0, "Learn where is {0}", ActionLeanEpsillonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
 	LISTEN(1, "Listen {0}"),
-	QUEST(0, "Perfom subquest", ActionSubquestGotoActionExecutor.class, ActionSubquestQuestActionExecutor.class),
+	QUEST(0, "Complete quest", ActionQuestActionExecutor.class),
+	SUBQUEST(0, "Perfom subquest", ActionSubquestGotoActionExecutor.class, ActionSubquestQuestActionExecutor.class),
 	READ(1, "Read {0}"),
 	REPAIR(1, "Repair {0}"),
 	REPORT(1, "Report to {0}"),
@@ -86,7 +88,7 @@ public enum Actions
 	{
 		if(depth > Main.MAX_DEPTH)
 			return Optional.empty();
-		Quest quest = new Quest(depth + 1, new Action(depth + 1, Actions.NONE, Optional.empty()));
+		Quest quest = new Quest(new Action(depth + 1, Actions.NONE, Optional.empty()));
 		if(!actionExecutors.isEmpty())
 			try
 			{

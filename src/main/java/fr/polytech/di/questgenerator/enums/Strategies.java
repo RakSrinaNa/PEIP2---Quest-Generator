@@ -24,6 +24,7 @@ import fr.polytech.di.questgenerator.actionexecutors.wealth.WealthStealActionExe
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.objects.Quest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.Random;
 
@@ -106,9 +107,14 @@ public enum Strategies
 
 	public Quest createQuest()
 	{
+		return createQuest(0, Optional.empty());
+	}
+
+	public Quest createQuest(int depth, Optional<HashMap<Objectives, String>> objectives)
+	{
 		try
 		{
-			return actionExecutor.newInstance().process(0, Optional.empty());
+			return actionExecutor.newInstance().process(depth, objectives);
 		}
 		catch(InstantiationException | IllegalAccessException ignored)
 		{

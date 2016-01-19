@@ -16,6 +16,6 @@ public class SerenityRescueActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(depth, new Action(depth, Actions.GOTO), new Action(depth, Actions.DAMAGE), new Action(depth, Actions.ESCORT), new Action(depth, Actions.GOTO), new Action(depth, Actions.REPORT));
+		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.DAMAGE), new Action(depth, Actions.ESCORT), new Action(depth, Actions.GOTO), new Action(depth, Actions.REPORT));
 	}
 }

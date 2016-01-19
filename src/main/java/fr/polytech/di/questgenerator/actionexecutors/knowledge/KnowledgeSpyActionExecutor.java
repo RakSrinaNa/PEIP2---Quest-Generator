@@ -16,6 +16,6 @@ public class KnowledgeSpyActionExecutor implements ActionExecutor
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(depth, new Action(depth, Actions.SPY));
+		return new Quest(new Action(depth, Actions.SPY));
 	}
 }

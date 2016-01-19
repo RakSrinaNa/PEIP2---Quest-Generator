@@ -1,9 +1,8 @@
-package fr.polytech.di.questgenerator.actionexecutors.equipement;
+package fr.polytech.di.questgenerator.actionexecutors.action;
 
-import fr.polytech.di.questgenerator.enums.Actions;
+import fr.polytech.di.questgenerator.QuestGenerator;
 import fr.polytech.di.questgenerator.enums.Objectives;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
-import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
 import java.util.HashMap;
 import java.util.Optional;
@@ -11,11 +10,11 @@ import java.util.Optional;
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class EquipementTradeActionExecutor implements ActionExecutor
+public class ActionQuestActionExecutor implements ActionExecutor
 {
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.EXCHANGE));
+		return QuestGenerator.createNewRandomQuest(depth, objectives);
 	}
 }

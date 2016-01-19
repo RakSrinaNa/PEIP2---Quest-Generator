@@ -1,7 +1,7 @@
 package fr.polytech.di.questgenerator.objects;
 
 import fr.polytech.di.questgenerator.enums.Actions;
-import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -10,27 +10,25 @@ import java.util.Set;
  */
 public class Quest
 {
-	private final int depth;
-	private final LinkedHashMap<Action, Optional<Quest>> actions;
+	private final LinkedHashSet<Action> actions;
 
-	public Quest(int depth, Action... actions) throws IllegalArgumentException
+	public Quest(Action... actions) throws IllegalArgumentException
 	{
 		if(actions == null || actions.length < 1)
 			throw new IllegalArgumentException("Actions must not be empty");
-		this.depth = depth;
-		this.actions = new LinkedHashMap<>(actions.length);
+		this.actions = new LinkedHashSet<>(actions.length);
 		for(Action action : actions)
-			this.actions.put(action, action.getSubquest());
+			this.actions.add(action);
 	}
 
 	public static Quest getEpsillon(int depth)
 	{
-		return new Quest(depth, new Action(depth, Actions.NONE, Optional.empty()));
+		return new Quest(new Action(depth, Actions.NONE, Optional.empty()));
 	}
 
 	public Set<Action> getActions()
 	{
-		return this.actions.keySet();
+		return this.actions;
 	}
 
 	public String[] getAsString()
@@ -41,8 +39,8 @@ public class Quest
 			if(sb.length() > 0)
 				sb.append("\n");
 			sb.append(action.getAsString());
-			if(actions.get(action).isPresent())
-				for(String line : actions.get(action).get().getAsString())
+			if(action.getSubquest().isPresent())
+				for(String line : action.getSubquest().get().getAsString())
 					sb.append("\n\t").append(line);
 		}
 		return sb.toString().split("\n");
