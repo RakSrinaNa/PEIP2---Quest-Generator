@@ -1,0 +1,4 @@
+Get {0} from {1}
+Go to {0}
+	Explore {0}
+Use {0}

@@ -1,0 +1,88 @@
+Get {0} from {1}
+	Steal {0} from {1}
+		Go to {0}
+			Learn where is {0}
+				Get {0} from {1}
+					Go to {0}
+						Explore {0}
+					Gather {0}
+				Perfom subquest
+					Go to {0}
+						Explore {0}
+				Give {0} to {1}
+				Listen {0}
+			Go to {0}
+				Explore {0}
+		Stealth {0}
+		Take {0} from {1}
+Go to {0}
+	Learn where is {0}
+		Go to {0}
+			Learn where is {0}
+				Get {0} from {1}
+					Steal {0} from {1}
+						Go to {0}
+						Stealth {0}
+						Take {0} from {1}
+				Perfom subquest
+					Go to {0}
+						Learn where is {0}
+						Go to {0}
+					Perfom subquest
+						Go to {0}
+					Go to {0}
+						Explore {0}
+				Give {0} to {1}
+				Listen {0}
+			Go to {0}
+				Learn where is {0}
+					Go to {0}
+					Get {0} from {1}
+						Go to {0}
+						Gather {0}
+					Read {0}
+				Go to {0}
+		Get {0} from {1}
+			Steal {0} from {1}
+				Go to {0}
+					Explore {0}
+				Kill {0}
+				Take {0} from {1}
+		Read {0}
+	Go to {0}
+		Learn where is {0}
+			Go to {0}
+				Learn where is {0}
+					Go to {0}
+						Explore {0}
+					Get {0} from {1}
+						Go to {0}
+						Get {0} from {1}
+						Go to {0}
+						Perfom subquest
+						Exchange {0} for {1}
+					Read {0}
+				Go to {0}
+					Explore {0}
+			Perfom subquest
+				Go to {0}
+					Explore {0}
+				Perfom subquest
+					Go to {0}
+						Learn where is {0}
+						Go to {0}
+					Perfom subquest
+						Go to {0}
+					Go to {0}
+						Learn where is {0}
+						Go to {0}
+				Go to {0}
+					Learn where is {0}
+						Go to {0}
+						Perfom subquest
+						Listen {0}
+					Go to {0}
+						Explore {0}
+			Listen {0}
+		Go to {0}
+Give {0} to {1}

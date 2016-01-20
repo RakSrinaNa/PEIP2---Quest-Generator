@@ -1,0 +1,24 @@
+Go to {0}
+	Learn where is {0}
+		Get {0} from {1}
+			Go to {0}
+				Learn where is {0}
+				Go to {0}
+					Explore {0}
+			Get {0} from {1}
+				Steal {0} from {1}
+			Go to {0}
+				Explore {0}
+			Perfom subquest
+				Go to {0}
+			Exchange {0} for {1}
+		Perfom subquest
+			Go to {0}
+				Explore {0}
+		Give {0} to {1}
+		Listen {0}
+	Go to {0}
+Get {0} from {1}
+	Go to {0}
+		Explore {0}
+	Gather {0}

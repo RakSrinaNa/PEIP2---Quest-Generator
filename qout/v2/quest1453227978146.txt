@@ -1,0 +1,4 @@
+Steal {0} from {1}
+	Go to {0}
+	Stealth {0}
+	Take {0} from {1}
