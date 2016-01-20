@@ -1,4 +1,4 @@
-package fr.polytech.di.questgenerator.actionexecutors.action.learn;
+package fr.polytech.di.questgenerator.actionexecutors.action;
 
 import fr.polytech.di.questgenerator.enums.Objectives;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
@@ -9,7 +9,7 @@ import java.util.Optional;
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class ActionLeanEpsillonActionExecutor implements ActionExecutor
+public class ActionEpsillonActionExecutor implements ActionExecutor
 {
 	@Override
 	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)

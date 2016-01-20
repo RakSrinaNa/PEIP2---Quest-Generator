@@ -1,0 +1,36 @@
+Get {0} from {1}
+	Go to {0}
+		Learn where is {0}
+			Get {0} from {1}
+				Go to {0}
+					Explore {0}
+				Gather {0}
+			Perfom subquest
+				Go to {0}
+					Learn where is {0}
+						Go to {0}
+						Perfom subquest
+							Go to {0}
+							Complete quest
+								Go to {0}
+								Listen {0}
+								Go to {0}
+								Report to {0}
+							Go to {0}
+						Listen {0}
+					Go to {0}
+				Complete quest
+					Get {0} from {1}
+						Steal {0} from {1}
+							Go to {0}
+							Stealth {0}
+							Take {0} from {1}
+					Use {0}
+				Go to {0}
+			Give {0} to {1}
+			Listen {0}
+		Go to {0}
+	Gather {0}
+Go to {0}
+	Explore {0}
+Give {0} to {1}

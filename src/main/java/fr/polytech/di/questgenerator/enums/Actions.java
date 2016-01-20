@@ -2,16 +2,14 @@ package fr.polytech.di.questgenerator.enums;
 
 import fr.polytech.di.questgenerator.Main;
 import fr.polytech.di.questgenerator.actionexecutors.action.ActionCaptureActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.action.ActionEpsillonActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.ActionQuestActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.ActionReportActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetEpsillonActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetGatherActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetStealActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetSubquestActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.gotoo.ActionGotoEpsillonActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.gotoo.ActionGotoExploreActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.gotoo.ActionGotoLearnActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLeanEpsillonActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnGiveActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnListenActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnReadActionListener;
@@ -20,7 +18,6 @@ import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealTak
 import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubquestGotoActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubquestQuestActionExecutor;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
-import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
 import java.util.*;
 
@@ -38,11 +35,11 @@ public enum Actions
 	EXPERIMENT(1, "Experiment {0}"),
 	EXPLORE(1, "Explore {0}"),
 	GATHER(1, "Gather {0}"),
-	GET(2, "Get {0} from {1}", ActionGetEpsillonActionExecutor.class, ActionGetStealActionExecutor.class, ActionGetGatherActionExecutor.class, ActionGetSubquestActionExecutor.class),
+	GET(2, "Get {0} from {1}", ActionEpsillonActionExecutor.class, ActionGetStealActionExecutor.class, ActionGetGatherActionExecutor.class, ActionGetSubquestActionExecutor.class),
 	GIVE(2, "Give {0} to {1}"),
-	GOTO(1, "Go to {0}", ActionGotoEpsillonActionExecutor.class, ActionGotoExploreActionExecutor.class, ActionGotoLearnActionExecutor.class),
+	GOTO(1, "Go to {0}", ActionEpsillonActionExecutor.class, ActionGotoExploreActionExecutor.class, ActionGotoLearnActionExecutor.class),
 	KILL(1, "Kill {0}"),
-	LEARN(0, "Learn where is {0}", ActionLeanEpsillonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
+	LEARN(0, "Learn where is {0}", ActionEpsillonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
 	LISTEN(1, "Listen {0}"),
 	QUEST(0, "Complete quest", ActionQuestActionExecutor.class),
 	SUBQUEST(0, "Perfom subquest", ActionSubquestGotoActionExecutor.class, ActionSubquestQuestActionExecutor.class),
@@ -88,13 +85,13 @@ public enum Actions
 
 	public Optional<Quest> getSubquest(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		if(depth > Main.MAX_DEPTH)
+		if(depth > Main.MAX_DEPTH && actionExecutors.contains(ActionEpsillonActionExecutor.class))
 			return Optional.empty();
-		Quest quest = new Quest(new Action(depth + 1, Actions.NONE, Optional.empty()));
+		Quest quest = Quest.getEpsillon(depth);
 		if(!actionExecutors.isEmpty())
 			try
 			{
-				quest = actionExecutors.get(new Random().nextInt(actionExecutors.size())).newInstance().process(depth + 1, objectives);
+				quest = getRandomActionExecutor().newInstance().process(depth + 1, objectives);
 			}
 			catch(InstantiationException | IllegalAccessException ignored)
 			{
@@ -107,5 +104,14 @@ public enum Actions
 	public boolean isEmpty()
 	{
 		return (this == NONE);
+	}
+
+	public Class<? extends ActionExecutor> getRandomActionExecutor()
+	{
+		if(!actionExecutors.contains(ActionEpsillonActionExecutor.class))
+			return actionExecutors.get(new Random().nextInt(actionExecutors.size()));
+		if(Math.random() < 0.25)
+			return ActionEpsillonActionExecutor.class;
+		return actionExecutors.get(1 + new Random().nextInt(actionExecutors.size() - 1));
 	}
 }
