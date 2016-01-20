@@ -79,4 +79,37 @@ public class DataHandler
 			return getRandom(PNJ);
 		return "RDM PNJ " + ThreadLocalRandom.current().nextInt(100);
 	}
+
+	/**
+	 * Return a random location of the given category.
+	 *
+	 * @param category The category the element picked should be.
+	 * @return Return a random location.
+	 */
+	public static String getRandomLocation(String category)
+	{
+		return getrandomLocation();
+	}
+
+	/**
+	 * Return a random object of the given category.
+	 *
+	 * @param category The category the element picked should be.
+	 * @return Return a random object.
+	 */
+	public static String getRandomObject(String category)
+	{
+		return getRandomObject();
+	}
+
+	/**
+	 * Return a random PNJ of the given category.
+	 *
+	 * @param category The category the element picked should be.
+	 * @return Return a random PNJ.
+	 */
+	public static String getRandomPNJ(String category)
+	{
+		return getRandomPNJ();
+	}
 }
