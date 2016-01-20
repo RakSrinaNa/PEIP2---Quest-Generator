@@ -6,12 +6,19 @@ import java.io.IOException;
 import java.util.stream.Stream;
 
 /**
+ * Main class.
+ *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class Main
 {
 	public static final int MAX_DEPTH = 5;
 
+	/**
+	 * Startup function.
+	 *
+	 * @param args Arguments.
+	 */
 	public static void main(String[] args)
 	{
 		Quest q = QuestGenerator.createNewRandomQuest();

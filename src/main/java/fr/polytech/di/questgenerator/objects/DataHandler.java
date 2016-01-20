@@ -10,6 +10,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 /**
+ * Contains all the different objective values.
+ *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class DataHandler
@@ -31,7 +33,11 @@ public class DataHandler
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Returns a random object.
+	 *
+	 * @return A random object.
+	 */
 	public static String getRandomObject()
 	{
 		if(OBJECT.size() > 0)
@@ -39,6 +45,11 @@ public class DataHandler
 		return "RDM OBJ " + ThreadLocalRandom.current().nextInt(100);
 	}
 
+	/**
+	 * Returns a random location.
+	 *
+	 * @return A random location.
+	 */
 	public static String getrandomLocation()
 	{
 		if(AREA.size() > 0)
@@ -46,11 +57,22 @@ public class DataHandler
 		return "RDM LOC " + ThreadLocalRandom.current().nextInt(100);
 	}
 
+	/**
+	 * Return a random object from a list.
+	 *
+	 * @param list The list of values.
+	 * @return A random picked element.
+	 */
 	private static String getRandom(ArrayList<String> list)
 	{
 		return list.get(ThreadLocalRandom.current().nextInt(list.size()));
 	}
 
+	/**
+	 * Return a random PNJ.
+	 *
+	 * @return Return a random PNJ.
+	 */
 	public static String getRandomPNJ()
 	{
 		if(PNJ.size() > 0)

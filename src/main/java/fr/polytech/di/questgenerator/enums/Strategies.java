@@ -29,6 +29,8 @@ import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * Strategies used for the begining of a quest.
+ *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public enum Strategies
@@ -84,18 +86,35 @@ public enum Strategies
 	private final Motivations motivation;
 	private final Class<? extends ActionExecutor> actionExecutor;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param motivation The motivation in which the Strategy is present.
+	 * @param actionExecutor The ActionExecutor defining how the quest will start.
+	 */
 	Strategies(Motivations motivation, Class<? extends ActionExecutor> actionExecutor)
 	{
 		this.motivation = motivation;
 		this.actionExecutor = actionExecutor;
 	}
 
+	/**
+	 * Pick a random Strategy.
+	 *
+	 * @return A random Strategy.
+	 */
 	public static Strategies getRandom()
 	{
 		Strategies[] strategies = Strategies.values();
 		return strategies[ThreadLocalRandom.current().nextInt(strategies.length)];
 	}
 
+	/**
+	 * Pick a random Strategy for a given Motivation.
+	 *
+	 * @param motivation The Motivation the Strategy picked needs to be.
+	 * @return A rantom Strategy with the wanted Motivation.
+	 */
 	public static Strategies getByMotivation(Motivations motivation)
 	{
 		ArrayList<Strategies> candidates = new ArrayList<>();
@@ -105,16 +124,28 @@ public enum Strategies
 		return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
 	}
 
+	/**
+	 * Create a quest.
+	 *
+	 * @return A Quest.
+	 */
 	public Quest createQuest()
 	{
 		return createQuest(0, Optional.empty());
 	}
 
+	/**
+	 * Create a quest.
+	 *
+	 * @param depth The depth of the quest.
+	 * @param objectives The objectives for the quest.
+	 * @return A quest.
+	 */
 	public Quest createQuest(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
 		try
 		{
-			return actionExecutor.newInstance().process(depth, objectives);
+			return actionExecutor.newInstance().generateQuest(depth, objectives);
 		}
 		catch(InstantiationException | IllegalAccessException ignored)
 		{
@@ -122,6 +153,11 @@ public enum Strategies
 		return null;
 	}
 
+	/**
+	 * Get the motivation of the Strategy.
+	 *
+	 * @return The Motivation.
+	 */
 	public Motivations getMotivation()
 	{
 		return this.motivation;

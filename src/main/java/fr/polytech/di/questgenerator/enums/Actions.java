@@ -23,6 +23,8 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * Each elementary action defining the quest.
+ *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public enum Actions
@@ -57,6 +59,12 @@ public enum Actions
 	private final String sentence;
 	private final List<Class<? extends ActionExecutor>> actionExecutors;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param params Number of objectives expected.
+	 * @param sentence The sentence describing the action.
+	 */
 	Actions(int params, String sentence)
 	{
 		this.params = params;
@@ -64,6 +72,13 @@ public enum Actions
 		this.actionExecutors = new ArrayList<>(0);
 	}
 
+	/**
+	 * Constructor.
+	 *
+	 * @param params Number of objectives expected.
+	 * @param sentence The sentence describing the action.
+	 * @param actionExecutors The possible ActionExecutor(s) defining how the action could be splitted.
+	 */
 	@SafeVarargs
 	Actions(int params, String sentence, Class<? extends ActionExecutor>... actionExecutors)
 	{
@@ -72,9 +87,15 @@ public enum Actions
 		this.actionExecutors = Arrays.asList(actionExecutors);
 	}
 
-	public String getAsString(Optional<HashMap<Objectives, String>> params)
+	/**
+	 * Return the sentence of the action formatted with the objectives.
+	 *
+	 * @param objectives The objectives.
+	 * @return The formatted string.
+	 */
+	public String getAsString(Optional<HashMap<Objectives, String>> objectives)
 	{
-		if(!params.isPresent())
+		if(!objectives.isPresent())
 			return this.sentence;
 		switch(this)
 		{
@@ -84,7 +105,14 @@ public enum Actions
 		}
 	}
 
-	public Optional<Quest> getSubquest(int depth, Optional<HashMap<Objectives, String>> objectives)
+	/**
+	 * Generate a subquest for the action.
+	 *
+	 * @param depth The depth of the subquest.
+	 * @param objectives The objectives for the subquest.
+	 * @return An Optional object containing the Quest.
+	 */
+	public Optional<Quest> genSubquest(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
 		if(depth > Main.MAX_DEPTH && actionExecutors.contains(ActionEpsillonActionExecutor.class))
 			return Optional.empty();
@@ -92,7 +120,7 @@ public enum Actions
 		if(!actionExecutors.isEmpty())
 			try
 			{
-				quest = getRandomActionExecutor().newInstance().process(depth + 1, objectives);
+				quest = getRandomActionExecutor().newInstance().generateQuest(depth + 1, objectives);
 			}
 			catch(InstantiationException | IllegalAccessException ignored)
 			{
@@ -102,11 +130,21 @@ public enum Actions
 		return Optional.of(quest);
 	}
 
+	/**
+	 * Used to know if this Action is empty.
+	 *
+	 * @return true if empty, else false.
+	 */
 	public boolean isEmpty()
 	{
 		return (this == NONE);
 	}
 
+	/**
+	 * Used to get a random ActionExecutor. If an epsillon ActionxEcutor is present, he will have 25% of chances to be picked.
+	 *
+	 * @return A random ActionExecutor.
+	 */
 	public Class<? extends ActionExecutor> getRandomActionExecutor()
 	{
 		if(!actionExecutors.contains(ActionEpsillonActionExecutor.class))

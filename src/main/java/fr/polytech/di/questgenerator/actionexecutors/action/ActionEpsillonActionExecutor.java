@@ -12,7 +12,7 @@ import java.util.Optional;
 public class ActionEpsillonActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
+	public Quest generateQuest(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
 		return Quest.getEpsillon(depth);
 	}

@@ -1,6 +1,8 @@
 package fr.polytech.di.questgenerator.enums;
 
 /**
+ * The different kind of objectives.
+ *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public enum Objectives

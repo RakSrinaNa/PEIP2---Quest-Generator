@@ -14,7 +14,7 @@ import java.util.Optional;
 public class AbilityPracticeCombatActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest process(int depth, Optional<HashMap<Objectives, String>> objectives)
+	public Quest generateQuest(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
 		return new Quest(new Action(depth, Actions.DAMAGE, false));
 	}

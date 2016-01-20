@@ -5,30 +5,50 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 
 /**
+ * A quest.
+ *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class Quest
 {
 	private final LinkedHashSet<Action> actions;
 
-	public Quest(Action... actions) throws IllegalArgumentException
+	/**
+	 * Constructor.
+	 *
+	 * @param actions The list of Action defining the quest.
+	 */
+	public Quest(Action... actions)
 	{
-		if(actions == null || actions.length < 1)
-			throw new IllegalArgumentException("Actions must not be empty");
 		this.actions = new LinkedHashSet<>(actions.length);
 		Collections.addAll(this.actions, actions);
 	}
 
+	/**
+	 * Get the Epsillon Quest with is the quest that is empty.
+	 * @param depth
+	 * @return
+	 */
 	public static Quest getEpsillon(int depth)
 	{
 		return new Quest(new Action(depth, Actions.NONE, false));
 	}
 
+	/**
+	 * Get the Action of the quest.
+	 *
+	 * @return The Action.
+	 */
 	public LinkedHashSet<Action> getActions()
 	{
 		return this.actions;
 	}
 
+	/**
+	 * Get the quest as a string with all the subquests.
+	 *
+	 * @return A list of string.
+	 */
 	public String[] getAsString()
 	{
 		StringBuilder sb = new StringBuilder();
@@ -44,6 +64,11 @@ public class Quest
 		return sb.toString().split("\n");
 	}
 
+	/**
+	 * Used to know if the quest is empty.
+	 *
+	 * @return true if empty, else false.
+	 */
 	public boolean isEmpty()
 	{
 		for(Action action : getActions())
