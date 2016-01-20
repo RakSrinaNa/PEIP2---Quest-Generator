@@ -26,7 +26,7 @@ import fr.polytech.di.questgenerator.objects.Quest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
@@ -93,7 +93,7 @@ public enum Strategies
 	public static Strategies getRandom()
 	{
 		Strategies[] strategies = Strategies.values();
-		return strategies[new Random().nextInt(strategies.length)];
+		return strategies[ThreadLocalRandom.current().nextInt(strategies.length)];
 	}
 
 	public static Strategies getByMotivation(Motivations motivation)
@@ -102,7 +102,7 @@ public enum Strategies
 		for(Strategies strategy : Strategies.values())
 			if(strategy.getMotivation() == motivation)
 				candidates.add(strategy);
-		return candidates.get(new Random().nextInt(candidates.size()));
+		return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
 	}
 
 	public Quest createQuest()

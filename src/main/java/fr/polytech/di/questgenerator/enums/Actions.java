@@ -20,6 +20,7 @@ import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubqu
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.objects.Quest;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
@@ -109,9 +110,9 @@ public enum Actions
 	public Class<? extends ActionExecutor> getRandomActionExecutor()
 	{
 		if(!actionExecutors.contains(ActionEpsillonActionExecutor.class))
-			return actionExecutors.get(new Random().nextInt(actionExecutors.size()));
+			return actionExecutors.get(ThreadLocalRandom.current().nextInt(actionExecutors.size()));
 		if(Math.random() < 0.25)
 			return ActionEpsillonActionExecutor.class;
-		return actionExecutors.get(1 + new Random().nextInt(actionExecutors.size() - 1));
+		return actionExecutors.get(1 + ThreadLocalRandom.current().nextInt(actionExecutors.size() - 1));
 	}
 }
