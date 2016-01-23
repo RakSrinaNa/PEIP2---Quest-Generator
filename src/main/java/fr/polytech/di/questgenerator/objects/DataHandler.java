@@ -1,13 +1,17 @@
 package fr.polytech.di.questgenerator.objects;
 
 import fr.polytech.di.questgenerator.enums.Resources;
+import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveCategory;
+import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveHandler;
+import org.xml.sax.SAXException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 
 /**
  * Contains all the different objective values.
@@ -16,23 +20,29 @@ import java.util.stream.Collectors;
  */
 public class DataHandler
 {
-	private static ArrayList<String> AREA;
-	private static ArrayList<String> PNJ;
-	private static ArrayList<String> OBJECT;
+	private final static ArrayList<XMLStringObjectiveCategory> strings;
 
+	/**
+	 * Initialize the strings.
+	 */
 	static
 	{
+		ArrayList<XMLStringObjectiveCategory> stringsTemp = new ArrayList<>();
 		try
 		{
-			AREA = Files.readAllLines(Paths.get(Resources.TEXTS.getResource("Area").toURI())).stream().filter(s -> !s.equals("")).collect(Collectors.toCollection(ArrayList::new));
-			PNJ = Files.readAllLines(Paths.get(Resources.TEXTS.getResource("PNJ").toURI())).stream().filter(s -> !s.equals("")).collect(Collectors.toCollection(ArrayList::new));
-			OBJECT = Files.readAllLines(Paths.get(Resources.TEXTS.getResource("Object").toURI())).stream().filter(s -> !s.equals("")).collect(Collectors.toCollection(ArrayList::new));
+			SAXParserFactory factory = SAXParserFactory.newInstance();
+			SAXParser parser = factory.newSAXParser();
+			XMLStringObjectiveHandler handler = new XMLStringObjectiveHandler();
+			parser.parse(Resources.XMLS.getResource("strings.xml").toURI().toString(), handler);
+			stringsTemp = handler.getCategories();
 		}
-		catch(IOException | URISyntaxException e)
+		catch(IOException | URISyntaxException | ParserConfigurationException | SAXException e)
 		{
 			e.printStackTrace();
 		}
+		strings = stringsTemp;
 	}
+
 	/**
 	 * Returns a random object.
 	 *
@@ -40,8 +50,9 @@ public class DataHandler
 	 */
 	public static String getRandomObject()
 	{
-		if(OBJECT.size() > 0)
-			return getRandom(OBJECT);
+		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "object");
+		if(category.isPresent())
+			return category.get().getRandomElement(true);
 		return "RDM OBJ " + ThreadLocalRandom.current().nextInt(100);
 	}
 
@@ -50,22 +61,12 @@ public class DataHandler
 	 *
 	 * @return A random location.
 	 */
-	public static String getrandomLocation()
+	public static String getRandomLocation()
 	{
-		if(AREA.size() > 0)
-			return getRandom(AREA);
+		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "area");
+		if(category.isPresent())
+			return category.get().getRandomElement(true);
 		return "RDM LOC " + ThreadLocalRandom.current().nextInt(100);
-	}
-
-	/**
-	 * Return a random object from a list.
-	 *
-	 * @param list The list of values.
-	 * @return A random picked element.
-	 */
-	private static String getRandom(ArrayList<String> list)
-	{
-		return list.get(ThreadLocalRandom.current().nextInt(list.size()));
 	}
 
 	/**
@@ -75,8 +76,9 @@ public class DataHandler
 	 */
 	public static String getRandomPNJ()
 	{
-		if(PNJ.size() > 0)
-			return getRandom(PNJ);
+		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "pnj");
+		if(category.isPresent())
+			return category.get().getRandomElement(true);
 		return "RDM PNJ " + ThreadLocalRandom.current().nextInt(100);
 	}
 
@@ -86,9 +88,12 @@ public class DataHandler
 	 * @param category The category the element picked should be.
 	 * @return Return a random location.
 	 */
-	public static String getRandomLocation(String category)
+	public static String getRandomLocation(String path)
 	{
-		return getrandomLocation();
+		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "area/" + path);
+		if(category.isPresent())
+			return category.get().getRandomElement(true);
+		return getRandomLocation();
 	}
 
 	/**
@@ -97,8 +102,11 @@ public class DataHandler
 	 * @param category The category the element picked should be.
 	 * @return Return a random object.
 	 */
-	public static String getRandomObject(String category)
+	public static String getRandomObject(String path)
 	{
+		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "object/" + path);
+		if(category.isPresent())
+			return category.get().getRandomElement(true);
 		return getRandomObject();
 	}
 
@@ -108,8 +116,11 @@ public class DataHandler
 	 * @param category The category the element picked should be.
 	 * @return Return a random PNJ.
 	 */
-	public static String getRandomPNJ(String category)
+	public static String getRandomPNJ(String path)
 	{
+		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "pnj/" + path);
+		if(category.isPresent())
+			return category.get().getRandomElement(true);
 		return getRandomPNJ();
 	}
 }

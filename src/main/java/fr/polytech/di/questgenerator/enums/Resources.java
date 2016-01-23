@@ -10,7 +10,7 @@ import java.net.URL;
  */
 public enum Resources
 {
-	TEXTS("texts");
+	XMLS("xmls");
 
 	private final String rootPath;
 
