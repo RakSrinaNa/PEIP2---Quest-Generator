@@ -27,7 +27,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public enum Actions
+public enum ActionType
 {
 	NONE(0, ""),
 	CAPTURE(1, "Capture {0}", ActionCaptureActionExecutor.class),
@@ -65,7 +65,7 @@ public enum Actions
 	 * @param params Number of objectives expected.
 	 * @param sentence The sentence describing the action.
 	 */
-	Actions(int params, String sentence)
+	ActionType(int params, String sentence)
 	{
 		this.params = params;
 		this.sentence = sentence;
@@ -80,7 +80,7 @@ public enum Actions
 	 * @param actionExecutors The possible ActionExecutor(s) defining how the action could be splitted.
 	 */
 	@SafeVarargs
-	Actions(int params, String sentence, Class<? extends ActionExecutor>... actionExecutors)
+	ActionType(int params, String sentence, Class<? extends ActionExecutor>... actionExecutors)
 	{
 		this.params = params;
 		this.sentence = sentence;
@@ -116,7 +116,7 @@ public enum Actions
 	{
 		if(depth > Main.MAX_DEPTH && actionExecutors.contains(ActionEpsillonActionExecutor.class))
 			return Optional.empty();
-		Quest quest = Quest.getEpsillon(depth);
+		Quest quest = Quest.getEpsilon(depth);
 		if(!actionExecutors.isEmpty())
 			try
 			{

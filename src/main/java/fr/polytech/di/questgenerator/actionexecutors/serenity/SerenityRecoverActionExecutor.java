@@ -1,6 +1,6 @@
 package fr.polytech.di.questgenerator.actionexecutors.serenity;
 
-import fr.polytech.di.questgenerator.enums.Actions;
+import fr.polytech.di.questgenerator.enums.ActionType;
 import fr.polytech.di.questgenerator.enums.Objectives;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.objects.Action;
@@ -16,6 +16,6 @@ public class SerenityRecoverActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(new Action(depth, Actions.GET), new Action(depth, Actions.GOTO), new Action(depth, Actions.GIVE));
+		return new Quest(new Action(depth, ActionType.GET), new Action(depth, ActionType.GOTO), new Action(depth, ActionType.GIVE));
 	}
 }

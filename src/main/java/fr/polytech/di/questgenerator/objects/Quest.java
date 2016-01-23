@@ -1,6 +1,6 @@
 package fr.polytech.di.questgenerator.objects;
 
-import fr.polytech.di.questgenerator.enums.Actions;
+import fr.polytech.di.questgenerator.enums.ActionType;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 
@@ -29,9 +29,9 @@ public class Quest
 	 * @param depth
 	 * @return
 	 */
-	public static Quest getEpsillon(int depth)
+	public static Quest getEpsilon(int depth)
 	{
-		return new Quest(new Action(depth, Actions.NONE, false));
+		return new Quest(new Action(depth, ActionType.NONE, false));
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class Quest
 	public boolean isEmpty()
 	{
 		for(Action action : getActions())
-			if(action.getActions() != Actions.NONE)
+			if(action.getActions() != ActionType.NONE)
 				return false;
 		return true;
 	}

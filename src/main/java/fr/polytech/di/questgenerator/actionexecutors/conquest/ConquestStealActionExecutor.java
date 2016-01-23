@@ -1,6 +1,6 @@
 package fr.polytech.di.questgenerator.actionexecutors.conquest;
 
-import fr.polytech.di.questgenerator.enums.Actions;
+import fr.polytech.di.questgenerator.enums.ActionType;
 import fr.polytech.di.questgenerator.enums.Objectives;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.objects.Action;
@@ -16,6 +16,6 @@ public class ConquestStealActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<Objectives, String>> objectives)
 	{
-		return new Quest(new Action(depth, Actions.GOTO), new Action(depth, Actions.STEAL), new Action(depth, Actions.GOTO), new Action(depth, Actions.GIVE, false));
+		return new Quest(new Action(depth, ActionType.GOTO), new Action(depth, ActionType.STEAL), new Action(depth, ActionType.GOTO), new Action(depth, ActionType.GIVE, false));
 	}
 }
