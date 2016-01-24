@@ -26,11 +26,9 @@ public class XMLStringObjectiveHandler extends DefaultHandler
 				categories = new ArrayList<>();
 				currentCategories = new LinkedList<>();
 				break;
-
 			case "category":
 				currentCategories.add(new XMLStringObjectiveCategory(attributes.getValue("value")));
 				break;
-
 			case "element":
 				currentElement = attributes.getValue("value");
 				break;
@@ -53,7 +51,6 @@ public class XMLStringObjectiveHandler extends DefaultHandler
 				else
 					categories.add(currentCategories.pollLast());
 				break;
-
 			case "element":
 				currentCategories.getLast().addValue(currentElement);
 				break;

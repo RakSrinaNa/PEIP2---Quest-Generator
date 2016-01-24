@@ -1,89 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <strings>
     <category value="area">
-  		<element value="Forest"/>
-  		<element value="Valley"/>
-  		<element value="Mont"/>
-  		<element value="Cave"/>
-  		<element value="River"/>
-  		<element value="Ocean"/>
-  		<element value="Sea"/>
-  		<element value="Lake"/>
-  		<element value="Jungle"/>
-  		<element value="Snowy mont"/>
-  		<element value="Bridge"/>
-  		<element value="Haunted castle"/>
-  		<element value="Ghost city"/>
+        <element value="Forest"/>
+        <element value="Valley"/>
+        <element value="Mont"/>
+        <element value="Cave"/>
+        <element value="River"/>
+        <element value="Ocean"/>
+        <element value="Sea"/>
+        <element value="Lake"/>
+        <element value="Jungle"/>
+        <element value="Snowy mont"/>
+        <element value="Bridge"/>
+        <element value="Haunted castle"/>
+        <element value="Ghost city"/>
     </category>
     <category value="object">
-  		<category value="weapon">
-  			<element value="Sword"/>
-  			<element value="Axe"/>
-  			<element value="Spike"/>
-  			<element value="Shield"/>
-  			<element value="Magic wand"/>
-  			<element value="Scepter"/>
-  		</category>
-  		<category value="personal">
-  			<element value="Keys"/>
-  			<element value="Map"/>
-  			<element value="Necklace"/>
-  			<element value="Earring"/>
-  			<element value="Ring"/>
-  			<element value="Money"/>
-  		</category>
-  		<category value="material">
-  			<element value="Wood"/>
-  			<element value="Cristal"/>
-  			<element value="Bandage"/>
-  			<element value="Leather"/>
-  			<element value="Iron"/>
-  			<element value="Gold"/>
-  			<element value="Silver"/>
-  		</category>
+        <category value="weapon">
+            <element value="Sword"/>
+            <element value="Axe"/>
+            <element value="Spike"/>
+            <element value="Shield"/>
+            <element value="Magic wand"/>
+            <element value="Scepter"/>
+        </category>
+        <category value="personal">
+            <element value="Keys"/>
+            <element value="Map"/>
+            <element value="Necklace"/>
+            <element value="Earring"/>
+            <element value="Ring"/>
+            <element value="Money"/>
+        </category>
+        <category value="material">
+            <element value="Wood"/>
+            <element value="Cristal"/>
+            <element value="Bandage"/>
+            <element value="Leather"/>
+            <element value="Iron"/>
+            <element value="Gold"/>
+            <element value="Silver"/>
+        </category>
     </category>
     <category value="pnj">
-  		<category value="being">
-  			<category value="human">
-  				<element value="Aerys"/>
-  				<element value="Vicerys"/>
-  				<element value="Daenerys"/>
-  				<element value="Erekys"/>
-  			</category>
-  			<category value="demon">
-  				<element value="Nathanael"/>
-  				<element value="Azrael"/>
-  				<element value="Samael"/>
-  				<element value="Rafael"/>
-  				<element value="Arael"/>
-  			</category>
-  			<category value="angel">
-  				<element value="Uriel"/>
-  				<element value="Ariel"/>
-  				<element value="Hezekiel"/>
-  				<element value="Zuriel"/>
-  				<element value="Raviel"/>
-  			</category>
-  			<category value="nephilim">
-  				<element value="Abadon"/>
-  				<element value="Absalom"/>
-  				<element value="Belial"/>
-  				<element value="Zerato"/>
-  				<element value="Uria"/>
-  				<element value="Hamon"/>
-  			</category>
-  		</category>
-  		<category value="beast">
-  			<element value="Wolf"/>
-  			<element value="Bear"/>
-  			<element value="Eagle"/>
-  			<element value="Chimera"/>
-  			<element value="Hydra"/>
-  			<element value="Rabbit"/>
-  			<element value="Fox"/>
-  			<element value="Cerberus"/>
-  			<element value="Basilik"/>
-  			<element value="Zombie"/>
-  		</category>
+        <category value="being">
+            <category value="human">
+                <element value="Aerys"/>
+                <element value="Vicerys"/>
+                <element value="Daenerys"/>
+                <element value="Erekys"/>
+            </category>
+            <category value="demon">
+                <element value="Nathanael"/>
+                <element value="Azrael"/>
+                <element value="Samael"/>
+                <element value="Rafael"/>
+                <element value="Arael"/>
+            </category>
+            <category value="angel">
+                <element value="Uriel"/>
+                <element value="Ariel"/>
+                <element value="Hezekiel"/>
+                <element value="Zuriel"/>
+                <element value="Raviel"/>
+            </category>
+            <category value="nephilim">
+                <element value="Abadon"/>
+                <element value="Absalom"/>
+                <element value="Belial"/>
+                <element value="Zerato"/>
+                <element value="Uria"/>
+                <element value="Hamon"/>
+            </category>
+        </category>
+        <category value="beast">
+            <element value="Wolf"/>
+            <element value="Bear"/>
+            <element value="Eagle"/>
+            <element value="Chimera"/>
+            <element value="Hydra"/>
+            <element value="Rabbit"/>
+            <element value="Fox"/>
+            <element value="Cerberus"/>
+            <element value="Basilik"/>
+            <element value="Zombie"/>
+        </category>
     </category>
 </strings>

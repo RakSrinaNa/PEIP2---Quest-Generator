@@ -34,7 +34,6 @@ public class ActionItem extends HBox
 	public ActionItem(MainFrame root, Action action)
 	{
 		super();
-
 		VBox vBox = new VBox();
 		vBox.getChildren().add(genText(action));
 		if(action.getSubquest().isPresent())
@@ -45,7 +44,6 @@ public class ActionItem extends HBox
 		}
 		else
 			this.getChildren().addAll(genImageView(), vBox);
-
 		this.setSpacing(5);
 	}
 

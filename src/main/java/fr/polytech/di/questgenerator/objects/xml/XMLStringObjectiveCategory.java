@@ -30,26 +30,6 @@ public class XMLStringObjectiveCategory
 	}
 
 	/**
-	 * Add a value to this category.
-	 *
-	 * @param value The value to add.
-	 */
-	public void addValue(String value)
-	{
-		this.values.add(value);
-	}
-
-	/**
-	 * Add a category to that category.
-	 *
-	 * @param subcategory The category to add.
-	 */
-	public void addSubcategory(XMLStringObjectiveCategory subcategory)
-	{
-		this.subcategories.add(subcategory);
-	}
-
-	/**
 	 * Get the category
 	 *
 	 * @param categories The categories in which we search into.
@@ -80,6 +60,26 @@ public class XMLStringObjectiveCategory
 				return getCategoryByName(category.getSubCategories(), Arrays.copyOfRange(path, 1, path.length));
 			}
 		return Optional.empty();
+	}
+
+	/**
+	 * Add a value to this category.
+	 *
+	 * @param value The value to add.
+	 */
+	public void addValue(String value)
+	{
+		this.values.add(value);
+	}
+
+	/**
+	 * Add a category to that category.
+	 *
+	 * @param subcategory The category to add.
+	 */
+	public void addSubcategory(XMLStringObjectiveCategory subcategory)
+	{
+		this.subcategories.add(subcategory);
 	}
 
 	/**

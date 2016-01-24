@@ -20,6 +20,7 @@ public class Action
 
 	/**
 	 * Constructor.
+	 *
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 */

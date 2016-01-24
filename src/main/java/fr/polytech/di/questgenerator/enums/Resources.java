@@ -33,6 +33,24 @@ public enum Resources
 	}
 
 	/**
+	 * Resize (conserving ratio) a Buffered image.
+	 *
+	 * @param image The image to resize.
+	 * @param width The width to set.
+	 * @param height The height to set.
+	 * @return The resized image.
+	 */
+	public static BufferedImage resizeBufferedImage(BufferedImage image, float width, float height)
+	{
+		int baseWidth = image.getWidth(), baseHeight = image.getHeight();
+		float ratio = baseWidth > baseHeight ? width / baseWidth : height / baseHeight;
+		java.awt.Image tmp = image.getScaledInstance((int) (ratio * baseWidth), (int) (ratio * baseHeight), BufferedImage.SCALE_SMOOTH);
+		BufferedImage buffered = new BufferedImage((int) (ratio * baseWidth), (int) (ratio * baseHeight), BufferedImage.TYPE_INT_ARGB);
+		buffered.getGraphics().drawImage(tmp, 0, 0, null);
+		return buffered;
+	}
+
+	/**
 	 * Get a file of that resource.
 	 *
 	 * @param path The file path inside the root node.
@@ -73,23 +91,5 @@ public enum Resources
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	/**
-	 * Resize (conserving ratio) a Buffered image.
-	 *
-	 * @param image The image to resize.
-	 * @param width The width to set.
-	 * @param height The height to set.
-	 * @return The resized image.
-	 */
-	public static BufferedImage resizeBufferedImage(BufferedImage image, float width, float height)
-	{
-		int baseWidth = image.getWidth(), baseHeight = image.getHeight();
-		float ratio = baseWidth > baseHeight ? width / baseWidth : height / baseHeight;
-		java.awt.Image tmp = image.getScaledInstance((int) (ratio * baseWidth), (int) (ratio * baseHeight), BufferedImage.SCALE_SMOOTH);
-		BufferedImage buffered = new BufferedImage((int) (ratio * baseWidth), (int) (ratio * baseHeight), BufferedImage.TYPE_INT_ARGB);
-		buffered.getGraphics().drawImage(tmp, 0, 0, null);
-		return buffered;
 	}
 }

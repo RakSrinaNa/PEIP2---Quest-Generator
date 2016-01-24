@@ -23,27 +23,6 @@ public class DataHandler
 	private final static ArrayList<XMLStringObjectiveCategory> strings;
 
 	/**
-	 * Initialize the strings.
-	 */
-	static
-	{
-		ArrayList<XMLStringObjectiveCategory> stringsTemp = new ArrayList<>();
-		try
-		{
-			SAXParserFactory factory = SAXParserFactory.newInstance();
-			SAXParser parser = factory.newSAXParser();
-			XMLStringObjectiveHandler handler = new XMLStringObjectiveHandler();
-			parser.parse(Resources.XMLS.getResource("strings.xml").toURI().toString(), handler);
-			stringsTemp = handler.getCategories();
-		}
-		catch(IOException | URISyntaxException | ParserConfigurationException | SAXException e)
-		{
-			e.printStackTrace();
-		}
-		strings = stringsTemp;
-	}
-
-	/**
 	 * Returns a random object.
 	 *
 	 * @return A random object.
@@ -85,7 +64,7 @@ public class DataHandler
 	/**
 	 * Return a random location of the given category.
 	 *
-	 * @param category The category the element picked should be.
+	 * @param path The category the element picked should be.
 	 * @return Return a random location.
 	 */
 	public static String getRandomLocation(String path)
@@ -99,7 +78,7 @@ public class DataHandler
 	/**
 	 * Return a random object of the given category.
 	 *
-	 * @param category The category the element picked should be.
+	 * @param path The category the element picked should be.
 	 * @return Return a random object.
 	 */
 	public static String getRandomObject(String path)
@@ -113,7 +92,7 @@ public class DataHandler
 	/**
 	 * Return a random PNJ of the given category.
 	 *
-	 * @param category The category the element picked should be.
+	 * @param path The category the element picked should be.
 	 * @return Return a random PNJ.
 	 */
 	public static String getRandomPNJ(String path)
@@ -122,5 +101,26 @@ public class DataHandler
 		if(category.isPresent())
 			return category.get().getRandomElement(true);
 		return getRandomPNJ();
+	}
+
+	/**
+	 * Initialize the strings.
+	 */
+	static
+	{
+		ArrayList<XMLStringObjectiveCategory> stringsTemp = new ArrayList<>();
+		try
+		{
+			SAXParserFactory factory = SAXParserFactory.newInstance();
+			SAXParser parser = factory.newSAXParser();
+			XMLStringObjectiveHandler handler = new XMLStringObjectiveHandler();
+			parser.parse(Resources.XMLS.getResource("strings.xml").toURI().toString(), handler);
+			stringsTemp = handler.getCategories();
+		}
+		catch(IOException | URISyntaxException | ParserConfigurationException | SAXException e)
+		{
+			e.printStackTrace();
+		}
+		strings = stringsTemp;
 	}
 }
