@@ -1,7 +1,6 @@
 package fr.polytech.di.questgenerator.jfx.contents;
 
 import fr.polytech.di.questgenerator.enums.Resources;
-import fr.polytech.di.questgenerator.jfx.MainFrame;
 import fr.polytech.di.questgenerator.objects.Action;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,7 +16,7 @@ import javafx.scene.text.Text;
  */
 public class ActionItem extends HBox
 {
-	private static final int IMG_SIZE = 12;
+	private static final int IMG_SIZE = 10;
 	private static final Font FONT = Font.font("Verdana", 16);
 	private static final Image TRANSPARENT_IMAGE = Resources.JFX_IMAGE.getImage("transparent.png", IMG_SIZE, IMG_SIZE);
 	private static final Image OPENED_IMAGE = Resources.JFX_IMAGE.getImage("opened.png", IMG_SIZE, IMG_SIZE);
@@ -28,17 +27,16 @@ public class ActionItem extends HBox
 	/**
 	 * Constructor.
 	 *
-	 * @param root the root frame.
 	 * @param action The action to display.
 	 */
-	public ActionItem(MainFrame root, Action action)
+	public ActionItem(Action action)
 	{
 		super();
 		VBox vBox = new VBox();
 		vBox.getChildren().add(genText(action));
 		if(action.getSubquest().isPresent())
 		{
-			subquest = new QuestItem(root, action.getSubquest().get(), action.getDepth() + 1);
+			subquest = new QuestItem(action.getSubquest().get(), action.getDepth() + 1);
 			vBox.getChildren().add(subquest);
 			this.getChildren().addAll(genImageView(), vBox);
 		}
@@ -55,7 +53,7 @@ public class ActionItem extends HBox
 	private ImageView genImageView()
 	{
 		this.image = new ImageView(this.subquest == null ? TRANSPARENT_IMAGE : OPENED_IMAGE);
-		this.image.setTranslateY(4);
+		this.image.setTranslateY(5);
 		this.image.setOnMouseReleased(event -> switchSubquestStatus());
 		return this.image;
 	}

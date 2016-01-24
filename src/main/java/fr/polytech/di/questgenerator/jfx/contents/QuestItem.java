@@ -1,6 +1,5 @@
 package fr.polytech.di.questgenerator.jfx.contents;
 
-import fr.polytech.di.questgenerator.jfx.MainFrame;
 import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
 import javafx.scene.layout.VBox;
@@ -12,19 +11,15 @@ import javafx.scene.layout.VBox;
  */
 public class QuestItem extends VBox
 {
-	private final MainFrame root;
-
 	/**
 	 * Constructor.
 	 *
-	 * @param root The root frame.
 	 * @param quest The quest to display.
 	 * @param depth The depth of the Quest.
 	 */
-	public QuestItem(MainFrame root, Quest quest, int depth)
+	public QuestItem(Quest quest, int depth)
 	{
 		super();
-		this.root = root;
 		this.setSpacing(5);
 		this.setStyle("-fx-background-color: " + getStringColor(depth) + ";");
 		loadQuest(quest);
@@ -36,12 +31,12 @@ public class QuestItem extends VBox
 	 * @param depth The depth.
 	 * @return The color string.
 	 */
-	private String getStringColor(int depth)
+	public static String getStringColor(int depth)
 	{
 		int red = 128 + (depth * 373) % 128;
 		int green = 128 + (depth * 431) % 128;
 		int blue = 128 + (depth * 607) % 128;
-		return "#" + getPaddedHex(red) + getPaddedHex(green) + getPaddedHex(blue);
+		return "rgb(" + red + "," + green + "," + blue + ")";
 	}
 
 	/**
@@ -49,7 +44,7 @@ public class QuestItem extends VBox
 	 * @param i The number, must be 0<=i<256.
 	 * @return The hexadecimal value.
 	 */
-	private String getPaddedHex(int i)
+	public static String getPaddedHex(int i)
 	{
 		return (i < 10 ? "0" : "") + Integer.toHexString(i);
 	}
@@ -73,7 +68,6 @@ public class QuestItem extends VBox
 	private void loadQuest(Quest quest)
 	{
 		for(Action action : quest.getActions())
-			this.getChildren().add(new ActionItem(root, action));
-		root.sizeToScene();
+			this.getChildren().add(new ActionItem(action));
 	}
 }
