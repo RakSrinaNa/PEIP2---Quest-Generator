@@ -6,108 +6,109 @@ import java.util.HashMap;
 import java.util.Optional;
 
 /**
- * Define an action to do.
+ * Define an actionType to do.
  *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class Action
 {
-	private final ActionType action;
+	private final ActionType actionType;
 	private final Optional<HashMap<Objectives, String>> objectives;
 	private final Optional<Quest> subquest;
 	private final boolean splittable;
+	private final int depth;
 
 	/**
 	 * Constructor.
-	 *
-	 * @param depth The depth of the action.
-	 * @param action The ActionType associated to this Action.
+	 * @param depth The depth of the actionType.
+	 * @param actionType The ActionType associated to this Action.
 	 */
-	public Action(int depth, ActionType action)
+	public Action(int depth, ActionType actionType)
 	{
-		this(depth, action, true);
+		this(depth, actionType, true);
 	}
 
 	/**
 	 * Constructor.
 	 *
-	 * @param depth The depth of the action.
-	 * @param action The ActionType associated to this Action.
+	 * @param depth The depth of the actionType.
+	 * @param actionType The ActionType associated to this Action.
 	 * @param splittable Define if this Action can be splitted.
 	 */
-	public Action(int depth, ActionType action, boolean splittable)
+	public Action(int depth, ActionType actionType, boolean splittable)
 	{
-		this(depth, action, Optional.empty(), splittable);
+		this(depth, actionType, Optional.empty(), splittable);
 	}
 
 	/**
 	 * Constructor.
 	 *
-	 * @param depth The depth of the action.
-	 * @param action The ActionType associated to this Action.
+	 * @param depth The depth of the actionType.
+	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 */
-	public Action(int depth, ActionType action, HashMap<Objectives, String> objectives)
+	public Action(int depth, ActionType actionType, HashMap<Objectives, String> objectives)
 	{
-		this(depth, action, Optional.ofNullable(objectives));
+		this(depth, actionType, Optional.ofNullable(objectives));
 	}
 
 	/**
 	 * Constructor.
 	 *
-	 * @param depth The depth of the action.
-	 * @param action The ActionType associated to this Action.
+	 * @param depth The depth of the actionType.
+	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 */
-	public Action(int depth, ActionType action, Optional<HashMap<Objectives, String>> objectives)
+	public Action(int depth, ActionType actionType, Optional<HashMap<Objectives, String>> objectives)
 	{
-		this(depth, action, objectives, true);
+		this(depth, actionType, objectives, true);
 	}
 
 	/**
 	 * Constructor.
 	 *
-	 * @param depth The depth of the action.
-	 * @param action The ActionType associated to this Action.
-	 * @param objectives The objectives for the Action.
-	 * @param splittable Define if this Action can be splitted.
-	 */
-	public Action(int depth, ActionType action, HashMap<Objectives, String> objectives, boolean splittable)
-	{
-		this(depth, action, Optional.ofNullable(objectives), splittable);
-	}
-
-	/**
-	 * Constructor.
-	 *
-	 * @param depth The depth of the action.
-	 * @param action The ActionType associated to this Action.
+	 * @param depth The depth of the actionType.
+	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 * @param splittable Define if this Action can be splitted.
 	 */
-	public Action(int depth, ActionType action, Optional<HashMap<Objectives, String>> objectives, boolean splittable)
+	public Action(int depth, ActionType actionType, HashMap<Objectives, String> objectives, boolean splittable)
 	{
-		this.action = action;
+		this(depth, actionType, Optional.ofNullable(objectives), splittable);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param depth The depth of the actionType.
+	 * @param actionType The ActionType associated to this Action.
+	 * @param objectives The objectives for the Action.
+	 * @param splittable Define if this Action can be splitted.
+	 */
+	public Action(int depth, ActionType actionType, Optional<HashMap<Objectives, String>> objectives, boolean splittable)
+	{
+		this.depth = depth;
+		this.actionType = actionType;
 		this.objectives = objectives;
 		this.splittable = splittable;
 		this.subquest = this.genSubquest(depth);
 	}
 
 	/**
-	 * Generate the subquest for this action.
+	 * Generate the subquest for this actionType.
 	 *
 	 * @param depth The depth of the subquest.
 	 * @return The quest.
 	 */
 	private Optional<Quest> genSubquest(int depth)
 	{
-		if(!this.splittable || this.action.isEmpty())
+		if(!this.splittable || this.actionType.isEmpty())
 			return Optional.empty();
-		return action.genSubquest(depth, this.objectives);
+		return actionType.genSubquest(depth, this.objectives);
 	}
 
 	/**
-	 * Returns the subquest of this action.
+	 * Returns the subquest of this actionType.
 	 *
 	 * @return The subquest.
 	 */
@@ -119,11 +120,11 @@ public class Action
 	/**
 	 * Used to get the formatted sentence describing this Action.
 	 *
-	 * @return The action description.
+	 * @return The actionType description.
 	 */
 	public String getAsString()
 	{
-		return this.action.getAsString(objectives);
+		return this.actionType.getAsString(objectives);
 	}
 
 	@Override
@@ -138,6 +139,11 @@ public class Action
 	 */
 	public ActionType getActions()
 	{
-		return this.action;
+		return this.actionType;
+	}
+
+	public int getDepth()
+	{
+		return this.depth;
 	}
 }

@@ -51,13 +51,24 @@ public class Quest
 	 */
 	public String[] getAsString()
 	{
+		return getAsString(true);
+	}
+
+	/**
+	 * Get the quest as a string.
+	 *
+	 * @param subquests Include subquests or not.
+	 * @return A list of string.
+	 */
+	public String[] getAsString(boolean subquests)
+	{
 		StringBuilder sb = new StringBuilder();
 		for(Action action : getActions())
 		{
 			if(sb.length() > 0)
 				sb.append("\n");
 			sb.append(action.getAsString());
-			if(action.getSubquest().isPresent())
+			if(subquests && action.getSubquest().isPresent())
 				for(String line : action.getSubquest().get().getAsString())
 					sb.append("\n\t").append(line);
 		}
