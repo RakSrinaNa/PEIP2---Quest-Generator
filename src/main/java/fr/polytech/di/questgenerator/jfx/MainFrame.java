@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
+ * Main frame of the application.
+ *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class MainFrame extends Application
@@ -19,6 +21,11 @@ public class MainFrame extends Application
 	private QuestItem quest;
 	private Stage stage;
 
+	/**
+	 * Startup function.
+	 *
+	 * @param args Arguments.
+	 */
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -36,6 +43,11 @@ public class MainFrame extends Application
 		primaryStage.show();
 	}
 
+	/**
+	 * Create the content of the scene.
+	 *
+	 * @return The scene content.
+	 */
 	private Parent createContent()
 	{
 		VBox vBox = new VBox();
@@ -43,18 +55,17 @@ public class MainFrame extends Application
 
 		quest = new QuestItem(this, QuestGenerator.createNewRandomQuest());
 
-		vBox.getChildren().addAll(quest, genReloadButton());
+		Button reloadButton = new Button("Reload quest");
+		reloadButton.setMaxWidth(Double.MAX_VALUE);
+		reloadButton.setOnMouseReleased(event -> quest.modifyQuest(QuestGenerator.createNewRandomQuest()));
+
+		vBox.getChildren().addAll(quest, reloadButton);
 		return vBox;
 	}
 
-	private Button genReloadButton()
-	{
-		Button button = new Button("Reload quest");
-		button.setMaxWidth(Double.MAX_VALUE);
-		button.setOnMouseReleased(event -> quest.modifyQuest(QuestGenerator.createNewRandomQuest()));
-		return button;
-	}
-
+	/**
+	 * Resize the Stage to the scene.
+	 */
 	public void sizeToScene()
 	{
 		this.stage.sizeToScene();

@@ -11,6 +11,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
+ * Element displaying an action to do with its subquest.
+ *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class ActionItem extends HBox
@@ -23,6 +25,12 @@ public class ActionItem extends HBox
 	private QuestItem subquest;
 	private ImageView image;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param root the root frame.
+	 * @param action The action to display.
+	 */
 	public ActionItem(MainFrame root, Action action)
 	{
 		super();
@@ -41,6 +49,11 @@ public class ActionItem extends HBox
 		this.setSpacing(5);
 	}
 
+	/**
+	 * Used to generate the ImageView to put next to the text.
+	 *
+	 * @return The ImageView.
+	 */
 	private ImageView genImageView()
 	{
 		this.image = new ImageView(this.subquest == null ? TRANSPARENT_IMAGE : OPENED_IMAGE);
@@ -49,6 +62,12 @@ public class ActionItem extends HBox
 		return this.image;
 	}
 
+	/**
+	 * Used to generate the text to display.
+	 *
+	 * @param action The Action to display.
+	 * @return The Text.
+	 */
 	private Text genText(Action action)
 	{
 		Text text = new Text(action.getAsString());
@@ -57,6 +76,9 @@ public class ActionItem extends HBox
 		return text;
 	}
 
+	/**
+	 * Switch subquest status, visible or not.
+	 */
 	private void switchSubquestStatus()
 	{
 		if(subquest != null)
