@@ -43,11 +43,25 @@ public enum Resources
 		return Main.class.getResource("/" + this.rootPath + "/" + path);
 	}
 
+	/**
+	 * Get a JavaFX Image.
+	 *
+	 * @param path The path of the file.
+	 * @return The Image.
+	 */
 	public Image getImage(String path)
 	{
 		return new Image(getResource(path).toString());
 	}
 
+	/**
+	 * Get a resized (conserving ratio) JavaFX WritableImage.
+	 *
+	 * @param path The path of the file.
+	 * @param width the width to set.
+	 * @param height The height to set.
+	 * @return The image.
+	 */
 	public WritableImage getImage(String path, int width, int height)
 	{
 		try
@@ -61,6 +75,14 @@ public enum Resources
 		return null;
 	}
 
+	/**
+	 * Resize (conserving ratio) a Buffered image.
+	 *
+	 * @param image The image to resize.
+	 * @param width The width to set.
+	 * @param height The height to set.
+	 * @return The resized image.
+	 */
 	public static BufferedImage resizeBufferedImage(BufferedImage image, float width, float height)
 	{
 		int baseWidth = image.getWidth(), baseHeight = image.getHeight();

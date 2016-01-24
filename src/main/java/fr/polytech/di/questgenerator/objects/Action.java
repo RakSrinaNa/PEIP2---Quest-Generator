@@ -135,9 +135,10 @@ public class Action
 
 	/**
 	 * Get the ActionType associated to this Action.
-	 * @return
+	 *
+	 * @return The ActionType of this Action.
 	 */
-	public ActionType getActions()
+	public ActionType getActionType()
 	{
 		return this.actionType;
 	}

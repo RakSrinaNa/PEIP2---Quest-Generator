@@ -25,9 +25,10 @@ public class Quest
 	}
 
 	/**
-	 * Get the Epsillon Quest with is the quest that is empty.
-	 * @param depth
-	 * @return
+	 * Get the Epsilon Quest with is the quest that is empty.
+	 *
+	 * @param depth The depth of the Quest.
+	 * @return The Epsilon Quest.
 	 */
 	public static Quest getEpsilon(int depth)
 	{
@@ -83,7 +84,7 @@ public class Quest
 	public boolean isEmpty()
 	{
 		for(Action action : getActions())
-			if(action.getActions() != ActionType.NONE)
+			if(action.getActionType() != ActionType.NONE)
 				return false;
 		return true;
 	}
