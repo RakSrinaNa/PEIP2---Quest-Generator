@@ -120,7 +120,7 @@ public enum ActionType
 		if(!actionExecutors.isEmpty())
 			try
 			{
-				quest = getRandomActionExecutor().newInstance().generateQuest(depth + 1, objectives);
+				quest = getRandomActionExecutor(depth).newInstance().generateQuest(depth + 1, objectives);
 			}
 			catch(InstantiationException | IllegalAccessException ignored)
 			{
@@ -141,15 +141,16 @@ public enum ActionType
 	}
 
 	/**
-	 * Used to get a random ActionExecutor. If an epsillon ActionxEcutor is present, he will have 25% of chances to be picked.
+	 * Used to get a random ActionExecutor. If an epsillon ActionxEcutor is present, he will have more chances to be picked as we get closer to the max depth.
 	 *
+	 * @param depth The depth of the Action.
 	 * @return A random ActionExecutor.
 	 */
-	public Class<? extends ActionExecutor> getRandomActionExecutor()
+	public Class<? extends ActionExecutor> getRandomActionExecutor(int depth)
 	{
 		if(!actionExecutors.contains(ActionEpsillonActionExecutor.class))
 			return actionExecutors.get(ThreadLocalRandom.current().nextInt(actionExecutors.size()));
-		if(Math.random() < 0.25)
+		if(Math.random() < (1 / actionExecutors.size()) + (depth / Main.MAX_DEPTH))
 			return ActionEpsillonActionExecutor.class;
 		return actionExecutors.get(1 + ThreadLocalRandom.current().nextInt(actionExecutors.size() - 1));
 	}
