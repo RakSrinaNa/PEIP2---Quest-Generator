@@ -52,7 +52,7 @@ public class MainFrame extends Application
 	{
 		VBox vBox = new VBox();
 		vBox.setSpacing(20);
-		quest = new QuestItem(this, QuestGenerator.createNewRandomQuest());
+		quest = new QuestItem(this, QuestGenerator.createNewRandomQuest(), 0);
 		Button reloadButton = new Button("Reload quest");
 		reloadButton.setMaxWidth(Double.MAX_VALUE);
 		reloadButton.setOnMouseReleased(event -> quest.modifyQuest(QuestGenerator.createNewRandomQuest()));

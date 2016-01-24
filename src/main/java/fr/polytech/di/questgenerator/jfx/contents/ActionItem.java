@@ -38,7 +38,7 @@ public class ActionItem extends HBox
 		vBox.getChildren().add(genText(action));
 		if(action.getSubquest().isPresent())
 		{
-			subquest = new QuestItem(root, action.getSubquest().get());
+			subquest = new QuestItem(root, action.getSubquest().get(), action.getDepth() + 1);
 			vBox.getChildren().add(subquest);
 			this.getChildren().addAll(genImageView(), vBox);
 		}
