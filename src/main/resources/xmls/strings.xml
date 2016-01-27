@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <strings>
     <category value="area">
-        <element value="Forest"/>
-        <element value="Valley"/>
-        <element value="Mont"/>
-        <element value="Cave"/>
-        <element value="River"/>
-        <element value="Ocean"/>
-        <element value="Sea"/>
-        <element value="Lake"/>
-        <element value="Jungle"/>
-        <element value="Snowy mont"/>
-        <element value="Bridge"/>
-        <element value="Haunted castle"/>
-        <element value="Ghost city"/>
+        <categoty value="wild">
+            <element value="Forest"/>
+            <element value="Valley"/>
+            <element value="Mont"/>
+            <element value="Cave"/>
+            <element value="River"/>
+            <element value="Ocean"/>
+            <element value="Sea"/>
+            <element value="Lake"/>
+            <element value="Jungle"/>
+            <element value="Snowy mont"/>
+            <element value="Bridge"/>
+            <element value="Haunted castle"/>
+            <element value="Ghost city"/>
+        </categoty>
     </category>
     <category value="object">
         <category value="readable">
             <element value="Ancient book"/>
+            <element value="Magic book"/>
+            <element value="Magic book"/>
+            <element value="Magic book"/>
+            <element value="Magic book"/>
         </category>
         <category value="weapon">
             <element value="Sword"/>
