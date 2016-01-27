@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <strings>
     <category value="area">
-        <categoty value="wild">
+        <category value="wild">
             <element value="Forest"/>
             <element value="Valley"/>
             <element value="Mont"/>
@@ -15,15 +15,22 @@
             <element value="Bridge"/>
             <element value="Haunted castle"/>
             <element value="Ghost city"/>
-        </categoty>
+        </category>
+        <category value="place">
+            <element value="Dohrme"/>
+            <element value="Winterfel"/>
+            <element value="Castle-Roc"/>
+            <element value="White-Chapel"/>
+        </category>
     </category>
     <category value="object">
         <category value="readable">
             <element value="Ancient book"/>
-            <element value="Magic book"/>
-            <element value="Magic book"/>
-            <element value="Magic book"/>
-            <element value="Magic book"/>
+            <element value="Book"/>
+            <element value="Blue book"/>
+            <element value="Red book"/>
+            <element value="Green book"/>
+            <element value="Ultimate book"/>
         </category>
         <category value="weapon">
             <element value="Sword"/>
@@ -49,6 +56,7 @@
             <element value="Iron"/>
             <element value="Gold"/>
             <element value="Silver"/>
+            <element value="Diamond"/>
         </category>
     </category>
     <category value="pnj">
@@ -93,6 +101,15 @@
             <element value="Cerberus"/>
             <element value="Basilik"/>
             <element value="Zombie"/>
+        </category>
+    </category>
+    <category value="skill">
+        <category value="Spell">
+            <element value="Fire Ball"/>
+            <element value="Shock Wave"/>
+            <element value="Ice Blast"/>
+            <element value="Maelstrom"/>
+            <element value="Cataract"/>
         </category>
     </category>
 </strings>
