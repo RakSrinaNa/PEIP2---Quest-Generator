@@ -110,7 +110,7 @@ public class DataHandler
 		{
 			Optional<XMLStringObjectiveCategory> categoryObj = XMLStringObjectiveCategory.getCategoryByName(strings, category);
 			if(categoryObj.isPresent())
-				candidates.addAll(categoryObj.get().getValues());
+				candidates.addAll(categoryObj.get().getAllValues(true));
 		}
 		return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
 	}

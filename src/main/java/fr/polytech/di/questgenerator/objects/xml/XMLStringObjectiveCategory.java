@@ -117,7 +117,7 @@ public class XMLStringObjectiveCategory
 	 * @param allowSubcategories Allow to include subcategories' values or not.
 	 * @return A list of the values.
 	 */
-	private ArrayList<String> getAllValues(boolean allowSubcategories)
+	public ArrayList<String> getAllValues(boolean allowSubcategories)
 	{
 		if(allowSubcategories)
 		{
@@ -144,15 +144,5 @@ public class XMLStringObjectiveCategory
 	public String toString()
 	{
 		return getName();
-	}
-
-	/**
-	 * Return the values of this category.
-	 *
-	 * @return The values.
-	 */
-	public ArrayList<String> getValues()
-	{
-		return this.values;
 	}
 }
