@@ -1,0 +1,52 @@
+CAPTURE:
+	- objective (pnj)
+DAMAGE:
+	- objective (pnj or object)
+DEFEND:
+	- objective (pnj or object or area)
+ESCORT:
+	- objective (pnj)
+EXCHANGE:
+	- obj_give (object)
+	- obj_get (object)
+	- pnj (pnj)
+EXPERIMENT:
+	- objective (object)
+EXPLORE:
+	- objective (area)
+GATHER:
+	- objective (object)
+GET:
+	- obj_get (object)
+	- loc_objective (pnj or area)
+GIVE:
+	- obj_give (object)
+	- loc_objective (pnj)
+GOTO:
+	- objective (pnj or area)
+KILL:
+	- objective (pnj)
+LEARN:
+	- objective (pnj or area or object)
+LISTEN:
+	- objective (pnj)
+QUEST:
+SUBQUEST:
+READ:
+	- objective (object)
+REPAIR:
+	- objective (object)
+REPORT:
+	- objective (pnj)
+SPY:
+	- objective (pnj)
+STEAL:
+	- obj_get (object)
+	- pnj (pnj)
+STEALTH
+	- objective (pnj)
+TAKE:
+	- obj_get (object)
+	- pnj (pnj)
+USE:
+	- objective (object)
