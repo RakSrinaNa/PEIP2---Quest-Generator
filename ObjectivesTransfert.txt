@@ -1,0 +1,98 @@
+Goto:
+	Explore: 
+		Random Area -> Explore (objective)
+	Learn:
+		Random Area / Pnj -> Learn (objective)
+		objective -> Goto (objective)
+
+Learn:
+	Listen:
+		Random Area / Pnj -> Goto (objective)
+		Random Pnj -> Listen (objective)
+	Read:
+		Random Area / Pnj -> Goto (objective)
+		Random Area / Pnj -> Get (loc_objective)
+		Random Object/Readable -> Get (obj_get) / Read (objective)
+	Give:
+		Random Area / Pnj -> Get (loc_objective)
+		Random Object -> Get (obj_get) / Give (obj_give)
+		Random Pnj -> Give (loc_objective) / Listen (objective)
+
+Get:
+	Steal:
+		objective -> steal (objective)
+		Random Pnj -> steal (pnj)
+	Gather:
+		Random Area -> Goto (objective)
+		objective -> gather (objective)
+	Subquest:
+		Random Area / Pnj -> Goto1 (objective)
+		Random Object -> Get (obj_get) / Exchange (obj_give)
+		Random Area / Pnj -> Get (loc_objective)
+		Random Pnj -> Goto2 (objective) / Exchange (pnj)
+		objective -> Exchange (obj_get)
+		
+Steal:
+	Stealth:
+		pnj -> Goto (objective) / stealth (objective) / take (pnj)
+		obj_get -> take (obj_get)
+	Take:
+		pnj -> Goto (objective) / Kill (objective) / take (pnj)
+		obj_get -> take (obj_get)
+
+Spy:
+	objective -> Goto1 (objective) / Spy (objective)
+	Random pnj -> Goto2 (objective) / Report (objective)
+
+Capture:
+	Random object -> Get (obj_get)
+	Random pnj -> Get (loc_objective)
+	objective -> Goto (objective) / Capture (objective)
+
+Kill:
+	objective -> Goto (objective) / Kill (objective)
+
+*********************************************************************************************
+
+Knowledge:
+	Deliver:
+		Random object -> Get (obj_get) / Give (obj_give)
+		Random pnj -> Get (loc_objective)
+		Random pnj -> Goto (objective) / Give (loc_objective)
+	Spy:
+		Random pnj -> Spy (objective)
+	Interview:
+		Random pnj -> Goto1 (objective) / Listen (objective)
+		Random pnj -> Goto2 (objective) / Report (objective)
+	UsuItem:
+		Random object -> Get (obj_get) / Use (objective) / Give (obj_give)
+		Random pnj / area -> Get (loc_objective)
+		Random area -> Goto1 (objective)
+		Random pnj -> Goto2 (objective) / Give (loc_objective)
+
+Comfort:
+	Obtain:
+		Random object -> Get (obj_get) / Give (obj_give)
+		Random pnj -> Goto (objective) / Give (loc_objective)
+		Random pnj / area -> Get (loc_objective)
+	Kill:
+		Random pnj -> Goto1 (objective) / Damage (objective)
+		Random pnj -> Goto2 (objective) / Report (objective)
+
+Reputation:
+	Obtain:
+		Random object -> Get (obj_get) / Give (obj_give)
+		Random pnj -> Goto (objective) / Give (loc_objective)
+		Random area -> Get (loc_objective)
+	Kill:
+		Random pnj -> Goto1 (objective) / Kill (objective)
+		Random pnj -> Goto2 (objective) / Report (objective)
+	Visit:
+		Random pnj -> Goto2 (objective) / Report (objective)
+		Random area -> Goto1 (objective)
+
+Serenity:
+	Revenge:
+		Random pnj -> Goto (objective) / Damage (objective)
+	Capture1:
+		
