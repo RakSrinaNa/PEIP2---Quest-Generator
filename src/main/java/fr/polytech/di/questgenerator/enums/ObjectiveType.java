@@ -5,18 +5,12 @@ package fr.polytech.di.questgenerator.enums;
  *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public enum Objectives
+public enum ObjectiveType
 {
-	LOC,
-	LOC_FROM,
-	LOC_OBJECTIVE,
-	LOC_RETURN,
-
-	OBJ,
-	OBJ_GET,
+	NONE,
+	OBJECTIVE,
 	OBJ_GIVE,
-
-	PNJ_FROM,
-	PNJ_TO,
-	PNJ_OBJECTIVE
+	OBJ_GET,
+	PNJ,
+	LOC_OBJECTIVE
 }

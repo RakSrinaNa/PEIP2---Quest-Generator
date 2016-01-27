@@ -103,6 +103,18 @@ public class DataHandler
 		return getRandomPNJ();
 	}
 
+	public static String getRandomFromCategories(String... categories)
+	{
+		ArrayList<String> candidates = new ArrayList<>();
+		for(String category : categories)
+		{
+			Optional<XMLStringObjectiveCategory> categoryObj = XMLStringObjectiveCategory.getCategoryByName(strings, category);
+			if(categoryObj.isPresent())
+				candidates.addAll(categoryObj.get().getValues());
+		}
+		return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
+	}
+
 	/**
 	 * Initialize the strings.
 	 */

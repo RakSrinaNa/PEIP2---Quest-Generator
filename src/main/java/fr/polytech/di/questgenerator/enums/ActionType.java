@@ -4,7 +4,7 @@ import fr.polytech.di.questgenerator.Main;
 import fr.polytech.di.questgenerator.actionexecutors.action.ActionCaptureActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.ActionEpsillonActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.ActionQuestActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.ActionReportActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.action.ActionSpyActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetGatherActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetStealActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetSubquestActionExecutor;
@@ -19,6 +19,7 @@ import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubqu
 import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubquestQuestActionExecutor;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.objects.Quest;
+import java.text.MessageFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -42,14 +43,14 @@ public enum ActionType
 	GIVE(2, "Give {0} to {1}"),
 	GOTO(1, "Go to {0}", ActionEpsillonActionExecutor.class, ActionGotoExploreActionExecutor.class, ActionGotoLearnActionExecutor.class),
 	KILL(1, "Kill {0}"),
-	LEARN(0, "Learn where is {0}", ActionEpsillonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
+	LEARN(1, "Learn where is {0}", ActionEpsillonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
 	LISTEN(1, "Listen {0}"),
 	QUEST(0, "Complete quest", ActionQuestActionExecutor.class),
 	SUBQUEST(0, "Perform subquest", ActionSubquestGotoActionExecutor.class, ActionSubquestQuestActionExecutor.class),
 	READ(1, "Read {0}"),
 	REPAIR(1, "Repair {0}"),
 	REPORT(1, "Report to {0}"),
-	SPY(1, "Spy {0}", ActionReportActionExecutor.class),
+	SPY(1, "Spy {0}", ActionSpyActionExecutor.class),
 	STEAL(2, "Steal {0} from {1}", ActionStealStealthActionExecutor.class, ActionStealTakeActionExecutor.class),
 	STEALTH(1, "Stealth {0}"),
 	TAKE(2, "Take {0} from {1}"),
@@ -93,15 +94,43 @@ public enum ActionType
 	 * @param objectives The objectives.
 	 * @return The formatted string.
 	 */
-	public String getAsString(Optional<HashMap<Objectives, String>> objectives)
+	public String getAsString(Optional<HashMap<ObjectiveType, String>> objectives)
 	{
 		if(!objectives.isPresent())
-			return this.sentence;
+			return this.sentence ;
+		if(objectives.get().size() != this.params)
+			return this.sentence + " - " + objectives.get().toString();
 		switch(this)
 		{
-			//TODO
+			case GOTO:
+			case EXPLORE:
+			case CAPTURE:
+			case DAMAGE:
+			case DEFEND:
+			case ESCORT:
+			case EXPERIMENT:
+			case GATHER:
+			case KILL:
+			case LEARN:
+			case LISTEN:
+			case READ:
+			case REPAIR:
+			case REPORT:
+			case SPY:
+			case STEALTH:
+			case USE:
+				return MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJECTIVE));
+			case EXCHANGE:
+				return MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GIVE), objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
+			case GET:
+				return MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.LOC_OBJECTIVE));
+			case GIVE:
+				return MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GIVE), objectives.get().get(ObjectiveType.LOC_OBJECTIVE));
+			case STEAL:
+			case TAKE:
+				return MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
 			default:
-				return this.sentence;
+				return this.sentence + " - " + objectives.toString();
 		}
 	}
 
@@ -112,7 +141,7 @@ public enum ActionType
 	 * @param objectives The objectives for the subquest.
 	 * @return An Optional object containing the Quest.
 	 */
-	public Optional<Quest> genSubquest(int depth, Optional<HashMap<Objectives, String>> objectives)
+	public Optional<Quest> genSubquest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
 		if(depth > Main.MAX_DEPTH && actionExecutors.contains(ActionEpsillonActionExecutor.class))
 			return Optional.empty();

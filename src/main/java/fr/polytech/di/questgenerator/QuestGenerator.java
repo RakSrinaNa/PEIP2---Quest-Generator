@@ -1,7 +1,7 @@
 package fr.polytech.di.questgenerator;
 
 import fr.polytech.di.questgenerator.enums.Motivations;
-import fr.polytech.di.questgenerator.enums.Objectives;
+import fr.polytech.di.questgenerator.enums.ObjectiveType;
 import fr.polytech.di.questgenerator.enums.Strategies;
 import fr.polytech.di.questgenerator.objects.Quest;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ public class QuestGenerator
 	 * @param objectives The objectives for the quest.
 	 * @return A Quest.
 	 */
-	public static Quest createNewRandomQuest(int depth, Optional<HashMap<Objectives, String>> objectives)
+	public static Quest createNewRandomQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
 		return Strategies.getRandom().createQuest(depth, objectives);
 	}

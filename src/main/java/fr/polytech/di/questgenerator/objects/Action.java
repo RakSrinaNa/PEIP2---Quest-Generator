@@ -1,7 +1,7 @@
 package fr.polytech.di.questgenerator.objects;
 
 import fr.polytech.di.questgenerator.enums.ActionType;
-import fr.polytech.di.questgenerator.enums.Objectives;
+import fr.polytech.di.questgenerator.enums.ObjectiveType;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -13,7 +13,7 @@ import java.util.Optional;
 public class Action
 {
 	private final ActionType actionType;
-	private final Optional<HashMap<Objectives, String>> objectives;
+	private final Optional<HashMap<ObjectiveType, String>> objectives;
 	private final Optional<Quest> subquest;
 	private final boolean splittable;
 	private final int depth;
@@ -48,7 +48,7 @@ public class Action
 	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 */
-	public Action(int depth, ActionType actionType, HashMap<Objectives, String> objectives)
+	public Action(int depth, ActionType actionType, HashMap<ObjectiveType, String> objectives)
 	{
 		this(depth, actionType, Optional.ofNullable(objectives));
 	}
@@ -60,7 +60,7 @@ public class Action
 	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 */
-	public Action(int depth, ActionType actionType, Optional<HashMap<Objectives, String>> objectives)
+	public Action(int depth, ActionType actionType, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
 		this(depth, actionType, objectives, true);
 	}
@@ -73,7 +73,7 @@ public class Action
 	 * @param objectives The objectives for the Action.
 	 * @param splittable Define if this Action can be splitted.
 	 */
-	public Action(int depth, ActionType actionType, HashMap<Objectives, String> objectives, boolean splittable)
+	public Action(int depth, ActionType actionType, HashMap<ObjectiveType, String> objectives, boolean splittable)
 	{
 		this(depth, actionType, Optional.ofNullable(objectives), splittable);
 	}
@@ -86,7 +86,7 @@ public class Action
 	 * @param objectives The objectives for the Action.
 	 * @param splittable Define if this Action can be splitted.
 	 */
-	public Action(int depth, ActionType actionType, Optional<HashMap<Objectives, String>> objectives, boolean splittable)
+	public Action(int depth, ActionType actionType, Optional<HashMap<ObjectiveType, String>> objectives, boolean splittable)
 	{
 		this.depth = depth;
 		this.actionType = actionType;

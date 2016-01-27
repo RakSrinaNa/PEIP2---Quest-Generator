@@ -19,7 +19,6 @@ public class XMLStringObjectiveHandler extends DefaultHandler
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException
 	{
 		super.startElement(uri, localName, qName, attributes);
-		System.out.println("OPEN\t" + uri + " // " + qName);
 		switch(qName)
 		{
 			case "strings":
@@ -39,7 +38,6 @@ public class XMLStringObjectiveHandler extends DefaultHandler
 	public void endElement(String uri, String localName, String qName) throws SAXException
 	{
 		super.endElement(uri, localName, qName);
-		System.out.println("CLOSE\t" + uri + " // " + qName);
 		switch(qName)
 		{
 			case "category":

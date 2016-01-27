@@ -16,6 +16,9 @@
         <element value="Ghost city"/>
     </category>
     <category value="object">
+        <category value="readable">
+            <element value="Ancient book"/>
+        </category>
         <category value="weapon">
             <element value="Sword"/>
             <element value="Axe"/>

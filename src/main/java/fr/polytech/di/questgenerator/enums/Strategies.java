@@ -141,7 +141,7 @@ public enum Strategies
 	 * @param objectives The objectives for the quest.
 	 * @return A quest.
 	 */
-	public Quest createQuest(int depth, Optional<HashMap<Objectives, String>> objectives)
+	public Quest createQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
 		try
 		{

@@ -145,4 +145,14 @@ public class XMLStringObjectiveCategory
 	{
 		return getName();
 	}
+
+	/**
+	 * Return the values of this category.
+	 *
+	 * @return The values.
+	 */
+	public ArrayList<String> getValues()
+	{
+		return this.values;
+	}
 }

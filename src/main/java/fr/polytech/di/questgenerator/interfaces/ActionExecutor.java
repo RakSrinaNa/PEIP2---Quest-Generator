@@ -1,6 +1,7 @@
 package fr.polytech.di.questgenerator.interfaces;
 
-import fr.polytech.di.questgenerator.enums.Objectives;
+import fr.polytech.di.questgenerator.enums.ObjectiveType;
+import fr.polytech.di.questgenerator.objects.ObjectiveHelper;
 import fr.polytech.di.questgenerator.objects.Quest;
 import java.util.HashMap;
 import java.util.Optional;
@@ -19,20 +20,13 @@ public interface ActionExecutor
 	 * @param objectives The objectives for the quest.
 	 * @return The Quest.
 	 */
-	Quest generateQuest(int depth, Optional<HashMap<Objectives, String>> objectives);
+	Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives);
 
-	/**
-	 * Get an Objective value from an HashMap, and if this value is not defined, return the default value.
-	 *
-	 * @param objectives The objectives.
-	 * @param objective The Objective to get.
-	 * @param defaultValue The default value.
-	 * @return The objective value.
-	 */
-	default String getArg(Optional<HashMap<Objectives, String>> objectives, Objectives objective, String defaultValue)
+	default Optional<HashMap<ObjectiveType, String>> buildObjective(Optional<HashMap<ObjectiveType, String>> oldObjectives, ObjectiveHelper... helpers)
 	{
-		if(!objectives.isPresent() || !objectives.get().containsKey(objective) || objectives.get().get(objective).equals(""))
-			return defaultValue;
-		return objectives.get().get(objective);
+		HashMap<ObjectiveType, String> objectives = new HashMap<>();
+		for(ObjectiveHelper helper : helpers)
+			objectives.put(helper.getObjective(), helper.getValue(oldObjectives));
+		return Optional.of(objectives);
 	}
 }
