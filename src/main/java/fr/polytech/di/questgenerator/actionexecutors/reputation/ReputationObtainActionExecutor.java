@@ -20,7 +20,12 @@ public class ReputationObtainActionExecutor implements ActionExecutor
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
 		String objectiveObject = DataHandler.getRandomObject();
-		String objectivePnj = DataHandler.getRandomPNJ("being");
-		return new Quest(new Action(depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, DataHandler.getRandomLocation("wild")))), new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePnj))), new Action(depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, objectivePnj))));
+		String objectivePnj = DataHandler.getRandomPNJ("being/*");
+
+		Action actionGet = new Action(depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, DataHandler.getRandomArea("wild/*"))));
+		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePnj)));
+		Action actionGive = new Action(depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, objectivePnj)));
+
+		return new Quest(actionGet, actionGoto, actionGive);
 	}
 }

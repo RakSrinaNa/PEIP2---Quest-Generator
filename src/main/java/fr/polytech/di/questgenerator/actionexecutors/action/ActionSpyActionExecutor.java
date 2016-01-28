@@ -20,8 +20,14 @@ public class ActionSpyActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
-		String objectivePnj = DataHandler.getRandomPNJ("being");
-		String objectivePnj2 = DataHandler.getRandomPNJ("being");
-		return new Quest(new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj))), new Action(depth, ActionType.SPY, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)), false), new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePnj2))), new Action(depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePnj2)), false));
+		String pnjSteal = DataHandler.getRandomPNJ("being/*");
+		String pnjReport = DataHandler.getRandomPNJ("being/*");
+
+		Action actionGotoSpy = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjSteal)));
+		Action actionSpy = new Action(depth, ActionType.SPY, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjSteal)), false);
+		Action actionGotoReport = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjReport)));
+		Action actionReport = new Action(depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjReport)), false);
+
+		return new Quest(actionGotoSpy, actionSpy, actionGotoReport, actionReport);
 	}
 }

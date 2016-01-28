@@ -20,6 +20,11 @@ public class ActionCaptureActionExecutor implements ActionExecutor
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
 		String objectivePnj = DataHandler.getRandomPNJ();
-		return new Quest(new Action(depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, objectivePnj), new ObjectiveHelper(LOC_OBJECTIVE, NONE, DataHandler.getRandomLocation()))), new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj))), new Action(depth, ActionType.CAPTURE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)), false));
+
+		Action actionGet = new Action(depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject()), new ObjectiveHelper(LOC_OBJECTIVE, NONE, DataHandler.getRandomArea())));
+		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)));
+		Action actionCapture = new Action(depth, ActionType.CAPTURE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)), false);
+
+		return new Quest(actionGet, actionGoto, actionCapture);
 	}
 }

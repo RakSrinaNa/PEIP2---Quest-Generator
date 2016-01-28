@@ -20,7 +20,11 @@ public class SerenityRevengeActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
-		String objectivePnj = DataHandler.getRandomPNJ("being");
-		return new Quest(new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePnj))), new Action(depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE,NONE, objectivePnj)), false));
+		String objectivePnj = DataHandler.getRandomPNJ("being/*");
+
+		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePnj)));
+		Action actionDamage = new Action(depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE,NONE, objectivePnj)), false);
+
+		return new Quest(actionGoto, actionDamage);
 	}
 }

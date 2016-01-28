@@ -21,7 +21,12 @@ public class ActionStealTakeActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
-		String objectivePnj = DataHandler.getRandomPNJ();
-		return new Quest(new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePnj))), new Action(depth, ActionType.KILL, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePnj))), new Action(depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET, DataHandler.getRandomObject()), new ObjectiveHelper(PNJ, PNJ, objectivePnj)), false));
+		String objectivePNJ = DataHandler.getRandomPNJ();
+
+		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)));
+		Action actionKill = new Action(depth, ActionType.KILL, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)));
+		Action actionTake = new Action(depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET, DataHandler.getRandomObject()), new ObjectiveHelper(PNJ, PNJ, objectivePNJ)), false);
+
+		return new Quest(actionGoto, actionKill, actionTake);
 	}
 }

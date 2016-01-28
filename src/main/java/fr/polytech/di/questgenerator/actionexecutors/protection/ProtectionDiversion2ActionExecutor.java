@@ -15,16 +15,16 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class ProtectionTreat2ActionExecutor implements ActionExecutor
+public class ProtectionDiversion2ActionExecutor implements ActionExecutor
 {
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
-		String objectiveArea = DataHandler.getRandomArea("place/job/*");
+		String objectiveLocation = DataHandler.getRandomArea("place/fortification/*");
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)));
-		Action actionRepair = new Action(depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)), false);
+		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveLocation)));
+		Action actionDamage = new Action(depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveLocation)), false);
 
-		return new Quest(actionGoto, actionRepair);
+		return new Quest(actionGoto, actionDamage);
 	}
 }

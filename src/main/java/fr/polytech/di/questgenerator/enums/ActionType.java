@@ -1,10 +1,7 @@
 package fr.polytech.di.questgenerator.enums;
 
 import fr.polytech.di.questgenerator.Main;
-import fr.polytech.di.questgenerator.actionexecutors.action.ActionCaptureActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.ActionEpsillonActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.ActionQuestActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.ActionSpyActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.action.*;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetGatherActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetStealActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetSubquestActionExecutor;
@@ -42,7 +39,7 @@ public enum ActionType
 	GET(2, "Get {0} from {1}", ActionEpsillonActionExecutor.class, ActionGetStealActionExecutor.class, ActionGetGatherActionExecutor.class, ActionGetSubquestActionExecutor.class),
 	GIVE(2, "Give {0} to {1}"),
 	GOTO(1, "Go to {0}", ActionEpsillonActionExecutor.class, ActionGotoExploreActionExecutor.class, ActionGotoLearnActionExecutor.class),
-	KILL(1, "Kill {0}"),
+	KILL(1, "Kill {0}", ActionKillActionExecutor.class),
 	LEARN(1, "Learn where is {0}", ActionEpsillonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
 	LISTEN(1, "Listen {0}"),
 	QUEST(0, "Complete quest", ActionQuestActionExecutor.class),

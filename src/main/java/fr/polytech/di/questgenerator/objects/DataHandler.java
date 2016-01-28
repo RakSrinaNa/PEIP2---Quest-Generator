@@ -10,6 +10,7 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -29,10 +30,7 @@ public class DataHandler
 	 */
 	public static String getRandomObject()
 	{
-		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "object");
-		if(category.isPresent())
-			return category.get().getRandomElement(true);
-		return "RDM OBJ " + ThreadLocalRandom.current().nextInt(100);
+		return getRandomObject("*");
 	}
 
 	/**
@@ -40,12 +38,9 @@ public class DataHandler
 	 *
 	 * @return A random location.
 	 */
-	public static String getRandomLocation()
+	public static String getRandomArea()
 	{
-		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "area");
-		if(category.isPresent())
-			return category.get().getRandomElement(true);
-		return "RDM LOC " + ThreadLocalRandom.current().nextInt(100);
+		return getRandomArea("*");
 	}
 
 	/**
@@ -55,10 +50,7 @@ public class DataHandler
 	 */
 	public static String getRandomPNJ()
 	{
-		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "pnj");
-		if(category.isPresent())
-			return category.get().getRandomElement(true);
-		return "RDM PNJ " + ThreadLocalRandom.current().nextInt(100);
+		return getRandomPNJ("*");
 	}
 
 	/**
@@ -67,12 +59,9 @@ public class DataHandler
 	 * @param path The category the element picked should be.
 	 * @return Return a random location.
 	 */
-	public static String getRandomLocation(String path)
+	public static String getRandomArea(String path)
 	{
-		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "area/" + path);
-		if(category.isPresent())
-			return category.get().getRandomElement(true);
-		return getRandomLocation();
+		return getRandomFromCategories("area/" + path);
 	}
 
 	/**
@@ -83,10 +72,7 @@ public class DataHandler
 	 */
 	public static String getRandomObject(String path)
 	{
-		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "object/" + path);
-		if(category.isPresent())
-			return category.get().getRandomElement(true);
-		return getRandomObject();
+		return getRandomFromCategories("object/" + path);
 	}
 
 	/**
@@ -97,22 +83,49 @@ public class DataHandler
 	 */
 	public static String getRandomPNJ(String path)
 	{
-		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, "pnj/" + path);
-		if(category.isPresent())
-			return category.get().getRandomElement(true);
-		return getRandomPNJ();
+		return getRandomFromCategories("pnj/" + path);
 	}
 
 	public static String getRandomFromCategories(String... categories)
 	{
+
 		ArrayList<String> candidates = new ArrayList<>();
 		for(String category : categories)
 		{
+			boolean subcategories = false;
+			if(category.endsWith("/*"))
+			{
+				subcategories = true;
+				category = category.substring(0, category.length() - "/*".length());
+			}
 			Optional<XMLStringObjectiveCategory> categoryObj = XMLStringObjectiveCategory.getCategoryByName(strings, category);
 			if(categoryObj.isPresent())
-				candidates.addAll(categoryObj.get().getAllValues(true));
+				candidates.addAll(categoryObj.get().getAllValues(subcategories));
 		}
+		if(candidates.isEmpty())
+			return Arrays.toString(categories) + " - " + ThreadLocalRandom.current().nextInt(1000);
 		return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
+	}
+
+	/**
+	 * Return a random skill.
+	 *
+	 * @return Return a random skill.
+	 */
+	public static String getRandomSkill()
+	{
+		return getRandomSkill("*");
+	}
+
+	/**
+	 * Return a random skill of the given category.
+	 *
+	 * @param path The category the element picked should be.
+	 * @return Return a random skill.
+	 */
+	public static String getRandomSkill(String path)
+	{
+		return getRandomFromCategories("skill/" + path);
 	}
 
 	/**

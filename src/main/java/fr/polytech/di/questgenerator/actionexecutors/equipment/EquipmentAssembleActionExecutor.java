@@ -1,4 +1,4 @@
-package fr.polytech.di.questgenerator.actionexecutors.protection;
+package fr.polytech.di.questgenerator.actionexecutors.equipment;
 
 import fr.polytech.di.questgenerator.enums.ActionType;
 import fr.polytech.di.questgenerator.enums.ObjectiveType;
@@ -15,16 +15,13 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class ProtectionTreat2ActionExecutor implements ActionExecutor
+public class EquipmentAssembleActionExecutor implements ActionExecutor
 {
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
-		String objectiveArea = DataHandler.getRandomArea("place/job/*");
+		Action actionRepair = new Action(depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, DataHandler.getRandomObject("weapon/*"))), false);
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)));
-		Action actionRepair = new Action(depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)), false);
-
-		return new Quest(actionGoto, actionRepair);
+		return new Quest(actionRepair);
 	}
 }

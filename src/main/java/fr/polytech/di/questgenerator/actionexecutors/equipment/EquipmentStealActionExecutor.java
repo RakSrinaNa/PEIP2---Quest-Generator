@@ -1,4 +1,4 @@
-package fr.polytech.di.questgenerator.actionexecutors.protection;
+package fr.polytech.di.questgenerator.actionexecutors.equipment;
 
 import fr.polytech.di.questgenerator.enums.ActionType;
 import fr.polytech.di.questgenerator.enums.ObjectiveType;
@@ -10,21 +10,19 @@ import fr.polytech.di.questgenerator.objects.Quest;
 import java.util.HashMap;
 import java.util.Optional;
 import static fr.polytech.di.questgenerator.enums.ObjectiveType.NONE;
-import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
+import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJ_GET;
+import static fr.polytech.di.questgenerator.enums.ObjectiveType.PNJ;
 
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class ProtectionTreat2ActionExecutor implements ActionExecutor
+public class EquipmentStealActionExecutor implements ActionExecutor
 {
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
-		String objectiveArea = DataHandler.getRandomArea("place/job/*");
+		Action actionSteal = new Action(depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject("weapon/*")), new ObjectiveHelper(PNJ, NONE, DataHandler.getRandomPNJ("being/*"))));
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)));
-		Action actionRepair = new Action(depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)), false);
-
-		return new Quest(actionGoto, actionRepair);
+		return new Quest(actionSteal);
 	}
 }

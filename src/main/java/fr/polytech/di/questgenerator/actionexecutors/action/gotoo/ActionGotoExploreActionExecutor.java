@@ -19,6 +19,8 @@ public class ActionGotoExploreActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
-		return new Quest(new Action(depth, ActionType.EXPLORE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, DataHandler.getRandomLocation())), false));
+		Action actionExplore = new Action(depth, ActionType.EXPLORE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, DataHandler.getRandomArea())), false);
+
+		return new Quest(actionExplore);
 	}
 }

@@ -5,10 +5,10 @@ import fr.polytech.di.questgenerator.actionexecutors.comfort.ComfortKillActionEx
 import fr.polytech.di.questgenerator.actionexecutors.comfort.ComfortObtainActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.conquest.ConquestAttackActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.conquest.ConquestStealActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.equipement.EquipementAssembleActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.equipement.EquipementDeliverActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.equipement.EquipementStealActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.equipement.EquipementTradeActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.equipment.EquipmentAssembleActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.equipment.EquipmentDeliverActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.equipment.EquipmentStealActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.equipment.EquipmentTradeActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.knowledge.KnowledgeDeliverActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.knowledge.KnowledgeInterviewActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.knowledge.KnowledgeSpyActionExecutor;
@@ -58,8 +58,8 @@ public enum Strategies
 	PROTECTION_ATTACK(Motivations.PROTECTION, ProtectionAttackActionExecutor.class),
 	PROTECTION_TREAT_1(Motivations.PROTECTION, ProtectionTreat1ActionExecutor.class),
 	PROTECTION_TREAT_2(Motivations.PROTECTION, ProtectionTreat2ActionExecutor.class),
-	PROTECTION_CREATE_1(Motivations.PROTECTION, ProtectionCreate1ActionExecutor.class),
-	PROTECTION_CREATE_2(Motivations.PROTECTION, ProtectionCreate2ActionExecutor.class),
+	PROTECTION_CREATE_1(Motivations.PROTECTION, ProtectionDiversion1ActionExecutor.class),
+	PROTECTION_CREATE_2(Motivations.PROTECTION, ProtectionDiversion2ActionExecutor.class),
 	PROTECTION_ASSEMBLE(Motivations.PROTECTION, ProtectionAssembleActionExecutor.class),
 	PROTECTION_GUARD(Motivations.PROTECTION, ProtectionGuardActionExecutor.class),
 
@@ -78,10 +78,10 @@ public enum Strategies
 	ABILITY_RESEARCH_1(Motivations.ABILITY, AbilityResearch1ActionExecutor.class),
 	ABILITY_RESEARCH_2(Motivations.ABILITY, AbilityResearch2ActionExecutor.class),
 
-	EQUIPEMENT_ASSEMBLE(Motivations.EQUIPEMENT, EquipementAssembleActionExecutor.class),
-	EQUIPEMENT_DELIVER(Motivations.EQUIPEMENT, EquipementDeliverActionExecutor.class),
-	EQUIPEMENT_STEAL(Motivations.EQUIPEMENT, EquipementStealActionExecutor.class),
-	EQUIPEMENT_TRADE(Motivations.EQUIPEMENT, EquipementTradeActionExecutor.class);
+	EQUIPEMENT_ASSEMBLE(Motivations.EQUIPEMENT, EquipmentAssembleActionExecutor.class),
+	EQUIPEMENT_DELIVER(Motivations.EQUIPEMENT, EquipmentDeliverActionExecutor.class),
+	EQUIPEMENT_STEAL(Motivations.EQUIPEMENT, EquipmentStealActionExecutor.class),
+	EQUIPEMENT_TRADE(Motivations.EQUIPEMENT, EquipmentTradeActionExecutor.class);
 
 	private final Motivations motivation;
 	private final Class<? extends ActionExecutor> actionExecutor;

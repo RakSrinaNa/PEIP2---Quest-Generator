@@ -1,4 +1,4 @@
-package fr.polytech.di.questgenerator.actionexecutors.wealth;
+package fr.polytech.di.questgenerator.actionexecutors.equipment;
 
 import fr.polytech.di.questgenerator.enums.ActionType;
 import fr.polytech.di.questgenerator.enums.ObjectiveType;
@@ -14,16 +14,16 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class WealthGatherActionExecutor implements ActionExecutor
+public class EquipmentTradeActionExecutor implements ActionExecutor
 {
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
-		String objectiveArea = DataHandler.getRandomArea("wild/mine/*");
+		String objectivePNJ = DataHandler.getRandomPNJ("being/*");
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)));
-		Action actionGet = new Action(depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject("material")), new ObjectiveHelper(LOC_OBJECTIVE, NONE, objectiveArea)));
+		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePNJ)));
+		Action actionExchange = new Action(depth, ActionType.EXCHANGE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, NONE, DataHandler.getRandomObject("weapon/*")), new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject("weapon/*"))), false);
 
-		return new Quest(actionGoto, actionGet);
+		return new Quest(actionGoto, actionExchange);
 	}
 }

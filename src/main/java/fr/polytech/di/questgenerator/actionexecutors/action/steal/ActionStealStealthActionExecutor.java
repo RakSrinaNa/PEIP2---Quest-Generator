@@ -21,7 +21,12 @@ public class ActionStealStealthActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
-		String objectivePnj = DataHandler.getRandomPNJ();
-		return new Quest(new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePnj))), new Action(depth, ActionType.STEALTH, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePnj)), false), new Action(depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(PNJ, PNJ, objectivePnj), new ObjectiveHelper(OBJ_GET, OBJ_GET, DataHandler.getRandomObject())), false));
+		String objectivePNJ = DataHandler.getRandomPNJ();
+
+		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)));
+		Action actionStealth = new Action(depth, ActionType.STEALTH, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)), false);
+		Action actionTake = new Action(depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(PNJ, PNJ, objectivePNJ), new ObjectiveHelper(OBJ_GET, OBJ_GET, DataHandler.getRandomObject())), false);
+
+		return new Quest(actionGoto, actionStealth, actionTake);
 	}
 }

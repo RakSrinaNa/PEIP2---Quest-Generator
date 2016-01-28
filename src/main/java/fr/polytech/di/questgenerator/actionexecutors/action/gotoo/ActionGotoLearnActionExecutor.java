@@ -20,6 +20,9 @@ public class ActionGotoLearnActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
-		return new Quest(new Action(depth, ActionType.LEARN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, DataHandler.getRandomFromCategories("pnj", "area")))), new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, DataHandler.getRandomPNJ())), false));
+		Action actionLearn = new Action(depth, ActionType.LEARN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, DataHandler.getRandomFromCategories("pnj/*", "area/*"))));
+		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, DataHandler.getRandomPNJ())), false);
+
+		return new Quest(actionLearn, actionGoto);
 	}
 }

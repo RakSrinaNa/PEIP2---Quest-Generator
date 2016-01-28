@@ -20,6 +20,10 @@ public class ActionLearnListenActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
 	{
-		return new Quest(new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, DataHandler.getRandomFromCategories("pnj", "area")))), new Action(depth, ActionType.SUBQUEST), new Action(depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, DataHandler.getRandomPNJ("being"))), false));
+		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, DataHandler.getRandomFromCategories("pnj/*", "area/*"))));
+		Action actionSubquest = new Action(depth, ActionType.SUBQUEST);
+		Action actionListen = new Action(depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, DataHandler.getRandomPNJ("being/*"))), false);
+
+		return new Quest(actionGoto, actionSubquest, actionListen);
 	}
 }
