@@ -4,13 +4,20 @@ import fr.polytech.di.questgenerator.QuestGenerator;
 import fr.polytech.di.questgenerator.enums.Resources;
 import fr.polytech.di.questgenerator.jfx.contents.QuestItem;
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Main frame of the application.
@@ -61,8 +68,27 @@ public class MainFrame extends Application
 		Button reloadButton = new Button("Reload quest");
 		reloadButton.setMaxWidth(Double.MAX_VALUE);
 		reloadButton.setOnMouseReleased(event -> quest.modifyQuest(QuestGenerator.createNewRandomQuest()));
+
+		Button exportButton = new Button("Export");
+		exportButton.setMaxWidth(Double.MAX_VALUE);
+		exportButton.setOnMouseReleased(event -> {
+			WritableImage image = quest.snapshot(new SnapshotParameters(), null);
+			File file = new File("export" + System.currentTimeMillis() + ".png");
+			try
+			{
+				ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+			}
+			catch(IOException ignored)
+			{
+			}
+		});
+
+		VBox buttons = new VBox();
+		buttons.getChildren().addAll(reloadButton, exportButton);
+
 		pane.setCenter(scroll);
-		pane.setBottom(reloadButton);
+		pane.setBottom(buttons);
+
 		return pane;
 	}
 }
