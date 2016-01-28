@@ -14,16 +14,19 @@ import java.util.concurrent.ThreadLocalRandom;
 public class XMLStringObjectiveCategory
 {
 	private final String name;
-	private final ArrayList<String> values;
+	private final ArrayList<XMLStringObjectiveElement> values;
 	private final ArrayList<XMLStringObjectiveCategory> subcategories;
+	private final XMLStringObjectiveCategory parent;
 
 	/**
 	 * Constructor.
 	 *
+	 * @param parent The parent category.
 	 * @param name The category name.
 	 */
-	public XMLStringObjectiveCategory(String name)
+	public XMLStringObjectiveCategory(XMLStringObjectiveCategory parent, String name)
 	{
+		this.parent = parent;
 		this.name = name;
 		this.values = new ArrayList<>();
 		this.subcategories = new ArrayList<>();
@@ -69,7 +72,7 @@ public class XMLStringObjectiveCategory
 	 */
 	public void addValue(String value)
 	{
-		this.values.add(value);
+		this.values.add(new XMLStringObjectiveElement(this.getPath(), value));
 	}
 
 	/**
@@ -98,11 +101,11 @@ public class XMLStringObjectiveCategory
 	 * @param allowSubcategories Allow to include subcategories' values or not.
 	 * @return A random value.
 	 */
-	public String getRandomElement(boolean allowSubcategories)
+	public XMLStringObjectiveElement getRandomElement(boolean allowSubcategories)
 	{
 		if(allowSubcategories)
 		{
-			ArrayList<String> candidates = new ArrayList<>();
+			ArrayList<XMLStringObjectiveElement> candidates = new ArrayList<>();
 			candidates.addAll(getAllValues(false));
 			for(XMLStringObjectiveCategory category : subcategories)
 				candidates.addAll(category.getAllValues(true));
@@ -117,11 +120,11 @@ public class XMLStringObjectiveCategory
 	 * @param allowSubcategories Allow to include subcategories' values or not.
 	 * @return A list of the values.
 	 */
-	public ArrayList<String> getAllValues(boolean allowSubcategories)
+	public ArrayList<XMLStringObjectiveElement> getAllValues(boolean allowSubcategories)
 	{
 		if(allowSubcategories)
 		{
-			ArrayList<String> values = new ArrayList<>();
+			ArrayList<XMLStringObjectiveElement> values = new ArrayList<>();
 			values.addAll(getAllValues(false));
 			for(XMLStringObjectiveCategory category : subcategories)
 				values.addAll(category.getAllValues(true));
@@ -144,5 +147,15 @@ public class XMLStringObjectiveCategory
 	public String toString()
 	{
 		return getName();
+	}
+
+	/**
+	 * Used to get the path of this category.
+	 *
+	 * @return The path.
+	 */
+	public String getPath()
+	{
+		return parent == null ? this.name : (parent.getPath() + "/" + this.name);
 	}
 }

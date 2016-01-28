@@ -23,6 +23,7 @@ import fr.polytech.di.questgenerator.actionexecutors.wealth.WealthMakeActionExec
 import fr.polytech.di.questgenerator.actionexecutors.wealth.WealthStealActionExecutor;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.objects.Quest;
+import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
@@ -141,7 +142,7 @@ public enum Strategies
 	 * @param objectives The objectives for the quest.
 	 * @return A quest.
 	 */
-	public Quest createQuest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
+	public Quest createQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		try
 		{

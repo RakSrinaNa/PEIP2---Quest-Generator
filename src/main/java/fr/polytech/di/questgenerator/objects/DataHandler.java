@@ -2,6 +2,7 @@ package fr.polytech.di.questgenerator.objects;
 
 import fr.polytech.di.questgenerator.enums.Resources;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveCategory;
+import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveHandler;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -28,7 +29,7 @@ public class DataHandler
 	 *
 	 * @return A random object.
 	 */
-	public static String getRandomObject()
+	public static XMLStringObjectiveElement getRandomObject()
 	{
 		return getRandomObject("*");
 	}
@@ -38,7 +39,7 @@ public class DataHandler
 	 *
 	 * @return A random location.
 	 */
-	public static String getRandomArea()
+	public static XMLStringObjectiveElement getRandomArea()
 	{
 		return getRandomArea("*");
 	}
@@ -48,7 +49,7 @@ public class DataHandler
 	 *
 	 * @return Return a random PNJ.
 	 */
-	public static String getRandomPNJ()
+	public static XMLStringObjectiveElement getRandomPNJ()
 	{
 		return getRandomPNJ("*");
 	}
@@ -59,7 +60,7 @@ public class DataHandler
 	 * @param path The category the element picked should be.
 	 * @return Return a random location.
 	 */
-	public static String getRandomArea(String path)
+	public static XMLStringObjectiveElement getRandomArea(String path)
 	{
 		return getRandomFromCategories("area/" + path);
 	}
@@ -70,7 +71,7 @@ public class DataHandler
 	 * @param path The category the element picked should be.
 	 * @return Return a random object.
 	 */
-	public static String getRandomObject(String path)
+	public static XMLStringObjectiveElement getRandomObject(String path)
 	{
 		return getRandomFromCategories("object/" + path);
 	}
@@ -81,15 +82,15 @@ public class DataHandler
 	 * @param path The category the element picked should be.
 	 * @return Return a random PNJ.
 	 */
-	public static String getRandomPNJ(String path)
+	public static XMLStringObjectiveElement getRandomPNJ(String path)
 	{
 		return getRandomFromCategories("pnj/" + path);
 	}
 
-	public static String getRandomFromCategories(String... categories)
+	public static XMLStringObjectiveElement getRandomFromCategories(String... categories)
 	{
 
-		ArrayList<String> candidates = new ArrayList<>();
+		ArrayList<XMLStringObjectiveElement> candidates = new ArrayList<>();
 		for(String category : categories)
 		{
 			boolean subcategories = false;
@@ -103,7 +104,7 @@ public class DataHandler
 				candidates.addAll(categoryObj.get().getAllValues(subcategories));
 		}
 		if(candidates.isEmpty())
-			return Arrays.toString(categories) + " - " + ThreadLocalRandom.current().nextInt(1000);
+			return new XMLStringObjectiveElement("", Arrays.toString(categories) + " - " + ThreadLocalRandom.current().nextInt(1000));
 		return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
 	}
 
@@ -112,7 +113,7 @@ public class DataHandler
 	 *
 	 * @return Return a random skill.
 	 */
-	public static String getRandomSkill()
+	public static XMLStringObjectiveElement getRandomSkill()
 	{
 		return getRandomSkill("*");
 	}
@@ -123,7 +124,7 @@ public class DataHandler
 	 * @param path The category the element picked should be.
 	 * @return Return a random skill.
 	 */
-	public static String getRandomSkill(String path)
+	public static XMLStringObjectiveElement getRandomSkill(String path)
 	{
 		return getRandomFromCategories("skill/" + path);
 	}

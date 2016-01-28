@@ -16,6 +16,7 @@ import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubqu
 import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubquestQuestActionExecutor;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.objects.Quest;
+import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.text.MessageFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -91,10 +92,10 @@ public enum ActionType
 	 * @param objectives The objectives.
 	 * @return The formatted string.
 	 */
-	public String getAsString(Optional<HashMap<ObjectiveType, String>> objectives)
+	public String getAsString(Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		if(!objectives.isPresent())
-			return this.sentence ;
+			return this.sentence;
 		if(objectives.get().size() != this.params)
 			return this.sentence + " - " + objectives.get().toString();
 		switch(this)
@@ -138,7 +139,7 @@ public enum ActionType
 	 * @param objectives The objectives for the subquest.
 	 * @return An Optional object containing the Quest.
 	 */
-	public Optional<Quest> genSubquest(int depth, Optional<HashMap<ObjectiveType, String>> objectives)
+	public Optional<Quest> genSubquest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		if(depth > Main.MAX_DEPTH && actionExecutors.contains(ActionEpsillonActionExecutor.class))
 			return Optional.empty();

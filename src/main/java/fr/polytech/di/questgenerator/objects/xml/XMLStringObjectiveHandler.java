@@ -26,7 +26,7 @@ public class XMLStringObjectiveHandler extends DefaultHandler
 				currentCategories = new LinkedList<>();
 				break;
 			case "category":
-				currentCategories.add(new XMLStringObjectiveCategory(attributes.getValue("value")));
+				currentCategories.add(new XMLStringObjectiveCategory(currentCategories.isEmpty() ? null : currentCategories.getLast(), attributes.getValue("value")));
 				break;
 			case "element":
 				currentElement = attributes.getValue("value");
