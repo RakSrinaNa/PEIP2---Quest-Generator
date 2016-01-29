@@ -20,7 +20,7 @@ public class ActionGetStealActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionSteal = new Action(depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJECTIVE, DataHandler.getRandomObject()), new ObjectiveHelper(PNJ, NONE, DataHandler.getRandomPNJ())));
+		Action actionSteal = new Action(depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET, DataHandler.getRandomObject()), new ObjectiveHelper(PNJ, NONE, DataHandler.getRandomPNJ())));
 
 		return new Quest(actionSteal);
 	}

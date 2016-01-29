@@ -27,7 +27,7 @@ public class SerenityCapture1ActionExecutor implements ActionExecutor
 		Action actionGet = new Action(depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, pnjGive)));
 		Action actionGotoUse = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjCapture)));
 		Action actionUse = new Action(depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveObject)), false);
-		Action actionGotoGive = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjGive)));
+		Action actionGotoGive = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjGive)), false);
 		Action actionGive = new Action(depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(LOC_OBJECTIVE, NONE, pnjGive), new ObjectiveHelper(OBJ_GIVE, NONE, pnjCapture)));
 
 		return new Quest(actionGet, actionGotoUse, actionUse, actionGotoGive, actionGive);

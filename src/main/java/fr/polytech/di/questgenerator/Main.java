@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  */
 public class Main
 {
-	public static final int MAX_DEPTH = 5;
+	public static final int MAX_DEPTH = 3;
 
 	/**
 	 * Startup function.
