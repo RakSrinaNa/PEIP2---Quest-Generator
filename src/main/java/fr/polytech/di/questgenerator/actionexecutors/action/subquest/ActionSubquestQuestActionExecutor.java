@@ -17,6 +17,6 @@ public class ActionSubquestQuestActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		return new Quest(new Action(this.getClass(), depth, ActionType.GOTO), new Action(this.getClass(), depth, ActionType.QUEST), new Action(this.getClass(), depth, ActionType.GOTO, false));
+		return new Quest(new Action(this.getClass(), depth, ActionType.GOTO), new Action(this.getClass(), 0, ActionType.QUEST), new Action(this.getClass(), depth, ActionType.GOTO, false));
 	}
 }

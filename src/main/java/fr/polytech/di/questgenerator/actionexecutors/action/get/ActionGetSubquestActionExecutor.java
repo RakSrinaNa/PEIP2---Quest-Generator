@@ -26,7 +26,7 @@ public class ActionGetSubquestActionExecutor implements ActionExecutor
 
 		Action actionGotoSteal = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveLocation)));
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, objectiveLocation)));
-		Action actionGotoSubquest = new Action(this.getClass(), 0, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, LOC_OBJECTIVE, objectivePNJ)));
+		Action actionGotoSubquest = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, LOC_OBJECTIVE, objectivePNJ)));
 		Action actionSubquest = new Action(this.getClass(), depth, ActionType.SUBQUEST);
 		Action actionExchange = new Action(this.getClass(), depth, ActionType.EXCHANGE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET, DataHandler.getRandomObject()), new ObjectiveHelper(OBJ_GIVE, NONE, objectiveObject), new ObjectiveHelper(PNJ, LOC_OBJECTIVE, objectivePNJ)), false);
 
