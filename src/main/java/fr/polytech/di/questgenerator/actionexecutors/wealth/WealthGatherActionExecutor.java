@@ -22,8 +22,8 @@ public class WealthGatherActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomArea("wild/mine/*");
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)));
-		Action actionGet = new Action(depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject("material")), new ObjectiveHelper(LOC_OBJECTIVE, NONE, objectiveArea)));
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)));
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject("material")), new ObjectiveHelper(LOC_OBJECTIVE, NONE, objectiveArea)));
 
 		return new Quest(actionGoto, actionGet);
 	}

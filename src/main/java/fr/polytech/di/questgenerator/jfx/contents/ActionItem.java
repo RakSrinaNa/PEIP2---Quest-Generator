@@ -43,7 +43,6 @@ public class ActionItem extends HBox
 		else
 			this.getChildren().addAll(genImageView(), vBox);
 		this.setSpacing(5);
-		switchSubquestStatus();
 	}
 
 	/**

@@ -79,10 +79,10 @@ public enum Strategies
 	ABILITY_RESEARCH_1(Motivations.ABILITY, AbilityResearch1ActionExecutor.class),
 	ABILITY_RESEARCH_2(Motivations.ABILITY, AbilityResearch2ActionExecutor.class),
 
-	EQUIPEMENT_ASSEMBLE(Motivations.EQUIPEMENT, EquipmentAssembleActionExecutor.class),
-	EQUIPEMENT_DELIVER(Motivations.EQUIPEMENT, EquipmentDeliverActionExecutor.class),
-	EQUIPEMENT_STEAL(Motivations.EQUIPEMENT, EquipmentStealActionExecutor.class),
-	EQUIPEMENT_TRADE(Motivations.EQUIPEMENT, EquipmentTradeActionExecutor.class);
+	EQUIPMENT_ASSEMBLE(Motivations.EQUIPMENT, EquipmentAssembleActionExecutor.class),
+	EQUIPMENT_DELIVER(Motivations.EQUIPMENT, EquipmentDeliverActionExecutor.class),
+	EQUIPMENT_STEAL(Motivations.EQUIPMENT, EquipmentStealActionExecutor.class),
+	EQUIPMENT_TRADE(Motivations.EQUIPMENT, EquipmentTradeActionExecutor.class);
 
 	private final Motivations motivation;
 	private final Class<? extends ActionExecutor> actionExecutor;

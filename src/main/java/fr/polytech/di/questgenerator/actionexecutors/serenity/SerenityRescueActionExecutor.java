@@ -25,11 +25,11 @@ public class SerenityRescueActionExecutor implements ActionExecutor
 		XMLStringObjectiveElement pnjEscort = DataHandler.getRandomPNJ("being/*");
 		XMLStringObjectiveElement pnjReport = DataHandler.getRandomPNJ("being/*");
 
-		Action actionGotoDamage = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjEscort)));
-		Action actionDamage = new Action(depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjDamage)), false);
-		Action actionEscort = new Action(depth, ActionType.ESCORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjEscort)), false);
-		Action actionGotoReport = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjReport)));
-		Action actionReport = new Action(depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjReport)), false);
+		Action actionGotoDamage = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjEscort)));
+		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjDamage)), false);
+		Action actionEscort = new Action(this.getClass(), depth, ActionType.ESCORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjEscort)), false);
+		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjReport)));
+		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjReport)), false);
 
 		return new Quest(actionGotoDamage, actionDamage, actionEscort, actionGotoReport, actionReport);
 	}

@@ -23,8 +23,8 @@ public class ProtectionDiversion2ActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement objectiveLocation = DataHandler.getRandomArea("place/fortification/*");
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveLocation)));
-		Action actionDamage = new Action(depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveLocation)), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveLocation)));
+		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveLocation)), false);
 
 		return new Quest(actionGoto, actionDamage);
 	}

@@ -23,8 +23,8 @@ public class ConquestAttackActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomPNJ("being/*");
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePNJ)));
-		Action actionDamage = new Action(depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePNJ)), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePNJ)));
+		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePNJ)), false);
 
 		return new Quest(actionGoto, actionDamage);
 	}

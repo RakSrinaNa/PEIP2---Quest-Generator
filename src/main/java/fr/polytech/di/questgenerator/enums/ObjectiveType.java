@@ -12,5 +12,6 @@ public enum ObjectiveType
 	OBJ_GIVE,
 	OBJ_GET,
 	PNJ,
-	LOC_OBJECTIVE
+	LOC_OBJECTIVE,
+	CLASS
 }

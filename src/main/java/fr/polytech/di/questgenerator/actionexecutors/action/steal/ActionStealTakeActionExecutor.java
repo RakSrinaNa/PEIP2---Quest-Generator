@@ -24,9 +24,9 @@ public class ActionStealTakeActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomPNJ();
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)));
-		Action actionKill = new Action(depth, ActionType.KILL, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)));
-		Action actionTake = new Action(depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET, DataHandler.getRandomObject()), new ObjectiveHelper(PNJ, PNJ, objectivePNJ)), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)));
+		Action actionKill = new Action(this.getClass(), depth, ActionType.KILL, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)));
+		Action actionTake = new Action(this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET, DataHandler.getRandomObject()), new ObjectiveHelper(PNJ, PNJ, objectivePNJ)), false);
 
 		return new Quest(actionGoto, actionKill, actionTake);
 	}

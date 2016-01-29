@@ -22,9 +22,9 @@ public class ActionCaptureActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomPNJ();
 
-		Action actionGet = new Action(depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject()), new ObjectiveHelper(LOC_OBJECTIVE, NONE, DataHandler.getRandomArea())));
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)));
-		Action actionCapture = new Action(depth, ActionType.CAPTURE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)), false);
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject()), new ObjectiveHelper(LOC_OBJECTIVE, NONE, DataHandler.getRandomArea())));
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)));
+		Action actionCapture = new Action(this.getClass(), depth, ActionType.CAPTURE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)), false);
 
 		return new Quest(actionGet, actionGoto, actionCapture);
 	}

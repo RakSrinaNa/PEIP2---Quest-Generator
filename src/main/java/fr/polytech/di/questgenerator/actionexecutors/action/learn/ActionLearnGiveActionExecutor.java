@@ -23,10 +23,10 @@ public class ActionLearnGiveActionExecutor implements ActionExecutor
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomObject();
 		XMLStringObjectiveElement objectiveListen = DataHandler.getRandomPNJ("being/*");
 
-		Action actionGet = new Action(depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, DataHandler.getRandomFromCategories("pnj/*", "area/*"))));
-		Action actionSubquest = new Action(depth, ActionType.SUBQUEST);
-		Action actionGive = new Action(depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, objectiveListen)), false);
-		Action actionListen = new Action(depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveListen)), false);
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, DataHandler.getRandomFromCategories("pnj/*", "area/*"))));
+		Action actionSubquest = new Action(this.getClass(), depth, ActionType.SUBQUEST);
+		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, objectiveListen)), false);
+		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveListen)), false);
 
 		return new Quest(actionGet, actionSubquest, actionGive, actionListen);
 	}

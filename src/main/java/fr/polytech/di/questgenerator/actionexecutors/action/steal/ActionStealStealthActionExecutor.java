@@ -24,9 +24,9 @@ public class ActionStealStealthActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomPNJ();
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)));
-		Action actionStealth = new Action(depth, ActionType.STEALTH, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)), false);
-		Action actionTake = new Action(depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(PNJ, PNJ, objectivePNJ), new ObjectiveHelper(OBJ_GET, OBJ_GET, DataHandler.getRandomObject())), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)));
+		Action actionStealth = new Action(this.getClass(), depth, ActionType.STEALTH, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ, objectivePNJ)), false);
+		Action actionTake = new Action(this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(PNJ, PNJ, objectivePNJ), new ObjectiveHelper(OBJ_GET, OBJ_GET, DataHandler.getRandomObject())), false);
 
 		return new Quest(actionGoto, actionStealth, actionTake);
 	}

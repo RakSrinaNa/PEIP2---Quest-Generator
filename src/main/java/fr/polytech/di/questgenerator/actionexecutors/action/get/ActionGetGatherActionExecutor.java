@@ -20,8 +20,8 @@ public class ActionGetGatherActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, LOC_OBJECTIVE, DataHandler.getRandomArea())));
-		Action actionGather = new Action(depth, ActionType.GATHER, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJ_GET, DataHandler.getRandomObject())), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, LOC_OBJECTIVE, DataHandler.getRandomArea())));
+		Action actionGather = new Action(this.getClass(), depth, ActionType.GATHER, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJ_GET, DataHandler.getRandomObject())), false);
 
 		return new Quest(actionGoto, actionGather);
 	}

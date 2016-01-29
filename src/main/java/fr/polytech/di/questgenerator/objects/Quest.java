@@ -32,7 +32,7 @@ public class Quest
 	 */
 	public static Quest getEpsilon(int depth)
 	{
-		return new Quest(new Action(depth, ActionType.NONE, false));
+		return new Quest(new Action(Quest.class, depth, ActionType.NONE, false));
 	}
 
 	/**

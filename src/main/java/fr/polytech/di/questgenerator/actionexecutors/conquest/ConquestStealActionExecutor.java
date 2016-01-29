@@ -17,6 +17,6 @@ public class ConquestStealActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		return new Quest(new Action(depth, ActionType.GOTO), new Action(depth, ActionType.STEAL), new Action(depth, ActionType.GOTO), new Action(depth, ActionType.GIVE, false));
+		return new Quest(new Action(this.getClass(), depth, ActionType.GOTO), new Action(this.getClass(), depth, ActionType.STEAL), new Action(this.getClass(), depth, ActionType.GOTO), new Action(this.getClass(), depth, ActionType.GIVE, false));
 	}
 }

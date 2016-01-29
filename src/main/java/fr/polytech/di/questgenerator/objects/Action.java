@@ -2,6 +2,7 @@ package fr.polytech.di.questgenerator.objects;
 
 import fr.polytech.di.questgenerator.enums.ActionType;
 import fr.polytech.di.questgenerator.enums.ObjectiveType;
+import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.HashMap;
 import java.util.Optional;
@@ -22,74 +23,83 @@ public class Action
 	/**
 	 * Constructor.
 	 *
+	 * @param parent The ActionExecutor that built that Action.
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 */
-	public Action(int depth, ActionType actionType)
+	public Action(Class parent, int depth, ActionType actionType)
 	{
-		this(depth, actionType, true);
+		this(parent, depth, actionType, true);
 	}
 
 	/**
 	 * Constructor.
 	 *
+	 * @param parent The ActionExecutor that built that Action.
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 * @param splittable Define if this Action can be splitted.
 	 */
-	public Action(int depth, ActionType actionType, boolean splittable)
+	public Action(Class parent, int depth, ActionType actionType, boolean splittable)
 	{
-		this(depth, actionType, Optional.empty(), splittable);
+		this(parent, depth, actionType, Optional.empty(), splittable);
 	}
 
 	/**
 	 * Constructor.
 	 *
+	 * @param parent The ActionExecutor that built that Action.
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 */
-	public Action(int depth, ActionType actionType, HashMap<ObjectiveType, XMLStringObjectiveElement> objectives)
+	public Action(Class parent, int depth, ActionType actionType, HashMap<ObjectiveType, XMLStringObjectiveElement> objectives)
 	{
-		this(depth, actionType, Optional.ofNullable(objectives));
+		this(parent, depth, actionType, Optional.ofNullable(objectives));
 	}
 
 	/**
 	 * Constructor.
 	 *
+	 * @param parent The ActionExecutor that built that Action.
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 */
-	public Action(int depth, ActionType actionType, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Action(Class parent, int depth, ActionType actionType, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		this(depth, actionType, objectives, true);
+		this(parent, depth, actionType, objectives, true);
 	}
 
 	/**
 	 * Constructor.
 	 *
+	 * @param parent The ActionExecutor that built that Action.
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 * @param splittable Define if this Action can be splitted.
 	 */
-	public Action(int depth, ActionType actionType, HashMap<ObjectiveType, XMLStringObjectiveElement> objectives, boolean splittable)
+	public Action(Class<? extends ActionExecutor> parent, int depth, ActionType actionType, HashMap<ObjectiveType, XMLStringObjectiveElement> objectives, boolean splittable)
 	{
-		this(depth, actionType, Optional.ofNullable(objectives), splittable);
+		this(parent, depth, actionType, Optional.ofNullable(objectives), splittable);
 	}
 
 	/**
 	 * Constructor.
-	 *  @param depth The depth of the actionType.
+	 *
+	 * @param parent The ActionExecutor that built that Action.
+	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 * @param splittable Define if this Action can be splitted.
 	 */
-	public Action(int depth, ActionType actionType, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives, boolean splittable)
+	public Action(Class parent, int depth, ActionType actionType, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives, boolean splittable)
 	{
 		this.depth = depth;
 		this.actionType = actionType;
+		if(objectives.isPresent())
+			objectives.get().put(ObjectiveType.CLASS, new XMLStringObjectiveElement("class", parent.getSimpleName()));
 		this.objectives = objectives;
 		this.splittable = splittable;
 		this.subquest = this.genSubquest(depth);

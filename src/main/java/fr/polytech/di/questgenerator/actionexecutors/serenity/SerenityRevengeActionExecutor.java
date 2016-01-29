@@ -23,8 +23,8 @@ public class SerenityRevengeActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomPNJ("being/*");
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePnj)));
-		Action actionDamage = new Action(depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE,NONE, objectivePnj)), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePnj)));
+		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE,NONE, objectivePnj)), false);
 
 		return new Quest(actionGoto, actionDamage);
 	}

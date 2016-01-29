@@ -23,8 +23,8 @@ public class ProtectionGuardActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories("area/place/fortification/*", "area/place");
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)));
-		Action actionDefend = new Action(depth, ActionType.DEFEND, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)));
+		Action actionDefend = new Action(this.getClass(), depth, ActionType.DEFEND, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)), false);
 
 		return new Quest(actionGoto, actionDefend);
 	}

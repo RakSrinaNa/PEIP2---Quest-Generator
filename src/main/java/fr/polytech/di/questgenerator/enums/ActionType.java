@@ -96,8 +96,9 @@ public enum ActionType
 	{
 		if(!objectives.isPresent())
 			return this.sentence;
-		if(objectives.get().size() != this.params)
+		if(objectives.get().size() != (this.params + 1))
 			return this.sentence + " - " + objectives.get().toString();
+		String sentence = this.sentence + " - " + objectives.toString();
 		switch(this)
 		{
 			case GOTO:
@@ -117,19 +118,23 @@ public enum ActionType
 			case SPY:
 			case STEALTH:
 			case USE:
-				return MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJECTIVE));
+				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJECTIVE));
+				break;
 			case EXCHANGE:
-				return MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GIVE), objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
+				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GIVE), objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
+				break;
 			case GET:
-				return MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.LOC_OBJECTIVE));
+				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.LOC_OBJECTIVE));
+				break;
 			case GIVE:
-				return MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GIVE), objectives.get().get(ObjectiveType.LOC_OBJECTIVE));
+				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GIVE), objectives.get().get(ObjectiveType.LOC_OBJECTIVE));
+				break;
 			case STEAL:
 			case TAKE:
-				return MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
-			default:
-				return this.sentence + " - " + objectives.toString();
+				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
+				break;
 		}
+		return sentence + " - " + objectives.get().get(ObjectiveType.CLASS);
 	}
 
 	/**

@@ -22,8 +22,8 @@ public class EquipmentTradeActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomPNJ("being/*");
 
-		Action actionGoto = new Action(depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePNJ)));
-		Action actionExchange = new Action(depth, ActionType.EXCHANGE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, NONE, DataHandler.getRandomObject("weapon/*")), new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject("weapon/*"))), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePNJ)));
+		Action actionExchange = new Action(this.getClass(), depth, ActionType.EXCHANGE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, NONE, DataHandler.getRandomObject("weapon/*")), new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject("weapon/*"))), false);
 
 		return new Quest(actionGoto, actionExchange);
 	}
