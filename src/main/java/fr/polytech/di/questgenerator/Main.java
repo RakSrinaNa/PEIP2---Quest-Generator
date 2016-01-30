@@ -12,6 +12,7 @@ import java.util.stream.Stream;
  */
 public class Main
 {
+	public static final boolean DEBUG = true;
 	public static final int MAX_DEPTH = 3;
 
 	/**

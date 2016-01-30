@@ -1,5 +1,7 @@
 package fr.polytech.di.questgenerator.objects.xml;
 
+import fr.polytech.di.questgenerator.Main;
+
 /**
  * Represent an element in the objective xml file.
  *
@@ -35,7 +37,9 @@ public class XMLStringObjectiveElement
 	 */
 	public String getValue()
 	{
-		return "[(" + this.path + ") " + this.value + "]";
+		if(Main.DEBUG)
+			return "[(" + this.path + ") " + this.value + "]";
+		return this.value;
 	}
 
 	/**

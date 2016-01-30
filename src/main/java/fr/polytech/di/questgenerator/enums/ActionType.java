@@ -134,7 +134,7 @@ public enum ActionType
 				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
 				break;
 		}
-		return sentence + " - " + objectives.get().get(ObjectiveType.CLASS);
+		return sentence + (Main.DEBUG ? (" - " + objectives.get().get(ObjectiveType.CLASS)) : "");
 	}
 
 	/**
