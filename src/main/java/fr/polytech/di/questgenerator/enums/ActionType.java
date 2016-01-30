@@ -37,11 +37,11 @@ public enum ActionType
 	EXPERIMENT(1, "Experiment {0}"),
 	EXPLORE(1, "Explore {0}"),
 	GATHER(1, "Gather {0}"),
-	GET(2, "Get {0} from {1}", ActionEpsillonActionExecutor.class, ActionGetStealActionExecutor.class, ActionGetGatherActionExecutor.class, ActionGetSubquestActionExecutor.class),
+	GET(2, "Get {0} from {1}", ActionEpsilonActionExecutor.class, ActionGetStealActionExecutor.class, ActionGetGatherActionExecutor.class, ActionGetSubquestActionExecutor.class),
 	GIVE(2, "Give {0} to {1}"),
-	GOTO(1, "Go to {0}", ActionEpsillonActionExecutor.class, ActionGotoExploreActionExecutor.class, ActionGotoLearnActionExecutor.class),
+	GOTO(1, "Go to {0}", ActionEpsilonActionExecutor.class, ActionGotoExploreActionExecutor.class, ActionGotoLearnActionExecutor.class),
 	KILL(1, "Kill {0}", ActionKillActionExecutor.class),
-	LEARN(1, "Learn where is {0}", ActionEpsillonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
+	LEARN(1, "Learn where is {0}", ActionEpsilonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
 	LISTEN(1, "Listen {0}"),
 	QUEST(0, "Complete quest", ActionQuestActionExecutor.class),
 	SUBQUEST(0, "Perform subquest", ActionSubquestGotoActionExecutor.class, ActionSubquestQuestActionExecutor.class),
@@ -146,9 +146,9 @@ public enum ActionType
 	 */
 	public Optional<Quest> genSubquest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		if(depth > Main.MAX_DEPTH && actionExecutors.contains(ActionEpsillonActionExecutor.class))
+		if(depth > Main.MAX_DEPTH && actionExecutors.contains(ActionEpsilonActionExecutor.class))
 			return Optional.empty();
-		Quest quest = Quest.getEpsilon(depth);
+		Quest quest = Quest.getEpsilon();
 		if(!actionExecutors.isEmpty())
 			try
 			{
@@ -180,10 +180,10 @@ public enum ActionType
 	 */
 	public Class<? extends ActionExecutor> getRandomActionExecutor(int depth)
 	{
-		if(!actionExecutors.contains(ActionEpsillonActionExecutor.class))
+		if(!actionExecutors.contains(ActionEpsilonActionExecutor.class))
 			return actionExecutors.get(ThreadLocalRandom.current().nextInt(actionExecutors.size()));
 		if(Math.random() < (1 / actionExecutors.size()) + (depth / Main.MAX_DEPTH))
-			return ActionEpsillonActionExecutor.class;
+			return ActionEpsilonActionExecutor.class;
 		return actionExecutors.get(1 + ThreadLocalRandom.current().nextInt(actionExecutors.size() - 1));
 	}
 }

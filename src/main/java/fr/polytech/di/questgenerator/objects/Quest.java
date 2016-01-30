@@ -11,7 +11,9 @@ import java.util.LinkedHashSet;
  */
 public class Quest
 {
+	private final String description;
 	private final LinkedHashSet<Action> actions;
+
 
 	/**
 	 * Constructor.
@@ -20,6 +22,18 @@ public class Quest
 	 */
 	public Quest(Action... actions)
 	{
+		this(null, actions);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param description The description of the quest.
+	 * @param actions The list of Action defining the quest.
+	 */
+	public Quest(String description, Action... actions)
+	{
+		this.description = description;
 		this.actions = new LinkedHashSet<>(actions.length);
 		Collections.addAll(this.actions, actions);
 	}
@@ -30,9 +44,9 @@ public class Quest
 	 * @param depth The depth of the Quest.
 	 * @return The Epsilon Quest.
 	 */
-	public static Quest getEpsilon(int depth)
+	public static Quest getEpsilon()
 	{
-		return new Quest(new Action(Quest.class, depth, ActionType.NONE, false));
+		return new QuestEpsilon();
 	}
 
 	/**
@@ -64,6 +78,11 @@ public class Quest
 	public String[] getAsString(boolean subquests)
 	{
 		StringBuilder sb = new StringBuilder();
+		if(this.hasDescription())
+		{
+			sb.append(this.getDescription());
+			sb.append("\n\n");
+		}
 		for(Action action : getActions())
 		{
 			if(sb.length() > 0)
@@ -83,9 +102,31 @@ public class Quest
 	 */
 	public boolean isEmpty()
 	{
+		if(this instanceof QuestEpsilon)
+			return true;
 		for(Action action : getActions())
 			if(action.getActionType() != ActionType.NONE)
 				return false;
 		return true;
+	}
+
+	/**
+	 * Used to know if this Quest have a description.
+	 *
+	 * @return True if a description is present, false if not.
+	 */
+	public boolean hasDescription()
+	{
+		return this.description != null;
+	}
+
+	/**
+	 * Used to get the description.
+	 *
+	 * @return the description.
+	 */
+	public String getDescription()
+	{
+		return this.description;
 	}
 }

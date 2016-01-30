@@ -3,6 +3,7 @@ package fr.polytech.di.questgenerator.jfx.contents;
 import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 /**
  * Element displaying a quest.
@@ -11,6 +12,8 @@ import javafx.scene.layout.VBox;
  */
 public class QuestItem extends VBox
 {
+	private VBox actions;
+
 	/**
 	 * Constructor.
 	 *
@@ -21,7 +24,20 @@ public class QuestItem extends VBox
 	{
 		super();
 		this.setSpacing(5);
-		this.setStyle("-fx-background-color: " + getStringColor(depth) + ";");
+		this.setStyle("-fx-background-color: " + getStringColor(depth) + ";" +
+				"-fx-padding: 10;" +
+				"-fx-border-style: solid;" +
+				"-fx-border-width: 2;" +
+				"-fx-border-radius: 5;" +
+				"-fx-border-color: black;");
+
+		this.actions = new VBox();
+		this.actions.setSpacing(5);
+
+		if(quest.hasDescription())
+			this.getChildren().add(new Text(quest.getDescription()));
+		this.getChildren().add(this.actions);
+
 		loadQuest(quest);
 	}
 
@@ -40,23 +56,13 @@ public class QuestItem extends VBox
 	}
 
 	/**
-	 * Get a int as an hexadecimal value with leading 0.
-	 * @param i The number, must be 0<=i<256.
-	 * @return The hexadecimal value.
-	 */
-	public static String getPaddedHex(int i)
-	{
-		return (i < 10 ? "0" : "") + Integer.toHexString(i);
-	}
-
-	/**
 	 * Used to modify the displayed quest.
 	 *
 	 * @param quest The quest to display.
 	 */
 	public void modifyQuest(Quest quest)
 	{
-		this.getChildren().clear();
+		this.actions.getChildren().clear();
 		loadQuest(quest);
 	}
 
@@ -68,6 +74,6 @@ public class QuestItem extends VBox
 	private void loadQuest(Quest quest)
 	{
 		for(Action action : quest.getActions())
-			this.getChildren().add(new ActionItem(action));
+			this.actions.getChildren().add(new ActionItem(action));
 	}
 }

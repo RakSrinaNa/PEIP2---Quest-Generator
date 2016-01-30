@@ -10,11 +10,11 @@ import java.util.Optional;
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class ActionEpsillonActionExecutor implements ActionExecutor
+public class ActionEpsilonActionExecutor implements ActionExecutor
 {
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		return Quest.getEpsilon(depth);
+		return Quest.getEpsilon();
 	}
 }
