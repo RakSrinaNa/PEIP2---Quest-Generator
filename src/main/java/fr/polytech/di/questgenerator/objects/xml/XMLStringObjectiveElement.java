@@ -38,7 +38,13 @@ public class XMLStringObjectiveElement
 	public String getValue()
 	{
 		if(Main.DEBUG)
-			return "[(" + this.path + ") " + this.value + "]";
+		{
+			if(this.path.equals("class"))
+			{
+				return "{" + this.value + "}";
+			}
+			return "[(" + this.path + ") " + this.value + " @" + this.hashCode() + "]";
+		}
 		return this.value;
 	}
 
