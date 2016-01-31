@@ -98,8 +98,9 @@ public class Action
 	{
 		this.depth = depth;
 		this.actionType = actionType;
-		if(objectives.isPresent())
-			objectives.get().put(ObjectiveType.CLASS, new XMLStringObjectiveElement("class", parent.getSimpleName()));
+		if(!objectives.isPresent())
+			objectives = Optional.of(new HashMap<>());
+		objectives.get().put(ObjectiveType.CLASS, new XMLStringObjectiveElement("class", parent.getSimpleName()));
 		this.objectives = objectives;
 		this.splittable = splittable;
 		this.subquest = this.genSubquest(depth);
