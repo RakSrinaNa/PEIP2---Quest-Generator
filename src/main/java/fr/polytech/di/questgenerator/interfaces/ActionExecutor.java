@@ -34,7 +34,8 @@ public interface ActionExecutor
 	{
 		HashMap<ObjectiveType, XMLStringObjectiveElement> objectives = new HashMap<>();
 		for(ObjectiveHelper helper : helpers)
-			objectives.put(helper.getObjective(), helper.getValue(oldObjectives));
+			if(helper != null)
+				objectives.put(helper.getObjective(), helper.getValue(oldObjectives));
 		return Optional.of(objectives);
 	}
 
