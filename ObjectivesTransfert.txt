@@ -38,8 +38,8 @@ Get - Steal (loc_objective: pnj/being/*):
 	Steal	(pnj) <- loc_objective
 
 Get - Gather (obj_get: object/gatherable/* AND loc_objective: area/*):
-	Gather 	(objective) <- obj_get
 	Goto 	(objective) <- loc_objective
+	Gather 	(objective) <- obj_get
 
 Get - Subquest:
 	v1 = object/*
