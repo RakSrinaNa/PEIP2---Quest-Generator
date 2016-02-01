@@ -20,10 +20,10 @@ public class ActionGotoExploreActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		ObjectiveHelper objectiveHelper = null;
+		ObjectiveHelper objectiveHelper;
 		if(objectives.get().get(OBJECTIVE).isInPath("pnj/being/*"))
 			objectiveHelper = new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/*"));
-		else if(objectives.get().get(OBJECTIVE).isInPath("pnj/beast/*", "area/place/*"))
+		else
 			objectiveHelper = new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/wild/*"));
 		Action actionExplore = new Action(this.getClass(), depth, ActionType.EXPLORE, buildObjective(objectives, objectiveHelper), false);
 
