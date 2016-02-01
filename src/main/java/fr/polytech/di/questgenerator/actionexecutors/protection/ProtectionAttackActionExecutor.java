@@ -21,13 +21,13 @@ public class ProtectionAttackActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement pnjDamage = DataHandler.getRandomPNJ("being/*");
-		XMLStringObjectiveElement pnjReport = DataHandler.getRandomPNJ("being/*");
+		XMLStringObjectiveElement pnjDamage = DataHandler.getRandomFromCategories("pnj/being/*");
+		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories("pnj/being/*");
 
-		Action actionGotoDamage = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjDamage)));
-		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjDamage)), false);
-		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjReport)));
-		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjReport)), false);
+		Action actionGotoDamage = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjDamage)));
+		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjDamage)), false);
+		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjReport)));
+		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjReport)), false);
 
 		return new Quest(actionGotoDamage, actionDamage, actionGotoReport, actionReport);
 	}

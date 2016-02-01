@@ -21,10 +21,10 @@ public class ProtectionTreat2ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomArea("place/job/*");
+		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories("area/job/*");
 
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)));
-		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
+		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)), false);
 
 		return new Quest(actionGoto, actionRepair);
 	}

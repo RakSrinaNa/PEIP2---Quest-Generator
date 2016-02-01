@@ -239,34 +239,33 @@ Protection - Attack:
 	
 Protection - Treat1:
 	v1 = Rnd object/*
-	v2 = Rnd area/job/*
-	Get	(obj_get) <- v1
-	Get 	(loc_objective) <- Rnd pnj/being/*
-	Goto	(objective) <- v2
-	Use	(objective) <- v1
+	Get	    (obj_get) <- v1
+	Get     (loc_objective) <- Rnd pnj/being/*
+	Goto    (objective) <- Rnd area/job/*
+	Use	    (objective) <- v1
 
 Protection - Treat2:
 	v1 = Rnd area/job/*
-	Goto 		(objective) <- v1
+	Goto 	(objective) <- v1
 	Repair 	(objective) <- v1
 
 Protection - Diversion1:
 	v1 = Rnd object/diversion/*
-	Get 		(obj_get) <- v1
-	Get 		(loc_objective) <- Rnd pnj/being/*
-	Goto 		(objective) <- Rnd area/place/*
-	Use 		(objective) <- v1
+	Get 	(obj_get) <- v1
+	Get 	(loc_objective) <- Rnd pnj/being/*
+	Goto 	(objective) <- Rnd area/place/*
+	Use 	(objective) <- v1
 
 Protection - Diversion2:
-	Goto 		(objective) <- Rnd area/place/*
+	Goto 	(objective) <- Rnd area/place/*
 	Damage 	(objective) <- Rnd area/fortification/*
 
-Protection - Fortification:
-	Goto 		(objective) <- Rnd area/place/*
+Protection - Assemble:
+	Goto 	(objective) <- Rnd area/place/*
 	Repair 	(objective) <- Rnd area/fortification/*
 
-Protection - Defend:
+Protection - Guard:
 	v1 = Rnd area/place/*
-	Goto 		(objective) <- v1
+	Goto 	(objective) <- v1
 	Defend 	(objective) <- v1 OR Rnd area/fortification/*
 
