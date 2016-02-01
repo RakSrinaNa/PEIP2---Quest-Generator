@@ -1,7 +1,7 @@
 Goto - Explore (pnj/being/* OR pnj/beast/* OR area/place/*):
-	Si Objective = pnj/being/*:
+	If Objective = pnj/being/*:
 		Explore (objective) <- Rnd area/*
-	Si Objective = pnj/beast/* OR area/place/*:
+	Else:
 		Explore (objective) <- Rnd area/wild/*
 		
 Goto - Learn (pnj/being/* OR pnj/beast/* OR area/place/*):
@@ -11,9 +11,9 @@ Goto - Learn (pnj/being/* OR pnj/beast/* OR area/place/*):
 Learn - Listen:
 	v1 = Rnd pnj/being/* OR Rnd area/*
 	Goto (objective) <- v1
-	Si v1 = pnj/being/*:
+	If v1 = pnj/being/*:
 		Listen (objective) <- v1
-	Si v1 = area/*
+	If v1 = area/*
 		Listen (objective) <- Rnd pnj/being/*
 	
 Learn - Read (area/*):
@@ -46,9 +46,9 @@ Get - Subquest:
 	v2 = Rnd pnj/being/* OR Rnd area/*
 	v3 = Rnd pnj/being/*
 	Goto1 	(objective) <- v2
-	Si v2 = pnj/being/*:
+	If v2 = pnj/being/*:
 		Get (loc_objective) <- v2
-	Sinon:
+	Else:
 		Get (loc_objective) <- Rnd pnj/being/*
 	Get	(obj_get) <- v1
 	Goto2 	(objective) <- v3
