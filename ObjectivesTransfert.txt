@@ -10,11 +10,11 @@ Goto - Learn (pnj/being/* OR pnj/beast/* OR area/place/*):
 
 Learn - Listen:
 	v1 = Rnd pnj/being/* OR Rnd area/*
-	Goto (objective) <- v1
+	Goto        (objective) <- v1
 	If v1 = pnj/being/*:
-		Listen (objective) <- v1
+		Listen  (objective) <- v1
 	If v1 = area/*
-		Listen (objective) <- Rnd pnj/being/*
+		Listen  (objective) <- Rnd pnj/being/*
 	
 Learn - Read (area/*):
 	v1 = Rnd area/place/*
@@ -27,8 +27,8 @@ Learn - Read (area/*):
 Learn - Give:
 	v1 = object/*
 	v2 = pnj/being/*
-	Get	(obj_get) <- v1
-	Get	(loc_objective) <- Rnd area/*
+	Get	    (obj_get) <- v1
+	Get	    (loc_objective) <- Rnd area/*
 	Give	(obj_give) <- v1
 	Give	(loc_objective) <- v2
 	Listen	(objective) <- v2
@@ -45,13 +45,13 @@ Get - Subquest:
 	v1 = object/*
 	v2 = Rnd pnj/being/* OR Rnd area/*
 	v3 = Rnd pnj/being/*
-	Goto1 	(objective) <- v2
+	Goto1 	    (objective) <- v2
 	If v2 = pnj/being/*:
-		Get (loc_objective) <- v2
+		Get     (loc_objective) <- v2
 	Else:
-		Get (loc_objective) <- Rnd pnj/being/*
-	Get	(obj_get) <- v1
-	Goto2 	(objective) <- v3
+		Get     (loc_objective) <- Rnd pnj/being/*
+	Get	        (obj_get) <- v1
+	Goto2   	(objective) <- v3
 	Exchange	(obj_give) <- v1
 	Exchange	(obj_get) <- obj_get
 	Exchange	(pnj) <- v3
@@ -76,8 +76,8 @@ Spy:
 	Report 	(objective) <- v1
 
 Capture:
-	Get	(obj_get) <- Rnd object/weapon/*
-	Get	(loc_objective) <- Rnd pnj/being/* OR area/*
+	Get 	(obj_get) <- Rnd object/weapon/*
+	Get	    (loc_objective) <- Rnd pnj/being/* OR area/*
 	Goto	(objective) <- objective
 	Capture	(objective) <- objective
 
@@ -112,13 +112,13 @@ Knowledge - Interview:
 	Report 	(objective) <- v2
 
 Knowledge - UseItem:
-	v1 = Rnd object/useable/*
+	v1 = Rnd object/usable/*
 	v2 = Rnd pnj/being/*
 	Get 		(obj_get) <- v1
 	Get 		(loc_objective) <- Rnd pnj/being/*
-	Goto1 	(objective) <- Rnd area/wonder/*
+	Goto1 	    (objective) <- Rnd area/wonder/*
 	Use 		(objective) <- v1
-	Goto2 	(objective) <- v2
+	Goto2 	    (objective) <- v2
 	Give 		(obj_give) <- v1
 	Give 		(loc_objective) <- v2
 
