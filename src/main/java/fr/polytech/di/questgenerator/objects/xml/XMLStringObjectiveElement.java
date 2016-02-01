@@ -58,4 +58,18 @@ public class XMLStringObjectiveElement
 	{
 		return path.endsWith("/*") ? this.path.startsWith(path.substring(0, path.length() - "/*".length())) : this.path.equals(path);
 	}
+
+	/**
+	 * Used to know if this element is in one of the given paths.
+	 *
+	 * @param paths The paths to test.
+	 * @return True if in, false if not.
+	 */
+	public boolean isInPath(String... paths)
+	{
+		for(String path : paths)
+			if(isInPath(path))
+				return true;
+		return false;
+	}
 }
