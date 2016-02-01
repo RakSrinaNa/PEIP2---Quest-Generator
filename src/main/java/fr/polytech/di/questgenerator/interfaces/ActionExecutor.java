@@ -23,11 +23,29 @@ public interface ActionExecutor
 	 */
 	Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives);
 
+	/**
+	 * Build a new objective HashMap.
+	 *
+	 * @param oldObjectives The old objectives.
+	 * @param helpers The ObjectiveHelpers.
+	 * @return The new HashMap of objectives.
+	 */
 	default Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> buildObjective(Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> oldObjectives, ObjectiveHelper... helpers)
 	{
 		HashMap<ObjectiveType, XMLStringObjectiveElement> objectives = new HashMap<>();
 		for(ObjectiveHelper helper : helpers)
 			objectives.put(helper.getObjective(), helper.getValue(oldObjectives));
 		return Optional.of(objectives);
+	}
+
+	/**
+	 * Used to know is allowed depending of the passed objectives.
+	 *
+	 * @param objectives The objectives.
+	 * @return True if allowed, false if not.
+	 */
+	default boolean isActionAllowed(Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	{
+		return true;
 	}
 }

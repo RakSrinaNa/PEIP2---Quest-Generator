@@ -152,7 +152,11 @@ public enum ActionType
 		if(!actionExecutors.isEmpty())
 			try
 			{
-				quest = getRandomActionExecutor(depth).newInstance().generateQuest(depth + 1, objectives);
+				ArrayList<Class<? extends ActionExecutor>> candidates = new ArrayList<>();
+				for(Class<? extends ActionExecutor> actionExecutor : this.actionExecutors)
+					if(actionExecutor.newInstance().isActionAllowed(objectives))
+						candidates.add(actionExecutor);
+				quest = getRandomActionExecutor(depth, candidates).newInstance().generateQuest(depth + 1, objectives);
 			}
 			catch(InstantiationException | IllegalAccessException ignored)
 			{
@@ -178,12 +182,12 @@ public enum ActionType
 	 * @param depth The depth of the Action.
 	 * @return A random ActionExecutor.
 	 */
-	public Class<? extends ActionExecutor> getRandomActionExecutor(int depth)
+	public Class<? extends ActionExecutor> getRandomActionExecutor(int depth, ArrayList<Class<? extends ActionExecutor>> executors)
 	{
-		if(!actionExecutors.contains(ActionEpsilonActionExecutor.class))
-			return actionExecutors.get(ThreadLocalRandom.current().nextInt(actionExecutors.size()));
-		if(Math.random() < (1 / actionExecutors.size()) + (depth / Main.MAX_DEPTH))
+		if(!executors.contains(ActionEpsilonActionExecutor.class))
+			return executors.get(ThreadLocalRandom.current().nextInt(executors.size()));
+		if(Math.random() < (1 / executors.size()) + (depth / Main.MAX_DEPTH))
 			return ActionEpsilonActionExecutor.class;
-		return actionExecutors.get(1 + ThreadLocalRandom.current().nextInt(actionExecutors.size() - 1));
+		return executors.get(1 + ThreadLocalRandom.current().nextInt(executors.size() - 1));
 	}
 }
