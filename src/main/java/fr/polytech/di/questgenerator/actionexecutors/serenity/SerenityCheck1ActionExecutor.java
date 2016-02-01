@@ -21,13 +21,13 @@ public class SerenityCheck1ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement pnjListen = DataHandler.getRandomPNJ("being/*");
-		XMLStringObjectiveElement pnjReport = DataHandler.getRandomPNJ("being/*");
+		XMLStringObjectiveElement pnjListen = DataHandler.getRandomFromCategories("pnj/being/*");
+		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories("pnj/being/*");
 
-		Action actionGotoListen = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjListen)));
-		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjListen)), false);
-		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjReport)));
-		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjReport)), false);
+		Action actionGotoListen = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjListen)));
+		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjListen)), false);
+		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjReport)));
+		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjReport)), false);
 
 		return new Quest(actionGotoListen, actionListen, actionGotoReport, actionReport);
 	}

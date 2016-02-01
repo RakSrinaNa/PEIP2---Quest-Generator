@@ -152,7 +152,7 @@ Reputation - Kill:
 	v1 = Rnd pnj/boss/*
 	v2 = Rnd pnj/being/*
 	Goto1 	(objective) <- v1
-	Kill		(objective) <- v1
+	Kill	(objective) <- v1
 	Goto2 	(objective) <- v2
 	Report	(objective) <- v2
 
@@ -164,33 +164,33 @@ Reputation - Visit:
 	
 Serenity - Revenge:
 	v1 = Rnd pnj/being/*
-	Goto 		(objective) <- v1
-	Damage 	(objective) <- v1
+	Goto 	(objective) <- v1
+	Damage  (objective) <- v1
 
 Serenity - Capture1:
 	v1 = Rnd object/capture/*
 	v2 = Rnd pnj/being/*
 	v3 = Rnd pnj/being/*
-	Get 		(obj_get) <- v1
-	Get 		(loc_objective) <- v2
+	Get 	(obj_get) <- v1
+	Get 	(loc_objective) <- v2
 	Goto1 	(objective) <- v3
-	Use 		(objective) <- v1
+	Use 	(objective) <- v1
 	Goto2 	(objective) <- v2
-	Give 		(obj_give) <- v3
-	Give 		(loc_objective) <- v2
+	Give 	(obj_give) <- v3
+	Give 	(loc_objective) <- v2
 
 Serenity - Capture2:
 	v1 = Rnd object/weapon/*
 	v2 = Rnd pnj/being/*
 	v3 = Rnd pnj/being/*
-	Get 		(obj_get) <- v1
-	Get 		(loc_objective) <- v2
+	Get 	(obj_get) <- v1
+	Get 	(loc_objective) <- v2
 	Goto1 	(objective) <- v3
-	Use 		(objective) <- v1
-	Capture 	(objective) <- v3
+	Use 	(objective) <- v1
+	Capture (objective) <- v3
 	Goto2 	(objective) <- v2
-	Give 		(obj_give) <- v3
-	Give 		(loc_objective) <- v2
+	Give 	(obj_give) <- v3
+	Give 	(loc_objective) <- v2
 
 Serenity - Check1:
 	v1 = Rnd pnj/being/*
@@ -203,22 +203,22 @@ Serenity - Check1:
 Serenity - Check2:
 	v1 = Rnd pnj/being/*
 	v2 = Rnd pnj/being/*
-	v3 = Rnf object/personnal/*
+	v3 = Rnd object/personal/*
 	Goto1 	(objective) <- v1
-	Take 		(pnj) <- v1
-	Take 		(obj_get) <- v3
+	Take 	(pnj) <- v1
+	Take 	(obj_get) <- v3
 	Goto2 	(objective) <- v2
-	Give 		(obj_give) <- v3
-	Give 		(loc_objective) <- v2
+	Give 	(obj_give) <- v3
+	Give 	(loc_objective) <- v2
 
-Serenity - LostItem:
-	v1 = Rnd object/personnal/*
+Serenity - Recover:
+	v1 = Rnd object/personal/*
 	v2 = Rnd pnj/being/*
-	Get 		(obj_get) <- v1
-	Get 		(loc_objective) <- Rnd area/wild
-	Goto 		(objective) <- v2
-	Give 		(obj_give) <- v1
-	Give 		(loc_objective) <- v2
+	Get 	(obj_get) <- v1
+	Get 	(loc_objective) <- Rnd area/wild
+	Goto 	(objective) <- v2
+	Give 	(obj_give) <- v1
+	Give 	(loc_objective) <- v2
 
 Serenity - Rescue:
 	v1 = Rnd pnj/being/*
