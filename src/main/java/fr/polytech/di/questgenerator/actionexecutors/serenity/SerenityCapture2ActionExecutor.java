@@ -20,7 +20,7 @@ public class SerenityCapture2ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/weapon/*");
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/stuff/weapon/*");
 		XMLStringObjectiveElement pnjGive = DataHandler.getRandomFromCategories("pnj/being/*");
 		XMLStringObjectiveElement pnjCapture = DataHandler.getRandomFromCategories("pnj/being/*");
 

@@ -21,7 +21,7 @@ public class EquipmentStealActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/weapon/*")), new ObjectiveHelper(PNJ, DataHandler.getRandomFromCategories("pnj/being/*"))));
+		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/stuff/*")), new ObjectiveHelper(PNJ, DataHandler.getRandomFromCategories("pnj/being/*"))));
 
 		return new Quest(actionSteal);
 	}

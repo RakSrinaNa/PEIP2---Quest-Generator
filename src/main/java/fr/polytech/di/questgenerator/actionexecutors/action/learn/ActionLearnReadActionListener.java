@@ -21,7 +21,7 @@ public class ActionLearnReadActionListener implements ActionExecutor
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectivePlace = DataHandler.getRandomFromCategories("area/place/*");
-		XMLStringObjectiveElement objectiveRead = DataHandler.getRandomFromCategories("object/readable/learn/*");
+		XMLStringObjectiveElement objectiveRead = DataHandler.getRandomFromCategories("object/readable/learning/*");
 
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePlace)));
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveRead), new ObjectiveHelper(LOC_OBJECTIVE, objectivePlace)));

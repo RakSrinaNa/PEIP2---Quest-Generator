@@ -18,7 +18,7 @@ Learn - Listen:
 	
 Learn - Read (area/*):
 	v1 = Rnd area/place/*
-	v2 = Rnd object/readable/learn/*
+	v2 = Rnd object/readable/learning/*
 	Goto 	(objective) <- v1
 	Get 	(loc_objective) <- v1
 	Get     (obj_get) <- v2
@@ -76,7 +76,7 @@ Spy:
 	Report 	(objective) <- v1
 
 Capture:
-	Get 	(obj_get) <- Rnd object/weapon/*
+	Get 	(obj_get) <- Rnd object/stuff/capture/*
 	Get	    (loc_objective) <- Rnd pnj/being/* OR area/*
 	Goto	(objective) <- objective
 	Capture	(objective) <- objective
@@ -168,7 +168,7 @@ Serenity - Revenge:
 	Damage  (objective) <- v1
 
 Serenity - Capture1:
-	v1 = Rnd object/capture/*
+	v1 = Rnd object/stuff/capture/*
 	v2 = Rnd pnj/being/*
 	v3 = Rnd pnj/being/*
 	Get 	(obj_get) <- v1
@@ -180,7 +180,7 @@ Serenity - Capture1:
 	Give 	(loc_objective) <- v2
 
 Serenity - Capture2:
-	v1 = Rnd object/weapon/*
+	v1 = Rnd object/stuff/weapon/*
 	v2 = Rnd pnj/being/*
 	v3 = Rnd pnj/being/*
 	Get 	(obj_get) <- v1
@@ -238,7 +238,7 @@ Protection - Attack:
 	Report 	(objective) <- v2
 	
 Protection - Treat1:
-	v1 = Rnd object/*
+	v1 = Rnd object/reparation/*
 	Get	    (obj_get) <- v1
 	Get     (loc_objective) <- Rnd pnj/being/*
 	Goto    (objective) <- Rnd area/job/*
@@ -276,7 +276,7 @@ Conquest - Attack:
 
 Conquest - Steal:
 	v1 = Rnd pnj/being/*
-	v2 = Rnd object/weapon/*
+	v2 = Rnd object/stuff/*
 	v3 = Rnd pnj/being/*
 	Goto 	(objective) <- v1
 	Steal 	(obj_get) <- v2
@@ -287,9 +287,9 @@ Conquest - Steal:
 
 Wealth - Gather:
 	v1 = Rnd area/mine/*
-	Goto    (objective) <- v1
+	Goto 	(objective) <- v1
 	Get	    (obj_get) <- Rnd object/material/*
-	Get	    (loc_objective) <- v1
+	Get 	(loc_objective) <- v1
 
 Wealth - Steal:
 	v1 = Rnd pnj/being/*
@@ -301,18 +301,18 @@ Wealth - Make:
 	Repair	(objective) <- Rnd object/personal/* OR object/luxury/*
 
 Ability - Assemble:
-	v1 = Rnd object/weapon/*
+	v1 = Rnd object/stuff/weapon/*
 	Repair	(objective) <- v1
 	Use	    (objective) <- v1
 
 Ability - Obtain:
-	v1 = Rnd object/weapon/*
+	v1 = Rnd object/stuff/weapon/*
 	Get	(obj_get) <- v1
 	Get	(loc_objective) <- Rnd pnj/being/* OR area/place/*
 	Use	(objective) <- v1
 
 Ability - Use:
-	Use	(objective) <- Rnd object/weapon/*
+	Use	(objective) <- Rnd object/stuff/weapon/*
 
 Ability - PracticeCombat:
 	Damage	(objective) <- Rnd object/training/*
@@ -333,10 +333,10 @@ Ability - Research2:
 	Experiment	(objective) <- v1	
 
 Equipment - Assemble:
-	Repair	(objective) <- Rnd object/weapon/*
+	Repair	(objective) <- Rnd object/stuff/*
 
 Equipment - Deliver:
-	v1 = Rnd object/weapon/*
+	v1 = Rnd object/stuff/*
 	v2 = Rnd pnj/being/*
 	Get	    (obj_get) <- v1
 	Get	    (loc_objective) <- Rnd area/place/* OR pnj/being/*
@@ -345,7 +345,7 @@ Equipment - Deliver:
 	Give	(loc_objective) <- v2
 
 Equipment - Steal:
-	Steal	(obj_get) <- Rnd object/weapon/*
+	Steal	(obj_get) <- Rnd object/stuff/*
 	Steal	(pnj) <- Rnd pnj/being/*
 
 Equipment - Trade:
@@ -354,3 +354,4 @@ Equipment - Trade:
 	Exchange	(obj_give) <- Rnd object/stuff/*
 	Exchange	(obj_get) <- Rnd object/stuff/*
 	Exchange	(pnj) <- v1
+

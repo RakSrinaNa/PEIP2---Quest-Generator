@@ -21,7 +21,7 @@ public class ConquestStealActionExecutor implements ActionExecutor
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement pnjSteal = DataHandler.getRandomFromCategories("pnj/being/*");
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/weapon/*");
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/stuff/*");
 		XMLStringObjectiveElement pnjGive = DataHandler.getRandomFromCategories("pnj/being/*");
 
 		Action actionGotoSteal = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjSteal)));
