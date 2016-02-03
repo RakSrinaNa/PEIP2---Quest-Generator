@@ -59,8 +59,8 @@ public enum Strategies
 	PROTECTION_ATTACK(Motivations.PROTECTION, ProtectionAttackActionExecutor.class),
 	PROTECTION_TREAT_1(Motivations.PROTECTION, ProtectionTreat1ActionExecutor.class),
 	PROTECTION_TREAT_2(Motivations.PROTECTION, ProtectionTreat2ActionExecutor.class),
-	PROTECTION_CREATE_1(Motivations.PROTECTION, ProtectionDiversion1ActionExecutor.class),
-	PROTECTION_CREATE_2(Motivations.PROTECTION, ProtectionDiversion2ActionExecutor.class),
+	PROTECTION_DIVERSION_1(Motivations.PROTECTION, ProtectionDiversion1ActionExecutor.class),
+	PROTECTION_DIVERSION_2(Motivations.PROTECTION, ProtectionDiversion2ActionExecutor.class),
 	PROTECTION_ASSEMBLE(Motivations.PROTECTION, ProtectionAssembleActionExecutor.class),
 	PROTECTION_GUARD(Motivations.PROTECTION, ProtectionGuardActionExecutor.class),
 
