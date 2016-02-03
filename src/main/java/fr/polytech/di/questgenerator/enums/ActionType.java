@@ -4,7 +4,7 @@ import fr.polytech.di.questgenerator.Main;
 import fr.polytech.di.questgenerator.actionexecutors.action.*;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetGatherActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetStealActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetSubquestActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetExchangeActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.gotoo.ActionGotoExploreActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.gotoo.ActionGotoLearnActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnGiveActionExecutor;
@@ -12,7 +12,6 @@ import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnLis
 import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnReadActionListener;
 import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealStealthActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealTakeActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubquestGotoActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubquestQuestActionExecutor;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.objects.Quest;
@@ -37,14 +36,14 @@ public enum ActionType
 	EXPERIMENT(1, "Experiment {0}"),
 	EXPLORE(1, "Explore {0}"),
 	GATHER(1, "Gather {0}"),
-	GET(2, "Get {0} from {1}", ActionEpsilonActionExecutor.class, ActionGetStealActionExecutor.class, ActionGetGatherActionExecutor.class, ActionGetSubquestActionExecutor.class),
+	GET(2, "Get {0} from {1}", ActionEpsilonActionExecutor.class, ActionGetStealActionExecutor.class, ActionGetGatherActionExecutor.class, ActionGetExchangeActionExecutor.class),
 	GIVE(2, "Give {0} to {1}"),
 	GOTO(1, "Go to {0}", ActionEpsilonActionExecutor.class, ActionGotoExploreActionExecutor.class, ActionGotoLearnActionExecutor.class),
 	KILL(1, "Kill {0}", ActionKillActionExecutor.class),
 	LEARN(1, "Learn where is {0}", ActionEpsilonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
 	LISTEN(1, "Listen {0}"),
 	QUEST(0, "Complete quest", ActionQuestActionExecutor.class),
-	SUBQUEST(0, "Perform subquest", ActionSubquestGotoActionExecutor.class, ActionSubquestQuestActionExecutor.class),
+	SUBQUEST(0, "Perform subquest", ActionSubquestQuestActionExecutor.class),
 	READ(1, "Read {0}"),
 	REPAIR(1, "Repair {0}"),
 	REPORT(1, "Report to {0}"),

@@ -15,29 +15,28 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class ActionGetSubquestActionExecutor implements ActionExecutor
+public class ActionGetExchangeActionExecutor implements ActionExecutor
 {
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement v1 = DataHandler.getRandomFromCategories("object/*");
-		XMLStringObjectiveElement v2 = DataHandler.getRandomFromCategories("pnj/being/*", "area/*");
-		XMLStringObjectiveElement v3 = DataHandler.getRandomFromCategories("pnj/being/*");
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/*");
+		XMLStringObjectiveElement pnjGet = DataHandler.getRandomFromCategories("pnj/being/*", "area/*");
+		XMLStringObjectiveElement pnjExchange = DataHandler.getRandomFromCategories("pnj/being/*");
 
 		ObjectiveHelper getLocHelper;
-		if(v2.isInPath("pnj/being/*"))
-			getLocHelper = new ObjectiveHelper(LOC_OBJECTIVE, v2);
+		if(pnjGet.isInPath("pnj/being/*"))
+			getLocHelper = new ObjectiveHelper(LOC_OBJECTIVE, pnjGet);
 		else
 			getLocHelper = new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("pnj/being/*"));
 
 
-		Action actionGotoSteal = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, v2)));
-		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, v1), getLocHelper));
-		Action actionGotoSubquest = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, v3)));
-		Action actionSubquest = new Action(this.getClass(), depth, ActionType.SUBQUEST);
-		Action actionExchange = new Action(this.getClass(), depth, ActionType.EXCHANGE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET), new ObjectiveHelper(OBJ_GIVE, v1), new ObjectiveHelper(PNJ, v3)), false);
+		Action actionGotoSteal = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjGet)));
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), getLocHelper));
+		Action actionGotoSubquest = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjExchange)));
+		Action actionExchange = new Action(this.getClass(), depth, ActionType.EXCHANGE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET), new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(PNJ, pnjExchange)), false);
 
-		return new Quest(actionGotoSteal, actionGet, actionGotoSubquest, actionSubquest, actionExchange);
+		return new Quest(actionGotoSteal, actionGet, actionGotoSubquest, actionExchange);
 	}
 
 	@Override
