@@ -41,7 +41,7 @@ Get - Gather (obj_get: object/gatherable/* AND loc_objective: area/*):
 	Goto 	(objective) <- loc_objective
 	Gather 	(objective) <- obj_get
 
-Get - Subquest:
+Get - Subquest (loc_objective: pnj/being/*):
 	v1 = object/*
 	v2 = Rnd pnj/being/* OR Rnd area/*
 	v3 = Rnd pnj/being/*
