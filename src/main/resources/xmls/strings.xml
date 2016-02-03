@@ -17,25 +17,46 @@
             <element value="Ghost city"/>
         </category>
         <category value="place">
-            <element value="Dohrme"/>
-            <element value="Winterfel"/>
-            <element value="Castle-Roc"/>
-            <element value="White-Chapel"/>
+            <element value="Dohrme, Capital of the South"/>
+            <element value="Winterfell, Capital of the North"/>
+            <element value="Castle-Roc, Capital of the Est"/>
+            <element value="White-Chapel, Capital of the West"/>
         </category>
         <category value="wonder">
+            <element value="the Tree of Life"/>
+            <element value="the Fairy's forest"/>
+            <element value="the Old Sorcerer's grave"/>
         </category>
         <category value="dangerous">
+            <element value="the active volcano"/>
+            <element value="the Death desert"/>
+            <element value="the toxic swamp"/>
+            <element value="the cristal cave"/>
         </category>
         <category value="job">
+            <element value="the broken water well"/>
+            <element value="the ruined house"/>
+            <element value="the incended tower"/>
         </category>
         <category value="fortification">
+            <element value="Drawbridge"/>
+            <element value="Defense Wall"/>
+            <element value="Guard Tower"/>
+            <element value="Moat"/>
         </category>
         <category value="mine">
+            <element value="Mine of Garzweiller"/>
+            <element value="Mine of Völker"/>
+            <element value="Mine of Weiter"/>
+            <element value="Mine of Schwarz"/>
         </category>
     </category>
     <category value="object">
+        <element value="Wood"/>
+        <element value="Cristal"/>
+        <element value="Bandage"/>
+        <element value="Leather"/>
         <category value="readable">
-            <element value="Ancient book"/>
             <element value="Book"/>
             <element value="Blue book"/>
             <element value="Red book"/>
@@ -43,8 +64,12 @@
             <element value="Ultimate book"/>
             <category value="learning">
                 <category value="skill">
+                    <element value="Ancient book"/>
+                    <element value="Merlin's book"/>
+                    <element value="Lost book"/>
                 </category>
                 <category value="martial">
+                    <element value="Royal Guard protocol"/>
                 </category>
             </category>
         </category>
@@ -57,37 +82,59 @@
             <element value="Money"/>
         </category>
         <category value="material">
-            <element value="Wood"/>
-            <element value="Cristal"/>
-            <element value="Bandage"/>
-            <element value="Leather"/>
             <element value="Iron"/>
+            <element value="Emerald"/>
+            <element value="Rubis"/>
+            <element value="Sapphire"/>
+            <element value="Coal"/>
+            <element value="Copper"/>
             <element value="Gold"/>
             <element value="Silver"/>
             <element value="Diamond"/>
         </category>
         <category value="gatherable">
+            <element value="Healthy plant"/>
+            <element value="Bones"/>
+            <element value="Cristal fragments"/>
         </category>
         <category value="usable">
+            <element value="magic dry scepter"/>
+            <element value="magic dry crown"/>
         </category>
         <category value="luxury">
+            <element value="Wedding ring"/>
+            <element value="Jeweleries"/>
+            <element value="Lucky charm"/>
         </category>
         <category value="rare">
+            <element value="mammoth tusk"/>
+            <element value="fosile"/>
+            <element value="dragon skull"/>
         </category>
         <category value="reparation">
+            <element value="Hammer"/>
+            <element value="Shovel"/>
+            <element value="Bricks"/>
         </category>
         <category value="training">
+            <element value="training dummy"/>
+            <element value="tree"/>
         </category>
         <category value="stuff">
+            <element value="Shield"/>
             <category value="weapon">
                 <element value="Sword"/>
                 <element value="Axe"/>
                 <element value="Spike"/>
-                <element value="Shield"/>
+                <element value="Bow"/>
+                <element value="Halberd"/>
                 <element value="Magic wand"/>
                 <element value="Scepter"/>
             </category>
             <category value="capture">
+                <element value="net"/>
+                <element value="lasso"/>
+                <element value="pokeball"/>
             </category>
         </category>
     </category>
@@ -134,9 +181,17 @@
             <element value="Basilik"/>
             <element value="Zombie"/>
             <category value="pests">
+                <element value="Rats"/>
+                <element value="Mouses"/>
+                <element value="Polecats"/>
+                <element value="Pigeons"/>
             </category>
-            </category>
+        </category>
         <category value="boss">
+            <element value="Bëithir, the Infernal Nightmare"/>
+            <element value="Argul, the Fallen King"/>
+            <element value="Scrutella, the Dream Eater"/>
+            <element value="Zeradias, the Demoniac Angel"/>
         </category>
     </category>
     <category value="skill">
