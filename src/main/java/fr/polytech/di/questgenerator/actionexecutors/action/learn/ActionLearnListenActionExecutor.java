@@ -38,7 +38,7 @@ public class ActionLearnListenActionExecutor implements ActionExecutor
 		}
 
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveObj)));
-		Action actionSubquest = new Action(this.getClass(), depth, ActionType.SUBQUEST, buildObjective(objectives, subquestHelper));
+		Action actionSubquest = new Action(this.getClass(), depth, ActionType.QUEST, buildObjective(objectives, subquestHelper));
 		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, listenHelper), false);
 
 		return new Quest(actionGoto, actionSubquest, actionListen);
