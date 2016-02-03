@@ -43,7 +43,7 @@ public class XMLStringObjectiveElement
 			{
 				return "{" + this.value + "}";
 			}
-			return "[(" + this.path + ") " + this.value + " @" + this.hashCode() + "]";
+			return "[(" + this.path + ") " + this.value + "]";
 		}
 		return this.value;
 	}
