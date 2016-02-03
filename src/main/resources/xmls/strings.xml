@@ -22,6 +22,16 @@
             <element value="Castle-Roc"/>
             <element value="White-Chapel"/>
         </category>
+        <category value="wonder">
+        </category>
+        <category value="dangerous">
+        </category>
+        <category value="job">
+        </category>
+        <category value="fortification">
+        </category>
+        <category value="mine">
+        </category>
     </category>
     <category value="object">
         <category value="readable">
@@ -31,14 +41,12 @@
             <element value="Red book"/>
             <element value="Green book"/>
             <element value="Ultimate book"/>
-        </category>
-        <category value="weapon">
-            <element value="Sword"/>
-            <element value="Axe"/>
-            <element value="Spike"/>
-            <element value="Shield"/>
-            <element value="Magic wand"/>
-            <element value="Scepter"/>
+            <category value="learning">
+                <category value="skill">
+                </category>
+                <category value="martial">
+                </category>
+            </category>
         </category>
         <category value="personal">
             <element value="Keys"/>
@@ -57,6 +65,30 @@
             <element value="Gold"/>
             <element value="Silver"/>
             <element value="Diamond"/>
+        </category>
+        <category value="gatherable">
+        </category>
+        <category value="usable">
+        </category>
+        <category value="luxury">
+        </category>
+        <category value="rare">
+        </category>
+        <category value="reparation">
+        </category>
+        <category value="training">
+        </category>
+        <category value="stuff">
+            <category value="weapon">
+                <element value="Sword"/>
+                <element value="Axe"/>
+                <element value="Spike"/>
+                <element value="Shield"/>
+                <element value="Magic wand"/>
+                <element value="Scepter"/>
+            </category>
+            <category value="capture">
+            </category>
         </category>
     </category>
     <category value="pnj">
@@ -101,10 +133,14 @@
             <element value="Cerberus"/>
             <element value="Basilik"/>
             <element value="Zombie"/>
+            <category value="pests">
+            </category>
+            </category>
+        <category value="boss">
         </category>
     </category>
     <category value="skill">
-        <category value="Spell">
+        <category value="magic">
             <element value="Fire Ball"/>
             <element value="Shock Wave"/>
             <element value="Ice Blast"/>
