@@ -39,4 +39,10 @@ public class ActionGetSubquestActionExecutor implements ActionExecutor
 
 		return new Quest(actionGotoSteal, actionGet, actionGotoSubquest, actionSubquest, actionExchange);
 	}
+
+	@Override
+	public boolean isActionAllowed(Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	{
+		return !objectives.isPresent() || !objectives.get().containsKey(LOC_OBJECTIVE) && objectives.get().get(LOC_OBJECTIVE).isInPath("pnj/being/*");
+	}
 }
