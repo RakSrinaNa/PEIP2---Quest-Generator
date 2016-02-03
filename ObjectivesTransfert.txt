@@ -27,8 +27,8 @@ Learn - Read (area/*):
 Learn - Give:
 	v1 = object/*
 	v2 = pnj/being/*
-	Get	    (obj_get) <- v1
-	Get	    (loc_objective) <- Rnd area/*
+	Get		(obj_get) <- v1
+	Get		(loc_objective) <- Rnd area/*
 	Give	(obj_give) <- v1
 	Give	(loc_objective) <- v2
 	Listen	(objective) <- v2
@@ -114,10 +114,12 @@ Knowledge - Interview:
 Knowledge - UseItem:
 	v1 = Rnd object/usable/*
 	v2 = Rnd pnj/being/*
+	v3 = Rnd area/wonder/*
 	Get 		(obj_get) <- v1
 	Get 		(loc_objective) <- Rnd pnj/being/*
-	Goto1 	    (objective) <- Rnd area/wonder/*
-	Use 		(objective) <- v1
+	Goto1 	    (objective) <- v3
+	Use 		(obj_use) <- v1
+	Use			(loc_objective) <- v3
 	Goto2 	    (objective) <- v2
 	Give 		(obj_give) <- v1
 	Give 		(loc_objective) <- v2
@@ -174,7 +176,8 @@ Serenity - Capture1:
 	Get 	(obj_get) <- v1
 	Get 	(loc_objective) <- v2
 	Goto1 	(objective) <- v3
-	Use 	(objective) <- v1
+	Use 	(obj_use) <- v1
+	Use		(loc_objective) <- v3
 	Goto2 	(objective) <- v2
 	Give 	(obj_give) <- v3
 	Give 	(loc_objective) <- v2
@@ -186,7 +189,8 @@ Serenity - Capture2:
 	Get 	(obj_get) <- v1
 	Get 	(loc_objective) <- v2
 	Goto1 	(objective) <- v3
-	Use 	(objective) <- v1
+	Use 	(obj_use) <- v1
+	Use		(loc_objective) <- v3
 	Capture (objective) <- v3
 	Goto2 	(objective) <- v2
 	Give 	(obj_give) <- v3
@@ -239,10 +243,12 @@ Protection - Attack:
 	
 Protection - Treat1:
 	v1 = Rnd object/reparation/*
+	v2 = Rnd area/job/*
 	Get	    (obj_get) <- v1
 	Get     (loc_objective) <- Rnd pnj/being/*
-	Goto    (objective) <- Rnd area/job/*
-	Use	    (objective) <- v1
+	Goto    (objective) <- v2
+	Use	    (obj_use) <- v1
+	Use		(loc_objective) <- v2
 
 Protection - Treat2:
 	v1 = Rnd area/job/*
@@ -251,10 +257,12 @@ Protection - Treat2:
 
 Protection - Diversion1:
 	v1 = Rnd object/diversion/*
+	v2 = Rnd area/place/*
 	Get 	(obj_get) <- v1
 	Get 	(loc_objective) <- Rnd pnj/being/*
-	Goto 	(objective) <- Rnd area/place/*
-	Use 	(objective) <- v1
+	Goto 	(objective) <- v2
+	Use 	(obj_use) <- v1
+	Use		(loc_objective) <- v2
 
 Protection - Diversion2:
 	Goto 	(objective) <- Rnd area/place/*
@@ -303,34 +311,39 @@ Wealth - Make:
 Ability - Assemble:
 	v1 = Rnd object/stuff/weapon/*
 	Repair	(objective) <- v1
-	Use	    (objective) <- v1
+	Use	    (obj_use) <- v1
+	Use		(loc_objective) <- Rnd object/training/*
 
 Ability - Obtain:
 	v1 = Rnd object/stuff/weapon/*
 	Get	(obj_get) <- v1
 	Get	(loc_objective) <- Rnd pnj/being/* OR area/place/*
-	Use	(objective) <- v1
+	Use	(obj_use) <- v1
+	Use (loc_objective) <- Rnd object/training/*
 
 Ability - Use:
-	Use	(objective) <- Rnd object/stuff/weapon/*
+	Use	(obj_use) <- Rnd object/stuff/weapon/*
+	Use (loc_objective) <- Rnd object/training/*
 
 Ability - PracticeCombat:
 	Damage	(objective) <- Rnd object/training/*
 
 Ability - PracticeSkill
-	Use	(objective) <- Rnd skill/magic/*
+	Use	(obj_use) <- Rnd skill/magic/*
+	Use (loc_objective) <- Rnd object/training/*
 
 Ability - Research1:
 	v1 = Rnd object/readable/learning/skill/*
 	Get	(obj_get) <- v1
 	Get	(loc_objective) <- Rnd area/place/* OR pnj/being/*
-	Use	(objective) <- v1
+	Use	(obj_use) <- Rnd skill/magic/*
+	Use (loc_objective) <- Rnd object/training/*
 
 Ability - Research2:
 	v1 = Rnd object/readable/learning/martial/*
 	Get		    (obj_get) <- v1
 	Get		    (loc_objective) <- Rnd area/place/* OR pnj/being/*
-	Experiment	(objective) <- v1	
+	Experiment	(objective) <- Rnd skill/martial/*
 
 Equipment - Assemble:
 	Repair	(objective) <- Rnd object/stuff/*
