@@ -205,5 +205,8 @@
             <element value="Maelstrom"/>
             <element value="Cataract"/>
         </category>
+        <category value="martial">
+            <element value="karate"/>
+        </category>
     </category>
 </strings>
