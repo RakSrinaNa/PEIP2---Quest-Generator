@@ -12,9 +12,12 @@ Learn - Listen:
 	v1 = Rnd pnj/being/* OR Rnd area/*
 	Goto        (objective) <- v1
 	If v1 = pnj/being/*:
+		Subquest(objective) <- v1
 		Listen  (objective) <- v1
 	If v1 = area/*
-		Listen  (objective) <- Rnd pnj/being/*
+		v2 = Rnd pnj/being/*
+		Subquest(objective) <- v2
+		Listen  (objective) <- v2
 	
 Learn - Read (area/*):
 	v1 = Rnd area/place/*
@@ -41,7 +44,7 @@ Get - Gather (obj_get: object/gatherable/* AND loc_objective: area/*):
 	Goto 	(objective) <- loc_objective
 	Gather 	(objective) <- obj_get
 
-Get - Subquest (loc_objective: pnj/being/*):
+Get - Exchange (loc_objective: pnj/being/*):
 	v1 = object/*
 	v2 = Rnd pnj/being/* OR Rnd area/*
 	v3 = Rnd pnj/being/*
@@ -368,3 +371,7 @@ Equipment - Trade:
 	Exchange	(obj_get) <- Rnd object/stuff/*
 	Exchange	(pnj) <- v1
 
+Subquest - Visite:
+	Goto1 	(objective) <- Rnd area/dangerous/*
+	Goto2 	(objective) <- objective
+	Report 	(objective) <- objective
