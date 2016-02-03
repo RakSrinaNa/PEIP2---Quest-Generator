@@ -49,4 +49,5 @@ TAKE:
 	- obj_get (object)
 	- pnj (pnj)
 USE:
-	- objective (object)
+	- obj_use (object)
+	- loc_objective (area or pnj)
