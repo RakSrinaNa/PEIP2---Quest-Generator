@@ -23,7 +23,7 @@ public class AbilityResearch2ActionExecutor implements ActionExecutor
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/readable/learning/martial/*");
 
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("pnj/being/*", "area/place/*"))));
-		Action actionExperiment = new Action(this.getClass(), depth, ActionType.EXPERIMENT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveObject)), false);
+		Action actionExperiment = new Action(this.getClass(), depth, ActionType.EXPERIMENT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("skill/martial/*"))), false);
 
 		return new Quest(actionGet, actionExperiment);
 	}

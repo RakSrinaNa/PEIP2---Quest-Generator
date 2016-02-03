@@ -52,7 +52,7 @@ public enum ActionType
 	STEAL(2, "Steal {0} from {1}", ActionStealStealthActionExecutor.class, ActionStealTakeActionExecutor.class),
 	STEALTH(1, "Stealth {0}"),
 	TAKE(2, "Take {0} from {1}"),
-	USE(1, "Use {0}");
+	USE(2, "Use {0} on {1}");
 
 	private final int params;
 	private final String sentence;
@@ -117,8 +117,10 @@ public enum ActionType
 			case REPORT:
 			case SPY:
 			case STEALTH:
-			case USE:
 				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJECTIVE));
+				break;
+			case USE:
+				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_USE), objectives.get().get(ObjectiveType.LOC_OBJECTIVE));
 				break;
 			case EXCHANGE:
 				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GIVE), objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
