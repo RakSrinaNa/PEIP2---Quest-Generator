@@ -56,6 +56,9 @@
         <element value="Cristal"/>
         <element value="Bandage"/>
         <element value="Leather"/>
+        <category value="diversion">
+            <element value="fireworks"/>
+        </category>
         <category value="readable">
             <element value="Book"/>
             <element value="Blue book"/>
