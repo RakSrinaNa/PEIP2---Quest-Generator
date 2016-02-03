@@ -20,10 +20,10 @@ public class WealthStealActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomPNJ("being/*");
+		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomFromCategories("pnj/being/*");
 
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePNJ)));
-		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(PNJ, NONE, objectivePNJ), new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomFromCategories("object/personal/*", "object/luxury/*"))));
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePNJ)));
+		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(PNJ, objectivePNJ), new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/personal/*", "object/luxury/*"))));
 
 		return new Quest(actionGoto, actionSteal);
 	}
