@@ -23,13 +23,22 @@ public class ActionLearnListenActionExecutor implements ActionExecutor
 		XMLStringObjectiveElement objectiveObj = DataHandler.getRandomFromCategories("pnj/being/*", "area/*");
 
 		ObjectiveHelper listenHelper;
+		ObjectiveHelper subquestHelper;
+
 		if(objectiveObj.isInPath("pnj/being/*"))
+		{
 			listenHelper = new ObjectiveHelper(OBJECTIVE, objectiveObj);
+			subquestHelper = new ObjectiveHelper(OBJECTIVE, objectiveObj);
+		}
 		else
-			listenHelper = new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("pnj/being/*"));
+		{
+			XMLStringObjectiveElement pnjListen = DataHandler.getRandomFromCategories("pnj/being/*");
+			listenHelper = new ObjectiveHelper(OBJECTIVE, pnjListen);
+			subquestHelper = new ObjectiveHelper(OBJECTIVE, pnjListen);
+		}
 
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveObj)));
-		Action actionSubquest = new Action(this.getClass(), depth, ActionType.SUBQUEST);
+		Action actionSubquest = new Action(this.getClass(), depth, ActionType.SUBQUEST, buildObjective(objectives, subquestHelper));
 		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, listenHelper), false);
 
 		return new Quest(actionGoto, actionSubquest, actionListen);

@@ -18,6 +18,7 @@ import fr.polytech.di.questgenerator.actionexecutors.reputation.ReputationKillAc
 import fr.polytech.di.questgenerator.actionexecutors.reputation.ReputationObtainActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.reputation.ReputationVisitActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.serenity.*;
+import fr.polytech.di.questgenerator.actionexecutors.subquest.SubquestVisitActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.wealth.WealthGatherActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.wealth.WealthMakeActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.wealth.WealthStealActionExecutor;
@@ -82,7 +83,9 @@ public enum Strategies
 	EQUIPMENT_ASSEMBLE(Motivations.EQUIPMENT, EquipmentAssembleActionExecutor.class),
 	EQUIPMENT_DELIVER(Motivations.EQUIPMENT, EquipmentDeliverActionExecutor.class),
 	EQUIPMENT_STEAL(Motivations.EQUIPMENT, EquipmentStealActionExecutor.class),
-	EQUIPMENT_TRADE(Motivations.EQUIPMENT, EquipmentTradeActionExecutor.class);
+	EQUIPMENT_TRADE(Motivations.EQUIPMENT, EquipmentTradeActionExecutor.class),
+
+	SUBQUEST_VISIT(Motivations.SUBQUEST, SubquestVisitActionExecutor.class);
 
 	private final Motivations motivation;
 	private final Class<? extends ActionExecutor> actionExecutor;

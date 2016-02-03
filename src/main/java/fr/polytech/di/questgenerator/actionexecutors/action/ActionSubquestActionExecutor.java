@@ -1,4 +1,4 @@
-package fr.polytech.di.questgenerator.actionexecutors.action.subquest;
+package fr.polytech.di.questgenerator.actionexecutors.action;
 
 import fr.polytech.di.questgenerator.enums.ActionType;
 import fr.polytech.di.questgenerator.enums.ObjectiveType;
@@ -12,11 +12,11 @@ import java.util.Optional;
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class ActionSubquestQuestActionExecutor implements ActionExecutor
+public class ActionSubquestActionExecutor implements ActionExecutor
 {
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		return new Quest(new Action(this.getClass(), depth, ActionType.GOTO), new Action(this.getClass(), 0, ActionType.QUEST), new Action(this.getClass(), depth, ActionType.GOTO, false));
+		return new Quest(new Action(this.getClass(), 0, ActionType.QUEST));
 	}
 }

@@ -12,7 +12,7 @@ import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnLis
 import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnReadActionListener;
 import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealStealthActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealTakeActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubquestQuestActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.action.ActionSubquestActionExecutor;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
@@ -43,7 +43,7 @@ public enum ActionType
 	LEARN(1, "Learn where is {0}", ActionEpsilonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
 	LISTEN(1, "Listen {0}"),
 	QUEST(0, "Complete quest", ActionQuestActionExecutor.class),
-	SUBQUEST(0, "Perform subquest", ActionSubquestQuestActionExecutor.class),
+	SUBQUEST(0, "Perform subquest", ActionSubquestActionExecutor.class),
 	READ(1, "Read {0}"),
 	REPAIR(1, "Repair {0}"),
 	REPORT(1, "Report to {0}"),
