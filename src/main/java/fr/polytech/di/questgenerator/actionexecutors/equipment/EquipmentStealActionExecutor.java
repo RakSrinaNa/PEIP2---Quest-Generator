@@ -10,7 +10,6 @@ import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.HashMap;
 import java.util.Optional;
-import static fr.polytech.di.questgenerator.enums.ObjectiveType.NONE;
 import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJ_GET;
 import static fr.polytech.di.questgenerator.enums.ObjectiveType.PNJ;
 
@@ -22,7 +21,7 @@ public class EquipmentStealActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject("weapon/*")), new ObjectiveHelper(PNJ, NONE, DataHandler.getRandomPNJ("being/*"))));
+		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/weapon/*")), new ObjectiveHelper(PNJ, DataHandler.getRandomFromCategories("pnj/being/*"))));
 
 		return new Quest(actionSteal);
 	}
