@@ -24,61 +24,6 @@ public class DataHandler
 {
 	private final static ArrayList<XMLStringObjectiveCategory> strings;
 
-	/**
-	 * @deprecated Use {@link #getRandomFromCategories(String...)}
-	 *
-	 * Returns a random object.
-	 *
-	 * @return A random object.
-	 */
-	@Deprecated
-	public static XMLStringObjectiveElement getRandomObject()
-	{
-		return getRandomObject("*");
-	}
-
-	/**
-	 * @deprecated Use {@link #getRandomFromCategories(String...)}
-	 *
-	 * Return a random location of the given category.
-	 *
-	 * @param path The category the element picked should be.
-	 * @return Return a random location.
-	 */
-	@Deprecated
-	public static XMLStringObjectiveElement getRandomArea(String path)
-	{
-		return getRandomFromCategories("area/" + path);
-	}
-
-	/**
-	 * @deprecated Use {@link #getRandomFromCategories(String...)}
-	 *
-	 * Return a random object of the given category.
-	 *
-	 * @param path The category the element picked should be.
-	 * @return Return a random object.
-	 */
-	@Deprecated
-	public static XMLStringObjectiveElement getRandomObject(String path)
-	{
-		return getRandomFromCategories("object/" + path);
-	}
-
-	/**
-	 * @deprecated Use {@link #getRandomFromCategories(String...)}
-	 *
-	 * Return a random PNJ of the given category.
-	 *
-	 * @param path The category the element picked should be.
-	 * @return Return a random PNJ.
-	 */
-	@Deprecated
-	public static XMLStringObjectiveElement getRandomPNJ(String path)
-	{
-		return getRandomFromCategories("pnj/" + path);
-	}
-
 	public static XMLStringObjectiveElement getRandomFromCategories(String... categories)
 	{
 
@@ -98,21 +43,6 @@ public class DataHandler
 		if(candidates.isEmpty())
 			return new XMLStringObjectiveElement("", Arrays.toString(categories) + " - " + ThreadLocalRandom.current().nextInt(1000));
 		return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
-	}
-
-
-	/**
-	 * @deprecated Use {@link #getRandomFromCategories(String...)}
-	 * 
-	 * Return a random skill of the given category.
-	 *
-	 * @param path The category the element picked should be.
-	 * @return Return a random skill.
-	 */
-	@Deprecated
-	public static XMLStringObjectiveElement getRandomSkill(String path)
-	{
-		return getRandomFromCategories("skill/" + path);
 	}
 
 	/**
