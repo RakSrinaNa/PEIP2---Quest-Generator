@@ -21,7 +21,7 @@ public class SerenityRecoverActionExecutor implements ActionExecutor
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/personal/*");
-		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomFromCategories("object/being/*");
+		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomFromCategories("pnj/being/*");
 
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("area/wild/*"))));
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)));
