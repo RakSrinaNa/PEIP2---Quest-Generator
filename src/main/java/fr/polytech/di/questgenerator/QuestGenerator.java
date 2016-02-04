@@ -38,6 +38,18 @@ public class QuestGenerator
 	}
 
 	/**
+	 * Start a subquest randomly.
+	 *
+	 * @param depth The depth of the quest.
+	 * @param objectives The objectives for the quest.
+	 * @return A Quest.
+	 */
+	public static Quest createRandomSubquest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	{
+		return Strategies.getRandom().createQuest(depth, objectives);
+	}
+
+	/**
 	 * Create a quest randomly that is from the given Motivation.
 	 *
 	 * @param motivation The Motivation of the Strategy that will be picked.
