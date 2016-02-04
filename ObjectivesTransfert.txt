@@ -93,10 +93,10 @@ Kill:
 *********************************************************************************************
 
 
-
+***
 Knowledge - Deliver:
 	v1 = Rnd object/*
-	v2 = Rnd pnj/being/*
+	v2 = Objective / Default: Rnd pnj/being/*
 	Get 	(obj_get) <- v1
 	Get 	(loc_objective) <- Rnd pnj/being/*
 	Goto 	(objective) <- v2
@@ -106,9 +106,10 @@ Knowledge - Deliver:
 Knowledge - Spy:
 	Spy	(objective) <- Rnd pnj/being/*
 
+***
 Knowledge - Interview:
 	v1 = Rnd pnj/being/*
-	v2 = Rnd pnj/being/*
+	v2 = Objective / Default: Rnd pnj/being/*
 	Goto1 	(objective) <- v1
 	Listen 	(objective) <- v1
 	Goto2 	(objective) <- v2
@@ -127,42 +128,47 @@ Knowledge - UseItem:
 	Give 		(obj_give) <- v1
 	Give 		(loc_objective) <- v2
 
+***
 Comfort - Obtain:
 	v1 = Rnd object/luxury/*
-	v2 = Rnd pnj/being/*
+	v2 = Objective / Default: Rnd pnj/being/*
 	Get 	(obj_get) <- v1
 	Get 	(loc_objective) <- pnj/being/* OR area/wild/*
 	Goto 	(objective) <- v2
 	Give 	(obj_give) <- v1
 	Give 	(loc_objective) <- v2
 
+***
 Comfort - Kill:
 	v1 = Rnd pnj/beast/pests/*
-	v2 = Rnd pnj/being/*
+	v2 = Objective / Default: Rnd pnj/being/*
 	Goto1 	(objective) <- v1
 	Damage 	(objective) <- v1
 	Goto2 	(objective) <- v2
 	Report 	(objective) <- v2
 
+***
 Reputation - Obtain:
 	v1 = Rnd object/rare/*
-	v2 = pnj/being/*
+	v2 = Objective / Default: Rnd pnj/being/*
 	Get 	(obj_get) <- v1
 	Get 	(loc_objective) <- Rnd area/wild
 	Goto 	(objective) <- v2
 	Give 	(obj_give) <- v1
 	Give 	(loc_objective) <- v2
 
+***
 Reputation - Kill:
 	v1 = Rnd pnj/boss/*
-	v2 = Rnd pnj/being/*
+	v2 = Objective / Default: Rnd pnj/being/*
 	Goto1 	(objective) <- v1
 	Kill	(objective) <- v1
 	Goto2 	(objective) <- v2
 	Report	(objective) <- v2
 
+***
 Reputation - Visit:
-	v1 = Rnd pnj/being/*
+	v1 = Objective / Default: Rnd pnj/being/*
 	Goto1 	(objective) <- Rnd area/dangerous/*
 	Goto2 	(objective) <- v1
 	Report 	(objective) <- v1
@@ -199,17 +205,19 @@ Serenity - Capture2:
 	Give 	(obj_give) <- v3
 	Give 	(loc_objective) <- v2
 
+***
 Serenity - Check1:
 	v1 = Rnd pnj/being/*
-	v2 = Rnd pnj/being/*
+	v2 = Objective / Default: Rnd pnj/being/*
 	Goto1 	(objective) <- v1
 	Listen 	(objective) <- v1
 	Goto2 	(objective) <- v2
 	Report 	(objective) <- v2
 
+***
 Serenity - Check2:
 	v1 = Rnd pnj/being/*
-	v2 = Rnd pnj/being/*
+	v2 = Objective / Default: Rnd pnj/being/*
 	v3 = Rnd object/personal/*
 	Goto1 	(objective) <- v1
 	Take 	(pnj) <- v1
@@ -218,27 +226,30 @@ Serenity - Check2:
 	Give 	(obj_give) <- v3
 	Give 	(loc_objective) <- v2
 
+***
 Serenity - Recover:
 	v1 = Rnd object/personal/*
-	v2 = Rnd pnj/being/*
+	v2 = Objective / Default: Rnd pnj/being/*
 	Get 	(obj_get) <- v1
 	Get 	(loc_objective) <- Rnd area/wild/*
 	Goto 	(objective) <- v2
 	Give 	(obj_give) <- v1
 	Give 	(loc_objective) <- v2
 
+***
 Serenity - Rescue:
 	v1 = Rnd pnj/being/*
-	v2 = Rnd pnj/being/*
+	v2 = Objective / Default: Rnd pnj/being/*
 	Goto1 	(objective) <- v1
 	Damage 	(objective) <- Rnd pnj/being/*
 	Escort 	(objective) <- v1
 	Goto2 	(objective) <- v2
 	Report 	(objective) <- v2
 
+***
 Protection - Attack:
 	v1 = Rnd pnj/being/*
-	v2 = Rnd pnj/being/*
+	v2 = Objective / Default: Rnd pnj/being/*
 	Goto1 	(objective) <- v1
 	Damage 	(objective) <- v1
 	Goto2 	(objective) <- v2
@@ -370,8 +381,3 @@ Equipment - Trade:
 	Exchange	(obj_give) <- Rnd object/stuff/*
 	Exchange	(obj_get) <- Rnd object/stuff/*
 	Exchange	(pnj) <- v1
-
-Subquest - Visite:
-	Goto1 	(objective) <- Rnd area/dangerous/*
-	Goto2 	(objective) <- objective
-	Report 	(objective) <- objective
