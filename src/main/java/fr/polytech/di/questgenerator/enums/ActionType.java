@@ -41,7 +41,7 @@ public enum ActionType
 	KILL(1, "Kill {0}", ActionKillActionExecutor.class),
 	LEARN(1, "Learn where is {0}", ActionEpsilonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
 	LISTEN(1, "Listen {0}"),
-	QUEST(0, "Complete quest", ActionQuestActionExecutor.class),
+	QUEST(1, "Complete quest for {0}", ActionQuestActionExecutor.class),
 	READ(1, "Read {0}"),
 	REPAIR(1, "Repair {0}"),
 	REPORT(1, "Report to {0}"),
@@ -113,6 +113,7 @@ public enum ActionType
 			case REPAIR:
 			case REPORT:
 			case SPY:
+			case QUEST:
 			case STEALTH:
 				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJECTIVE));
 				break;
