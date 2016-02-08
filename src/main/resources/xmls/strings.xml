@@ -162,6 +162,12 @@
                 <element value="Hezekiel"/>
                 <element value="Zuriel"/>
                 <element value="Raviel"/>
+                <category value="fallen">
+                    <element value="Asmodeus"/>
+                    <element value="Desire"/>
+                    <element value="Edeh Arae"/>
+                    <element value="Superbia"/>
+                </category>
             </category>
             <category value="nephilim">
                 <element value="Abadon"/>
@@ -170,6 +176,20 @@
                 <element value="Zerato"/>
                 <element value="Uria"/>
                 <element value="Hamon"/>
+                <element value="Vulgrim"/>
+            </category>
+            <category value="orc">
+                <element value="Azog"/>
+                <element value="Bolg"/>
+                <element value="Gothmog"/>
+                <element value="Ugluk"/>
+                <element value="Shagrat"/>
+                <element value="Zog"/>
+                <element value="Snagog"/>
+                <element value="Rukdug"/>
+                <element value="Thrall"/>
+                <element value="Varok"/>
+                <element value="Garrosh"/>
             </category>
         </category>
         <category value="beast">
