@@ -334,21 +334,25 @@ Wealth - Gather:
 	Get	(obj_get) <- Rnd object/material/*
 	Get 	(loc_objective) <- v1
 
+--- Wealth_Steal
 Wealth - Steal:
 	v1 = Rnd pnj/being/*
 	Goto	(objective) <- v1
 	Steal	(obj_get) <- Rnd object/personal/* OR object/luxury/*
 	Steal	(pnj) <- v1
 
+---- Wealth_Make	0:Repair(objective)
 Wealth - Make:
 	Repair	(objective) <- Rnd object/personal/* OR object/luxury/*
 
+--- Ability_Assemble	0:v1
 Ability - Assemble:
 	v1 = Rnd object/stuff/weapon/*
 	Repair	(objective) <- v1
 	Use	(obj_use) <- v1
 	Use	(loc_objective) <- Rnd object/training/*
 
+--- Ability_Obtain	0:v1
 Ability - Obtain:
 	v1 = Rnd object/stuff/weapon/*
 	Get	(obj_get) <- v1
@@ -356,17 +360,21 @@ Ability - Obtain:
 	Use	(obj_use) <- v1
 	Use (loc_objective) <- Rnd object/training/*
 
+--- Ability_Use		0:v1
 Ability - Use:
 	Use	(obj_use) <- Rnd object/stuff/weapon/*
 	Use (loc_objective) <- Rnd object/training/*
 
+--- Ability_PracticeCombat
 Ability - PracticeCombat:
 	Damage	(objective) <- Rnd object/training/*
 
-Ability - PracticeSkill
+--- Ability_PracticeSkill	0:Use(obj_use)
+Ability - PracticeSkill:
 	Use	(obj_use) <- Rnd skill/magic/*
 	Use (loc_objective) <- Rnd object/training/*
 
+--- Ability_Research1
 Ability - Research1:
 	v1 = Rnd object/readable/learning/skill/*
 	Get	(obj_get) <- v1
@@ -374,15 +382,18 @@ Ability - Research1:
 	Use	(obj_use) <- Rnd skill/magic/*
 	Use (loc_objective) <- Rnd object/training/*
 
+--- Ability_Research2
 Ability - Research2:
 	v1 = Rnd object/readable/learning/martial/*
 	Get		    (obj_get) <- v1
 	Get		    (loc_objective) <- Rnd area/place/* OR pnj/being/*
 	Experiment	(objective) <- Rnd skill/martial/*
 
+--- Equipment_Assemble	0:Repair(objective)
 Equipment - Assemble:
 	Repair	(objective) <- Rnd object/stuff/*
 
+--- Equipement_Deliver	0:v1	1:v2
 Equipment - Deliver:
 	v1 = Rnd object/stuff/*
 	v2 = Rnd pnj/being/*
@@ -392,12 +403,14 @@ Equipment - Deliver:
 	Give	(obj_give) <- v1
 	Give	(loc_objective) <- v2
 
+--- Equipement_Steal	0:Steal(obj_get)
 Equipment - Steal:
 	v1 = Rnd pnj/being/*
 	Goto	(objective) <- v1
 	Steal	(obj_get) <- Rnd object/stuff/*
 	Steal	(pnj) <- v1
 
+--- Equipement_Trade	0:Exchange(obj_get)
 Equipment - Trade:
 	v1 = Rnd pnj/being/*
 	Goto		(objective) <- v1
