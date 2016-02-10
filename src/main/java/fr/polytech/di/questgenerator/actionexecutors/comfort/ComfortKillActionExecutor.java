@@ -28,6 +28,6 @@ public class ComfortKillActionExecutor implements ActionExecutor
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
 		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
 
-		return new Quest(actionGotoKill, actionDamage, actionGotoReport, actionReport);
+		return new Quest(getSentence("Comfort_Kill", pnjReport, pnjKill), actionGotoKill, actionDamage, actionGotoReport, actionReport);
 	}
 }

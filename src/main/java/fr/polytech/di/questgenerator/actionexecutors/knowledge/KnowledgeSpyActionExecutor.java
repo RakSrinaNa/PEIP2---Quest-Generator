@@ -22,6 +22,6 @@ public class KnowledgeSpyActionExecutor implements ActionExecutor
 	{
 		Action actionSpy = new Action(this.getClass(), depth, ActionType.SPY, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("pnj/being/*"))));
 
-		return new Quest(actionSpy);
+		return new Quest(getSentence("Knowledge_Spy", actionSpy.getObjective(OBJECTIVE)), actionSpy);
 	}
 }

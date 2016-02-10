@@ -26,6 +26,6 @@ public class ReputationVisitActionExecutor implements ActionExecutor
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)));
 		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)), false);
 
-		return new Quest(actionGotoVisit, actionGotoReport, actionReport);
+		return new Quest(getSentence("Reputation_Visit", actionGotoVisit.getObjective(OBJECTIVE), objectivePnj), actionGotoVisit, actionGotoReport, actionReport);
 	}
 }
