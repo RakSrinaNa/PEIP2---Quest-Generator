@@ -2,6 +2,7 @@ package fr.polytech.di.questgenerator.jfx;
 
 import fr.polytech.di.questgenerator.QuestGenerator;
 import fr.polytech.di.questgenerator.enums.Resources;
+import fr.polytech.di.questgenerator.enums.Strategies;
 import fr.polytech.di.questgenerator.jfx.contents.QuestItem;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
@@ -62,7 +63,7 @@ public class MainFrame extends Application
 	{
 		BorderPane pane = new BorderPane();
 
-		quest = new QuestItem(QuestGenerator.createNewRandomQuest(), 0);
+		quest = new QuestItem(Strategies.KNOWLEDGE_DELIVER.createQuest(), 0);
 		ScrollPane scroll = new ScrollPane(quest);
 		scroll.setPrefSize(400, 600);
 		scroll.setStyle("-fx-background: " + QuestItem.getStringColor(0) + ";");
