@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Properties;
 
 /**
  * Enum of the different resources available.
@@ -18,8 +20,10 @@ public enum Resources
 {
 	XMLS("xmls"),
 	JFX("jfx"),
-	JFX_IMAGE("jfx/images");
+	JFX_IMAGE("jfx/images"),
+	LANG("lang");
 
+	private static final HashMap<String, Properties> properties = new HashMap<>();
 	private final String rootPath;
 
 	/**
@@ -62,6 +66,17 @@ public enum Resources
 	}
 
 	/**
+	 * Get a string to access that resource.
+	 *
+	 * @param path The file path inside the root node.
+	 * @return The resource as String.
+	 */
+	public String getResourceString(String path)
+	{
+		return "/" + this.rootPath + "/" + path;
+	}
+
+	/**
 	 * Get a JavaFX Image.
 	 *
 	 * @param path The path of the file.
@@ -91,5 +106,28 @@ public enum Resources
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public String getPropertyString(String path, String key)
+	{
+		try
+		{
+			return getProperties(path).getProperty(key, "ERROR: " + path);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return "--";
+	}
+
+	private Properties getProperties(String path) throws IOException
+	{
+		if(properties.containsKey(path))
+			return properties.get(path);
+		Properties prop = new Properties();
+		prop.load(getResource(path + ".properties").openStream());
+		properties.put(path, prop);
+		return prop;
 	}
 }

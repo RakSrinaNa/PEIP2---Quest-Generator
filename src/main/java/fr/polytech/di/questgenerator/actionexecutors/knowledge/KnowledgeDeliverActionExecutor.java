@@ -2,12 +2,14 @@ package fr.polytech.di.questgenerator.actionexecutors.knowledge;
 
 import fr.polytech.di.questgenerator.enums.ActionType;
 import fr.polytech.di.questgenerator.enums.ObjectiveType;
+import fr.polytech.di.questgenerator.enums.Resources;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.DataHandler;
 import fr.polytech.di.questgenerator.objects.ObjectiveHelper;
 import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Optional;
 import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
@@ -27,6 +29,9 @@ public class KnowledgeDeliverActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePNJ)));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, OBJECTIVE, objectivePNJ)), false);
 
-		return new Quest(actionGet, actionGoto, actionGive);
+		String sentence = MessageFormat.format(Resources.LANG.getPropertyString("QuestSentences", "Knowledge_Deliver"), objectivePNJ, objectiveObject);
+		System.out.println(sentence);
+
+		return new Quest(sentence, actionGet, actionGoto, actionGive);
 	}
 }
