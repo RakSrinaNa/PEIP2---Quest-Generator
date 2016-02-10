@@ -27,6 +27,6 @@ public class EquipmentStealActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjObjective)));
 		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/stuff/*")), new ObjectiveHelper(PNJ, pnjObjective)));
 
-		return new Quest(actionGoto, actionSteal);
+		return new Quest(getSentence("Equipment_Steal", actionSteal.getObjective(OBJ_GET)), actionGoto, actionSteal);
 	}
 }

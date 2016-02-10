@@ -23,6 +23,6 @@ public class ProtectionDiversion2ActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/place/*"))));
 		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/fortification/*"))), false);
 
-		return new Quest(actionGoto, actionDamage);
+		return new Quest(getSentence("Protection_Diversion2", DataHandler.getRandomFromCategories("pnj/being/*"), actionGoto.getObjective(OBJECTIVE), actionDamage.getObjective(OBJECTIVE)), actionGoto, actionDamage);
 	}
 }

@@ -23,6 +23,6 @@ public class ProtectionAssembleActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/place/*"))));
 		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/fortification/*"))), false);
 
-		return new Quest(actionGoto, actionRepair);
+		return new Quest(getSentence("Protection_Assemble", actionRepair.getObjective(OBJECTIVE), actionGoto.getObjective(OBJECTIVE)), actionGoto, actionRepair);
 	}
 }

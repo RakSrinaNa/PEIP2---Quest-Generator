@@ -23,6 +23,6 @@ public class AbilityUseActionExecutor implements ActionExecutor
 	{
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, DataHandler.getRandomFromCategories("object/stuff/weapon/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("object/training/*"))), false);
 
-		return new Quest(actionUse);
+		return new Quest(getSentence("Ability_Use", actionUse.getObjective(OBJ_USE)), actionUse);
 	}
 }

@@ -22,6 +22,6 @@ public class AbilityPracticeCombatActionExecutor implements ActionExecutor
 	{
 		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("object/training/*"))), false);
 
-		return new Quest(actionDamage);
+		return new Quest(getSentence("Ability_PracticeCombat"), actionDamage);
 	}
 }

@@ -323,7 +323,7 @@ Conquest - Steal:
 	Goto 	(objective) <- v1
 	Steal 	(obj_get) <- v2
 	Steal 	(pnj) <- v1
-	Goto 	(objective) <- 3
+	Goto 	(objective) <- v3
 	Give 	(obj_give) <- v2
 	Give 	(loc_objective) <- v3
 
@@ -393,7 +393,7 @@ Ability - Research2:
 Equipment - Assemble:
 	Repair	(objective) <- Rnd object/stuff/*
 
---- Equipement_Deliver	0:v1	1:v2
+--- Equipment_Deliver	0:v1	1:v2
 Equipment - Deliver:
 	v1 = Rnd object/stuff/*
 	v2 = Rnd pnj/being/*
@@ -403,14 +403,14 @@ Equipment - Deliver:
 	Give	(obj_give) <- v1
 	Give	(loc_objective) <- v2
 
---- Equipement_Steal	0:Steal(obj_get)
+--- Equipment_Steal	0:Steal(obj_get)
 Equipment - Steal:
 	v1 = Rnd pnj/being/*
 	Goto	(objective) <- v1
 	Steal	(obj_get) <- Rnd object/stuff/*
 	Steal	(pnj) <- v1
 
---- Equipement_Trade	0:Exchange(obj_get)
+--- Equipment_Trade	0:Exchange(obj_get)
 Equipment - Trade:
 	v1 = Rnd pnj/being/*
 	Goto		(objective) <- v1

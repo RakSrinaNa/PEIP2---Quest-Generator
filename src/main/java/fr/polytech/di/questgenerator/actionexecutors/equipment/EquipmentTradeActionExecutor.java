@@ -25,6 +25,6 @@ public class EquipmentTradeActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePNJ)));
 		Action actionExchange = new Action(this.getClass(), depth, ActionType.EXCHANGE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, DataHandler.getRandomFromCategories("object/stuff/*")), new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/stuff/*")), new ObjectiveHelper(PNJ, objectivePNJ)), false);
 
-		return new Quest(actionGoto, actionExchange);
+		return new Quest(getSentence("Equipment_Trade", actionExchange.getObjective(OBJ_GET)), actionGoto, actionExchange);
 	}
 }

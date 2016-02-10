@@ -29,6 +29,6 @@ public class ConquestStealActionExecutor implements ActionExecutor
 		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjGive)));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, pnjGive)), false);
 
-		return new Quest(actionGotoSteal, actionSteal, actionGotoGive, actionGive);
+		return new Quest(getSentence("Conquest_Steal", pnjGive, objectiveObject, pnjSteal), actionGotoSteal, actionSteal, actionGotoGive, actionGive);
 	}
 }

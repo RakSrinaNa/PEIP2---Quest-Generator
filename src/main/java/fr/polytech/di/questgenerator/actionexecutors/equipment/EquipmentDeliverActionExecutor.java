@@ -27,6 +27,6 @@ public class EquipmentDeliverActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePNJ)));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectivePNJ)));
 
-		return new Quest(actionGet, actionGoto, actionGive);
+		return new Quest(getSentence("Equipment_Deliver", objectiveObject, objectivePNJ), actionGet, actionGoto, actionGive);
 	}
 }

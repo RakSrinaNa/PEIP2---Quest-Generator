@@ -28,6 +28,6 @@ public class ProtectionAttackActionExecutor implements ActionExecutor
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
 		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
 
-		return new Quest(actionGotoDamage, actionDamage, actionGotoReport, actionReport);
+		return new Quest(getSentence("Protection_Attack", pnjDamage, pnjReport), actionGotoDamage, actionDamage, actionGotoReport, actionReport);
 	}
 }
