@@ -38,7 +38,7 @@ public enum ActionType
 	GET(2, "Get {0} from {1}", ActionEpsilonActionExecutor.class, ActionGetStealActionExecutor.class, ActionGetGatherActionExecutor.class, ActionGetExchangeActionExecutor.class),
 	GIVE(2, "Give {0} to {1}"),
 	GOTO(1, "Go to {0}", ActionEpsilonActionExecutor.class, ActionGotoExploreActionExecutor.class, ActionGotoLearnActionExecutor.class),
-	KILL(1, "Kill {0}", ActionKillActionExecutor.class),
+	KILL(1, "Kill {0}"),
 	LEARN(1, "Learn where is {0}", ActionEpsilonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
 	LISTEN(1, "Listen {0}"),
 	QUEST(1, "Complete quest for {0}", ActionQuestActionExecutor.class),
@@ -146,6 +146,8 @@ public enum ActionType
 	 */
 	public Optional<Quest> genSubquest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
+		if(actionExecutors.isEmpty())
+			return Optional.empty();
 		if(depth > MainFrame.MAX_DEPTH && actionExecutors.contains(ActionEpsilonActionExecutor.class))
 			return Optional.empty();
 		Quest quest = Quest.getEpsilon();
