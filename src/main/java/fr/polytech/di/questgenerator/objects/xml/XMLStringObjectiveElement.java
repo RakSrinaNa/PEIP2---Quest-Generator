@@ -1,6 +1,6 @@
 package fr.polytech.di.questgenerator.objects.xml;
 
-import fr.polytech.di.questgenerator.Main;
+import fr.polytech.di.questgenerator.jfx.MainFrame;
 
 /**
  * Represent an element in the objective xml file.
@@ -37,7 +37,7 @@ public class XMLStringObjectiveElement
 	 */
 	public String getValue()
 	{
-		if(Main.DEBUG)
+		if(MainFrame.DEBUG)
 		{
 			if(this.path.equals("class"))
 			{
