@@ -88,6 +88,7 @@ Capture:
 
 
 ***
+--- Knowledge_Deliver	0:v2	1:v1
 Knowledge - Deliver:
 	v1 = Rnd object/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -97,10 +98,12 @@ Knowledge - Deliver:
 	Give 	(obj_give) <- v1
 	Give 	(loc_objective) <- v2
 
+--- Knowledge_Spy	0:Spy (objective)
 Knowledge - Spy:
 	Spy	(objective) <- Rnd pnj/being/*
 
 ***
+--- Knowledge_Interview		0:v1	1:v2
 Knowledge - Interview:
 	v1 = Rnd pnj/being/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -109,6 +112,7 @@ Knowledge - Interview:
 	Goto2 	(objective) <- v2
 	Report 	(objective) <- v2
 
+--- Knowledge_UseItem	0:v1	1:v2	2:v3
 Knowledge - UseItem:
 	v1 = Rnd object/usable/*
 	v2 = Rnd pnj/being/*
@@ -123,6 +127,7 @@ Knowledge - UseItem:
 	Give 		(loc_objective) <- v2
 
 ***
+--- Comfort_Obtain	0:v2	1:v1
 Comfort - Obtain:
 	v1 = Rnd object/luxury/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -133,6 +138,7 @@ Comfort - Obtain:
 	Give 	(loc_objective) <- v2
 
 ***
+--- Comfort_Kill	0:v2	1:v1
 Comfort - Kill:
 	v1 = Rnd pnj/beast/pests/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -142,6 +148,7 @@ Comfort - Kill:
 	Report 	(objective) <- v2
 
 ***
+--- Reputation_Obtain	0:v1	1:v2
 Reputation - Obtain:
 	v1 = Rnd object/rare/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -152,6 +159,7 @@ Reputation - Obtain:
 	Give 	(loc_objective) <- v2
 
 ***
+--- Reputation_Kill	0:v1	1:v2
 Reputation - Kill:
 	v1 = Rnd pnj/boss/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -161,17 +169,20 @@ Reputation - Kill:
 	Report	(objective) <- v2
 
 ***
+--- Reputation_Visit	0:Goto1 (objective)	1:v1
 Reputation - Visit:
 	v1 = Objective / Default: Rnd pnj/being/*
 	Goto1 	(objective) <- Rnd area/dangerous/*
 	Goto2 	(objective) <- v1
 	Report 	(objective) <- v1
-	
+
+--- Serenity_Revenge	0:v1	
 Serenity - Revenge:
 	v1 = Rnd pnj/being/*
 	Goto 	(objective) <- v1
 	Damage  (objective) <- v1
 
+--- Serenity_Capture1	0:v3	1:v2
 Serenity - Capture1:
 	v1 = Rnd object/stuff/capture/*
 	v2 = Rnd pnj/being/*
@@ -185,6 +196,7 @@ Serenity - Capture1:
 	Give 	(obj_give) <- v3
 	Give 	(loc_objective) <- v2
 
+--- Serenity_Capture2	0:v3	1:v2
 Serenity - Capture2:
 	v1 = Rnd object/stuff/weapon/*
 	v2 = Rnd pnj/being/*
@@ -200,6 +212,7 @@ Serenity - Capture2:
 	Give 	(loc_objective) <- v2
 
 ***
+--- Serenity_Check1	0:v2	1:v1
 Serenity - Check1:
 	v1 = Rnd pnj/being/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -209,6 +222,7 @@ Serenity - Check1:
 	Report 	(objective) <- v2
 
 ***
+--- Serenity_Check1	0:v2	1:v1
 Serenity - Check2:
 	v1 = Rnd pnj/being/*
 	v2 = Objective / Default: Rnd pnj/being/*
