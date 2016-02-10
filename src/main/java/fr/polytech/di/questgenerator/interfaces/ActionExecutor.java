@@ -1,9 +1,11 @@
 package fr.polytech.di.questgenerator.interfaces;
 
 import fr.polytech.di.questgenerator.enums.ObjectiveType;
+import fr.polytech.di.questgenerator.enums.Resources;
 import fr.polytech.di.questgenerator.objects.ObjectiveHelper;
 import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
@@ -60,5 +62,17 @@ public interface ActionExecutor
 	default XMLStringObjectiveElement pickRandom(XMLStringObjectiveElement... elements)
 	{
 		return elements[ThreadLocalRandom.current().nextInt(elements.length)];
+	}
+
+	/**
+	 * Used to get the sentence for the objective.
+	 *
+	 * @param key The key of the sentence.
+	 * @param args The arguments for the sentence.
+	 * @return The formatted sentence.
+	 */
+	default String getSentence(String key, XMLStringObjectiveElement... args)
+	{
+		return MessageFormat.format(Resources.LANG.getPropertyString("QuestSentences", key), args);
 	}
 }
