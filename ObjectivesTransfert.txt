@@ -222,7 +222,7 @@ Serenity - Check1:
 	Report 	(objective) <- v2
 
 ***
---- Serenity_Check1	0:v2	1:v1
+--- Serenity_Check2	0:v2	1:v1
 Serenity - Check2:
 	v1 = Rnd pnj/being/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -235,6 +235,7 @@ Serenity - Check2:
 	Give 	(loc_objective) <- v2
 
 ***
+--- Serenity_Recover	0:v2	1:v1	2:Get (loc_objective)
 Serenity - Recover:
 	v1 = Rnd object/personal/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -245,6 +246,7 @@ Serenity - Recover:
 	Give 	(loc_objective) <- v2
 
 ***
+--- Serenity_Rescue	0:v1	1:Damage(objective)	2:v2
 Serenity - Rescue:
 	v1 = Rnd pnj/being/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -255,6 +257,7 @@ Serenity - Rescue:
 	Report 	(objective) <- v2
 
 ***
+--- Protection_Attack	0:v1	1:v2
 Protection - Attack:
 	v1 = Rnd pnj/being/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -262,7 +265,8 @@ Protection - Attack:
 	Damage 	(objective) <- v1
 	Goto2 	(objective) <- v2
 	Report 	(objective) <- v2
-	
+
+--- Protection_Treat1	0:v2	1:v1
 Protection - Treat1:
 	v1 = Rnd object/reparation/*
 	v2 = Rnd area/job/*
@@ -272,11 +276,13 @@ Protection - Treat1:
 	Use	(obj_use) <- v1
 	Use	(loc_objective) <- v2
 
+--- Protection_Treat2	0:v1
 Protection - Treat2:
 	v1 = Rnd area/job/*
 	Goto 	(objective) <- v1
 	Repair 	(objective) <- v1
 
+--- Protection_Diversion1	0:Get(loc_objective)	1:v2
 Protection - Diversion1:
 	v1 = Rnd object/diversion/*
 	v2 = Rnd area/place/*
@@ -286,24 +292,30 @@ Protection - Diversion1:
 	Use 	(obj_use) <- v1
 	Use	(loc_objective) <- v2
 
+--- Protection_Diversion2	0:Rnd pnj/being/*	1:Goto(objective)	2:Damage(objective)
 Protection - Diversion2:
 	Goto 	(objective) <- Rnd area/place/*
 	Damage 	(objective) <- Rnd area/fortification/*
 
+--- Protection_Assemble		0:Repair(objective)	1:Goto(objective)
 Protection - Assemble:
 	Goto 	(objective) <- Rnd area/place/*
 	Repair 	(objective) <- Rnd area/fortification/*
 
+--- Si Defend(objective) = area/fortification/* ==> Protection_Guard_2		0:v1	1:Defend(objective)
+--- Si Defend(objective) = area/place/* ==> Protection_Guard_1			0:v1
 Protection - Guard:
 	v1 = Rnd area/place/*
 	Goto 	(objective) <- v1
 	Defend 	(objective) <- v1 OR Rnd area/fortification/*
 
+--- Conquest_Attack	0:v1
 Conquest - Attack:
 	v1 = Rnd pnj/being/*
 	Goto 	(objective) <- v1
 	Damage 	(objective) <- v1
 
+--- Conquest_Steal	0:v3	1:v2	2:v1
 Conquest - Steal:
 	v1 = Rnd pnj/being/*
 	v2 = Rnd object/stuff/*
@@ -315,6 +327,7 @@ Conquest - Steal:
 	Give 	(obj_give) <- v2
 	Give 	(loc_objective) <- v3
 
+--- Wealth_Gather	0:v1	1:Get(obj_get)
 Wealth - Gather:
 	v1 = Rnd area/mine/*
 	Goto 	(objective) <- v1
