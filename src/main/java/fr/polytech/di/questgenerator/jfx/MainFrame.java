@@ -26,6 +26,8 @@ import java.io.IOException;
  */
 public class MainFrame extends Application
 {
+	public static final boolean DEBUG = false;
+	public static final int MAX_DEPTH = 3;
 	private QuestItem quest;
 	private Stage stage;
 

@@ -1,6 +1,5 @@
 package fr.polytech.di.questgenerator.enums;
 
-import fr.polytech.di.questgenerator.Main;
 import fr.polytech.di.questgenerator.actionexecutors.action.*;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetExchangeActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetGatherActionExecutor;
@@ -13,6 +12,7 @@ import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnRea
 import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealStealthActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealTakeActionExecutor;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
+import fr.polytech.di.questgenerator.jfx.MainFrame;
 import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.text.MessageFormat;
@@ -134,7 +134,7 @@ public enum ActionType
 				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
 				break;
 		}
-		return sentence + (Main.DEBUG ? (" - " + objectives.get().get(ObjectiveType.CLASS)) : "");
+		return sentence + (MainFrame.DEBUG ? (" - " + objectives.get().get(ObjectiveType.CLASS)) : "");
 	}
 
 	/**
@@ -146,7 +146,7 @@ public enum ActionType
 	 */
 	public Optional<Quest> genSubquest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		if(depth > Main.MAX_DEPTH && actionExecutors.contains(ActionEpsilonActionExecutor.class))
+		if(depth > MainFrame.MAX_DEPTH && actionExecutors.contains(ActionEpsilonActionExecutor.class))
 			return Optional.empty();
 		Quest quest = Quest.getEpsilon();
 		if(!actionExecutors.isEmpty())
@@ -186,7 +186,7 @@ public enum ActionType
 	{
 		if(!executors.contains(ActionEpsilonActionExecutor.class))
 			return executors.get(ThreadLocalRandom.current().nextInt(executors.size()));
-		if(Math.random() < (1 / executors.size()) + (depth / Main.MAX_DEPTH))
+		if(Math.random() < (1 / executors.size()) + (depth / MainFrame.MAX_DEPTH))
 			return ActionEpsilonActionExecutor.class;
 		return executors.get(1 + ThreadLocalRandom.current().nextInt(executors.size() - 1));
 	}
