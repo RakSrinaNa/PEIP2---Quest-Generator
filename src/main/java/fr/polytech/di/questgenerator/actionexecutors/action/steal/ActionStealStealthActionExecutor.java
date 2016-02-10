@@ -19,10 +19,9 @@ public class ActionStealStealthActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ)));
 		Action actionStealth = new Action(this.getClass(), depth, ActionType.STEALTH, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ)), false);
 		Action actionTake = new Action(this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(PNJ, PNJ), new ObjectiveHelper(OBJ_GET, OBJ_GET)), false);
 
-		return new Quest(actionGoto, actionStealth, actionTake);
+		return new Quest(actionStealth, actionTake);
 	}
 }
