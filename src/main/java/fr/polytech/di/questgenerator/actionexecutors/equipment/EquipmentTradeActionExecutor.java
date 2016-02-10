@@ -20,10 +20,10 @@ public class EquipmentTradeActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomPNJ("being/*");
+		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomFromCategories("pnj/being/*");
 
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePNJ)));
-		Action actionExchange = new Action(this.getClass(), depth, ActionType.EXCHANGE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, NONE, DataHandler.getRandomObject("weapon/*")), new ObjectiveHelper(OBJ_GET, NONE, DataHandler.getRandomObject("weapon/*"))), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePNJ)));
+		Action actionExchange = new Action(this.getClass(), depth, ActionType.EXCHANGE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, DataHandler.getRandomFromCategories("object/stuff/*")), new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/stuff/*")), new ObjectiveHelper(PNJ, objectivePNJ)), false);
 
 		return new Quest(actionGoto, actionExchange);
 	}

@@ -16,7 +16,30 @@ public class ObjectiveHelper
 
 	/**
 	 * Constructor.
-	 *  @param destination The ObjectiveType that will be our new Objective.
+	 *
+	 * @param destination The ObjectiveType that will be our new Objective.
+	 * @param defaultValue The default value if the source is not defined.
+	 */
+	public ObjectiveHelper(ObjectiveType destination, XMLStringObjectiveElement defaultValue)
+	{
+		this(destination, ObjectiveType.NONE, defaultValue);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param destination The ObjectiveType that will be our new Objective.
+	 * @param source The Objective source (where to get the value if already defined).
+	 */
+	public ObjectiveHelper(ObjectiveType destination, ObjectiveType source)
+	{
+		this(destination, source, new XMLStringObjectiveElement("ERROR", "ERROR: DEFAULT VALUE NOT SET"));
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param destination The ObjectiveType that will be our new Objective.
 	 * @param source The Objective source (where to get the value if already defined).
 	 * @param defaultValue The default value if the source is not defined.
 	 */

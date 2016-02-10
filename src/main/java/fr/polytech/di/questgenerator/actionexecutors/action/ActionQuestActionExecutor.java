@@ -16,6 +16,6 @@ public class ActionQuestActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		return QuestGenerator.createNewRandomQuest(depth, objectives);
+		return QuestGenerator.createRandomSubquest(0, objectives);
 	}
 }

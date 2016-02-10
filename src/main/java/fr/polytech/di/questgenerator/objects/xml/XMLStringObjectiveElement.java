@@ -1,6 +1,6 @@
 package fr.polytech.di.questgenerator.objects.xml;
 
-import fr.polytech.di.questgenerator.Main;
+import fr.polytech.di.questgenerator.jfx.MainFrame;
 
 /**
  * Represent an element in the objective xml file.
@@ -37,13 +37,13 @@ public class XMLStringObjectiveElement
 	 */
 	public String getValue()
 	{
-		if(Main.DEBUG)
+		if(MainFrame.DEBUG)
 		{
 			if(this.path.equals("class"))
 			{
 				return "{" + this.value + "}";
 			}
-			return "[(" + this.path + ") " + this.value + " @" + this.hashCode() + "]";
+			return "[(" + this.path + ") " + this.value + "]";
 		}
 		return this.value;
 	}
@@ -57,5 +57,19 @@ public class XMLStringObjectiveElement
 	public boolean isInPath(String path)
 	{
 		return path.endsWith("/*") ? this.path.startsWith(path.substring(0, path.length() - "/*".length())) : this.path.equals(path);
+	}
+
+	/**
+	 * Used to know if this element is in one of the given paths.
+	 *
+	 * @param paths The paths to test.
+	 * @return True if in, false if not.
+	 */
+	public boolean isInPath(String... paths)
+	{
+		for(String path : paths)
+			if(isInPath(path))
+				return true;
+		return false;
 	}
 }

@@ -11,6 +11,7 @@ public enum ObjectiveType
 	OBJECTIVE,
 	OBJ_GIVE,
 	OBJ_GET,
+	OBJ_USE,
 	PNJ,
 	LOC_OBJECTIVE,
 	CLASS

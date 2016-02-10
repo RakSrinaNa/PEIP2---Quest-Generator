@@ -1,6 +1,6 @@
 package fr.polytech.di.questgenerator.enums;
 
-import fr.polytech.di.questgenerator.Main;
+import fr.polytech.di.questgenerator.jfx.MainFrame;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
@@ -58,7 +58,7 @@ public enum Resources
 	 */
 	public URL getResource(String path)
 	{
-		return Main.class.getResource("/" + this.rootPath + "/" + path);
+		return MainFrame.class.getResource("/" + this.rootPath + "/" + path);
 	}
 
 	/**

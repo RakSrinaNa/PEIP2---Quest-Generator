@@ -20,10 +20,8 @@ public class AbilityResearch1ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomObject("readable/learning/*");
-
-		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, DataHandler.getRandomArea("place/*"))));
-		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveObject)), false);
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/readable/learning/skill/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("pnj/being/*", "area/place/*"))));
+		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, DataHandler.getRandomFromCategories("skill/magic/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("object/training/*"))), false);
 
 		return new Quest(actionGet, actionUse);
 	}

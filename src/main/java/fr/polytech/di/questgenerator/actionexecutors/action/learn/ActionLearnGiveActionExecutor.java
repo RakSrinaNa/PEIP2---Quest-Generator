@@ -20,14 +20,13 @@ public class ActionLearnGiveActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomObject();
-		XMLStringObjectiveElement objectiveListen = DataHandler.getRandomPNJ("being/*");
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/*");
+		XMLStringObjectiveElement objectiveListen = DataHandler.getRandomFromCategories("pnj/being/*");
 
-		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, DataHandler.getRandomFromCategories("pnj/*", "area/*"))));
-		Action actionSubquest = new Action(this.getClass(), depth, ActionType.SUBQUEST);
-		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, objectiveListen)), false);
-		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveListen)), false);
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("area/*"))));
+		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveListen)), false);
+		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveListen)), false);
 
-		return new Quest(actionGet, actionSubquest, actionGive, actionListen);
+		return new Quest(actionGet, actionGive, actionListen);
 	}
 }

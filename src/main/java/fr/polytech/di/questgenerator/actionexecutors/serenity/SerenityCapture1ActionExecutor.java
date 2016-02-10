@@ -20,15 +20,15 @@ public class SerenityCapture1ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomObject("weapon/capture/*");
-		XMLStringObjectiveElement pnjGive = DataHandler.getRandomPNJ("being/*");
-		XMLStringObjectiveElement pnjCapture = DataHandler.getRandomPNJ("being/*");
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/stuff/capture/*");
+		XMLStringObjectiveElement objectiveGive = DataHandler.getRandomFromCategories("pnj/being/*");
+		XMLStringObjectiveElement objectiveCapture = DataHandler.getRandomFromCategories("pnj/being/*");
 
-		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, pnjGive)));
-		Action actionGotoUse = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjCapture)));
-		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveObject)), false);
-		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjGive)), false);
-		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(LOC_OBJECTIVE, NONE, pnjGive), new ObjectiveHelper(OBJ_GIVE, NONE, pnjCapture)));
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveGive)));
+		Action actionGotoUse = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveCapture)));
+		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveCapture)), false);
+		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveGive)), false);
+		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(LOC_OBJECTIVE, objectiveGive), new ObjectiveHelper(OBJ_GIVE, objectiveCapture)));
 
 		return new Quest(actionGet, actionGotoUse, actionUse, actionGotoGive, actionGive);
 	}

@@ -10,7 +10,6 @@ import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.HashMap;
 import java.util.Optional;
-import static fr.polytech.di.questgenerator.enums.ObjectiveType.NONE;
 import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 
 /**
@@ -21,10 +20,10 @@ public class SerenityRevengeActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomPNJ("being/*");
+		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomFromCategories("pnj/being/*");
 
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectivePnj)));
-		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE,NONE, objectivePnj)), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePnj)));
+		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePnj)), false);
 
 		return new Quest(actionGoto, actionDamage);
 	}

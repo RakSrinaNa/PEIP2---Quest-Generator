@@ -1,10 +1,9 @@
 package fr.polytech.di.questgenerator.enums;
 
-import fr.polytech.di.questgenerator.Main;
 import fr.polytech.di.questgenerator.actionexecutors.action.*;
+import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetExchangeActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetGatherActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetStealActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetSubquestActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.gotoo.ActionGotoExploreActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.gotoo.ActionGotoLearnActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnGiveActionExecutor;
@@ -12,9 +11,8 @@ import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnLis
 import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnReadActionListener;
 import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealStealthActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealTakeActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubquestGotoActionExecutor;
-import fr.polytech.di.questgenerator.actionexecutors.action.subquest.ActionSubquestQuestActionExecutor;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
+import fr.polytech.di.questgenerator.jfx.MainFrame;
 import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.text.MessageFormat;
@@ -37,14 +35,13 @@ public enum ActionType
 	EXPERIMENT(1, "Experiment {0}"),
 	EXPLORE(1, "Explore {0}"),
 	GATHER(1, "Gather {0}"),
-	GET(2, "Get {0} from {1}", ActionEpsilonActionExecutor.class, ActionGetStealActionExecutor.class, ActionGetGatherActionExecutor.class, ActionGetSubquestActionExecutor.class),
+	GET(2, "Get {0} from {1}", ActionEpsilonActionExecutor.class, ActionGetStealActionExecutor.class, ActionGetGatherActionExecutor.class, ActionGetExchangeActionExecutor.class),
 	GIVE(2, "Give {0} to {1}"),
 	GOTO(1, "Go to {0}", ActionEpsilonActionExecutor.class, ActionGotoExploreActionExecutor.class, ActionGotoLearnActionExecutor.class),
-	KILL(1, "Kill {0}", ActionKillActionExecutor.class),
+	KILL(1, "Kill {0}"),
 	LEARN(1, "Learn where is {0}", ActionEpsilonActionExecutor.class, ActionLearnListenActionExecutor.class, ActionLearnReadActionListener.class, ActionLearnGiveActionExecutor.class),
 	LISTEN(1, "Listen {0}"),
-	QUEST(0, "Complete quest", ActionQuestActionExecutor.class),
-	SUBQUEST(0, "Perform subquest", ActionSubquestGotoActionExecutor.class, ActionSubquestQuestActionExecutor.class),
+	QUEST(1, "Complete quest for {0}", ActionQuestActionExecutor.class),
 	READ(1, "Read {0}"),
 	REPAIR(1, "Repair {0}"),
 	REPORT(1, "Report to {0}"),
@@ -52,7 +49,7 @@ public enum ActionType
 	STEAL(2, "Steal {0} from {1}", ActionStealStealthActionExecutor.class, ActionStealTakeActionExecutor.class),
 	STEALTH(1, "Stealth {0}"),
 	TAKE(2, "Take {0} from {1}"),
-	USE(1, "Use {0}");
+	USE(2, "Use {0} on {1}");
 
 	private final int params;
 	private final String sentence;
@@ -116,9 +113,12 @@ public enum ActionType
 			case REPAIR:
 			case REPORT:
 			case SPY:
+			case QUEST:
 			case STEALTH:
-			case USE:
 				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJECTIVE));
+				break;
+			case USE:
+				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_USE), objectives.get().get(ObjectiveType.LOC_OBJECTIVE));
 				break;
 			case EXCHANGE:
 				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GIVE), objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
@@ -134,7 +134,7 @@ public enum ActionType
 				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
 				break;
 		}
-		return sentence + (Main.DEBUG ? (" - " + objectives.get().get(ObjectiveType.CLASS)) : "");
+		return sentence + (MainFrame.DEBUG ? (" - " + objectives.get().get(ObjectiveType.CLASS)) : "");
 	}
 
 	/**
@@ -146,7 +146,9 @@ public enum ActionType
 	 */
 	public Optional<Quest> genSubquest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		if(depth > Main.MAX_DEPTH && actionExecutors.contains(ActionEpsilonActionExecutor.class))
+		if(actionExecutors.isEmpty())
+			return Optional.empty();
+		if(depth > MainFrame.MAX_DEPTH && actionExecutors.contains(ActionEpsilonActionExecutor.class))
 			return Optional.empty();
 		Quest quest = Quest.getEpsilon();
 		if(!actionExecutors.isEmpty())
@@ -186,7 +188,7 @@ public enum ActionType
 	{
 		if(!executors.contains(ActionEpsilonActionExecutor.class))
 			return executors.get(ThreadLocalRandom.current().nextInt(executors.size()));
-		if(Math.random() < (1 / executors.size()) + (depth / Main.MAX_DEPTH))
+		if(Math.random() < (1 / executors.size()) + (depth / MainFrame.MAX_DEPTH))
 			return ActionEpsilonActionExecutor.class;
 		return executors.get(1 + ThreadLocalRandom.current().nextInt(executors.size() - 1));
 	}

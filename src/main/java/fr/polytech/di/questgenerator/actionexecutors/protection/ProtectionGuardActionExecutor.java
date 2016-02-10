@@ -10,7 +10,6 @@ import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.HashMap;
 import java.util.Optional;
-import static fr.polytech.di.questgenerator.enums.ObjectiveType.NONE;
 import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 
 /**
@@ -21,10 +20,10 @@ public class ProtectionGuardActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories("area/place/fortification/*", "area/place");
+		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories("area/place/*");
 
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)));
-		Action actionDefend = new Action(this.getClass(), depth, ActionType.DEFEND, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, objectiveArea)), false);
+		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
+		Action actionDefend = new Action(this.getClass(), depth, ActionType.DEFEND, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pickRandom(objectiveArea, DataHandler.getRandomFromCategories("area/fortification/*")))), false);
 
 		return new Quest(actionGoto, actionDefend);
 	}

@@ -20,14 +20,14 @@ public class SerenityCheck2ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomObject("personal/*");
-		XMLStringObjectiveElement pnjTake = DataHandler.getRandomPNJ("being/*");
-		XMLStringObjectiveElement pnjGive = DataHandler.getRandomPNJ("being/*");
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/personal/*");
+		XMLStringObjectiveElement pnjTake = DataHandler.getRandomFromCategories("pnj/being/*");
+		XMLStringObjectiveElement pnjGive = DataHandler.getRandomFromCategories("pnj/being/*");
 
-		Action actionGotoTake = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjTake)));
-		Action actionTake = new Action(this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, NONE, objectiveObject), new ObjectiveHelper(PNJ, NONE, pnjTake)), false);
-		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, NONE, pnjGive)));
-		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, NONE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, NONE, pnjGive)), false);
+		Action actionGotoTake = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjTake)));
+		Action actionTake = new Action(this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(PNJ, pnjTake)), false);
+		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjGive)));
+		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, OBJECTIVE, pnjGive)), false);
 
 		return new Quest(actionGotoTake, actionTake, actionGotoGive, actionGive);
 	}

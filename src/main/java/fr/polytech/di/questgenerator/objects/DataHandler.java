@@ -24,69 +24,6 @@ public class DataHandler
 {
 	private final static ArrayList<XMLStringObjectiveCategory> strings;
 
-	/**
-	 * Returns a random object.
-	 *
-	 * @return A random object.
-	 */
-	public static XMLStringObjectiveElement getRandomObject()
-	{
-		return getRandomObject("*");
-	}
-
-	/**
-	 * Returns a random location.
-	 *
-	 * @return A random location.
-	 */
-	public static XMLStringObjectiveElement getRandomArea()
-	{
-		return getRandomArea("*");
-	}
-
-	/**
-	 * Return a random PNJ.
-	 *
-	 * @return Return a random PNJ.
-	 */
-	public static XMLStringObjectiveElement getRandomPNJ()
-	{
-		return getRandomPNJ("*");
-	}
-
-	/**
-	 * Return a random location of the given category.
-	 *
-	 * @param path The category the element picked should be.
-	 * @return Return a random location.
-	 */
-	public static XMLStringObjectiveElement getRandomArea(String path)
-	{
-		return getRandomFromCategories("area/" + path);
-	}
-
-	/**
-	 * Return a random object of the given category.
-	 *
-	 * @param path The category the element picked should be.
-	 * @return Return a random object.
-	 */
-	public static XMLStringObjectiveElement getRandomObject(String path)
-	{
-		return getRandomFromCategories("object/" + path);
-	}
-
-	/**
-	 * Return a random PNJ of the given category.
-	 *
-	 * @param path The category the element picked should be.
-	 * @return Return a random PNJ.
-	 */
-	public static XMLStringObjectiveElement getRandomPNJ(String path)
-	{
-		return getRandomFromCategories("pnj/" + path);
-	}
-
 	public static XMLStringObjectiveElement getRandomFromCategories(String... categories)
 	{
 
@@ -106,27 +43,6 @@ public class DataHandler
 		if(candidates.isEmpty())
 			return new XMLStringObjectiveElement("", Arrays.toString(categories) + " - " + ThreadLocalRandom.current().nextInt(1000));
 		return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
-	}
-
-	/**
-	 * Return a random skill.
-	 *
-	 * @return Return a random skill.
-	 */
-	public static XMLStringObjectiveElement getRandomSkill()
-	{
-		return getRandomSkill("*");
-	}
-
-	/**
-	 * Return a random skill of the given category.
-	 *
-	 * @param path The category the element picked should be.
-	 * @return Return a random skill.
-	 */
-	public static XMLStringObjectiveElement getRandomSkill(String path)
-	{
-		return getRandomFromCategories("skill/" + path);
 	}
 
 	/**
