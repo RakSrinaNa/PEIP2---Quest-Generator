@@ -7,6 +7,7 @@ import javafx.scene.image.WritableImage;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Properties;
@@ -126,7 +127,7 @@ public enum Resources
 		if(properties.containsKey(path))
 			return properties.get(path);
 		Properties prop = new Properties();
-		prop.load(getResource(path + ".properties").openStream());
+		prop.load(new InputStreamReader(getResource(path + ".properties").openStream(), "UTF-8"));
 		properties.put(path, prop);
 		return prop;
 	}

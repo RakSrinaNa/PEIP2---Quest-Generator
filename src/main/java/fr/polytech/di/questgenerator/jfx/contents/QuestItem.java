@@ -3,6 +3,7 @@ package fr.polytech.di.questgenerator.jfx.contents;
 import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
@@ -12,6 +13,7 @@ import javafx.scene.text.Text;
  */
 public class QuestItem extends VBox
 {
+	private static final Font FONT = Font.font("Verdana", 16);
 	private VBox actions;
 	private Text description;
 
@@ -36,6 +38,7 @@ public class QuestItem extends VBox
 		this.actions.setSpacing(5);
 
 		this.description = new Text();
+		this.description.setFont(FONT);
 
 		this.getChildren().add(description);
 		this.getChildren().add(this.actions);
