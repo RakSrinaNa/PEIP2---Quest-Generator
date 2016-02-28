@@ -80,7 +80,12 @@ public class QuestItem extends VBox
 	private void loadQuest(Quest quest)
 	{
 		if(quest.hasDescription())
+		{
 			description.setText(quest.getDescription());
+			description.setManaged(true);
+		}
+		else
+			description.setManaged(false);
 		for(Action action : quest.getActions())
 			this.actions.getChildren().add(new ActionItem(action));
 	}
