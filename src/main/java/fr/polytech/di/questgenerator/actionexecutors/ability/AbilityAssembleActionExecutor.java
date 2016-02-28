@@ -27,6 +27,6 @@ public class AbilityAssembleActionExecutor implements ActionExecutor
 		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveObject)), false);
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("object/training/*"))), false);
 
-		return new Quest(actionRepair, actionUse);
+		return new Quest(getSentence("Ability_Assemble", objectiveObject), actionRepair, actionUse);
 	}
 }

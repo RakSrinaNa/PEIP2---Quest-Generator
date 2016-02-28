@@ -25,6 +25,6 @@ public class SerenityRevengeActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePnj)));
 		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePnj)), false);
 
-		return new Quest(actionGoto, actionDamage);
+		return new Quest(getSentence("Serenity_Revenge", objectivePnj), actionGoto, actionDamage);
 	}
 }

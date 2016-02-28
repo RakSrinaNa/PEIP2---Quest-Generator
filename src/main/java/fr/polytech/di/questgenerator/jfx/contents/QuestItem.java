@@ -3,6 +3,7 @@ package fr.polytech.di.questgenerator.jfx.contents;
 import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
@@ -12,7 +13,9 @@ import javafx.scene.text.Text;
  */
 public class QuestItem extends VBox
 {
+	private static final Font FONT = Font.font("Verdana", 16);
 	private VBox actions;
+	private Text description;
 
 	/**
 	 * Constructor.
@@ -34,8 +37,10 @@ public class QuestItem extends VBox
 		this.actions = new VBox();
 		this.actions.setSpacing(5);
 
-		if(quest.hasDescription())
-			this.getChildren().add(new Text(quest.getDescription()));
+		this.description = new Text();
+		this.description.setFont(FONT);
+
+		this.getChildren().add(description);
 		this.getChildren().add(this.actions);
 
 		loadQuest(quest);
@@ -62,6 +67,7 @@ public class QuestItem extends VBox
 	 */
 	public void modifyQuest(Quest quest)
 	{
+		this.description.setText("");
 		this.actions.getChildren().clear();
 		loadQuest(quest);
 	}
@@ -73,6 +79,8 @@ public class QuestItem extends VBox
 	 */
 	private void loadQuest(Quest quest)
 	{
+		if(quest.hasDescription())
+			description.setText(quest.getDescription());
 		for(Action action : quest.getActions())
 			this.actions.getChildren().add(new ActionItem(action));
 	}

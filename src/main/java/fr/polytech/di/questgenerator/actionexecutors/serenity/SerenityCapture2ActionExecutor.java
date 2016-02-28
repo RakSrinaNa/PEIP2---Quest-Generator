@@ -31,6 +31,6 @@ public class SerenityCapture2ActionExecutor implements ActionExecutor
 		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjGive)));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(LOC_OBJECTIVE, pnjGive), new ObjectiveHelper(OBJ_GIVE, pnjCapture)));
 
-		return new Quest(actionGet, actionGotoUse, actionUse, actionCapture, actionGotoGive, actionGive);
+		return new Quest(getSentence("Serenity_Capture2", pnjCapture, pnjGive), actionGet, actionGotoUse, actionUse, actionCapture, actionGotoGive, actionGive);
 	}
 }

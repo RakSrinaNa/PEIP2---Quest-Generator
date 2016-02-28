@@ -25,6 +25,6 @@ public class WealthStealActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePNJ)));
 		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(PNJ, objectivePNJ), new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/personal/*", "object/luxury/*"))));
 
-		return new Quest(actionGoto, actionSteal);
+		return new Quest(getSentence("Wealth_Steal"), actionGoto, actionSteal);
 	}
 }

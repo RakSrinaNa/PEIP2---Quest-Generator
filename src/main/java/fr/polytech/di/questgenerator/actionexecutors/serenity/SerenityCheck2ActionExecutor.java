@@ -29,6 +29,6 @@ public class SerenityCheck2ActionExecutor implements ActionExecutor
 		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjGive)));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, OBJECTIVE, pnjGive)), false);
 
-		return new Quest(actionGotoTake, actionTake, actionGotoGive, actionGive);
+		return new Quest(getSentence("Serenity_Check2", pnjGive, pnjTake),actionGotoTake, actionTake, actionGotoGive, actionGive);
 	}
 }

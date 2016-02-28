@@ -27,6 +27,6 @@ public class KnowledgeDeliverActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePNJ)));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, OBJECTIVE, objectivePNJ)), false);
 
-		return new Quest(actionGet, actionGoto, actionGive);
+		return new Quest(getSentence("Knowledge_Deliver", objectivePNJ, objectiveObject), actionGet, actionGoto, actionGive);
 	}
 }

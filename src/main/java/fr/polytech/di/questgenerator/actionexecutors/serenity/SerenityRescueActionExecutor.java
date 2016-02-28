@@ -29,6 +29,6 @@ public class SerenityRescueActionExecutor implements ActionExecutor
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
 		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
 
-		return new Quest(actionGotoDamage, actionDamage, actionEscort, actionGotoReport, actionReport);
+		return new Quest(getSentence("Serenity_Rescue", pnjEscort, actionDamage.getObjective(OBJECTIVE), pnjReport), actionGotoDamage, actionDamage, actionEscort, actionGotoReport, actionReport);
 	}
 }

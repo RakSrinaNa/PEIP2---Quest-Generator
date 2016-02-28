@@ -28,6 +28,6 @@ public class SerenityCheck1ActionExecutor implements ActionExecutor
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
 		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
 
-		return new Quest(actionGotoListen, actionListen, actionGotoReport, actionReport);
+		return new Quest(getSentence("Serenity_Check1", pnjReport, pnjListen), actionGotoListen, actionListen, actionGotoReport, actionReport);
 	}
 }

@@ -155,8 +155,26 @@ public class Action
 		return this.actionType;
 	}
 
+	/**
+	 * Used to get the depth of this action.
+	 *
+	 * @return The depth.
+	 */
 	public int getDepth()
 	{
 		return this.depth;
+	}
+
+	/**
+	 * Used to get the value of an objective for this action.
+	 *
+	 * @param objective The objective to get.
+	 * @return The objective value.
+	 */
+	public XMLStringObjectiveElement getObjective(ObjectiveType objective)
+	{
+		if(!objectives.isPresent() || !objectives.get().containsKey(objective))
+			return new XMLStringObjectiveElement("ERR", "ERR");
+		return objectives.get().get(objective);
 	}
 }

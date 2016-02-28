@@ -179,7 +179,7 @@ public enum ActionType
 	}
 
 	/**
-	 * Used to get a random ActionExecutor. If an epsillon ActionxEcutor is present, he will have more chances to be picked as we get closer to the max depth.
+	 * Used to get a random ActionExecutor. If an epsillon ActionExecutor is present, he will have more chances to be picked as we get closer to the max depth.
 	 *
 	 * @param depth The depth of the Action.
 	 * @return A random ActionExecutor.

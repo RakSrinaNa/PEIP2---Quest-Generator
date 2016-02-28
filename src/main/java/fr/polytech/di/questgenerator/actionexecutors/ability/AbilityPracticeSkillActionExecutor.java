@@ -23,6 +23,6 @@ public class AbilityPracticeSkillActionExecutor implements ActionExecutor
 	{
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, DataHandler.getRandomFromCategories("skill/magic/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("object/training/*"))), false);
 
-		return new Quest(actionUse);
+		return new Quest(getSentence("Ability_PracticeSkill", actionUse.getObjective(OBJ_USE)), actionUse);
 	}
 }

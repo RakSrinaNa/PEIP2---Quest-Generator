@@ -22,6 +22,6 @@ public class EquipmentAssembleActionExecutor implements ActionExecutor
 	{
 		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("object/stuff/*"))), false);
 
-		return new Quest(actionRepair);
+		return new Quest(getSentence("Equipment_Assemble", actionRepair.getObjective(OBJECTIVE)), actionRepair);
 	}
 }

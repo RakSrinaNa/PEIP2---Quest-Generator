@@ -28,6 +28,6 @@ public class KnowledgeInterviewActionExecutor implements ActionExecutor
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
 		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
 
-		return new Quest(actionGotoListen, actionListen, actionGotoReport, actionReport);
+		return new Quest(getSentence("Knowledge_Interview", pnjListen, pnjReport), actionGotoListen, actionListen, actionGotoReport, actionReport);
 	}
 }

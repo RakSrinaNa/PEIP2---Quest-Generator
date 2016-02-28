@@ -88,6 +88,7 @@ Capture:
 
 
 ***
+--- Knowledge_Deliver	0:v2	1:v1
 Knowledge - Deliver:
 	v1 = Rnd object/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -97,10 +98,12 @@ Knowledge - Deliver:
 	Give 	(obj_give) <- v1
 	Give 	(loc_objective) <- v2
 
+--- Knowledge_Spy	0:Spy (objective)
 Knowledge - Spy:
 	Spy	(objective) <- Rnd pnj/being/*
 
 ***
+--- Knowledge_Interview		0:v1	1:v2
 Knowledge - Interview:
 	v1 = Rnd pnj/being/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -109,6 +112,7 @@ Knowledge - Interview:
 	Goto2 	(objective) <- v2
 	Report 	(objective) <- v2
 
+--- Knowledge_UseItem	0:v1	1:v2	2:v3
 Knowledge - UseItem:
 	v1 = Rnd object/usable/*
 	v2 = Rnd pnj/being/*
@@ -123,6 +127,7 @@ Knowledge - UseItem:
 	Give 		(loc_objective) <- v2
 
 ***
+--- Comfort_Obtain	0:v2	1:v1
 Comfort - Obtain:
 	v1 = Rnd object/luxury/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -133,6 +138,7 @@ Comfort - Obtain:
 	Give 	(loc_objective) <- v2
 
 ***
+--- Comfort_Kill	0:v2	1:v1
 Comfort - Kill:
 	v1 = Rnd pnj/beast/pests/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -142,6 +148,7 @@ Comfort - Kill:
 	Report 	(objective) <- v2
 
 ***
+--- Reputation_Obtain	0:v1	1:v2
 Reputation - Obtain:
 	v1 = Rnd object/rare/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -152,6 +159,7 @@ Reputation - Obtain:
 	Give 	(loc_objective) <- v2
 
 ***
+--- Reputation_Kill	0:v1	1:v2
 Reputation - Kill:
 	v1 = Rnd pnj/boss/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -161,17 +169,20 @@ Reputation - Kill:
 	Report	(objective) <- v2
 
 ***
+--- Reputation_Visit	0:Goto1 (objective)	1:v1
 Reputation - Visit:
 	v1 = Objective / Default: Rnd pnj/being/*
 	Goto1 	(objective) <- Rnd area/dangerous/*
 	Goto2 	(objective) <- v1
 	Report 	(objective) <- v1
-	
+
+--- Serenity_Revenge	0:v1	
 Serenity - Revenge:
 	v1 = Rnd pnj/being/*
 	Goto 	(objective) <- v1
 	Damage  (objective) <- v1
 
+--- Serenity_Capture1	0:v3	1:v2
 Serenity - Capture1:
 	v1 = Rnd object/stuff/capture/*
 	v2 = Rnd pnj/being/*
@@ -185,6 +196,7 @@ Serenity - Capture1:
 	Give 	(obj_give) <- v3
 	Give 	(loc_objective) <- v2
 
+--- Serenity_Capture2	0:v3	1:v2
 Serenity - Capture2:
 	v1 = Rnd object/stuff/weapon/*
 	v2 = Rnd pnj/being/*
@@ -200,6 +212,7 @@ Serenity - Capture2:
 	Give 	(loc_objective) <- v2
 
 ***
+--- Serenity_Check1	0:v2	1:v1
 Serenity - Check1:
 	v1 = Rnd pnj/being/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -209,6 +222,7 @@ Serenity - Check1:
 	Report 	(objective) <- v2
 
 ***
+--- Serenity_Check2	0:v2	1:v1
 Serenity - Check2:
 	v1 = Rnd pnj/being/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -221,6 +235,7 @@ Serenity - Check2:
 	Give 	(loc_objective) <- v2
 
 ***
+--- Serenity_Recover	0:v2	1:v1	2:Get (loc_objective)
 Serenity - Recover:
 	v1 = Rnd object/personal/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -231,6 +246,7 @@ Serenity - Recover:
 	Give 	(loc_objective) <- v2
 
 ***
+--- Serenity_Rescue	0:v1	1:Damage(objective)	2:v2
 Serenity - Rescue:
 	v1 = Rnd pnj/being/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -241,6 +257,7 @@ Serenity - Rescue:
 	Report 	(objective) <- v2
 
 ***
+--- Protection_Attack	0:v1	1:v2
 Protection - Attack:
 	v1 = Rnd pnj/being/*
 	v2 = Objective / Default: Rnd pnj/being/*
@@ -248,7 +265,8 @@ Protection - Attack:
 	Damage 	(objective) <- v1
 	Goto2 	(objective) <- v2
 	Report 	(objective) <- v2
-	
+
+--- Protection_Treat1	0:v2	1:v1
 Protection - Treat1:
 	v1 = Rnd object/reparation/*
 	v2 = Rnd area/job/*
@@ -258,11 +276,13 @@ Protection - Treat1:
 	Use	(obj_use) <- v1
 	Use	(loc_objective) <- v2
 
+--- Protection_Treat2	0:v1
 Protection - Treat2:
 	v1 = Rnd area/job/*
 	Goto 	(objective) <- v1
 	Repair 	(objective) <- v1
 
+--- Protection_Diversion1	0:Get(loc_objective)	1:v2
 Protection - Diversion1:
 	v1 = Rnd object/diversion/*
 	v2 = Rnd area/place/*
@@ -272,24 +292,30 @@ Protection - Diversion1:
 	Use 	(obj_use) <- v1
 	Use	(loc_objective) <- v2
 
+--- Protection_Diversion2	0:Rnd pnj/being/*	1:Goto(objective)	2:Damage(objective)
 Protection - Diversion2:
 	Goto 	(objective) <- Rnd area/place/*
 	Damage 	(objective) <- Rnd area/fortification/*
 
+--- Protection_Assemble		0:Repair(objective)	1:Goto(objective)
 Protection - Assemble:
 	Goto 	(objective) <- Rnd area/place/*
 	Repair 	(objective) <- Rnd area/fortification/*
 
+--- Si Defend(objective) = area/fortification/* ==> Protection_Guard_2		0:v1	1:Defend(objective)
+--- Si Defend(objective) = area/place/* ==> Protection_Guard_1			0:v1
 Protection - Guard:
 	v1 = Rnd area/place/*
 	Goto 	(objective) <- v1
 	Defend 	(objective) <- v1 OR Rnd area/fortification/*
 
+--- Conquest_Attack	0:v1
 Conquest - Attack:
 	v1 = Rnd pnj/being/*
 	Goto 	(objective) <- v1
 	Damage 	(objective) <- v1
 
+--- Conquest_Steal	0:v3	1:v2	2:v1
 Conquest - Steal:
 	v1 = Rnd pnj/being/*
 	v2 = Rnd object/stuff/*
@@ -297,31 +323,36 @@ Conquest - Steal:
 	Goto 	(objective) <- v1
 	Steal 	(obj_get) <- v2
 	Steal 	(pnj) <- v1
-	Goto 	(objective) <- 3
+	Goto 	(objective) <- v3
 	Give 	(obj_give) <- v2
 	Give 	(loc_objective) <- v3
 
+--- Wealth_Gather	0:v1	1:Get(obj_get)
 Wealth - Gather:
 	v1 = Rnd area/mine/*
 	Goto 	(objective) <- v1
 	Get	(obj_get) <- Rnd object/material/*
 	Get 	(loc_objective) <- v1
 
+--- Wealth_Steal
 Wealth - Steal:
 	v1 = Rnd pnj/being/*
 	Goto	(objective) <- v1
 	Steal	(obj_get) <- Rnd object/personal/* OR object/luxury/*
 	Steal	(pnj) <- v1
 
+---- Wealth_Make	0:Repair(objective)
 Wealth - Make:
 	Repair	(objective) <- Rnd object/personal/* OR object/luxury/*
 
+--- Ability_Assemble	0:v1
 Ability - Assemble:
 	v1 = Rnd object/stuff/weapon/*
 	Repair	(objective) <- v1
 	Use	(obj_use) <- v1
 	Use	(loc_objective) <- Rnd object/training/*
 
+--- Ability_Obtain	0:v1
 Ability - Obtain:
 	v1 = Rnd object/stuff/weapon/*
 	Get	(obj_get) <- v1
@@ -329,17 +360,21 @@ Ability - Obtain:
 	Use	(obj_use) <- v1
 	Use (loc_objective) <- Rnd object/training/*
 
+--- Ability_Use		0:v1
 Ability - Use:
 	Use	(obj_use) <- Rnd object/stuff/weapon/*
 	Use (loc_objective) <- Rnd object/training/*
 
+--- Ability_PracticeCombat
 Ability - PracticeCombat:
 	Damage	(objective) <- Rnd object/training/*
 
-Ability - PracticeSkill
+--- Ability_PracticeSkill	0:Use(obj_use)
+Ability - PracticeSkill:
 	Use	(obj_use) <- Rnd skill/magic/*
 	Use (loc_objective) <- Rnd object/training/*
 
+--- Ability_Research1
 Ability - Research1:
 	v1 = Rnd object/readable/learning/skill/*
 	Get	(obj_get) <- v1
@@ -347,15 +382,18 @@ Ability - Research1:
 	Use	(obj_use) <- Rnd skill/magic/*
 	Use (loc_objective) <- Rnd object/training/*
 
+--- Ability_Research2
 Ability - Research2:
 	v1 = Rnd object/readable/learning/martial/*
 	Get		    (obj_get) <- v1
 	Get		    (loc_objective) <- Rnd area/place/* OR pnj/being/*
 	Experiment	(objective) <- Rnd skill/martial/*
 
+--- Equipment_Assemble	0:Repair(objective)
 Equipment - Assemble:
 	Repair	(objective) <- Rnd object/stuff/*
 
+--- Equipment_Deliver	0:v1	1:v2
 Equipment - Deliver:
 	v1 = Rnd object/stuff/*
 	v2 = Rnd pnj/being/*
@@ -365,12 +403,14 @@ Equipment - Deliver:
 	Give	(obj_give) <- v1
 	Give	(loc_objective) <- v2
 
+--- Equipment_Steal	0:Steal(obj_get)
 Equipment - Steal:
 	v1 = Rnd pnj/being/*
 	Goto	(objective) <- v1
 	Steal	(obj_get) <- Rnd object/stuff/*
 	Steal	(pnj) <- v1
 
+--- Equipment_Trade	0:Exchange(obj_get)
 Equipment - Trade:
 	v1 = Rnd pnj/being/*
 	Goto		(objective) <- v1
