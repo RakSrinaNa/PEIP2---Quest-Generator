@@ -1,6 +1,7 @@
 package fr.polytech.di.questgenerator.jfx.contents;
 
 import fr.polytech.di.questgenerator.enums.Resources;
+import fr.polytech.di.questgenerator.interfaces.MainRefresh;
 import fr.polytech.di.questgenerator.objects.Action;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,27 +22,37 @@ public class ActionItem extends HBox
 	private static final Image TRANSPARENT_IMAGE = Resources.JFX_IMAGE.getImage("transparent.png", IMG_SIZE, IMG_SIZE);
 	private static final Image OPENED_IMAGE = Resources.JFX_IMAGE.getImage("opened.png", IMG_SIZE, IMG_SIZE);
 	private static final Image CLOSED_IMAGE = Resources.JFX_IMAGE.getImage("closed.png", IMG_SIZE, IMG_SIZE);
+	private static final Image DONE_IMAGE = Resources.JFX_IMAGE.getImage("done.png", IMG_SIZE, IMG_SIZE);
+	private static final Image NOT_DONE_IMAGE = Resources.JFX_IMAGE.getImage("not_done.png", IMG_SIZE, IMG_SIZE);
 	private QuestItem subquest;
-	private ImageView image;
+	private ImageView imageArrow;
+	private ImageView imageDone;
+	private final Action action;
+	private final boolean doable;
+	private final MainRefresh mainRefresh;
 
 	/**
 	 * Constructor.
 	 *
+	 * @param doable Tell if the interface should take care if an action is doable or not.
 	 * @param action The action to display.
 	 */
-	public ActionItem(Action action)
+	public ActionItem(MainRefresh mainRefresh, boolean doable, Action action)
 	{
 		super();
+		this.mainRefresh = mainRefresh;
+		this.doable = doable;
+		this.action = action;
 		VBox vBox = new VBox();
 		vBox.getChildren().add(genText(action));
 		if(action.getSubquest().isPresent())
 		{
-			subquest = new QuestItem(action.getSubquest().get(), action.getDepth() + 1);
+			subquest = new QuestItem(mainRefresh, doable, action.getSubquest().get(), action.getDepth() + 1);
 			vBox.getChildren().add(subquest);
-			this.getChildren().addAll(genImageView(), vBox);
+			this.getChildren().addAll(genImageDone(), genImageArrow(), vBox);
 		}
 		else
-			this.getChildren().addAll(genImageView(), vBox);
+			this.getChildren().addAll(genImageDone(), genImageArrow(), vBox);
 		this.setSpacing(5);
 	}
 
@@ -50,12 +61,25 @@ public class ActionItem extends HBox
 	 *
 	 * @return The ImageView.
 	 */
-	private ImageView genImageView()
+	private ImageView genImageArrow()
 	{
-		this.image = new ImageView(this.subquest == null ? TRANSPARENT_IMAGE : OPENED_IMAGE);
-		this.image.setTranslateY(5);
-		this.image.setOnMouseReleased(event -> switchSubquestStatus());
-		return this.image;
+		this.imageArrow = new ImageView(this.subquest == null ? TRANSPARENT_IMAGE : OPENED_IMAGE);
+		this.imageArrow.setTranslateY(5);
+		this.imageArrow.setOnMouseReleased(event -> switchSubquestStatus());
+		return this.imageArrow;
+	}
+
+	/**
+	 * Used to generate the ImageView to put next to the text.
+	 *
+	 * @return The ImageView.
+	 */
+	private ImageView genImageDone()
+	{
+		this.imageDone = new ImageView(this.action.isDone() ? DONE_IMAGE : NOT_DONE_IMAGE);
+		this.imageDone.setTranslateY(5);
+		this.imageDone.setOnMouseReleased(event -> switchDoneStatus());
+		return this.imageDone;
 	}
 
 	/**
@@ -82,7 +106,31 @@ public class ActionItem extends HBox
 			boolean newState = !subquest.isVisible();
 			subquest.setVisible(newState);
 			subquest.setManaged(newState);
-			image.setImage(newState ? OPENED_IMAGE : CLOSED_IMAGE);
+			imageArrow.setImage(newState ? OPENED_IMAGE : CLOSED_IMAGE);
+		}
+	}
+
+	private void switchDoneStatus()
+	{
+		if(action != null)
+			action.setDone(!action.isDone());
+		this.mainRefresh.refresh();
+	}
+
+	public void refresh()
+	{
+		if(subquest != null)
+			subquest.refresh();
+		if(doable && !this.action.isDoable() && !this.action.isDone())
+		{
+			this.setVisible(false);
+			this.setManaged(false);
+		}
+		else
+		{
+			this.imageDone.setImage(this.action.isDone() ? DONE_IMAGE : NOT_DONE_IMAGE);
+			this.setManaged(true);
+			this.setVisible(true);
 		}
 	}
 }

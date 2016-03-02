@@ -1,5 +1,6 @@
 package fr.polytech.di.questgenerator.jfx.contents;
 
+import fr.polytech.di.questgenerator.interfaces.MainRefresh;
 import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
 import javafx.scene.layout.VBox;
@@ -14,18 +15,23 @@ import javafx.scene.text.Text;
 public class QuestItem extends VBox
 {
 	private static final Font FONT = Font.font("Verdana", 16);
+	private final MainRefresh mainRefresh;
 	private VBox actions;
 	private Text description;
+	private final boolean doable;
 
 	/**
 	 * Constructor.
 	 *
+	 * @param doable Tell if the interface should take care if an action is doable or not.
 	 * @param quest The quest to display.
 	 * @param depth The depth of the Quest.
 	 */
-	public QuestItem(Quest quest, int depth)
+	public QuestItem(MainRefresh mainRefresh, boolean doable, Quest quest, int depth)
 	{
 		super();
+		this.mainRefresh = mainRefresh;
+		this.doable = doable;
 		this.setSpacing(5);
 		this.setStyle("-fx-background-color: " + getStringColor(depth) + ";" +
 				"-fx-padding: 10;" +
@@ -70,6 +76,7 @@ public class QuestItem extends VBox
 		this.description.setText("");
 		this.actions.getChildren().clear();
 		loadQuest(quest);
+		mainRefresh.refresh();
 	}
 
 	/**
@@ -87,6 +94,11 @@ public class QuestItem extends VBox
 		else
 			description.setManaged(false);
 		for(Action action : quest.getActions())
-			this.actions.getChildren().add(new ActionItem(action));
+			this.actions.getChildren().add(new ActionItem(mainRefresh, this.doable, action));
+	}
+
+	public void refresh()
+	{
+		this.actions.getChildren().stream().filter(node -> node instanceof ActionItem).forEach(node -> ((ActionItem) node).refresh());
 	}
 }

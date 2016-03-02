@@ -25,10 +25,8 @@ import java.io.IOException;
  *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class MainFrame extends Application implements MainRefresh
+public class PresentationFrame extends Application implements MainRefresh
 {
-	public static final boolean DEBUG = false;
-	public static final int MAX_DEPTH = 3;
 	private QuestItem quest;
 	private Stage stage;
 
@@ -52,6 +50,7 @@ public class MainFrame extends Application implements MainRefresh
 		primaryStage.setScene(scene);
 		primaryStage.sizeToScene();
 		primaryStage.show();
+		refresh();
 	}
 
 	/**
@@ -63,7 +62,7 @@ public class MainFrame extends Application implements MainRefresh
 	{
 		BorderPane pane = new BorderPane();
 
-		quest = new QuestItem(this, false, QuestGenerator.createNewRandomQuest(), 0);
+		quest = new QuestItem(this, true, QuestGenerator.createNewRandomQuest(), 0);
 		ScrollPane scroll = new ScrollPane(quest);
 		scroll.setPrefSize(400, 600);
 		scroll.setStyle("-fx-background: " + QuestItem.getStringColor(0) + ";");

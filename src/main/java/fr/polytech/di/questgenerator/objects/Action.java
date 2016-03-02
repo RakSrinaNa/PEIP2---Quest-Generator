@@ -14,11 +14,13 @@ import java.util.Optional;
  */
 public class Action
 {
+	private Quest parentQuest;
 	private final ActionType actionType;
 	private final Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives;
 	private final Optional<Quest> subquest;
 	private final boolean splittable;
 	private final int depth;
+	private boolean done;
 
 	/**
 	 * Constructor.
@@ -103,6 +105,7 @@ public class Action
 		objectives.get().put(ObjectiveType.CLASS, new XMLStringObjectiveElement("class", parent.getSimpleName()));
 		this.objectives = objectives;
 		this.splittable = splittable;
+		this.done = false;
 		this.subquest = this.genSubquest(depth);
 	}
 
@@ -176,5 +179,49 @@ public class Action
 		if(!objectives.isPresent() || !objectives.get().containsKey(objective))
 			return new XMLStringObjectiveElement("ERR", "ERR");
 		return objectives.get().get(objective);
+	}
+
+	/**
+	 * Used to know if that action is marked as done.
+	 *
+	 * @return True if done, false if not.
+	 */
+	public boolean isDone()
+	{
+		if(this.subquest.isPresent())
+			return this.subquest.get().isDone();
+		return this.done;
+	}
+
+	/**
+	 * Set the value of the done state.
+	 *
+	 * @param done The value to set.
+	 */
+	public void setDone(boolean done)
+	{
+		this.done = done;
+	}
+
+	/**
+	 * Used to know if this action is doable now.
+	 *
+	 * @return True if doable, false if not.
+	 */
+	public boolean isDoable()
+	{
+		if(this.parentQuest == null)
+			return true;
+		return this.parentQuest.isActionDoable(this);
+	}
+
+	/**
+	 * Set the parent quest of this action.
+	 *
+	 * @param quest The parent quest.
+	 */
+	public void setParentQuest(Quest quest)
+	{
+		this.parentQuest = quest;
 	}
 }

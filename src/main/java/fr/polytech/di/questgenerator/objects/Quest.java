@@ -14,7 +14,6 @@ public class Quest
 	private final String description;
 	private final LinkedHashSet<Action> actions;
 
-
 	/**
 	 * Constructor.
 	 *
@@ -36,12 +35,12 @@ public class Quest
 		this.description = description;
 		this.actions = new LinkedHashSet<>(actions.length);
 		Collections.addAll(this.actions, actions);
+		this.actions.stream().forEach(a -> a.setParentQuest(this));
 	}
 
 	/**
 	 * Get the Epsilon Quest with is the quest that is empty.
 	 *
-	 * @param depth The depth of the Quest.
 	 * @return The Epsilon Quest.
 	 */
 	public static Quest getEpsilon()
@@ -128,5 +127,39 @@ public class Quest
 	public String getDescription()
 	{
 		return this.description;
+	}
+
+	/**
+	 * Used to know if the given action is currently doable.
+	 *
+	 * @param action The action concerned.
+	 * @return True if doable, false if not.
+	 */
+	public boolean isActionDoable(Action action)
+	{
+		if(!this.actions.contains(action))
+			return false;
+		for(Action a : this.actions)
+		{
+			if(a == action)
+				break;
+			if(a.isDone())
+				return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Used to know if that quest is marked as done.
+	 *
+	 * @return True if done, false if not.
+	 */
+	public boolean isDone()
+	{
+		boolean done = true;
+		for(Action a : this.actions)
+			if(!a.isDone())
+				return false;
+		return true;
 	}
 }
