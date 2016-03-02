@@ -17,13 +17,14 @@ import javafx.scene.text.Text;
  */
 public class ActionItem extends HBox
 {
-	private static final int IMG_SIZE = 10;
+	private static final int IMG_ARROW_SIZE = 10;
+	private static final int IMG_DONE_SIZE = 16;
 	private static final Font FONT = Font.font("Verdana", 16);
-	private static final Image TRANSPARENT_IMAGE = Resources.JFX_IMAGE.getImage("transparent.png", IMG_SIZE, IMG_SIZE);
-	private static final Image OPENED_IMAGE = Resources.JFX_IMAGE.getImage("opened.png", IMG_SIZE, IMG_SIZE);
-	private static final Image CLOSED_IMAGE = Resources.JFX_IMAGE.getImage("closed.png", IMG_SIZE, IMG_SIZE);
-	private static final Image DONE_IMAGE = Resources.JFX_IMAGE.getImage("done.png", IMG_SIZE, IMG_SIZE);
-	private static final Image NOT_DONE_IMAGE = Resources.JFX_IMAGE.getImage("not_done.png", IMG_SIZE, IMG_SIZE);
+	private static final Image TRANSPARENT_IMAGE = Resources.JFX_IMAGE.getImage("transparent.png", IMG_ARROW_SIZE, IMG_ARROW_SIZE);
+	private static final Image OPENED_IMAGE = Resources.JFX_IMAGE.getImage("opened.png", IMG_ARROW_SIZE, IMG_ARROW_SIZE);
+	private static final Image CLOSED_IMAGE = Resources.JFX_IMAGE.getImage("closed.png", IMG_ARROW_SIZE, IMG_ARROW_SIZE);
+	private static final Image DONE_IMAGE = Resources.JFX_IMAGE.getImage("done.png", IMG_DONE_SIZE, IMG_DONE_SIZE);
+	private static final Image NOT_DONE_IMAGE = Resources.JFX_IMAGE.getImage("not_done.png", IMG_DONE_SIZE, IMG_DONE_SIZE);
 	private QuestItem subquest;
 	private ImageView imageArrow;
 	private ImageView imageDone;
@@ -77,7 +78,7 @@ public class ActionItem extends HBox
 	private ImageView genImageDone()
 	{
 		this.imageDone = new ImageView(this.action.isDone() ? DONE_IMAGE : NOT_DONE_IMAGE);
-		this.imageDone.setTranslateY(5);
+		this.imageDone.setTranslateY(3);
 		this.imageDone.setOnMouseReleased(event -> switchDoneStatus());
 		return this.imageDone;
 	}
