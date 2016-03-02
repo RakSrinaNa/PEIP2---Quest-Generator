@@ -143,7 +143,7 @@ public class Quest
 		{
 			if(a == action)
 				break;
-			if(a.isDone())
+			if(!a.isDone())
 				return false;
 		}
 		return true;
@@ -156,7 +156,6 @@ public class Quest
 	 */
 	public boolean isDone()
 	{
-		boolean done = true;
 		for(Action a : this.actions)
 			if(!a.isDone())
 				return false;
