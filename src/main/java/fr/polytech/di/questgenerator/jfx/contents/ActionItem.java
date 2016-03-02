@@ -52,7 +52,7 @@ public class ActionItem extends HBox
 			this.getChildren().addAll(genImageDone(), genImageArrow(), vBox);
 		}
 		else
-			this.getChildren().addAll(genImageDone(), genImageArrow(), vBox);
+			this.getChildren().addAll(genImageDone(), vBox);
 		this.setSpacing(5);
 	}
 
