@@ -79,6 +79,7 @@ public class ActionItem extends HBox
 	{
 		this.imageDone = new ImageView(this.action.isDone() ? DONE_IMAGE : NOT_DONE_IMAGE);
 		this.imageDone.setTranslateY(3);
+		this.imageDone.setPickOnBounds(true);
 		this.imageDone.setOnMouseReleased(event -> switchDoneStatus());
 		return this.imageDone;
 	}
