@@ -28,15 +28,15 @@
             <element value="the Old Sorcerer's grave"/>
         </category>
         <category value="dangerous">
-            <element value="the active volcano"/>
+            <element value="the Active Volcano"/>
             <element value="the Death desert"/>
-            <element value="the toxic swamp"/>
-            <element value="the cristal cave"/>
+            <element value="the Toxic Swamp"/>
+            <element value="the Cristal Cave"/>
         </category>
         <category value="job">
-            <element value="the broken water well"/>
-            <element value="the ruined house"/>
-            <element value="the incended tower"/>
+            <element value="the Broken Water Well"/>
+            <element value="the Ruined House"/>
+            <element value="the Incended Tower"/>
         </category>
         <category value="fortification">
             <element value="Drawbridge"/>
@@ -57,7 +57,7 @@
         <element value="Bandage"/>
         <element value="Leather"/>
         <category value="diversion">
-            <element value="fireworks"/>
+            <element value="Fireworks"/>
         </category>
         <category value="readable">
             <element value="Book"/>
@@ -101,8 +101,8 @@
             <element value="Cristal fragments"/>
         </category>
         <category value="usable">
-            <element value="magic dry scepter"/>
-            <element value="magic dry crown"/>
+            <element value="Magic Dry Scepter"/>
+            <element value="Magic Dry Crown"/>
         </category>
         <category value="luxury">
             <element value="Wedding ring"/>
@@ -110,9 +110,9 @@
             <element value="Lucky charm"/>
         </category>
         <category value="rare">
-            <element value="mammoth tusk"/>
-            <element value="fosile"/>
-            <element value="dragon skull"/>
+            <element value="Mammoth Tusk"/>
+            <element value="Fosile"/>
+            <element value="Dragon Skull"/>
         </category>
         <category value="reparation">
             <element value="Hammer"/>
@@ -120,8 +120,8 @@
             <element value="Bricks"/>
         </category>
         <category value="training">
-            <element value="training dummy"/>
-            <element value="tree"/>
+            <element value="Training Dummy"/>
+            <element value="Tree"/>
         </category>
         <category value="stuff">
             <element value="Shield"/>
@@ -135,9 +135,9 @@
                 <element value="Scepter"/>
             </category>
             <category value="capture">
-                <element value="net"/>
-                <element value="lasso"/>
-                <element value="pokeball"/>
+                <element value="Net"/>
+                <element value="Lasso"/>
+                <element value="Pokeball"/>
             </category>
         </category>
     </category>
@@ -226,7 +226,7 @@
             <element value="Cataract"/>
         </category>
         <category value="martial">
-            <element value="karate"/>
+            <element value="Karate"/>
         </category>
     </category>
 </strings>
