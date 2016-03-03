@@ -171,7 +171,7 @@ public enum Strategies
 	{
 		try
 		{
-			return actionExecutor.newInstance().generateQuest(depth, objectives);
+			return actionExecutor.newInstance().generateQuest(, depth, objectives);
 		}
 		catch(InstantiationException | IllegalAccessException ignored)
 		{

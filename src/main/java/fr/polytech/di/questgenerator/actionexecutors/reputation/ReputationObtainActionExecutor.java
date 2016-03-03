@@ -18,7 +18,7 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 public class ReputationObtainActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/rare/*");
 		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomFromCategories("pnj/being/*");
@@ -27,6 +27,6 @@ public class ReputationObtainActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, OBJECTIVE, objectivePnj)));
 
-		return new Quest(getSentence("Reputation_Obtain", objectivePnj, objectiveObject), actionGet, actionGoto, actionGive);
+		return new Quest(parent, getSentence("Reputation_Obtain", objectivePnj, objectiveObject), actionGet, actionGoto, actionGive);
 	}
 }

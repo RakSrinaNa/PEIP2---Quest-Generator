@@ -18,10 +18,10 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 public class AbilityPracticeCombatActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("object/training/*"))), false);
 
-		return new Quest(getSentence("Ability_PracticeCombat"), actionDamage);
+		return new Quest(parent, getSentence("Ability_PracticeCombat"), actionDamage);
 	}
 }

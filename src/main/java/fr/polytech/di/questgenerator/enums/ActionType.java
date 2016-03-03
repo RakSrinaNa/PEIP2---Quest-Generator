@@ -1,6 +1,9 @@
 package fr.polytech.di.questgenerator.enums;
 
-import fr.polytech.di.questgenerator.actionexecutors.action.*;
+import fr.polytech.di.questgenerator.actionexecutors.action.ActionCaptureActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.action.ActionEpsilonActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.action.ActionQuestActionExecutor;
+import fr.polytech.di.questgenerator.actionexecutors.action.ActionSpyActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetExchangeActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetGatherActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.get.ActionGetStealActionExecutor;
@@ -13,6 +16,7 @@ import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealSte
 import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealTakeActionExecutor;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
 import fr.polytech.di.questgenerator.jfx.MainFrame;
+import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.text.MessageFormat;
@@ -144,7 +148,7 @@ public enum ActionType
 	 * @param objectives The objectives for the subquest.
 	 * @return An Optional object containing the Quest.
 	 */
-	public Optional<Quest> genSubquest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Optional<Quest> genSubquest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		if(actionExecutors.isEmpty())
 			return Optional.empty();
@@ -158,7 +162,7 @@ public enum ActionType
 				for(Class<? extends ActionExecutor> actionExecutor : this.actionExecutors)
 					if(actionExecutor.newInstance().isActionAllowed(objectives))
 						candidates.add(actionExecutor);
-				quest = getRandomActionExecutor(depth, candidates).newInstance().generateQuest(depth + 1, objectives);
+				quest = getRandomActionExecutor(depth, candidates).newInstance().generateQuest(parent, depth + 1, objectives);
 			}
 			catch(InstantiationException | IllegalAccessException ignored)
 			{

@@ -18,10 +18,10 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 public class KnowledgeSpyActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Action actionSpy = new Action(this.getClass(), depth, ActionType.SPY, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("pnj/being/*"))));
 
-		return new Quest(getSentence("Knowledge_Spy", actionSpy.getObjective(OBJECTIVE)), actionSpy);
+		return new Quest(parent, getSentence("Knowledge_Spy", actionSpy.getObjective(OBJECTIVE)), actionSpy);
 	}
 }

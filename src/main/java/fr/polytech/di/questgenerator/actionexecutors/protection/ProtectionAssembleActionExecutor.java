@@ -18,11 +18,11 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 public class ProtectionAssembleActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/place/*"))));
 		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/fortification/*"))), false);
 
-		return new Quest(getSentence("Protection_Assemble", actionRepair.getObjective(OBJECTIVE), actionGoto.getObjective(OBJECTIVE)), actionGoto, actionRepair);
+		return new Quest(parent, getSentence("Protection_Assemble", actionRepair.getObjective(OBJECTIVE), actionGoto.getObjective(OBJECTIVE)), actionGoto, actionRepair);
 	}
 }

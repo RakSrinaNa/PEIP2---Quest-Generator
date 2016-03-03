@@ -18,7 +18,7 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 public class ComfortKillActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement pnjKill = DataHandler.getRandomFromCategories("pnj/beast/pests/*");
 		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories("pnj/being/*");
@@ -28,6 +28,6 @@ public class ComfortKillActionExecutor implements ActionExecutor
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
 		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
 
-		return new Quest(getSentence("Comfort_Kill", pnjReport, pnjKill), actionGotoKill, actionDamage, actionGotoReport, actionReport);
+		return new Quest(parent, getSentence("Comfort_Kill", pnjReport, pnjKill), actionGotoKill, actionDamage, actionGotoReport, actionReport);
 	}
 }

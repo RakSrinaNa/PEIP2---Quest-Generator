@@ -18,13 +18,13 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 public class WealthGatherActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories("area/mine/*");
 
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/material/*")), new ObjectiveHelper(LOC_OBJECTIVE, objectiveArea)));
 
-		return new Quest(getSentence("Wealth_Gather", objectiveArea, actionGet.getObjective(OBJ_GET)), actionGoto, actionGet);
+		return new Quest(parent, getSentence("Wealth_Gather", objectiveArea, actionGet.getObjective(OBJ_GET)), actionGoto, actionGet);
 	}
 }

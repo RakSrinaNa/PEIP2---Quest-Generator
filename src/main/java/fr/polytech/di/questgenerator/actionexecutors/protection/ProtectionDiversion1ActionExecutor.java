@@ -18,7 +18,7 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 public class ProtectionDiversion1ActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/diversion/*");
 		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories("area/place/*");
@@ -27,6 +27,6 @@ public class ProtectionDiversion1ActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveArea)), false);
 
-		return new Quest(getSentence("Protection_Diversion1", actionGet.getObjective(LOC_OBJECTIVE), objectiveArea), actionGet, actionGoto, actionUse);
+		return new Quest(parent, getSentence("Protection_Diversion1", actionGet.getObjective(LOC_OBJECTIVE), objectiveArea), actionGet, actionGoto, actionUse);
 	}
 }

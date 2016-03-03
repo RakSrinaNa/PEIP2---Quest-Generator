@@ -11,6 +11,7 @@ import java.util.LinkedHashSet;
  */
 public class Quest
 {
+	private final Action parent;
 	private final String description;
 	private final LinkedHashSet<Action> actions;
 
@@ -19,9 +20,9 @@ public class Quest
 	 *
 	 * @param actions The list of Action defining the quest.
 	 */
-	public Quest(Action... actions)
+	public Quest(Action parent, Action... actions)
 	{
-		this(null, actions);
+		this(parent, null, actions);
 	}
 
 	/**
@@ -30,8 +31,9 @@ public class Quest
 	 * @param description The description of the quest.
 	 * @param actions The list of Action defining the quest.
 	 */
-	public Quest(String description, Action... actions)
+	public Quest(Action parent, String description, Action... actions)
 	{
+		this.parent = parent;
 		this.description = description;
 		this.actions = new LinkedHashSet<>(actions.length);
 		Collections.addAll(this.actions, actions);
@@ -160,5 +162,18 @@ public class Quest
 			if(!a.isDone())
 				return false;
 		return true;
+	}
+
+	public Action getActionToDo()
+	{
+		for(Action a : this.actions)
+			if(!a.isDone() && a.isDoable())
+				return a.getActionToDo();
+		return null;
+	}
+
+	public Action getParent()
+	{
+		return this.parent;
 	}
 }

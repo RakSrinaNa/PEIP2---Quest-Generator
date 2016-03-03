@@ -18,11 +18,11 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 public class ProtectionDiversion2ActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/place/*"))));
 		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/fortification/*"))), false);
 
-		return new Quest(getSentence("Protection_Diversion2", DataHandler.getRandomFromCategories("pnj/being/*"), actionGoto.getObjective(OBJECTIVE), actionDamage.getObjective(OBJECTIVE)), actionGoto, actionDamage);
+		return new Quest(parent, getSentence("Protection_Diversion2", DataHandler.getRandomFromCategories("pnj/being/*"), actionGoto.getObjective(OBJECTIVE), actionDamage.getObjective(OBJECTIVE)), actionGoto, actionDamage);
 	}
 }
