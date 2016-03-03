@@ -19,7 +19,7 @@ public interface GameListener
 
 	boolean experimentEvent(XMLStringObjectiveElement object);
 
-	boolean exploredEvent(XMLStringObjectiveElement area);
+	boolean exploreEvent(XMLStringObjectiveElement area);
 
 	boolean gatherEvent(XMLStringObjectiveElement object);
 

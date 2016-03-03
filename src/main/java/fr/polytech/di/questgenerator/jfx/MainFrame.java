@@ -208,9 +208,9 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 	}
 
 	@Override
-	public boolean exploredEvent(XMLStringObjectiveElement area)
+	public boolean exploreEvent(XMLStringObjectiveElement area)
 	{
-		boolean result = this.quest.getQuest().exploredEvent(area);
+		boolean result = this.quest.getQuest().exploreEvent(area);
 		if(result)
 			refresh();
 		return result;

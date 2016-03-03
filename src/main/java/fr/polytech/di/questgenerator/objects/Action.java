@@ -344,12 +344,12 @@ public class Action implements GameListener
 	}
 
 	@Override
-	public boolean exploredEvent(XMLStringObjectiveElement area)
+	public boolean exploreEvent(XMLStringObjectiveElement area)
 	{
 		if(this.isDone() || !isDoable())
 			return false;
 		if(this.subquest.isPresent())
-			return this.subquest.get().exploredEvent(area);
+			return this.subquest.get().exploreEvent(area);
 		if(this.actionType == EXPLORE && isCorrectObjective(OBJECTIVE, area))
 		{
 			setDone(true);
@@ -454,7 +454,7 @@ public class Action implements GameListener
 		if(this.isDone() || !isDoable())
 			return false;
 		if(this.subquest.isPresent())
-			return this.subquest.get().exploredEvent(pnj);
+			return this.subquest.get().exploreEvent(pnj);
 		if(this.actionType == LISTEN && isCorrectObjective(OBJECTIVE, pnj))
 		{
 			setDone(true);

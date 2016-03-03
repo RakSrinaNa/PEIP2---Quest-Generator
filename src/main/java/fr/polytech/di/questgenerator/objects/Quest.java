@@ -280,13 +280,13 @@ public class Quest implements GameListener
 	}
 
 	@Override
-	public boolean exploredEvent(XMLStringObjectiveElement area)
+	public boolean exploreEvent(XMLStringObjectiveElement area)
 	{
 		if(this.isDone())
 			return false;
 		boolean result = false;
 		for(Action action : this.getActions())
-			result |= action.exploredEvent(area);
+			result |= action.exploreEvent(area);
 		return result;
 	}
 
