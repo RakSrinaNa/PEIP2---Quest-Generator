@@ -214,46 +214,244 @@ public class Quest implements GameListener
 	}
 
 	@Override
-	public boolean areaExploredEvent(XMLStringObjectiveElement area)
+	public boolean captureEvent(XMLStringObjectiveElement pnj)
 	{
 		if(this.isDone())
 			return false;
 		boolean result = false;
 		for(Action action : this.getActions())
-			result |= action.areaExploredEvent(area);
+			result |= action.captureEvent(pnj);
 		return result;
 	}
 
 	@Override
-	public boolean objectGotEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	public boolean damageEvent(XMLStringObjectiveElement target)
 	{
 		if(this.isDone())
 			return false;
 		boolean result = false;
 		for(Action action : this.getActions())
-			result |= action.objectGotEvent(object, from);
+			result |= action.damageEvent(target);
 		return result;
 	}
 
 	@Override
-	public boolean listenedEvent(XMLStringObjectiveElement pnj)
+	public boolean defendEvent(XMLStringObjectiveElement object)
 	{
 		if(this.isDone())
 			return false;
 		boolean result = false;
 		for(Action action : this.getActions())
-			result |= action.listenedEvent(pnj);
+			result |= action.defendEvent(object);
 		return result;
 	}
 
 	@Override
-	public boolean usedEvent(XMLStringObjectiveElement used, XMLStringObjectiveElement on)
+	public boolean escortEvent(XMLStringObjectiveElement pnj)
 	{
 		if(this.isDone())
 			return false;
 		boolean result = false;
 		for(Action action : this.getActions())
-			result |= action.usedEvent(used, on);
+			result |= action.escortEvent(pnj);
+		return result;
+	}
+
+	@Override
+	public boolean exchangeEvent(XMLStringObjectiveElement objectGive, XMLStringObjectiveElement objectGet, XMLStringObjectiveElement to)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.exchangeEvent(objectGive, objectGet, to);
+		return result;
+	}
+
+	@Override
+	public boolean experimentEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.experimentEvent(object);
+		return result;
+	}
+
+	@Override
+	public boolean exploredEvent(XMLStringObjectiveElement area)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.exploredEvent(area);
+		return result;
+	}
+
+	@Override
+	public boolean gatherEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.gatherEvent(object);
+		return result;
+	}
+
+	@Override
+	public boolean getEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.getEvent(object, from);
+		return result;
+	}
+
+	@Override
+	public boolean giveEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement to)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.giveEvent(object, to);
+		return result;
+	}
+
+	@Override
+	public boolean gotoEvent(XMLStringObjectiveElement area)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.gotoEvent(area);
+		return result;
+	}
+
+	@Override
+	public boolean killEvent(XMLStringObjectiveElement pnj)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.killEvent(pnj);
+		return result;
+	}
+
+	@Override
+	public boolean learnEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.learnEvent(object);
+		return result;
+	}
+
+	@Override
+	public boolean listenEvent(XMLStringObjectiveElement pnj)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.listenEvent(pnj);
+		return result;
+	}
+
+	@Override
+	public boolean readEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.readEvent(object);
+		return result;
+	}
+
+	@Override
+	public boolean repairEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.repairEvent(object);
+		return result;
+	}
+
+	@Override
+	public boolean reportEvent(XMLStringObjectiveElement to)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.reportEvent(to);
+		return result;
+	}
+
+	@Override
+	public boolean spyEvent(XMLStringObjectiveElement on)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.spyEvent(on);
+		return result;
+	}
+
+	@Override
+	public boolean stealEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.stealEvent(object, from);
+		return result;
+	}
+
+	@Override
+	public boolean stealthEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.stealthEvent(object);
+		return result;
+	}
+
+	@Override
+	public boolean takeEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.takeEvent(object, from);
+		return result;
+	}
+
+	@Override
+	public boolean useEvent(XMLStringObjectiveElement used, XMLStringObjectiveElement on)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.useEvent(used, on);
 		return result;
 	}
 }

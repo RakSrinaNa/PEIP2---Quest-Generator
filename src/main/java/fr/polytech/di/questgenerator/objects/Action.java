@@ -253,49 +253,265 @@ public class Action implements GameListener
 	}
 
 	@Override
-	public boolean areaExploredEvent(XMLStringObjectiveElement area)
+	public boolean captureEvent(XMLStringObjectiveElement pnj)
 	{
-		if(this.actionType != EXPLORE || this.isDone() || !isDoable())
+		if(this.isDone() || !isDoable())
 			return false;
 		if(this.subquest.isPresent())
-			return this.subquest.get().areaExploredEvent(area);
-		if(isCorrectObjective(OBJECTIVE, area))
+			return this.subquest.get().captureEvent(pnj);
+		if(this.actionType != CAPTURE && isCorrectObjective(OBJECTIVE, pnj))
 			setDone(true);
 		return false;
 	}
 
 	@Override
-	public boolean objectGotEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	public boolean damageEvent(XMLStringObjectiveElement target)
 	{
-		if(this.actionType != GET || this.isDone() || !isDoable())
+		if(this.isDone() || !isDoable())
 			return false;
 		if(this.subquest.isPresent())
-			return this.subquest.get().objectGotEvent(object, from);
-		if(isCorrectObjective(OBJ_GET, object) && isCorrectObjective(LOC_OBJECTIVE, from))
+			return this.subquest.get().damageEvent(target);
+		if(this.actionType != DAMAGE && isCorrectObjective(OBJECTIVE, target))
 			setDone(true);
 		return false;
 	}
 
 	@Override
-	public boolean listenedEvent(XMLStringObjectiveElement pnj)
+	public boolean defendEvent(XMLStringObjectiveElement object)
 	{
-		if(this.actionType != LISTEN || this.isDone() || !isDoable())
+		if(this.isDone() || !isDoable())
 			return false;
 		if(this.subquest.isPresent())
-			return this.subquest.get().areaExploredEvent(pnj);
-		if(isCorrectObjective(OBJECTIVE, pnj))
+			return this.subquest.get().defendEvent(object);
+		if(this.actionType != DEFEND && isCorrectObjective(OBJECTIVE, object))
 			setDone(true);
 		return false;
 	}
 
 	@Override
-	public boolean usedEvent(XMLStringObjectiveElement used, XMLStringObjectiveElement on)
+	public boolean escortEvent(XMLStringObjectiveElement pnj)
 	{
-		if(this.actionType != USE || this.isDone() || !isDoable())
+		if(this.isDone() || !isDoable())
 			return false;
 		if(this.subquest.isPresent())
-			return this.subquest.get().usedEvent(used, on);
-		if(isCorrectObjective(OBJ_USE, used) && isCorrectObjective(LOC_OBJECTIVE, on))
+			return this.subquest.get().escortEvent(pnj);
+		if(this.actionType != ESCORT && isCorrectObjective(OBJECTIVE, pnj))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean exchangeEvent(XMLStringObjectiveElement objectGive, XMLStringObjectiveElement objectGet, XMLStringObjectiveElement to)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().exchangeEvent(objectGive, objectGet, to);
+		if(this.actionType != EXCHANGE && isCorrectObjective(OBJ_GIVE, objectGive) && isCorrectObjective(OBJ_GET, objectGet) && isCorrectObjective(PNJ, to))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean experimentEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().experimentEvent(object);
+		if(this.actionType != EXPERIMENT && isCorrectObjective(OBJECTIVE, object))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean exploredEvent(XMLStringObjectiveElement area)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().exploredEvent(area);
+		if(this.actionType != EXPLORE && isCorrectObjective(OBJECTIVE, area))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean gatherEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().gatherEvent(object);
+		if(this.actionType != GATHER && isCorrectObjective(OBJECTIVE, object))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean getEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().getEvent(object, from);
+		if(this.actionType != GET && isCorrectObjective(OBJ_GET, object) && isCorrectObjective(LOC_OBJECTIVE, from))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean giveEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement to)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().giveEvent(object, to);
+		if(this.actionType != GIVE && isCorrectObjective(OBJ_GIVE, object) && isCorrectObjective(LOC_OBJECTIVE, to))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean gotoEvent(XMLStringObjectiveElement area)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().gotoEvent(area);
+		if(this.actionType != GOTO && isCorrectObjective(OBJECTIVE, area))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean killEvent(XMLStringObjectiveElement pnj)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().killEvent(pnj);
+		if(this.actionType != KILL && isCorrectObjective(OBJECTIVE, pnj))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean learnEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().learnEvent(object);
+		if(this.actionType != LEARN && isCorrectObjective(OBJECTIVE, object))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean listenEvent(XMLStringObjectiveElement pnj)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().exploredEvent(pnj);
+		if(this.actionType != LISTEN && isCorrectObjective(OBJECTIVE, pnj))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean readEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().readEvent(object);
+		if(this.actionType != READ && isCorrectObjective(OBJECTIVE, object))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean repairEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().repairEvent(object);
+		if(this.actionType != REPAIR && isCorrectObjective(OBJECTIVE, object))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean reportEvent(XMLStringObjectiveElement to)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().reportEvent(to);
+		if(this.actionType != REPORT && isCorrectObjective(OBJECTIVE, to))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean spyEvent(XMLStringObjectiveElement on)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().spyEvent(on);
+		if(this.actionType != SPY && isCorrectObjective(OBJECTIVE, on))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean stealEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().stealEvent(object, from);
+		if(this.actionType != STEAL && isCorrectObjective(OBJ_GET, object) && isCorrectObjective(PNJ, from))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean stealthEvent(XMLStringObjectiveElement object)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().stealthEvent(object);
+		if(this.actionType != STEALTH && isCorrectObjective(OBJECTIVE, object))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean takeEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().takeEvent(object, from);
+		if(this.actionType != TAKE && isCorrectObjective(OBJ_GET, object) && isCorrectObjective(PNJ, from))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean useEvent(XMLStringObjectiveElement used, XMLStringObjectiveElement on)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().useEvent(used, on);
+		if(this.actionType != USE && isCorrectObjective(OBJ_USE, used) && isCorrectObjective(LOC_OBJECTIVE, on))
 			setDone(true);
 		return false;
 	}

@@ -115,7 +115,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 
 		Button exploreButton = new Button("Explore " + element.getValue());
 		exploreButton.setMaxWidth(Double.MAX_VALUE);
-		exploreButton.setOnMouseReleased(event -> MainFrame.this.areaExploredEvent(element));
+		exploreButton.setOnMouseReleased(event -> MainFrame.this.exploredEvent(element));
 
 		VBox buttons = new VBox();
 		buttons.getChildren().addAll(exploreButton, reloadButton, exportButton);
@@ -133,36 +133,196 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 	}
 
 	@Override
-	public boolean areaExploredEvent(XMLStringObjectiveElement area)
+	public boolean captureEvent(XMLStringObjectiveElement pnj)
 	{
-		boolean result = this.quest.getQuest().areaExploredEvent(area);
+		boolean result = this.quest.getQuest().captureEvent(pnj);
 		if(result)
 			refresh();
 		return result;
 	}
 
 	@Override
-	public boolean objectGotEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	public boolean damageEvent(XMLStringObjectiveElement target)
 	{
-		boolean result = this.quest.getQuest().objectGotEvent(object, from);
+		boolean result = this.quest.getQuest().damageEvent(target);
 		if(result)
 			refresh();
 		return result;
 	}
 
 	@Override
-	public boolean listenedEvent(XMLStringObjectiveElement pnj)
+	public boolean defendEvent(XMLStringObjectiveElement object)
 	{
-		boolean result = this.quest.getQuest().listenedEvent(pnj);
+		boolean result = this.quest.getQuest().defendEvent(object);
+		if(result)
+			refresh();
+		return result;	}
+
+	@Override
+	public boolean escortEvent(XMLStringObjectiveElement pnj)
+	{
+		boolean result = this.quest.getQuest().escortEvent(pnj);
+		if(result)
+			refresh();
+		return result;	}
+
+	@Override
+	public boolean exchangeEvent(XMLStringObjectiveElement objectGive, XMLStringObjectiveElement objectGet, XMLStringObjectiveElement to)
+	{
+		boolean result = this.quest.getQuest().exchangeEvent(objectGive, objectGet, to);
 		if(result)
 			refresh();
 		return result;
 	}
 
 	@Override
-	public boolean usedEvent(XMLStringObjectiveElement used, XMLStringObjectiveElement on)
+	public boolean experimentEvent(XMLStringObjectiveElement object)
 	{
-		boolean result = this.quest.getQuest().usedEvent(used, on);
+		boolean result = this.quest.getQuest().experimentEvent(object);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean exploredEvent(XMLStringObjectiveElement area)
+	{
+		boolean result = this.quest.getQuest().exploredEvent(area);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean gatherEvent(XMLStringObjectiveElement object)
+	{
+		boolean result = this.quest.getQuest().gatherEvent(object);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean getEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		boolean result = this.quest.getQuest().getEvent(object, from);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean giveEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement to)
+	{
+		boolean result = this.quest.getQuest().giveEvent(object, to);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean gotoEvent(XMLStringObjectiveElement area)
+	{
+		boolean result = this.quest.getQuest().gotoEvent(area);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean killEvent(XMLStringObjectiveElement pnj)
+	{
+		boolean result = this.quest.getQuest().killEvent(pnj);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean learnEvent(XMLStringObjectiveElement object)
+	{
+		boolean result = this.quest.getQuest().learnEvent(object);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean listenEvent(XMLStringObjectiveElement pnj)
+	{
+		boolean result = this.quest.getQuest().listenEvent(pnj);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean readEvent(XMLStringObjectiveElement object)
+	{
+		boolean result = this.quest.getQuest().readEvent(object);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean repairEvent(XMLStringObjectiveElement object)
+	{
+		boolean result = this.quest.getQuest().repairEvent(object);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean reportEvent(XMLStringObjectiveElement to)
+	{
+		boolean result = this.quest.getQuest().reportEvent(to);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean spyEvent(XMLStringObjectiveElement on)
+	{
+		boolean result = this.quest.getQuest().spyEvent(on);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean stealEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		boolean result = this.quest.getQuest().stealEvent(object, from);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean stealthEvent(XMLStringObjectiveElement object)
+	{
+		boolean result = this.quest.getQuest().stealthEvent(object);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean takeEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		boolean result = this.quest.getQuest().takeEvent(object, from);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean useEvent(XMLStringObjectiveElement used, XMLStringObjectiveElement on)
+	{
+		boolean result = this.quest.getQuest().useEvent(used, on);
 		if(result)
 			refresh();
 		return result;
