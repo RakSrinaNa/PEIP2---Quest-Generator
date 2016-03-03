@@ -6,9 +6,7 @@ import fr.polytech.di.questgenerator.interfaces.GameListener;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.HashMap;
 import java.util.Optional;
-import static fr.polytech.di.questgenerator.enums.ActionType.EXPLORE;
-import static fr.polytech.di.questgenerator.enums.ActionType.GET;
-import static fr.polytech.di.questgenerator.enums.ActionType.LISTEN;
+import static fr.polytech.di.questgenerator.enums.ActionType.*;
 import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 
 /**
