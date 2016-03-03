@@ -214,13 +214,46 @@ public class Quest implements GameListener
 	}
 
 	@Override
-	public boolean areaExplored(XMLStringObjectiveElement area)
+	public boolean areaExploredEvent(XMLStringObjectiveElement area)
 	{
 		if(this.isDone())
 			return false;
 		boolean result = false;
 		for(Action action : this.getActions())
-			result |= action.areaExplored(area);
+			result |= action.areaExploredEvent(area);
+		return result;
+	}
+
+	@Override
+	public boolean objectGotEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.objectGotEvent(object, from);
+		return result;
+	}
+
+	@Override
+	public boolean listenedEvent(XMLStringObjectiveElement pnj)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.listenedEvent(pnj);
+		return result;
+	}
+
+	@Override
+	public boolean usedEvent(XMLStringObjectiveElement used, XMLStringObjectiveElement on)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.usedEvent(used, on);
 		return result;
 	}
 }

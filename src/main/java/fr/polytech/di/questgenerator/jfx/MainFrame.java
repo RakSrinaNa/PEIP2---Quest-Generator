@@ -115,7 +115,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 
 		Button exploreButton = new Button("Explore " + element.getValue());
 		exploreButton.setMaxWidth(Double.MAX_VALUE);
-		exploreButton.setOnMouseReleased(event -> MainFrame.this.areaExplored(element));
+		exploreButton.setOnMouseReleased(event -> MainFrame.this.areaExploredEvent(element));
 
 		VBox buttons = new VBox();
 		buttons.getChildren().addAll(exploreButton, reloadButton, exportButton);
@@ -133,9 +133,36 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 	}
 
 	@Override
-	public boolean areaExplored(XMLStringObjectiveElement area)
+	public boolean areaExploredEvent(XMLStringObjectiveElement area)
 	{
-		boolean result = this.quest.getQuest().areaExplored(area);
+		boolean result = this.quest.getQuest().areaExploredEvent(area);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean objectGotEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		boolean result = this.quest.getQuest().objectGotEvent(object, from);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean listenedEvent(XMLStringObjectiveElement pnj)
+	{
+		boolean result = this.quest.getQuest().listenedEvent(pnj);
+		if(result)
+			refresh();
+		return result;
+	}
+
+	@Override
+	public boolean usedEvent(XMLStringObjectiveElement used, XMLStringObjectiveElement on)
+	{
+		boolean result = this.quest.getQuest().usedEvent(used, on);
 		if(result)
 			refresh();
 		return result;

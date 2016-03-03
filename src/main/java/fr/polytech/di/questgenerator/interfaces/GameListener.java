@@ -7,5 +7,11 @@ import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
  */
 public interface GameListener
 {
-	boolean areaExplored(XMLStringObjectiveElement area);
+	boolean areaExploredEvent(XMLStringObjectiveElement area);
+
+	boolean objectGotEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from);
+
+	boolean listenedEvent(XMLStringObjectiveElement pnj);
+
+	boolean usedEvent(XMLStringObjectiveElement used, XMLStringObjectiveElement on);
 }

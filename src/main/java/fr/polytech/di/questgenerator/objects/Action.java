@@ -6,7 +6,10 @@ import fr.polytech.di.questgenerator.interfaces.GameListener;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.HashMap;
 import java.util.Optional;
-import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
+import static fr.polytech.di.questgenerator.enums.ActionType.EXPLORE;
+import static fr.polytech.di.questgenerator.enums.ActionType.GET;
+import static fr.polytech.di.questgenerator.enums.ActionType.LISTEN;
+import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 
 /**
  * Define an actionType to do.
@@ -246,32 +249,56 @@ public class Action implements GameListener
 		this.getParentQuest().notifyQuestDone(quest);
 	}
 
-	@Override
-	public boolean areaExplored(XMLStringObjectiveElement area)
-	{
-		if(this.isDone() || !isDoable())
-			return false;
-		boolean done = false;
-		if(this.subquest.isPresent())
-			return this.subquest.get().areaExplored(area);
-		else
-			switch(actionType)
-			{
-				case EXPLORE:
-					if(isCorrectObjective(OBJECTIVE, area))
-					{
-						done = true;
-						setDone(true);
-					}
-					break;
-			}
-		return done;
-	}
-
-
-
 	private boolean isCorrectObjective(ObjectiveType objectiveType, XMLStringObjectiveElement objective)
 	{
 		return this.getObjective(objectiveType).is(objective);
+	}
+
+	@Override
+	public boolean areaExploredEvent(XMLStringObjectiveElement area)
+	{
+		if(this.actionType != EXPLORE || this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().areaExploredEvent(area);
+		if(isCorrectObjective(OBJECTIVE, area))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean objectGotEvent(XMLStringObjectiveElement object, XMLStringObjectiveElement from)
+	{
+		if(this.actionType != GET || this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().objectGotEvent(object, from);
+		if(isCorrectObjective(OBJ_GET, object) && isCorrectObjective(LOC_OBJECTIVE, from))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean listenedEvent(XMLStringObjectiveElement pnj)
+	{
+		if(this.actionType != LISTEN || this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().areaExploredEvent(pnj);
+		if(isCorrectObjective(OBJECTIVE, pnj))
+			setDone(true);
+		return false;
+	}
+
+	@Override
+	public boolean usedEvent(XMLStringObjectiveElement used, XMLStringObjectiveElement on)
+	{
+		if(this.actionType != USE || this.isDone() || !isDoable())
+			return false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().usedEvent(used, on);
+		if(isCorrectObjective(OBJ_USE, used) && isCorrectObjective(LOC_OBJECTIVE, on))
+			setDone(true);
+		return false;
 	}
 }
