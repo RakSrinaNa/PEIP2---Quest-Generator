@@ -19,6 +19,7 @@ public class QuestItem extends VBox
 	private VBox actions;
 	private Text description;
 	private final boolean doable;
+	private Quest quest;
 
 	/**
 	 * Constructor.
@@ -86,6 +87,7 @@ public class QuestItem extends VBox
 	 */
 	private void loadQuest(Quest quest)
 	{
+		this.quest = quest;
 		if(quest.hasDescription())
 		{
 			description.setText(quest.getDescription());
@@ -100,5 +102,10 @@ public class QuestItem extends VBox
 	public void refresh()
 	{
 		this.actions.getChildren().stream().filter(node -> node instanceof ActionItem).forEach(node -> ((ActionItem) node).refresh());
+	}
+
+	public Quest getQuest()
+	{
+		return this.quest;
 	}
 }

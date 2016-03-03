@@ -55,6 +55,12 @@ public class Quest
 		return new QuestEpsilon(parent);
 	}
 
+	@Override
+	public String toString()
+	{
+		return actions.toString();
+	}
+
 	/**
 	 * Get the Action of the quest.
 	 *
@@ -198,5 +204,10 @@ public class Quest
 			getParent().notifyActionDone(action);
 		if(isDone())
 			notifyQuestDone(this);
+	}
+
+	public void addQuestListener(QuestListener questListener)
+	{
+		this.questListeners.add(questListener);
 	}
 }
