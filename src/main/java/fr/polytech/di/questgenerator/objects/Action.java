@@ -199,6 +199,7 @@ public class Action
 	public void setDone(boolean done)
 	{
 		this.done = done;
+		notifyActionDone(this);
 	}
 
 	/**
@@ -208,9 +209,9 @@ public class Action
 	 */
 	public boolean isDoable()
 	{
-		if(this.parentQuest == null)
+		if(this.getParentQuest() == null)
 			return true;
-		return this.parentQuest.isActionDoable(this);
+		return this.getParentQuest().isActionDoable(this);
 	}
 
 	/**
@@ -223,8 +224,23 @@ public class Action
 		this.parentQuest = quest;
 	}
 
+	public Quest getParentQuest()
+	{
+		return this.parentQuest;
+	}
+
 	public Action getActionToDo()
 	{
 		return this.subquest.isPresent() ? this.subquest.get().getActionToDo() : this;
+	}
+
+	public void notifyActionDone(Action action)
+	{
+		this.getParentQuest().notifyActionDone(action);
+	}
+
+	public void notifyQuestDone(Quest quest)
+	{
+		this.getParentQuest().notifyQuestDone(quest);
 	}
 }

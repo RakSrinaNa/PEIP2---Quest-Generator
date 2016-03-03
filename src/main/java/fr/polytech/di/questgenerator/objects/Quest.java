@@ -1,8 +1,11 @@
 package fr.polytech.di.questgenerator.objects;
 
 import fr.polytech.di.questgenerator.enums.ActionType;
+import fr.polytech.di.questgenerator.interfaces.QuestListener;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 /**
  * A quest.
@@ -11,6 +14,7 @@ import java.util.LinkedHashSet;
  */
 public class Quest
 {
+	private final List<QuestListener> questListeners;
 	private final Action parent;
 	private final String description;
 	private final LinkedHashSet<Action> actions;
@@ -33,6 +37,7 @@ public class Quest
 	 */
 	public Quest(Action parent, String description, Action... actions)
 	{
+		this.questListeners = new ArrayList<>();
 		this.parent = parent;
 		this.description = description;
 		this.actions = new LinkedHashSet<>(actions.length);
@@ -175,5 +180,23 @@ public class Quest
 	public Action getParent()
 	{
 		return this.parent;
+	}
+
+	public void notifyQuestDone(Quest quest)
+	{
+		for(QuestListener listener : questListeners)
+			listener.questDone(quest);
+		if(getParent() != null)
+			getParent().notifyQuestDone(quest);
+	}
+
+	public void notifyActionDone(Action action)
+	{
+		for(QuestListener listener : questListeners)
+			listener.actionDone(action);
+		if(getParent() != null)
+			getParent().notifyActionDone(action);
+		if(isDone())
+			notifyQuestDone(this);
 	}
 }
