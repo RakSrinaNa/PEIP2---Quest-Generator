@@ -1,6 +1,5 @@
 package fr.polytech.di.questgenerator.jfx;
 
-import com.google.common.collect.Lists;
 import fr.polytech.di.questgenerator.QuestGenerator;
 import fr.polytech.di.questgenerator.enums.Resources;
 import fr.polytech.di.questgenerator.interfaces.GameListener;
@@ -27,7 +26,8 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Main frame of the application.
@@ -141,7 +141,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 	{
 		VBox pane = new VBox(5);
 		pane.setPadding(new Insets(2, 2, 2, 2));
-		ArrayList<Method> methods = Lists.newArrayList(GameListener.class.getMethods());
+		List<Method> methods = Arrays.asList(GameListener.class.getMethods());
 		methods.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
 		for(Method method : methods)
 			pane.getChildren().add(new EventNode(this, method));

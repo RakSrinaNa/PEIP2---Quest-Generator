@@ -1,6 +1,5 @@
 package fr.polytech.di.questgenerator.objects;
 
-import com.intellij.util.containers.SortedList;
 import fr.polytech.di.questgenerator.enums.Resources;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveCategory;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
@@ -13,7 +12,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -47,18 +45,12 @@ public class DataHandler
 		return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
 	}
 
-	public static SortedList<XMLStringObjectiveElement> getAllSorted()
+	public static ArrayList<XMLStringObjectiveElement> getAllSorted()
 	{
-		SortedList<XMLStringObjectiveElement> list = new SortedList<>(new Comparator<XMLStringObjectiveElement>()
-		{
-			@Override
-			public int compare(XMLStringObjectiveElement o1, XMLStringObjectiveElement o2)
-			{
-				return o1.compareTo(o2);
-			}
-		});
+		ArrayList<XMLStringObjectiveElement> list = new ArrayList<>();
 		for(XMLStringObjectiveCategory category : strings)
 			list.addAll(category.getAllValues(true));
+		list.sort(XMLStringObjectiveElement::compareTo);
 		return list;
 	}
 
