@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
  *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class ActionItem extends HBox
+public class ActionNode extends HBox
 {
 	private static final int IMG_ARROW_SIZE = 10;
 	private static final int IMG_DONE_SIZE = 16;
@@ -38,7 +38,7 @@ public class ActionItem extends HBox
 	 * @param doable Tell if the interface should take care if an action is doable or not.
 	 * @param action The action to display.
 	 */
-	public ActionItem(MainRefresh mainRefresh, boolean doable, Action action)
+	public ActionNode(MainRefresh mainRefresh, boolean doable, Action action)
 	{
 		super();
 		this.mainRefresh = mainRefresh;

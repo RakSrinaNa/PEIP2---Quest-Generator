@@ -5,9 +5,8 @@ import fr.polytech.di.questgenerator.enums.Resources;
 import fr.polytech.di.questgenerator.interfaces.GameListener;
 import fr.polytech.di.questgenerator.interfaces.MainRefresh;
 import fr.polytech.di.questgenerator.interfaces.QuestListener;
-import fr.polytech.di.questgenerator.jfx.contents.QuestItem;
+import fr.polytech.di.questgenerator.jfx.contents.QuestNode;
 import fr.polytech.di.questgenerator.objects.Action;
-import fr.polytech.di.questgenerator.objects.DataHandler;
 import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import javafx.application.Application;
@@ -25,6 +24,7 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 /**
  * Main frame of the application.
@@ -36,7 +36,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 	public static final boolean DEBUG = false;
 	public static final String PARAM_PRESENTATION = "--prez";
 	public static final int MAX_DEPTH = 3;
-	private QuestItem quest;
+	private QuestNode quest;
 	private Stage stage;
 
 	/**
@@ -86,11 +86,11 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 
 		BorderPane pane = new BorderPane();
 
-		quest = new QuestItem(this, this.getParameters().getUnnamed().contains(PARAM_PRESENTATION), QuestGenerator.createNewRandomQuest(), 0);
+		quest = new QuestNode(this, this.getParameters().getUnnamed().contains(PARAM_PRESENTATION), QuestGenerator.createNewRandomQuest(), 0);
 		quest.getQuest().addQuestListener(questListener);
 		ScrollPane scroll = new ScrollPane(quest);
 		scroll.setPrefSize(400, 600);
-		scroll.setStyle("-fx-background: " + QuestItem.getStringColor(0) + ";");
+		scroll.setStyle("-fx-background: " + QuestNode.getStringColor(0) + ";");
 
 		Button reloadButton = new Button("Reload quest");
 		reloadButton.setMaxWidth(Double.MAX_VALUE);
@@ -113,18 +113,31 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 			}
 		});
 
-		final XMLStringObjectiveElement element = DataHandler.getRandomFromCategories("area/wild/*");
-
-		Button exploreButton = new Button("Explore " + element.getValue());
-		exploreButton.setMaxWidth(Double.MAX_VALUE);
-		exploreButton.setOnMouseReleased(event -> MainFrame.this.exploredEvent(element));
+		Button eventsButton = new Button("Events");
+		eventsButton.setMaxWidth(Double.MAX_VALUE);
+		eventsButton.setOnMouseReleased(event -> {
+			Stage stage = new Stage();
+			stage.setTitle("Events");
+			stage.getIcons().add(new Image(Resources.JFX.getResource("icon64.png").toString()));
+			stage.setScene(new Scene(createEventContent()));
+			stage.sizeToScene();
+			stage.show();
+		});
 
 		VBox buttons = new VBox();
-		buttons.getChildren().addAll(exploreButton, reloadButton, exportButton);
+		buttons.getChildren().addAll(eventsButton, reloadButton, exportButton);
 
 		pane.setCenter(scroll);
 		pane.setBottom(buttons);
 
+		return pane;
+	}
+
+	private Parent createEventContent()
+	{
+		VBox pane = new VBox(5);
+		for(Method method : GameListener.class.getMethods())
+			pane.getChildren().add(new EventNode(this, method));
 		return pane;
 	}
 

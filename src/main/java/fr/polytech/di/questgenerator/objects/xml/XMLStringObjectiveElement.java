@@ -7,7 +7,7 @@ import fr.polytech.di.questgenerator.jfx.MainFrame;
  *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class XMLStringObjectiveElement
+public class XMLStringObjectiveElement implements Comparable<XMLStringObjectiveElement>
 {
 	private final String value;
 	private final String path;
@@ -75,11 +75,17 @@ public class XMLStringObjectiveElement
 
 	public boolean is(XMLStringObjectiveElement element)
 	{
-		return element == this || (this.getValue().equals(element.getValue()) && this.getPath().equals(element.getPath()));
+		return element != null && (element == this || (this.getValue().equals(element.getValue()) && this.getPath().equals(element.getPath())));
 	}
 
 	public String getPath()
 	{
 		return this.path;
+	}
+
+	@Override
+	public int compareTo(XMLStringObjectiveElement o)
+	{
+		return this.getValue().compareTo(o.getValue());
 	}
 }

@@ -11,17 +11,17 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 
 /**
  * Define an actionType to do.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class Action implements GameListener
 {
-	private Quest parentQuest;
 	private final ActionType actionType;
 	private final Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives;
 	private final Optional<Quest> subquest;
 	private final boolean splittable;
 	private final int depth;
+	private Quest parentQuest;
 	private boolean done;
 
 	/**
@@ -91,7 +91,8 @@ public class Action implements GameListener
 
 	/**
 	 * Constructor.
-	 *  @param actionExecutorClass The ActionExecutor that built that Action.
+	 *
+	 * @param actionExecutorClass The ActionExecutor that built that Action.
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
@@ -217,6 +218,11 @@ public class Action implements GameListener
 		return this.getParentQuest().isActionDoable(this);
 	}
 
+	public Quest getParentQuest()
+	{
+		return this.parentQuest;
+	}
+
 	/**
 	 * Set the parent quest of this action.
 	 *
@@ -225,11 +231,6 @@ public class Action implements GameListener
 	public void setParentQuest(Quest quest)
 	{
 		this.parentQuest = quest;
-	}
-
-	public Quest getParentQuest()
-	{
-		return this.parentQuest;
 	}
 
 	public Action getActionToDo()
@@ -259,8 +260,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().captureEvent(pnj);
-		if(this.actionType != CAPTURE && isCorrectObjective(OBJECTIVE, pnj))
+		if(this.actionType == CAPTURE && isCorrectObjective(OBJECTIVE, pnj))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -271,8 +275,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().damageEvent(target);
-		if(this.actionType != DAMAGE && isCorrectObjective(OBJECTIVE, target))
+		if(this.actionType == DAMAGE && isCorrectObjective(OBJECTIVE, target))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -283,8 +290,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().defendEvent(object);
-		if(this.actionType != DEFEND && isCorrectObjective(OBJECTIVE, object))
+		if(this.actionType == DEFEND && isCorrectObjective(OBJECTIVE, object))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -295,8 +305,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().escortEvent(pnj);
-		if(this.actionType != ESCORT && isCorrectObjective(OBJECTIVE, pnj))
+		if(this.actionType == ESCORT && isCorrectObjective(OBJECTIVE, pnj))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -307,8 +320,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().exchangeEvent(objectGive, objectGet, to);
-		if(this.actionType != EXCHANGE && isCorrectObjective(OBJ_GIVE, objectGive) && isCorrectObjective(OBJ_GET, objectGet) && isCorrectObjective(PNJ, to))
+		if(this.actionType == EXCHANGE && isCorrectObjective(OBJ_GIVE, objectGive) && isCorrectObjective(OBJ_GET, objectGet) && isCorrectObjective(PNJ, to))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -319,8 +335,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().experimentEvent(object);
-		if(this.actionType != EXPERIMENT && isCorrectObjective(OBJECTIVE, object))
+		if(this.actionType == EXPERIMENT && isCorrectObjective(OBJECTIVE, object))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -331,8 +350,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().exploredEvent(area);
-		if(this.actionType != EXPLORE && isCorrectObjective(OBJECTIVE, area))
+		if(this.actionType == EXPLORE && isCorrectObjective(OBJECTIVE, area))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -343,8 +365,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().gatherEvent(object);
-		if(this.actionType != GATHER && isCorrectObjective(OBJECTIVE, object))
+		if(this.actionType == GATHER && isCorrectObjective(OBJECTIVE, object))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -355,8 +380,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().getEvent(object, from);
-		if(this.actionType != GET && isCorrectObjective(OBJ_GET, object) && isCorrectObjective(LOC_OBJECTIVE, from))
+		if(this.actionType == GET && isCorrectObjective(OBJ_GET, object) && isCorrectObjective(LOC_OBJECTIVE, from))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -367,8 +395,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().giveEvent(object, to);
-		if(this.actionType != GIVE && isCorrectObjective(OBJ_GIVE, object) && isCorrectObjective(LOC_OBJECTIVE, to))
+		if(this.actionType == GIVE && isCorrectObjective(OBJ_GIVE, object) && isCorrectObjective(LOC_OBJECTIVE, to))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -379,8 +410,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().gotoEvent(area);
-		if(this.actionType != GOTO && isCorrectObjective(OBJECTIVE, area))
+		if(this.actionType == GOTO && isCorrectObjective(OBJECTIVE, area))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -391,8 +425,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().killEvent(pnj);
-		if(this.actionType != KILL && isCorrectObjective(OBJECTIVE, pnj))
+		if(this.actionType == KILL && isCorrectObjective(OBJECTIVE, pnj))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -403,8 +440,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().learnEvent(object);
-		if(this.actionType != LEARN && isCorrectObjective(OBJECTIVE, object))
+		if(this.actionType == LEARN && isCorrectObjective(OBJECTIVE, object))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -415,8 +455,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().exploredEvent(pnj);
-		if(this.actionType != LISTEN && isCorrectObjective(OBJECTIVE, pnj))
+		if(this.actionType == LISTEN && isCorrectObjective(OBJECTIVE, pnj))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -427,8 +470,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().readEvent(object);
-		if(this.actionType != READ && isCorrectObjective(OBJECTIVE, object))
+		if(this.actionType == READ && isCorrectObjective(OBJECTIVE, object))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -439,8 +485,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().repairEvent(object);
-		if(this.actionType != REPAIR && isCorrectObjective(OBJECTIVE, object))
+		if(this.actionType == REPAIR && isCorrectObjective(OBJECTIVE, object))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -451,8 +500,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().reportEvent(to);
-		if(this.actionType != REPORT && isCorrectObjective(OBJECTIVE, to))
+		if(this.actionType == REPORT && isCorrectObjective(OBJECTIVE, to))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -463,8 +515,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().spyEvent(on);
-		if(this.actionType != SPY && isCorrectObjective(OBJECTIVE, on))
+		if(this.actionType == SPY && isCorrectObjective(OBJECTIVE, on))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -475,8 +530,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().stealEvent(object, from);
-		if(this.actionType != STEAL && isCorrectObjective(OBJ_GET, object) && isCorrectObjective(PNJ, from))
+		if(this.actionType == STEAL && isCorrectObjective(OBJ_GET, object) && isCorrectObjective(PNJ, from))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -487,8 +545,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().stealthEvent(object);
-		if(this.actionType != STEALTH && isCorrectObjective(OBJECTIVE, object))
+		if(this.actionType == STEALTH && isCorrectObjective(OBJECTIVE, object))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -499,8 +560,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().takeEvent(object, from);
-		if(this.actionType != TAKE && isCorrectObjective(OBJ_GET, object) && isCorrectObjective(PNJ, from))
+		if(this.actionType == TAKE && isCorrectObjective(OBJ_GET, object) && isCorrectObjective(PNJ, from))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 
@@ -511,8 +575,11 @@ public class Action implements GameListener
 			return false;
 		if(this.subquest.isPresent())
 			return this.subquest.get().useEvent(used, on);
-		if(this.actionType != USE && isCorrectObjective(OBJ_USE, used) && isCorrectObjective(LOC_OBJECTIVE, on))
+		if(this.actionType == USE && isCorrectObjective(OBJ_USE, used) && isCorrectObjective(LOC_OBJECTIVE, on))
+		{
 			setDone(true);
+			return true;
+		}
 		return false;
 	}
 }
