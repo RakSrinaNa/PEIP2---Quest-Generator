@@ -25,7 +25,7 @@ public class ActionNode extends HBox
 	private static final Image CLOSED_IMAGE = Resources.JFX_IMAGE.getImage("closed.png", IMG_ARROW_SIZE, IMG_ARROW_SIZE);
 	private static final Image DONE_IMAGE = Resources.JFX_IMAGE.getImage("done.png", IMG_DONE_SIZE, IMG_DONE_SIZE);
 	private static final Image NOT_DONE_IMAGE = Resources.JFX_IMAGE.getImage("not_done.png", IMG_DONE_SIZE, IMG_DONE_SIZE);
-	private QuestItem subquest;
+	private QuestNode subquest;
 	private ImageView imageArrow;
 	private ImageView imageDone;
 	private final Action action;
@@ -48,7 +48,7 @@ public class ActionNode extends HBox
 		vBox.getChildren().add(genText(action));
 		if(action.getSubquest().isPresent())
 		{
-			subquest = new QuestItem(mainRefresh, doable, action.getSubquest().get(), action.getDepth() + 1);
+			subquest = new QuestNode(mainRefresh, doable, action.getSubquest().get(), action.getDepth() + 1);
 			vBox.getChildren().add(subquest);
 			this.getChildren().addAll(genImageDone(), genImageArrow(), vBox);
 		}
