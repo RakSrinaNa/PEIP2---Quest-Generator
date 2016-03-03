@@ -1,5 +1,6 @@
 package fr.polytech.di.questgenerator.jfx;
 
+import com.google.common.collect.Lists;
 import fr.polytech.di.questgenerator.QuestGenerator;
 import fr.polytech.di.questgenerator.enums.Resources;
 import fr.polytech.di.questgenerator.interfaces.GameListener;
@@ -11,6 +12,7 @@ import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
@@ -25,6 +27,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 /**
  * Main frame of the application.
@@ -125,6 +128,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 		});
 
 		VBox buttons = new VBox();
+		buttons.setPadding(new Insets(2, 2, 2, 2));
 		buttons.getChildren().addAll(eventsButton, reloadButton, exportButton);
 
 		pane.setCenter(scroll);
@@ -136,8 +140,12 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 	private Parent createEventContent()
 	{
 		VBox pane = new VBox(5);
-		for(Method method : GameListener.class.getMethods())
+		pane.setPadding(new Insets(2, 2, 2, 2));
+		ArrayList<Method> methods = Lists.newArrayList(GameListener.class.getMethods());
+		methods.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
+		for(Method method : methods)
 			pane.getChildren().add(new EventNode(this, method));
+		pane.setPrefWidth(250);
 		return pane;
 	}
 

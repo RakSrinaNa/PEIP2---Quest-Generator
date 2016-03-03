@@ -21,6 +21,7 @@ public class EventNode extends Button
 	{
 		super(method.getName());
 		this.setTextAlignment(TextAlignment.CENTER);
+		this.setMaxWidth(Double.MAX_VALUE);
 		this.setOnMouseReleased(event -> {
 				try
 				{
