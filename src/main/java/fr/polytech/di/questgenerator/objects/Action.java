@@ -2,16 +2,18 @@ package fr.polytech.di.questgenerator.objects;
 
 import fr.polytech.di.questgenerator.enums.ActionType;
 import fr.polytech.di.questgenerator.enums.ObjectiveType;
+import fr.polytech.di.questgenerator.interfaces.GameListener;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.HashMap;
 import java.util.Optional;
+import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 
 /**
  * Define an actionType to do.
  *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class Action
+public class Action implements GameListener
 {
 	private Quest parentQuest;
 	private final ActionType actionType;
@@ -242,5 +244,34 @@ public class Action
 	public void notifyQuestDone(Quest quest)
 	{
 		this.getParentQuest().notifyQuestDone(quest);
+	}
+
+	@Override
+	public boolean areaExplored(XMLStringObjectiveElement area)
+	{
+		if(this.isDone() || !isDoable())
+			return false;
+		boolean done = false;
+		if(this.subquest.isPresent())
+			return this.subquest.get().areaExplored(area);
+		else
+			switch(actionType)
+			{
+				case EXPLORE:
+					if(isCorrectObjective(OBJECTIVE, area))
+					{
+						done = true;
+						setDone(true);
+					}
+					break;
+			}
+		return done;
+	}
+
+
+
+	private boolean isCorrectObjective(ObjectiveType objectiveType, XMLStringObjectiveElement objective)
+	{
+		return this.getObjective(objectiveType).is(objective);
 	}
 }

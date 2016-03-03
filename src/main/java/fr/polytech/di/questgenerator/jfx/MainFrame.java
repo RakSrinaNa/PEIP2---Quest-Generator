@@ -2,11 +2,14 @@ package fr.polytech.di.questgenerator.jfx;
 
 import fr.polytech.di.questgenerator.QuestGenerator;
 import fr.polytech.di.questgenerator.enums.Resources;
+import fr.polytech.di.questgenerator.interfaces.GameListener;
 import fr.polytech.di.questgenerator.interfaces.MainRefresh;
 import fr.polytech.di.questgenerator.interfaces.QuestListener;
 import fr.polytech.di.questgenerator.jfx.contents.QuestItem;
 import fr.polytech.di.questgenerator.objects.Action;
+import fr.polytech.di.questgenerator.objects.DataHandler;
 import fr.polytech.di.questgenerator.objects.Quest;
+import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Parent;
@@ -28,7 +31,7 @@ import java.io.IOException;
  *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class MainFrame extends Application implements MainRefresh
+public class MainFrame extends Application implements MainRefresh, GameListener
 {
 	public static final boolean DEBUG = false;
 	public static final int MAX_DEPTH = 3;
@@ -108,8 +111,14 @@ public class MainFrame extends Application implements MainRefresh
 			}
 		});
 
+		final XMLStringObjectiveElement element = DataHandler.getRandomFromCategories("area/wild/*");
+
+		Button exploreButton = new Button("Explore " + element.getValue());
+		exploreButton.setMaxWidth(Double.MAX_VALUE);
+		exploreButton.setOnMouseReleased(event -> MainFrame.this.areaExplored(element));
+
 		VBox buttons = new VBox();
-		buttons.getChildren().addAll(reloadButton, exportButton);
+		buttons.getChildren().addAll(exploreButton, reloadButton, exportButton);
 
 		pane.setCenter(scroll);
 		pane.setBottom(buttons);
@@ -121,5 +130,14 @@ public class MainFrame extends Application implements MainRefresh
 	public void refresh()
 	{
 		this.quest.refresh();
+	}
+
+	@Override
+	public boolean areaExplored(XMLStringObjectiveElement area)
+	{
+		boolean result = this.quest.getQuest().areaExplored(area);
+		if(result)
+			refresh();
+		return result;
 	}
 }

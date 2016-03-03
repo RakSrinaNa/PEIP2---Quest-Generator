@@ -72,4 +72,14 @@ public class XMLStringObjectiveElement
 				return true;
 		return false;
 	}
+
+	public boolean is(XMLStringObjectiveElement element)
+	{
+		return element == this || (this.getValue().equals(element.getValue()) && this.getPath().equals(element.getPath()));
+	}
+
+	public String getPath()
+	{
+		return this.path;
+	}
 }

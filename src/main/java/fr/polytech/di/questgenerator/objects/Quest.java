@@ -1,7 +1,9 @@
 package fr.polytech.di.questgenerator.objects;
 
 import fr.polytech.di.questgenerator.enums.ActionType;
+import fr.polytech.di.questgenerator.interfaces.GameListener;
 import fr.polytech.di.questgenerator.interfaces.QuestListener;
+import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -12,7 +14,7 @@ import java.util.List;
  *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class Quest
+public class Quest implements GameListener
 {
 	private final List<QuestListener> questListeners;
 	private final Action parent;
@@ -209,5 +211,16 @@ public class Quest
 	public void addQuestListener(QuestListener questListener)
 	{
 		this.questListeners.add(questListener);
+	}
+
+	@Override
+	public boolean areaExplored(XMLStringObjectiveElement area)
+	{
+		if(this.isDone())
+			return false;
+		boolean result = false;
+		for(Action action : this.getActions())
+			result |= action.areaExplored(area);
+		return result;
 	}
 }
