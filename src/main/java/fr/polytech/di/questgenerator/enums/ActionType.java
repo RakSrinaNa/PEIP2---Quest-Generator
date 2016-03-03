@@ -154,7 +154,7 @@ public enum ActionType
 			return Optional.empty();
 		if(depth > MainFrame.MAX_DEPTH && actionExecutors.contains(ActionEpsilonActionExecutor.class))
 			return Optional.empty();
-		Quest quest = Quest.getEpsilon();
+		Quest quest = Quest.getEpsilon(parent);
 		if(!actionExecutors.isEmpty())
 			try
 			{

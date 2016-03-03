@@ -45,9 +45,9 @@ public class Quest
 	 *
 	 * @return The Epsilon Quest.
 	 */
-	public static Quest getEpsilon()
+	public static Quest getEpsilon(Action parent)
 	{
-		return new QuestEpsilon();
+		return new QuestEpsilon(parent);
 	}
 
 	/**

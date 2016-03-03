@@ -3,6 +3,7 @@ package fr.polytech.di.questgenerator;
 import fr.polytech.di.questgenerator.enums.Motivations;
 import fr.polytech.di.questgenerator.enums.ObjectiveType;
 import fr.polytech.di.questgenerator.enums.Strategies;
+import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.HashMap;
@@ -32,9 +33,9 @@ public class QuestGenerator
 	 * @param objectives The objectives for the quest.
 	 * @return A Quest.
 	 */
-	public static Quest createNewRandomQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public static Quest createNewRandomQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		return Strategies.getRandom().createQuest(depth, objectives);
+		return Strategies.getRandom().createQuest(parent, depth, objectives);
 	}
 
 	/**
@@ -44,9 +45,9 @@ public class QuestGenerator
 	 * @param objectives The objectives for the quest.
 	 * @return A Quest.
 	 */
-	public static Quest createRandomSubquest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public static Quest createRandomSubquest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		return Strategies.getRandom().createQuest(depth, objectives);
+		return Strategies.getRandom().createQuest(parent, depth, objectives);
 	}
 
 	/**
@@ -68,8 +69,8 @@ public class QuestGenerator
 	 * @param objectives The objectives for the quest.
 	 * @return A Quest.
 	 */
-	public static Quest createByMotivation(Motivations motivation, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public static Quest createByMotivation(Action parent, Motivations motivation, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		return Strategies.getByMotivation(motivation).createQuest(depth, objectives);
+		return Strategies.getByMotivation(motivation).createQuest(parent, depth, objectives);
 	}
 }

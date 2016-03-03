@@ -6,4 +6,8 @@ package fr.polytech.di.questgenerator.objects;
 public class QuestEpsilon extends Quest
 {
 
+	public QuestEpsilon(Action parent)
+	{
+		super(parent);
+	}
 }
