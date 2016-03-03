@@ -34,6 +34,7 @@ import java.io.IOException;
 public class MainFrame extends Application implements MainRefresh, GameListener
 {
 	public static final boolean DEBUG = false;
+	public static final String PARAM_PRESENTATION = "--prez";
 	public static final int MAX_DEPTH = 3;
 	private QuestItem quest;
 	private Stage stage;
@@ -58,6 +59,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 		primaryStage.setScene(scene);
 		primaryStage.sizeToScene();
 		primaryStage.show();
+		refresh();
 	}
 
 	/**
@@ -84,7 +86,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 
 		BorderPane pane = new BorderPane();
 
-		quest = new QuestItem(this, false, QuestGenerator.createNewRandomQuest(), 0);
+		quest = new QuestItem(this, this.getParameters().getUnnamed().contains(PARAM_PRESENTATION), QuestGenerator.createNewRandomQuest(), 0);
 		quest.getQuest().addQuestListener(questListener);
 		ScrollPane scroll = new ScrollPane(quest);
 		scroll.setPrefSize(400, 600);
