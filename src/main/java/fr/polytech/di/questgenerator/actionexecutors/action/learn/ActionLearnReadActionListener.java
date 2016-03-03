@@ -18,7 +18,7 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 public class ActionLearnReadActionListener implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectivePlace = DataHandler.getRandomFromCategories("area/place/*");
 		XMLStringObjectiveElement objectiveRead = DataHandler.getRandomFromCategories("object/readable/learning/*");
@@ -27,7 +27,7 @@ public class ActionLearnReadActionListener implements ActionExecutor
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveRead), new ObjectiveHelper(LOC_OBJECTIVE, objectivePlace)));
 		Action actionRead = new Action(this.getClass(), depth, ActionType.READ, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveRead)), false);
 
-		return new Quest(actionGoto, actionGet, actionRead);
+		return new Quest(parent, actionGoto, actionGet, actionRead);
 	}
 
 	@Override

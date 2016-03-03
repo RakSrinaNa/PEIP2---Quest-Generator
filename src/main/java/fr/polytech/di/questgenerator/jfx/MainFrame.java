@@ -2,6 +2,7 @@ package fr.polytech.di.questgenerator.jfx;
 
 import fr.polytech.di.questgenerator.QuestGenerator;
 import fr.polytech.di.questgenerator.enums.Resources;
+import fr.polytech.di.questgenerator.interfaces.MainRefresh;
 import fr.polytech.di.questgenerator.jfx.contents.QuestItem;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
@@ -24,9 +25,9 @@ import java.io.IOException;
  *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
-public class MainFrame extends Application
+public class MainFrame extends Application implements MainRefresh
 {
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	public static final int MAX_DEPTH = 3;
 	private QuestItem quest;
 	private Stage stage;
@@ -62,7 +63,7 @@ public class MainFrame extends Application
 	{
 		BorderPane pane = new BorderPane();
 
-		quest = new QuestItem(QuestGenerator.createNewRandomQuest(), 0);
+		quest = new QuestItem(this, false, QuestGenerator.createNewRandomQuest(), 0);
 		ScrollPane scroll = new ScrollPane(quest);
 		scroll.setPrefSize(400, 600);
 		scroll.setStyle("-fx-background: " + QuestItem.getStringColor(0) + ";");
@@ -92,5 +93,11 @@ public class MainFrame extends Application
 		pane.setBottom(buttons);
 
 		return pane;
+	}
+
+	@Override
+	public void refresh()
+	{
+		this.quest.refresh();
 	}
 }

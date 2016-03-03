@@ -22,6 +22,7 @@ import fr.polytech.di.questgenerator.actionexecutors.wealth.WealthGatherActionEx
 import fr.polytech.di.questgenerator.actionexecutors.wealth.WealthMakeActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.wealth.WealthStealActionExecutor;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
+import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.ArrayList;
@@ -157,7 +158,7 @@ public enum Strategies
 	 */
 	public Quest createQuest()
 	{
-		return createQuest(0, Optional.empty());
+		return createQuest(null, 0, Optional.empty());
 	}
 
 	/**
@@ -167,11 +168,11 @@ public enum Strategies
 	 * @param objectives The objectives for the quest.
 	 * @return A quest.
 	 */
-	public Quest createQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest createQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		try
 		{
-			return actionExecutor.newInstance().generateQuest(depth, objectives);
+			return actionExecutor.newInstance().generateQuest(parent, depth, objectives);
 		}
 		catch(InstantiationException | IllegalAccessException ignored)
 		{

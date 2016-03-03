@@ -18,7 +18,7 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 public class ProtectionTreat1ActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/reparation/*");
 		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories("area/job/*");
@@ -27,6 +27,6 @@ public class ProtectionTreat1ActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveArea)), false);
 
-		return new Quest(actionGet, actionGoto, actionUse);
+		return new Quest(parent, getSentence("Protection_Treat1", objectiveArea, objectiveObject), actionGet, actionGoto, actionUse);
 	}
 }

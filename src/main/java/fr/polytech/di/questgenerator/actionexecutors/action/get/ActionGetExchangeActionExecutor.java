@@ -18,7 +18,7 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 public class ActionGetExchangeActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/*");
 		XMLStringObjectiveElement pnjGet = DataHandler.getRandomFromCategories("pnj/being/*", "area/*");
@@ -36,7 +36,7 @@ public class ActionGetExchangeActionExecutor implements ActionExecutor
 		Action actionGotoSubquest = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjExchange)));
 		Action actionExchange = new Action(this.getClass(), depth, ActionType.EXCHANGE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET), new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(PNJ, pnjExchange)), false);
 
-		return new Quest(actionGotoSteal, actionGet, actionGotoSubquest, actionExchange);
+		return new Quest(parent, actionGotoSteal, actionGet, actionGotoSubquest, actionExchange);
 	}
 
 	@Override

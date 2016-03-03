@@ -17,12 +17,12 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 public class ActionGotoLearnActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Action actionLearn = new Action(this.getClass(), depth, ActionType.LEARN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE)));
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE)), false);
 
-		return new Quest(actionLearn, actionGoto);
+		return new Quest(parent, actionLearn, actionGoto);
 	}
 
 	@Override

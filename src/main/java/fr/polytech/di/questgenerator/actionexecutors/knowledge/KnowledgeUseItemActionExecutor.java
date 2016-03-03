@@ -18,7 +18,7 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 public class KnowledgeUseItemActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/usable/*");
 		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomFromCategories("pnj/being/*");
@@ -30,6 +30,6 @@ public class KnowledgeUseItemActionExecutor implements ActionExecutor
 		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePNJ)));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectivePNJ)));
 
-		return new Quest(actionGet, actionGotoUse, actionUse, actionGotoGive, actionGive);
+		return new Quest(parent, getSentence("Knowledge_UseItem", objectiveObject, objectivePNJ, objectiveArea), actionGet, actionGotoUse, actionUse, actionGotoGive, actionGive);
 	}
 }

@@ -17,11 +17,11 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 public class ActionStealStealthActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Action actionStealth = new Action(this.getClass(), depth, ActionType.STEALTH, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ)), false);
 		Action actionTake = new Action(this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(PNJ, PNJ), new ObjectiveHelper(OBJ_GET, OBJ_GET)), false);
 
-		return new Quest(actionStealth, actionTake);
+		return new Quest(parent, actionStealth, actionTake);
 	}
 }

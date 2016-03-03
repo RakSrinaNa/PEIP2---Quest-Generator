@@ -11,18 +11,18 @@ import java.util.LinkedHashSet;
  */
 public class Quest
 {
+	private final Action parent;
 	private final String description;
 	private final LinkedHashSet<Action> actions;
-
 
 	/**
 	 * Constructor.
 	 *
 	 * @param actions The list of Action defining the quest.
 	 */
-	public Quest(Action... actions)
+	public Quest(Action parent, Action... actions)
 	{
-		this(null, actions);
+		this(parent, null, actions);
 	}
 
 	/**
@@ -31,22 +31,23 @@ public class Quest
 	 * @param description The description of the quest.
 	 * @param actions The list of Action defining the quest.
 	 */
-	public Quest(String description, Action... actions)
+	public Quest(Action parent, String description, Action... actions)
 	{
+		this.parent = parent;
 		this.description = description;
 		this.actions = new LinkedHashSet<>(actions.length);
 		Collections.addAll(this.actions, actions);
+		this.actions.stream().forEach(a -> a.setParentQuest(this));
 	}
 
 	/**
 	 * Get the Epsilon Quest with is the quest that is empty.
 	 *
-	 * @param depth The depth of the Quest.
 	 * @return The Epsilon Quest.
 	 */
-	public static Quest getEpsilon()
+	public static Quest getEpsilon(Action parent)
 	{
-		return new QuestEpsilon();
+		return new QuestEpsilon(parent);
 	}
 
 	/**
@@ -128,5 +129,51 @@ public class Quest
 	public String getDescription()
 	{
 		return this.description;
+	}
+
+	/**
+	 * Used to know if the given action is currently doable.
+	 *
+	 * @param action The action concerned.
+	 * @return True if doable, false if not.
+	 */
+	public boolean isActionDoable(Action action)
+	{
+		if(!this.actions.contains(action))
+			return false;
+		for(Action a : this.actions)
+		{
+			if(a == action)
+				break;
+			if(!a.isDone())
+				return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Used to know if that quest is marked as done.
+	 *
+	 * @return True if done, false if not.
+	 */
+	public boolean isDone()
+	{
+		for(Action a : this.actions)
+			if(!a.isDone())
+				return false;
+		return true;
+	}
+
+	public Action getActionToDo()
+	{
+		for(Action a : this.actions)
+			if(!a.isDone() && a.isDoable())
+				return a.getActionToDo();
+		return null;
+	}
+
+	public Action getParent()
+	{
+		return this.parent;
 	}
 }

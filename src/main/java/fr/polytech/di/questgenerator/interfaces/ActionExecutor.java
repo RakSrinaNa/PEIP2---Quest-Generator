@@ -1,9 +1,12 @@
 package fr.polytech.di.questgenerator.interfaces;
 
 import fr.polytech.di.questgenerator.enums.ObjectiveType;
+import fr.polytech.di.questgenerator.enums.Resources;
+import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.ObjectiveHelper;
 import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
@@ -18,11 +21,13 @@ public interface ActionExecutor
 	/**
 	 * Generate the quest.
 	 *
+	 *
+	 * @param parent
 	 * @param depth The depth of the quest.
 	 * @param objectives The objectives for the quest.
 	 * @return The Quest.
 	 */
-	Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives);
+	Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives);
 
 	/**
 	 * Build a new objective HashMap.
@@ -60,5 +65,17 @@ public interface ActionExecutor
 	default XMLStringObjectiveElement pickRandom(XMLStringObjectiveElement... elements)
 	{
 		return elements[ThreadLocalRandom.current().nextInt(elements.length)];
+	}
+
+	/**
+	 * Used to get the sentence for the objective.
+	 *
+	 * @param key The key of the sentence.
+	 * @param args The arguments for the sentence.
+	 * @return The formatted sentence.
+	 */
+	default String getSentence(String key, XMLStringObjectiveElement... args)
+	{
+		return MessageFormat.format(Resources.LANG.getPropertyString("QuestSentences", key), (Object[]) args);
 	}
 }

@@ -18,10 +18,10 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 public class WealthMakeActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("object/personal/*", "object/luxury/*"))), false);
 
-		return new Quest(actionRepair);
+		return new Quest(parent, getSentence("Wealth_Make", actionRepair.getObjective(OBJECTIVE)), actionRepair);
 	}
 }

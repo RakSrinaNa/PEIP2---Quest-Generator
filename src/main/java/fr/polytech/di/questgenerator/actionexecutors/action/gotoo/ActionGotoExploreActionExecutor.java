@@ -18,7 +18,7 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 public class ActionGotoExploreActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		ObjectiveHelper objectiveHelper;
 		if(objectives.get().get(OBJECTIVE).isInPath("pnj/being/*"))
@@ -27,7 +27,7 @@ public class ActionGotoExploreActionExecutor implements ActionExecutor
 			objectiveHelper = new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/wild/*"));
 		Action actionExplore = new Action(this.getClass(), depth, ActionType.EXPLORE, buildObjective(objectives, objectiveHelper), false);
 
-		return new Quest(actionExplore);
+		return new Quest(parent, actionExplore);
 	}
 
 	@Override

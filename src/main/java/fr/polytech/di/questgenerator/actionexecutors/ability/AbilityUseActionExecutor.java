@@ -19,10 +19,10 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJ_USE;
 public class AbilityUseActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, DataHandler.getRandomFromCategories("object/stuff/weapon/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("object/training/*"))), false);
 
-		return new Quest(actionUse);
+		return new Quest(parent, getSentence("Ability_Use", actionUse.getObjective(OBJ_USE)), actionUse);
 	}
 }

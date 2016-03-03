@@ -18,13 +18,13 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
 public class ProtectionGuardActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories("area/place/*");
 
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
 		Action actionDefend = new Action(this.getClass(), depth, ActionType.DEFEND, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pickRandom(objectiveArea, DataHandler.getRandomFromCategories("area/fortification/*")))), false);
 
-		return new Quest(actionGoto, actionDefend);
+		return new Quest(parent, getSentence(actionDefend.getObjective(OBJECTIVE).isInPath("area/place/*") ? "Protection_Guard_1" : "Protection_Guard_2", objectiveArea, actionDefend.getObjective(OBJECTIVE)), actionGoto, actionDefend);
 	}
 }

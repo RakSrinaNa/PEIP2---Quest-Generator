@@ -18,7 +18,7 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 public class SerenityRecoverActionExecutor implements ActionExecutor
 {
 	@Override
-	public Quest generateQuest(int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/personal/*");
 		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomFromCategories("pnj/being/*");
@@ -27,6 +27,6 @@ public class SerenityRecoverActionExecutor implements ActionExecutor
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, OBJECTIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectivePnj)));
 
-		return new Quest(actionGet, actionGoto, actionGive);
+		return new Quest(parent, getSentence("Serenity_Recover", objectivePnj, objectiveObject, actionGet.getObjective(LOC_OBJECTIVE)), actionGet, actionGoto, actionGive);
 	}
 }
