@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -36,8 +37,8 @@ import java.util.List;
  */
 public class MainFrame extends Application implements MainRefresh, GameListener
 {
-	public static final boolean DEBUG = false;
-	public static final String PARAM_DEV = "--dev";
+	public static boolean debug = false;
+	public static final String PARAM_DEV = "--dev", PARAM_DEBUG = "--debug";
 	public static final int MAX_DEPTH = 3;
 	private QuestNode quest;
 	private Stage stage;
@@ -55,8 +56,14 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
+		debug = this.getParameters().getUnnamed().contains(PARAM_DEBUG);
 		this.stage = primaryStage;
 		Scene scene = new Scene(createContent());
+		scene.setOnKeyPressed(event -> {
+			if(event.isControlDown() && event.getCode() == KeyCode.D)
+				debug = !debug;
+			this.quest.modifyQuest(this.quest.getQuest());
+		});
 		primaryStage.setTitle("Quest generator");
 		primaryStage.getIcons().add(new Image(Resources.JFX.getResource("icon64.png").toString()));
 		primaryStage.setScene(scene);

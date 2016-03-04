@@ -37,7 +37,7 @@ public class XMLStringObjectiveElement implements Comparable<XMLStringObjectiveE
 	 */
 	public String getValue()
 	{
-		if(MainFrame.DEBUG)
+		if(MainFrame.debug)
 		{
 			if(this.path.equals("class"))
 			{
