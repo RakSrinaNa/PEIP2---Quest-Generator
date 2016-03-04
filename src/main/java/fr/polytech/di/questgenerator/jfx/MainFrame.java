@@ -37,7 +37,7 @@ import java.util.List;
 public class MainFrame extends Application implements MainRefresh, GameListener
 {
 	public static final boolean DEBUG = false;
-	public static final String PARAM_PRESENTATION = "--prez";
+	public static final String PARAM_DEV = "--dev";
 	public static final int MAX_DEPTH = 3;
 	private QuestNode quest;
 	private Stage stage;
@@ -89,7 +89,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 
 		BorderPane pane = new BorderPane();
 
-		quest = new QuestNode(this, this.getParameters().getUnnamed().contains(PARAM_PRESENTATION), QuestGenerator.createNewRandomQuest(), 0);
+		quest = new QuestNode(this, !this.getParameters().getUnnamed().contains(PARAM_DEV), QuestGenerator.createNewRandomQuest(), 0);
 		quest.getQuest().addQuestListener(questListener);
 		ScrollPane scroll = new ScrollPane(quest);
 		scroll.setPrefSize(400, 600);
