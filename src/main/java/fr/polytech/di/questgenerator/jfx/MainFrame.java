@@ -62,6 +62,8 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 		scene.setOnKeyPressed(event -> {
 			if(event.isControlDown() && event.getCode() == KeyCode.D)
 				debug = !debug;
+			if(event.isControlDown() && event.getCode() == KeyCode.P)
+				this.quest.setDoable(!this.quest.getDoable());
 			this.quest.modifyQuest(this.quest.getQuest());
 		});
 		primaryStage.setTitle("Quest generator");

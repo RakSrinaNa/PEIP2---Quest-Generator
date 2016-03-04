@@ -29,7 +29,7 @@ public class ActionNode extends HBox
 	private ImageView imageArrow;
 	private ImageView imageDone;
 	private final Action action;
-	private final boolean doable;
+	private boolean doable;
 	private final MainRefresh mainRefresh;
 
 	/**
@@ -135,5 +135,12 @@ public class ActionNode extends HBox
 			this.setManaged(true);
 			this.setVisible(true);
 		}
+	}
+
+	public void setDoable(boolean doable)
+	{
+		this.doable = doable;
+		if(this.subquest != null)
+			this.subquest.setDoable(doable);
 	}
 }

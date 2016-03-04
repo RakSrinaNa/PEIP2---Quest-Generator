@@ -3,6 +3,7 @@ package fr.polytech.di.questgenerator.jfx.contents;
 import fr.polytech.di.questgenerator.interfaces.MainRefresh;
 import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
+import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -18,7 +19,7 @@ public class QuestNode extends VBox
 	private final MainRefresh mainRefresh;
 	private VBox actions;
 	private Text description;
-	private final boolean doable;
+	private boolean doable;
 	private Quest quest;
 
 	/**
@@ -107,5 +108,16 @@ public class QuestNode extends VBox
 	public Quest getQuest()
 	{
 		return this.quest;
+	}
+
+	public boolean getDoable()
+	{
+		return this.doable;
+	}
+
+	public void setDoable(boolean doable)
+	{
+		this.doable = doable;
+		this.getChildren().stream().filter(child -> child instanceof ActionNode).forEach(child -> ((ActionNode) child).setDoable(doable));
 	}
 }
