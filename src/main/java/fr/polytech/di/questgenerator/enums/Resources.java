@@ -6,6 +6,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -113,7 +115,7 @@ public enum Resources
 	{
 		try
 		{
-			return getProperties(path).getProperty(key, "ERROR: " + path);
+			return getProperties(path).getProperty(key, "");
 		}
 		catch(Exception e)
 		{
@@ -127,7 +129,7 @@ public enum Resources
 		if(properties.containsKey(path))
 			return properties.get(path);
 		Properties prop = new Properties();
-		prop.load(new InputStreamReader(getResource(path + ".properties").openStream(), "UTF-8"));
+		prop.load(new File("./", path + ".properties").exists() ? new InputStreamReader(new FileInputStream(new File("./", path + ".properties")), "UTF-8") : new InputStreamReader(getResource(path + ".properties").openStream(), "UTF-8"));
 		properties.put(path, prop);
 		return prop;
 	}
