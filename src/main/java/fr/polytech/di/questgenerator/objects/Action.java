@@ -4,6 +4,8 @@ import fr.polytech.di.questgenerator.enums.ActionType;
 import fr.polytech.di.questgenerator.enums.ObjectiveType;
 import fr.polytech.di.questgenerator.interfaces.GameListener;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.HashMap;
 import java.util.Optional;
 import static fr.polytech.di.questgenerator.enums.ActionType.*;
@@ -581,5 +583,27 @@ public class Action implements GameListener
 			return true;
 		}
 		return false;
+	}
+
+	public void createXML(XMLStreamWriter out) throws XMLStreamException
+	{
+		out.writeStartElement("action");
+		out.writeAttribute("type", this.getActionType().name());
+		if(this.objectives.isPresent())
+		{
+			out.writeStartElement("objectives");
+			for(ObjectiveType objectiveType : this.objectives.get().keySet())
+			{
+				out.writeStartElement("objective");
+				out.writeAttribute("type", objectiveType.name());
+				out.writeAttribute("value", this.objectives.get().get(objectiveType).getValue());
+				out.writeAttribute("path", this.objectives.get().get(objectiveType).getPath());
+				out.writeEndElement();
+			}
+			out.writeEndElement();
+		}
+		if(this.subquest.isPresent())
+			this.subquest.get().createXML(out);
+		out.writeEndElement();
 	}
 }

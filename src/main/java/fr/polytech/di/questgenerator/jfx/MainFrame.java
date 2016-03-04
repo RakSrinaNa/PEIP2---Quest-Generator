@@ -22,11 +22,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+import java.io.*;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Main frame of the application.
@@ -128,15 +131,67 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 
 	private void export()
 	{
-		WritableImage image = quest.snapshot(new SnapshotParameters(), null);
-		File file = new File("export" + System.currentTimeMillis() + ".png");
-		try
+		ChoiceDialog<String> dialog = new ChoiceDialog<>(null, "PNG", "XML", "RAW");
+		dialog.setTitle("Exporting...");
+		dialog.setHeaderText("Choose the format you want to export in");
+		dialog.setContentText("Format:");
+		Optional<String> value = dialog.showAndWait();
+		if(!value.isPresent())
+			return;
+		File file = null;
+		switch(value.get())
 		{
-			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+			case "PNG":
+				WritableImage image = quest.snapshot(new SnapshotParameters(), null);
+				file = new File("export" + System.currentTimeMillis() + ".png");
+				try
+				{
+					ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+				}
+				catch(IOException ignored)
+				{
+				}
+				break;
+			case "RAW":
+				file = new File("export" + System.currentTimeMillis() + ".txt");
+				try(PrintWriter fis = new PrintWriter(new FileOutputStream(file)))
+				{
+					for(String line : this.quest.getQuest().getAsString(true, "[{0}]"))
+						fis.println(line);
+				}
+				catch(IOException e)
+				{
+					e.printStackTrace();
+				}
+				break;
+			case "XML":
+				file = new File("export" + System.currentTimeMillis() + ".xml");
+				XMLStreamWriter out = null;
+				try
+				{
+					out = XMLOutputFactory.newInstance().createXMLStreamWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+					out.writeStartDocument();
+					this.quest.getQuest().createXML(out);
+					out.writeEndDocument();
+				}
+				catch(XMLStreamException | FileNotFoundException | UnsupportedEncodingException e)
+				{
+					e.printStackTrace();
+				}
+				finally
+				{
+					if(out != null)
+						try
+						{
+							out.close();
+						}
+						catch(XMLStreamException e)
+						{
+						}
+				}
+				break;
 		}
-		catch(IOException ignored)
-		{
-		}
+
 	}
 
 	private void reloadQuest()

@@ -4,6 +4,9 @@ import fr.polytech.di.questgenerator.enums.ActionType;
 import fr.polytech.di.questgenerator.interfaces.GameListener;
 import fr.polytech.di.questgenerator.interfaces.QuestListener;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -80,7 +83,7 @@ public class Quest implements GameListener
 	 */
 	public String[] getAsString()
 	{
-		return getAsString(true);
+		return getAsString(true, "{0}");
 	}
 
 	/**
@@ -89,14 +92,11 @@ public class Quest implements GameListener
 	 * @param subquests Include subquests or not.
 	 * @return A list of string.
 	 */
-	public String[] getAsString(boolean subquests)
+	public String[] getAsString(boolean subquests, String descFormat)
 	{
 		StringBuilder sb = new StringBuilder();
 		if(this.hasDescription())
-		{
-			sb.append(this.getDescription());
-			sb.append("\n\n");
-		}
+			sb.append(MessageFormat.format(descFormat, this.getDescription()));
 		for(Action action : getActions())
 		{
 			if(sb.length() > 0)
@@ -453,5 +453,15 @@ public class Quest implements GameListener
 		for(Action action : this.getActions())
 			result |= action.useEvent(used, on);
 		return result;
+	}
+
+	public void createXML(XMLStreamWriter out) throws XMLStreamException
+	{
+		out.writeStartElement("quest");
+		if(this.hasDescription())
+			out.writeAttribute("description", this.getDescription());
+		for(Action action : this.getActions())
+			action.createXML(out);
+		out.writeEndElement();
 	}
 }
