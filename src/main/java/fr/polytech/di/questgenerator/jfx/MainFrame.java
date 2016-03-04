@@ -131,7 +131,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 
 	private void export()
 	{
-		ChoiceDialog<String> dialog = new ChoiceDialog<>(null, "PNG", "XML", "RAW");
+		ChoiceDialog<String> dialog = new ChoiceDialog<>(null, "PNG", "XML", "RAW", "ACTIONS");
 		dialog.setTitle("Exporting...");
 		dialog.setHeaderText("Choose the format you want to export in");
 		dialog.setContentText("Format:");
@@ -188,6 +188,18 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 						catch(XMLStreamException e)
 						{
 						}
+				}
+				break;
+			case "ACTIONS":
+				file = new File("export" + System.currentTimeMillis() + ".txt");
+				try(PrintWriter fis = new PrintWriter(new FileOutputStream(file)))
+				{
+					for(String line : this.quest.getQuest().getActionString(true))
+						fis.println(line);
+				}
+				catch(IOException e)
+				{
+					e.printStackTrace();
 				}
 				break;
 		}

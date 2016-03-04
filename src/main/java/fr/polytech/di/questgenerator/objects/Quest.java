@@ -464,4 +464,19 @@ public class Quest implements GameListener
 			action.createXML(out);
 		out.writeEndElement();
 	}
+
+	public String[] getActionString(boolean subquests)
+	{
+		StringBuilder sb = new StringBuilder();
+		for(Action action : getActions())
+		{
+			if(sb.length() > 0)
+				sb.append("\n");
+			sb.append(action.getActionType().name());
+			if(subquests && action.getSubquest().isPresent())
+				for(String line : action.getSubquest().get().getActionString(subquests))
+					sb.append("\n\t").append(line);
+		}
+		return sb.toString().split("\n");
+	}
 }
