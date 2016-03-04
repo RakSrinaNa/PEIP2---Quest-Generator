@@ -1,4 +1,4 @@
-package fr.polytech.di.questgenerator.jfx;
+package fr.polytech.di.questgenerator.jfx.contents;
 
 import fr.polytech.di.questgenerator.interfaces.GameListener;
 import fr.polytech.di.questgenerator.objects.DataHandler;
