@@ -15,7 +15,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>fr.polytech.di.questgenerator.jfx.PresentationFrame</mainClass>
+                            <mainClass>fr.polytech.di.questgenerator.jfx.MainFrame</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -8,6 +8,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class DataHandler
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 			SAXParser parser = factory.newSAXParser();
 			XMLStringObjectiveHandler handler = new XMLStringObjectiveHandler();
-			parser.parse(Resources.XMLS.getResource("strings.xml").toURI().toString(), handler);
+			parser.parse(new File("./", "strings.xml").exists() ? new File("./", "strings.xml").toString() : Resources.XMLS.getResource("strings.xml").toURI().toString(), handler);
 			stringsTemp = handler.getCategories();
 		}
 		catch(IOException | URISyntaxException | ParserConfigurationException | SAXException e)
