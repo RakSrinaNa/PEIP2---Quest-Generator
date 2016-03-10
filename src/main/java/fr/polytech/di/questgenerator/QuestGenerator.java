@@ -16,6 +16,20 @@ import java.util.Optional;
  */
 public class QuestGenerator
 {
+	private static boolean debug = false;
+
+	public static int getMaxDepth()
+	{
+		return maxDepth;
+	}
+
+	public static void setMaxDepth(int maxDepth)
+	{
+		QuestGenerator.maxDepth = maxDepth;
+	}
+
+	private static int maxDepth = 3;
+
 	/**
 	 * Start a quest randomly.
 	 *
@@ -72,5 +86,15 @@ public class QuestGenerator
 	public static Quest createByMotivation(Action parent, Motivations motivation, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		return Strategies.getByMotivation(motivation).createQuest(parent, depth, objectives);
+	}
+
+	public static boolean getDebug()
+	{
+		return debug;
+	}
+
+	public static void setDebug(boolean debug)
+	{
+		QuestGenerator.debug = debug;
 	}
 }
