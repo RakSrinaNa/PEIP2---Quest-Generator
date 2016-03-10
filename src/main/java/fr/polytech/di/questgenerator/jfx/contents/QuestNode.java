@@ -3,9 +3,9 @@ package fr.polytech.di.questgenerator.jfx.contents;
 import fr.polytech.di.questgenerator.interfaces.MainRefresh;
 import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 /**
  * Element displaying a quest.
@@ -17,7 +17,7 @@ public class QuestNode extends VBox
 	private static final Font FONT = Font.font("Verdana", 16);
 	private final MainRefresh mainRefresh;
 	private VBox actions;
-	private Text description;
+	private Label description;
 	private boolean doable;
 	private Quest quest;
 
@@ -44,7 +44,8 @@ public class QuestNode extends VBox
 		this.actions = new VBox();
 		this.actions.setSpacing(5);
 
-		this.description = new Text();
+		this.description = new Label();
+		this.description.setWrapText(true);
 		this.description.setFont(FONT);
 
 		this.getChildren().add(description);

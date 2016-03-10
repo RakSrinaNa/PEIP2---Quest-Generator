@@ -3,12 +3,12 @@ package fr.polytech.di.questgenerator.jfx.contents;
 import fr.polytech.di.questgenerator.enums.Resources;
 import fr.polytech.di.questgenerator.interfaces.MainRefresh;
 import fr.polytech.di.questgenerator.objects.Action;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 /**
  * Element displaying an action to do with its subquest.
@@ -91,9 +91,10 @@ public class ActionNode extends HBox
 	 * @param action The Action to display.
 	 * @return The Text.
 	 */
-	private Text genText(Action action)
+	private Label genText(Action action)
 	{
-		Text text = new Text(action.getAsString());
+		Label text = new Label(action.getAsString());
+		text.setWrapText(true);
 		text.setOnMouseReleased(event -> switchSubquestStatus());
 		text.setFont(FONT);
 		return text;
