@@ -1,6 +1,6 @@
 package fr.polytech.di.questgenerator.objects.xml;
 
-import fr.polytech.di.questgenerator.jfx.MainFrame;
+import fr.polytech.di.questgenerator.QuestGenerator;
 
 /**
  * Represent an element in the objective xml file.
@@ -37,7 +37,7 @@ public class XMLStringObjectiveElement implements Comparable<XMLStringObjectiveE
 	 */
 	public String getValue()
 	{
-		if(MainFrame.debug)
+		if(QuestGenerator.getDebug())
 		{
 			if(this.path.equals("class"))
 			{

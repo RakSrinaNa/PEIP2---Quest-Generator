@@ -16,6 +16,8 @@ import java.util.Optional;
  */
 public class QuestGenerator
 {
+	public static boolean debug = false;
+
 	/**
 	 * Start a quest randomly.
 	 *
@@ -72,5 +74,15 @@ public class QuestGenerator
 	public static Quest createByMotivation(Action parent, Motivations motivation, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		return Strategies.getByMotivation(motivation).createQuest(parent, depth, objectives);
+	}
+
+	public static boolean getDebug()
+	{
+		return debug;
+	}
+
+	public static void setDebug(boolean debug)
+	{
+		QuestGenerator.debug = debug;
 	}
 }

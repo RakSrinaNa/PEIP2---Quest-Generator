@@ -1,5 +1,6 @@
 package fr.polytech.di.questgenerator.enums;
 
+import fr.polytech.di.questgenerator.QuestGenerator;
 import fr.polytech.di.questgenerator.actionexecutors.action.ActionCaptureActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.ActionEpsilonActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.ActionQuestActionExecutor;
@@ -138,7 +139,7 @@ public enum ActionType
 				sentence = MessageFormat.format(this.sentence, objectives.get().get(ObjectiveType.OBJ_GET), objectives.get().get(ObjectiveType.PNJ));
 				break;
 		}
-		return sentence + (MainFrame.debug ? (" - " + objectives.get().get(ObjectiveType.CLASS)) : "");
+		return sentence + (QuestGenerator.getDebug() ? (" - " + objectives.get().get(ObjectiveType.CLASS)) : "");
 	}
 
 	/**

@@ -16,7 +16,6 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -38,7 +37,6 @@ import java.util.Optional;
  */
 public class MainFrame extends Application implements MainRefresh, GameListener
 {
-	public static boolean debug = false;
 	public static final String PARAM_DEV = "--dev", PARAM_DEBUG = "--debug";
 	public static final int MAX_DEPTH = 3;
 	private QuestNode quest;
@@ -57,16 +55,9 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
-		debug = this.getParameters().getUnnamed().contains(PARAM_DEBUG);
+		QuestGenerator.setDebug(this.getParameters().getUnnamed().contains(PARAM_DEBUG));
 		this.stage = primaryStage;
 		Scene scene = new Scene(createContent());
-		scene.setOnKeyPressed(event -> {
-			if(event.isControlDown() && event.getCode() == KeyCode.D)
-				debug = !debug;
-			if(event.isControlDown() && event.getCode() == KeyCode.P)
-				this.quest.setDoable(!this.quest.getDoable());
-			this.quest.modifyQuest(this.quest.getQuest());
-		});
 		primaryStage.setTitle("Quest generator");
 		primaryStage.getIcons().add(new Image(Resources.JFX.getResource("icon64.png").toString()));
 		primaryStage.setScene(scene);
@@ -102,8 +93,20 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 			stage1.show();
 		});
 		eventsMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
+		MenuItem presentationMenuItem = new MenuItem("Switch presentation mode");
+		presentationMenuItem.setOnAction(event -> {
+			this.quest.setDoable(!this.quest.getDoable());
+			this.quest.reloadQuest();
+		});
+		presentationMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
+		MenuItem debugMenuItem = new MenuItem("Switch debug mode");
+		debugMenuItem.setOnAction(event -> {
+			QuestGenerator.setDebug(!QuestGenerator.getDebug());
+			this.quest.reloadQuest();
+		});
+		debugMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
 
-		menuFile.getItems().addAll(reloadMenuItem, exportMenuItem, eventsMenuItem);
+		menuFile.getItems().addAll(reloadMenuItem, exportMenuItem, eventsMenuItem, presentationMenuItem, debugMenuItem);
 
 		BorderPane pane = new BorderPane();
 
