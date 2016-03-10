@@ -16,7 +16,6 @@ import fr.polytech.di.questgenerator.actionexecutors.action.learn.ActionLearnRea
 import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealStealthActionExecutor;
 import fr.polytech.di.questgenerator.actionexecutors.action.steal.ActionStealTakeActionExecutor;
 import fr.polytech.di.questgenerator.interfaces.ActionExecutor;
-import fr.polytech.di.questgenerator.jfx.MainFrame;
 import fr.polytech.di.questgenerator.objects.Action;
 import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
@@ -153,7 +152,7 @@ public enum ActionType
 	{
 		if(actionExecutors.isEmpty())
 			return Optional.empty();
-		if(depth > MainFrame.MAX_DEPTH && actionExecutors.contains(ActionEpsilonActionExecutor.class))
+		if(depth > QuestGenerator.getMaxDepth() && actionExecutors.contains(ActionEpsilonActionExecutor.class))
 			return Optional.empty();
 		Quest quest = Quest.getEpsilon(parent);
 		if(!actionExecutors.isEmpty())
@@ -184,7 +183,7 @@ public enum ActionType
 	}
 
 	/**
-	 * Used to get a random ActionExecutor. If an epsillon ActionExecutor is present, he will have more chances to be picked as we get closer to the max depth.
+	 * Used to get a random ActionExecutor. If an epsilon ActionExecutor is present, he will have more chances to be picked as we get closer to the max depth.
 	 *
 	 * @param depth The depth of the Action.
 	 * @return A random ActionExecutor.
@@ -193,7 +192,7 @@ public enum ActionType
 	{
 		if(!executors.contains(ActionEpsilonActionExecutor.class))
 			return executors.get(ThreadLocalRandom.current().nextInt(executors.size()));
-		if(Math.random() < (1 / executors.size()) + (depth / MainFrame.MAX_DEPTH))
+		if(Math.random() < (1 / executors.size()) + (depth / QuestGenerator.getMaxDepth()))
 			return ActionEpsilonActionExecutor.class;
 		return executors.get(1 + ThreadLocalRandom.current().nextInt(executors.size() - 1));
 	}

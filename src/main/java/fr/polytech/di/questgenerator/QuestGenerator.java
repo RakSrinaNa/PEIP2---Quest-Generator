@@ -16,7 +16,19 @@ import java.util.Optional;
  */
 public class QuestGenerator
 {
-	public static boolean debug = false;
+	private static boolean debug = false;
+
+	public static int getMaxDepth()
+	{
+		return maxDepth;
+	}
+
+	public static void setMaxDepth(int maxDepth)
+	{
+		QuestGenerator.maxDepth = maxDepth;
+	}
+
+	private static int maxDepth = 3;
 
 	/**
 	 * Start a quest randomly.

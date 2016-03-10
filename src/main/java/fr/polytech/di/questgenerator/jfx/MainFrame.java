@@ -37,10 +37,8 @@ import java.util.Optional;
  */
 public class MainFrame extends Application implements MainRefresh, GameListener
 {
-	public static final String PARAM_DEV = "--dev", PARAM_DEBUG = "--debug";
-	public static final int MAX_DEPTH = 3;
+	private static final String PARAM_DEV = "--dev", PARAM_DEBUG = "--debug";
 	private QuestNode quest;
-	private Stage stage;
 
 	/**
 	 * Startup function.
@@ -56,7 +54,6 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 	public void start(Stage primaryStage) throws Exception
 	{
 		QuestGenerator.setDebug(this.getParameters().getUnnamed().contains(PARAM_DEBUG));
-		this.stage = primaryStage;
 		Scene scene = new Scene(createContent());
 		primaryStage.setTitle("Quest generator");
 		primaryStage.getIcons().add(new Image(Resources.JFX.getResource("icon64.png").toString()));
@@ -115,13 +112,28 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 		scroll.setPrefSize(400, 600);
 		scroll.setStyle("-fx-background: " + QuestNode.getStringColor(0) + ";");
 
+		Slider depthSlider = new Slider();
+		depthSlider.setMin(1);
+		depthSlider.setMax(20);
+		depthSlider.setValue(QuestGenerator.getMaxDepth());
+		depthSlider.setShowTickLabels(true);
+		depthSlider.setShowTickMarks(true);
+		depthSlider.setMajorTickUnit(1);
+		depthSlider.setBlockIncrement(1);
+		depthSlider.setMinorTickCount(1);
+		depthSlider.valueProperty().addListener((ov, old_val, new_val) -> {
+			QuestGenerator.setMaxDepth(new_val.intValue());
+			depthSlider.adjustValue(QuestGenerator.getMaxDepth());
+		});
+		depthSlider.setMaxWidth(Double.MAX_VALUE);
+
 		Button reloadButton = new Button("Reload quest");
 		reloadButton.setMaxWidth(Double.MAX_VALUE);
 		reloadButton.setOnMouseReleased(event -> reloadQuest());
 
 		VBox buttons = new VBox();
 		buttons.setPadding(new Insets(2, 2, 2, 2));
-		buttons.getChildren().addAll(reloadButton);
+		buttons.getChildren().addAll(depthSlider, reloadButton);
 
 		pane.setCenter(scroll);
 		pane.setBottom(buttons);
@@ -141,7 +153,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 		Optional<String> value = dialog.showAndWait();
 		if(!value.isPresent())
 			return;
-		File file = null;
+		File file;
 		switch(value.get())
 		{
 			case "PNG":
