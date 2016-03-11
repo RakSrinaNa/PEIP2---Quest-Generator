@@ -25,7 +25,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Each elementary action defining the quest.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public enum ActionType
@@ -189,7 +189,7 @@ public enum ActionType
 	 * @param depth The depth of the Action.
 	 * @return A random ActionExecutor.
 	 */
-	public Class<? extends ActionExecutor> getRandomActionExecutor(int depth, ArrayList<Class<? extends ActionExecutor>> executors)
+	private Class<? extends ActionExecutor> getRandomActionExecutor(int depth, ArrayList<Class<? extends ActionExecutor>> executors)
 	{
 		if(!executors.contains(ActionEpsilonActionExecutor.class))
 			return executors.get(ThreadLocalRandom.current().nextInt(executors.size()));

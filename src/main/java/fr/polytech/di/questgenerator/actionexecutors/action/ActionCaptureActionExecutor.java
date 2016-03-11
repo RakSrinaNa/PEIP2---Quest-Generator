@@ -23,7 +23,6 @@ public class ActionCaptureActionExecutor implements ActionExecutor
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/stuff/capture/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("pnj/being/*", "area/*"))));
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE)));
 		Action actionCapture = new Action(this.getClass(), depth, ActionType.CAPTURE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE)), false);
-
 		return new Quest(parent, actionGet, actionGoto, actionCapture);
 	}
 }

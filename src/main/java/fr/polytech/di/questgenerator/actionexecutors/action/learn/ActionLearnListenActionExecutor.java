@@ -21,10 +21,8 @@ public class ActionLearnListenActionExecutor implements ActionExecutor
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectiveObj = DataHandler.getRandomFromCategories("pnj/being/*", "area/*");
-
 		ObjectiveHelper listenHelper;
 		ObjectiveHelper subquestHelper;
-
 		if(objectiveObj.isInPath("pnj/being/*"))
 		{
 			listenHelper = new ObjectiveHelper(OBJECTIVE, objectiveObj);
@@ -36,11 +34,9 @@ public class ActionLearnListenActionExecutor implements ActionExecutor
 			listenHelper = new ObjectiveHelper(OBJECTIVE, pnjListen);
 			subquestHelper = new ObjectiveHelper(OBJECTIVE, pnjListen);
 		}
-
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveObj)));
 		Action actionSubquest = new Action(this.getClass(), depth, ActionType.QUEST, buildObjective(objectives, subquestHelper));
 		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, listenHelper), false);
-
 		return new Quest(parent, actionGoto, actionSubquest, actionListen);
 	}
 }

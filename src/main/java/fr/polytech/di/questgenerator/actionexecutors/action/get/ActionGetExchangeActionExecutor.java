@@ -23,19 +23,15 @@ public class ActionGetExchangeActionExecutor implements ActionExecutor
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/*");
 		XMLStringObjectiveElement pnjGet = DataHandler.getRandomFromCategories("pnj/being/*", "area/*");
 		XMLStringObjectiveElement pnjExchange = DataHandler.getRandomFromCategories("pnj/being/*");
-
 		ObjectiveHelper getLocHelper;
 		if(pnjGet.isInPath("pnj/being/*"))
 			getLocHelper = new ObjectiveHelper(LOC_OBJECTIVE, pnjGet);
 		else
 			getLocHelper = new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("pnj/being/*"));
-
-
 		Action actionGotoSteal = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjGet)));
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), getLocHelper));
 		Action actionGotoSubquest = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjExchange)));
 		Action actionExchange = new Action(this.getClass(), depth, ActionType.EXCHANGE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET), new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(PNJ, pnjExchange)), false);
-
 		return new Quest(parent, actionGotoSteal, actionGet, actionGotoSubquest, actionExchange);
 	}
 

@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Interface for the classes that define how a Quest should be generated.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public interface ActionExecutor

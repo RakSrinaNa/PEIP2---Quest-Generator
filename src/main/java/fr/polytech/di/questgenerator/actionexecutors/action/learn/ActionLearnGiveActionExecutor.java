@@ -22,11 +22,9 @@ public class ActionLearnGiveActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/*");
 		XMLStringObjectiveElement objectiveListen = DataHandler.getRandomFromCategories("pnj/being/*");
-
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("area/*"))));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveListen)), false);
 		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveListen)), false);
-
 		return new Quest(parent, actionGet, actionGive, actionListen);
 	}
 }

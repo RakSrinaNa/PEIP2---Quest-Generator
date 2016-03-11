@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Represent a category in the objective xml file.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class XMLStringObjectiveCategory

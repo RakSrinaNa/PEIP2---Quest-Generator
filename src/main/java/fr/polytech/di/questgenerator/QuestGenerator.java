@@ -11,12 +11,13 @@ import java.util.Optional;
 
 /**
  * Generates quests.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class QuestGenerator
 {
 	private static boolean debug = false;
+	private static int maxDepth = 3;
 
 	/**
 	 * Used to get the max depth.
@@ -37,8 +38,6 @@ public class QuestGenerator
 	{
 		QuestGenerator.maxDepth = maxDepth;
 	}
-
-	private static int maxDepth = 3;
 
 	/**
 	 * Start a quest randomly.

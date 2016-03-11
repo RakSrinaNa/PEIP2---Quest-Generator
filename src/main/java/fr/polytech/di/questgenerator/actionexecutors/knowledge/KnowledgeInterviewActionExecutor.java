@@ -22,12 +22,10 @@ public class KnowledgeInterviewActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement pnjListen = DataHandler.getRandomFromCategories("pnj/being/*");
 		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories("pnj/being/*");
-
 		Action actionGotoListen = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjListen)));
 		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjListen)), false);
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
 		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
-
 		return new Quest(parent, getSentence("Knowledge_Interview", pnjListen, pnjReport), actionGotoListen, actionListen, actionGotoReport, actionReport);
 	}
 }

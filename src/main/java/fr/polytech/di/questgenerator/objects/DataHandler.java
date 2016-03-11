@@ -18,7 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Contains all the different objective values.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class DataHandler
@@ -33,7 +33,6 @@ public class DataHandler
 	 */
 	public static XMLStringObjectiveElement getRandomFromCategories(String... categories)
 	{
-
 		ArrayList<XMLStringObjectiveElement> candidates = new ArrayList<>();
 		for(String category : categories)
 		{

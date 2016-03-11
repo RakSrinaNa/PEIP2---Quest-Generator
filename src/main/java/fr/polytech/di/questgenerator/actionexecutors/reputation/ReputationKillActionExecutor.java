@@ -22,12 +22,10 @@ public class ReputationKillActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement pnjKill = DataHandler.getRandomFromCategories("pnj/boss/*");
 		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories("pnj/being/*");
-
 		Action actionGotoKill = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjKill)));
 		Action actionKill = new Action(this.getClass(), depth, ActionType.KILL, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjKill)));
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
 		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
-
 		return new Quest(parent, getSentence("Reputation_Kill", pnjKill, pnjReport), actionGotoKill, actionKill, actionGotoReport, actionReport);
 	}
 }

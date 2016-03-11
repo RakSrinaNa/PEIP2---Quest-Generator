@@ -5,7 +5,7 @@ import fr.polytech.di.questgenerator.objects.Quest;
 
 /**
  * Interface used to know what happened in a quest. After implementing this interface, you can use the {@link Quest#addQuestListener(QuestListener)} on the root quest to get notified of the events.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public interface QuestListener

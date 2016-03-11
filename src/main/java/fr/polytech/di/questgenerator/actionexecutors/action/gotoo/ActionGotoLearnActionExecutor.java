@@ -21,7 +21,6 @@ public class ActionGotoLearnActionExecutor implements ActionExecutor
 	{
 		Action actionLearn = new Action(this.getClass(), depth, ActionType.LEARN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE)));
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE)), false);
-
 		return new Quest(parent, actionLearn, actionGoto);
 	}
 

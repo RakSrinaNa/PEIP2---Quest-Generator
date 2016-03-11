@@ -4,7 +4,7 @@ import fr.polytech.di.questgenerator.QuestGenerator;
 
 /**
  * Represent an element in the objective xml file.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class XMLStringObjectiveElement implements Comparable<XMLStringObjectiveElement>

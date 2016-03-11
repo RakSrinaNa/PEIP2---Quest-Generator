@@ -22,11 +22,9 @@ public class ActionLearnReadActionListener implements ActionExecutor
 	{
 		XMLStringObjectiveElement objectivePlace = DataHandler.getRandomFromCategories("area/place/*");
 		XMLStringObjectiveElement objectiveRead = DataHandler.getRandomFromCategories("object/readable/learning/*");
-
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePlace)));
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveRead), new ObjectiveHelper(LOC_OBJECTIVE, objectivePlace)));
 		Action actionRead = new Action(this.getClass(), depth, ActionType.READ, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveRead)), false);
-
 		return new Quest(parent, actionGoto, actionGet, actionRead);
 	}
 

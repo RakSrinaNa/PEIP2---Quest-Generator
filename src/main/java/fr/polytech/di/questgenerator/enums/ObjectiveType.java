@@ -2,7 +2,7 @@ package fr.polytech.di.questgenerator.enums;
 
 /**
  * The different kind of objectives.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public enum ObjectiveType

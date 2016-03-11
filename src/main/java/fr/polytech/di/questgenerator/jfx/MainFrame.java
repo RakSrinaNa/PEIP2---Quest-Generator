@@ -32,14 +32,13 @@ import java.util.Optional;
 
 /**
  * Main frame of the application.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class MainFrame extends Application implements MainRefresh, GameListener
 {
 	private static final String PARAM_DEV = "--dev", PARAM_DEBUG = "--debug";
 	private QuestNode quest;
-	private Stage stage;
 
 	/**
 	 * Startup function.
@@ -54,7 +53,6 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
-		this.stage = primaryStage;
 		QuestGenerator.setDebug(this.getParameters().getUnnamed().contains(PARAM_DEBUG));
 		Scene scene = new Scene(createContent());
 		primaryStage.setTitle("Quest generator");
@@ -75,7 +73,6 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 		MenuBar menuBar = new MenuBar();
 		Menu menuFile = new Menu("File");
 		menuBar.getMenus().addAll(menuFile);
-
 		MenuItem reloadMenuItem = new MenuItem("Reload quest");
 		reloadMenuItem.setOnAction(event -> reloadQuest());
 		reloadMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
@@ -104,9 +101,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 			this.quest.reloadQuest();
 		});
 		debugMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
-
 		menuFile.getItems().addAll(reloadMenuItem, exportMenuItem, eventsMenuItem, presentationMenuItem, debugMenuItem);
-
 		quest = new QuestNode(this, !this.getParameters().getUnnamed().contains(PARAM_DEV), QuestGenerator.createNewRandomQuest(), 0);
 		ScrollPane scroll = new ScrollPane(quest);
 		scroll.setMaxHeight(Double.MAX_VALUE);
@@ -115,7 +110,6 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 		scroll.viewportBoundsProperty().addListener((observable, oldValue, newValue) -> {
 			quest.setMaxWidth(scroll.getViewportBounds().getWidth());
 		});
-
 		Slider depthSlider = new Slider();
 		depthSlider.setMin(1);
 		depthSlider.setMax(20);
@@ -130,21 +124,17 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 			depthSlider.adjustValue(QuestGenerator.getMaxDepth());
 		});
 		depthSlider.setMaxWidth(Double.MAX_VALUE);
-
 		Button reloadButton = new Button("Reload quest");
 		reloadButton.setMaxWidth(Double.MAX_VALUE);
 		reloadButton.setOnMouseReleased(event -> reloadQuest());
-
 		VBox buttons = new VBox();
 		buttons.setPadding(new Insets(2, 2, 2, 2));
 		buttons.getChildren().addAll(depthSlider, reloadButton);
-
 		VBox root = new VBox();
 		root.setStyle("-fx-background: " + QuestNode.getStringColor(0) + ";");
 		root.setPrefSize(800, 600);
 		root.getChildren().addAll(menuBar, buttons, scroll);
-		root.setVgrow(scroll, Priority.ALWAYS);
-
+		VBox.setVgrow(scroll, Priority.ALWAYS);
 		return root;
 	}
 
@@ -225,7 +215,6 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 				}
 				break;
 		}
-
 	}
 
 	/**
@@ -283,7 +272,8 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 		boolean result = this.quest.getQuest().defendEvent(object);
 		if(result)
 			refresh();
-		return result;	}
+		return result;
+	}
 
 	@Override
 	public boolean escortEvent(XMLStringObjectiveElement pnj)
@@ -291,7 +281,8 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 		boolean result = this.quest.getQuest().escortEvent(pnj);
 		if(result)
 			refresh();
-		return result;	}
+		return result;
+	}
 
 	@Override
 	public boolean exchangeEvent(XMLStringObjectiveElement objectGive, XMLStringObjectiveElement objectGet, XMLStringObjectiveElement to)

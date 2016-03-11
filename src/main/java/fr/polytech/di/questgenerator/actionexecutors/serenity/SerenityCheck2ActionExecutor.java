@@ -23,12 +23,10 @@ public class SerenityCheck2ActionExecutor implements ActionExecutor
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/personal/*");
 		XMLStringObjectiveElement pnjTake = DataHandler.getRandomFromCategories("pnj/being/*");
 		XMLStringObjectiveElement pnjGive = DataHandler.getRandomFromCategories("pnj/being/*");
-
 		Action actionGotoTake = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjTake)));
 		Action actionTake = new Action(this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(PNJ, pnjTake)), false);
 		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjGive)));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, OBJECTIVE, pnjGive)), false);
-
-		return new Quest(parent, getSentence("Serenity_Check2", pnjGive, pnjTake),actionGotoTake, actionTake, actionGotoGive, actionGive);
+		return new Quest(parent, getSentence("Serenity_Check2", pnjGive, pnjTake), actionGotoTake, actionTake, actionGotoGive, actionGive);
 	}
 }

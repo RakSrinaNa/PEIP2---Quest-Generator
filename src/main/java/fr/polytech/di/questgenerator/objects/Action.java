@@ -13,7 +13,7 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 
 /**
  * Define an actionType to do.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class Action implements GameListener
@@ -276,7 +276,7 @@ public class Action implements GameListener
 	 * @param objectiveType The objectivetype to test.
 	 * @param objective The objective value.
 	 * @return True if it's the correct one, false if not.
- 	 */
+	 */
 	private boolean isCorrectObjective(ObjectiveType objectiveType, XMLStringObjectiveElement objective)
 	{
 		return this.getObjective(objectiveType).is(objective);

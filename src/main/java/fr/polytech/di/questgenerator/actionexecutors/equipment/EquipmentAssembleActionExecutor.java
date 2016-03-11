@@ -21,7 +21,6 @@ public class EquipmentAssembleActionExecutor implements ActionExecutor
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("object/stuff/*"))), false);
-
 		return new Quest(parent, getSentence("Equipment_Assemble", actionRepair.getObjective(OBJECTIVE)), actionRepair);
 	}
 }

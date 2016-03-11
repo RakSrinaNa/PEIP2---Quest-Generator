@@ -4,7 +4,7 @@ import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 
 /**
  * Interface used to connect a game to a quest. Allowing it to tell events that happened to update the quest progression.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public interface GameListener

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 /**
  * Used to help the transfer of objectives.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class ObjectiveHelper

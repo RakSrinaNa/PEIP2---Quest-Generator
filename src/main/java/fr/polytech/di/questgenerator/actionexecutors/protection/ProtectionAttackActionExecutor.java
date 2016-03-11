@@ -22,12 +22,10 @@ public class ProtectionAttackActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement pnjDamage = DataHandler.getRandomFromCategories("pnj/being/*");
 		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories("pnj/being/*");
-
 		Action actionGotoDamage = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjDamage)));
 		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjDamage)), false);
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
 		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
-
 		return new Quest(parent, getSentence("Protection_Attack", pnjDamage, pnjReport), actionGotoDamage, actionDamage, actionGotoReport, actionReport);
 	}
 }

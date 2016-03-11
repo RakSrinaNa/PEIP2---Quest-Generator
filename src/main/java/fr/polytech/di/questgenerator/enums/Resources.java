@@ -15,7 +15,7 @@ import java.util.Properties;
 
 /**
  * Enum of the different resources available.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public enum Resources
@@ -46,7 +46,7 @@ public enum Resources
 	 * @param height The height to set.
 	 * @return The resized image.
 	 */
-	public static BufferedImage resizeBufferedImage(BufferedImage image, float width, float height)
+	private static BufferedImage resizeBufferedImage(BufferedImage image, float width, float height)
 	{
 		int baseWidth = image.getWidth(), baseHeight = image.getHeight();
 		float ratio = baseWidth > baseHeight ? width / baseWidth : height / baseHeight;
@@ -113,6 +113,7 @@ public enum Resources
 	 *
 	 * @param path The path of the file.
 	 * @return The properties object.
+	 *
 	 * @throws IOException If the file couldn't be read.
 	 */
 	private Properties getProperties(String path) throws IOException

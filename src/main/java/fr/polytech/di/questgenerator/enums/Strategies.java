@@ -32,7 +32,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Strategies used for the beginning of a quest.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public enum Strategies

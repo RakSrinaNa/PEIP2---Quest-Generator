@@ -26,7 +26,6 @@ public class ActionGotoExploreActionExecutor implements ActionExecutor
 		else
 			objectiveHelper = new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("area/wild/*"));
 		Action actionExplore = new Action(this.getClass(), depth, ActionType.EXPLORE, buildObjective(objectives, objectiveHelper), false);
-
 		return new Quest(parent, actionExplore);
 	}
 

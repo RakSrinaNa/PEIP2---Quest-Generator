@@ -21,7 +21,6 @@ public class ActionStealStealthActionExecutor implements ActionExecutor
 	{
 		Action actionStealth = new Action(this.getClass(), depth, ActionType.STEALTH, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ)), false);
 		Action actionTake = new Action(this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(PNJ, PNJ), new ObjectiveHelper(OBJ_GET, OBJ_GET)), false);
-
 		return new Quest(parent, actionStealth, actionTake);
 	}
 }

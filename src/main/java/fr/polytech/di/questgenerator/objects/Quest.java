@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * A quest.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class Quest implements GameListener

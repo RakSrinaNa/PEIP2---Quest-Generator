@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
 
 /**
  * Element displaying an action to do with its subquest.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class ActionNode extends HBox
@@ -25,12 +25,12 @@ public class ActionNode extends HBox
 	private static final Image CLOSED_IMAGE = Resources.JFX_IMAGE.getImage("closed.png", IMG_ARROW_SIZE, IMG_ARROW_SIZE);
 	private static final Image DONE_IMAGE = Resources.JFX_IMAGE.getImage("done.png", IMG_DONE_SIZE, IMG_DONE_SIZE);
 	private static final Image NOT_DONE_IMAGE = Resources.JFX_IMAGE.getImage("not_done.png", IMG_DONE_SIZE, IMG_DONE_SIZE);
+	private final Action action;
+	private final MainRefresh mainRefresh;
 	private QuestNode subquest;
 	private ImageView imageArrow;
 	private ImageView imageDone;
-	private final Action action;
 	private boolean doable;
-	private final MainRefresh mainRefresh;
 
 	/**
 	 * Constructor.

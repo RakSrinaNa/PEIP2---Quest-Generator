@@ -10,9 +10,7 @@ import fr.polytech.di.questgenerator.objects.Quest;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import java.util.HashMap;
 import java.util.Optional;
-import static fr.polytech.di.questgenerator.enums.ObjectiveType.LOC_OBJECTIVE;
-import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJECTIVE;
-import static fr.polytech.di.questgenerator.enums.ObjectiveType.OBJ_USE;
+import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 
 /**
  * Created by COUCHOUD Thomas & COLEAU Victor.
@@ -23,10 +21,8 @@ public class AbilityAssembleActionExecutor implements ActionExecutor
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/stuff/weapon/*");
-
 		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveObject)), false);
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("object/training/*"))), false);
-
 		return new Quest(parent, getSentence("Ability_Assemble", objectiveObject), actionRepair, actionUse);
 	}
 }

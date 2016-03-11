@@ -21,10 +21,8 @@ public class WealthStealActionExecutor implements ActionExecutor
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomFromCategories("pnj/being/*");
-
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePNJ)));
 		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(PNJ, objectivePNJ), new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/personal/*", "object/luxury/*"))));
-
 		return new Quest(parent, getSentence("Wealth_Steal"), actionGoto, actionSteal);
 	}
 }

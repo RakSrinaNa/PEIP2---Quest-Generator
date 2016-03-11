@@ -22,7 +22,6 @@ public class AbilityPracticeSkillActionExecutor implements ActionExecutor
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, DataHandler.getRandomFromCategories("skill/magic/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("object/training/*"))), false);
-
 		return new Quest(parent, getSentence("Ability_PracticeSkill", actionUse.getObjective(OBJ_USE)), actionUse);
 	}
 }

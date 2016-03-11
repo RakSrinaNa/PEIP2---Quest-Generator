@@ -22,7 +22,6 @@ public class AbilityResearch1ActionExecutor implements ActionExecutor
 	{
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories("object/readable/learning/skill/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("pnj/being/*", "area/place/*"))));
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, DataHandler.getRandomFromCategories("skill/magic/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("object/training/*"))), false);
-
 		return new Quest(parent, getSentence("Ability_Research1"), actionGet, actionUse);
 	}
 }

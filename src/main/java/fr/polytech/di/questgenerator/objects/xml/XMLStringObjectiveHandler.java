@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 /**
  * Use to read the objectives xml file.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class XMLStringObjectiveHandler extends DefaultHandler

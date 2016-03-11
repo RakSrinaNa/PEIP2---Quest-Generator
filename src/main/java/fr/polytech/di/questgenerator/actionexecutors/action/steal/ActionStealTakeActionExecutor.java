@@ -21,7 +21,6 @@ public class ActionStealTakeActionExecutor implements ActionExecutor
 	{
 		Action actionKill = new Action(this.getClass(), depth, ActionType.KILL, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ)));
 		Action actionTake = new Action(this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET), new ObjectiveHelper(PNJ, PNJ)), false);
-
 		return new Quest(parent, actionKill, actionTake);
 	}
 }

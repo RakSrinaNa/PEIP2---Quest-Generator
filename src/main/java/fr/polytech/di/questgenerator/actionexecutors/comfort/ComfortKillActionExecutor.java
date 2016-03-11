@@ -22,12 +22,10 @@ public class ComfortKillActionExecutor implements ActionExecutor
 	{
 		XMLStringObjectiveElement pnjKill = DataHandler.getRandomFromCategories("pnj/beast/pests/*");
 		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories("pnj/being/*");
-
-		Action actionGotoKill = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE,pnjKill)));
+		Action actionGotoKill = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjKill)));
 		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjKill)), false);
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
 		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
-
 		return new Quest(parent, getSentence("Comfort_Kill", pnjReport, pnjKill), actionGotoKill, actionDamage, actionGotoReport, actionReport);
 	}
 }

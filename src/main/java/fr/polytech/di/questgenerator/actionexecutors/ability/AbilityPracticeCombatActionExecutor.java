@@ -21,7 +21,6 @@ public class AbilityPracticeCombatActionExecutor implements ActionExecutor
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories("object/training/*"))), false);
-
 		return new Quest(parent, getSentence("Ability_PracticeCombat"), actionDamage);
 	}
 }

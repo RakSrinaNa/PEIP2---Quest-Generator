@@ -14,7 +14,7 @@ import java.util.Optional;
 
 /**
  * Button to be used in the events frame.
- *
+ * <p>
  * Created by MrCraftCod on 03/03/2016.
  */
 public class EventNode extends Button
@@ -31,30 +31,30 @@ public class EventNode extends Button
 		this.setTextAlignment(TextAlignment.CENTER);
 		this.setMaxWidth(Double.MAX_VALUE);
 		this.setOnMouseReleased(event -> {
-				try
+			try
+			{
+				ArrayList<Object> args = new ArrayList<>();
+				for(Parameter param : method.getParameters())
 				{
-					ArrayList<Object> args = new ArrayList<>();
-					for(Parameter param : method.getParameters())
-					{
-						ChoiceDialog<XMLStringObjectiveElement> dialog = new ChoiceDialog<>(null, DataHandler.getAllSorted());
-						dialog.setTitle("Parameter " + param.getName());
-						dialog.setHeaderText("Parameter " + param.getName());
-						dialog.setContentText("Select value to send");
-						Optional<XMLStringObjectiveElement> value = dialog.showAndWait();
-						if(!value.isPresent())
-							return;
-						args.add(value.get());
-					}
-					method.invoke(gameListener, args.toArray());
+					ChoiceDialog<XMLStringObjectiveElement> dialog = new ChoiceDialog<>(null, DataHandler.getAllSorted());
+					dialog.setTitle("Parameter " + param.getName());
+					dialog.setHeaderText("Parameter " + param.getName());
+					dialog.setContentText("Select value to send");
+					Optional<XMLStringObjectiveElement> value = dialog.showAndWait();
+					if(!value.isPresent())
+						return;
+					args.add(value.get());
 				}
-				catch(IllegalAccessException e)
-				{
-					e.printStackTrace();
-				}
-				catch(InvocationTargetException e)
-				{
-					e.getTargetException().printStackTrace();
-				}
+				method.invoke(gameListener, args.toArray());
+			}
+			catch(IllegalAccessException e)
+			{
+				e.printStackTrace();
+			}
+			catch(InvocationTargetException e)
+			{
+				e.getTargetException().printStackTrace();
+			}
 		});
 	}
 }

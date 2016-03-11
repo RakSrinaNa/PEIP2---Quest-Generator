@@ -9,15 +9,15 @@ import javafx.scene.text.Font;
 
 /**
  * Element displaying a quest.
- *
+ * <p>
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class QuestNode extends VBox
 {
 	private static final Font FONT = Font.font("Verdana", 16);
 	private final MainRefresh mainRefresh;
-	private VBox actions;
-	private Label description;
+	private final VBox actions;
+	private final Label description;
 	private boolean doable;
 	private Quest quest;
 
@@ -41,17 +41,13 @@ public class QuestNode extends VBox
 				"-fx-border-width: 2;" +
 				"-fx-border-radius: 5;" +
 				"-fx-border-color: black;");
-
 		this.actions = new VBox();
 		this.actions.setSpacing(5);
-
 		this.description = new Label();
 		this.description.setWrapText(true);
 		this.description.setFont(FONT);
-
 		this.getChildren().add(description);
 		this.getChildren().add(this.actions);
-
 		loadQuest(quest);
 	}
 
