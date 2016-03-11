@@ -17,7 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
@@ -39,6 +39,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 {
 	private static final String PARAM_DEV = "--dev", PARAM_DEBUG = "--debug";
 	private QuestNode quest;
+	private Stage stage;
 
 	/**
 	 * Startup function.
@@ -53,6 +54,7 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
+		this.stage = primaryStage;
 		QuestGenerator.setDebug(this.getParameters().getUnnamed().contains(PARAM_DEBUG));
 		Scene scene = new Scene(createContent());
 		primaryStage.setTitle("Quest generator");
@@ -105,12 +107,14 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 
 		menuFile.getItems().addAll(reloadMenuItem, exportMenuItem, eventsMenuItem, presentationMenuItem, debugMenuItem);
 
-		BorderPane pane = new BorderPane();
-
 		quest = new QuestNode(this, !this.getParameters().getUnnamed().contains(PARAM_DEV), QuestGenerator.createNewRandomQuest(), 0);
 		ScrollPane scroll = new ScrollPane(quest);
-		scroll.setPrefSize(400, 600);
+		scroll.setMaxHeight(Double.MAX_VALUE);
+		scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		scroll.setStyle("-fx-background: " + QuestNode.getStringColor(0) + ";");
+		scroll.viewportBoundsProperty().addListener((observable, oldValue, newValue) -> {
+			quest.setMaxWidth(scroll.getViewportBounds().getWidth());
+		});
 
 		Slider depthSlider = new Slider();
 		depthSlider.setMin(1);
@@ -135,11 +139,11 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 		buttons.setPadding(new Insets(2, 2, 2, 2));
 		buttons.getChildren().addAll(depthSlider, reloadButton);
 
-		pane.setCenter(scroll);
-		pane.setBottom(buttons);
-
 		VBox root = new VBox();
-		root.getChildren().addAll(menuBar, pane);
+		root.setStyle("-fx-background: " + QuestNode.getStringColor(0) + ";");
+		root.setPrefSize(800, 600);
+		root.getChildren().addAll(menuBar, buttons, scroll);
+		root.setVgrow(scroll, Priority.ALWAYS);
 
 		return root;
 	}
