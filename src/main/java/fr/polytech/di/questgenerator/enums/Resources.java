@@ -2,7 +2,6 @@ package fr.polytech.di.questgenerator.enums;
 
 import fr.polytech.di.questgenerator.jfx.MainFrame;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -69,28 +68,6 @@ public enum Resources
 	}
 
 	/**
-	 * Get a string to access that resource.
-	 *
-	 * @param path The file path inside the root node.
-	 * @return The resource as String.
-	 */
-	public String getResourceString(String path)
-	{
-		return "/" + this.rootPath + "/" + path;
-	}
-
-	/**
-	 * Get a JavaFX Image.
-	 *
-	 * @param path The path of the file.
-	 * @return The Image.
-	 */
-	public Image getImage(String path)
-	{
-		return new Image(getResource(path).toString());
-	}
-
-	/**
 	 * Get a resized (conserving ratio) JavaFX WritableImage.
 	 *
 	 * @param path The path of the file.
@@ -111,6 +88,13 @@ public enum Resources
 		return null;
 	}
 
+	/**
+	 * Get a value from a property file.
+	 *
+	 * @param path The path of the property file (without the ".properties" ending).
+	 * @param key The key to retrieve.
+	 * @return The key from the file.
+	 */
 	public String getPropertyString(String path, String key)
 	{
 		try
@@ -124,6 +108,13 @@ public enum Resources
 		return "--";
 	}
 
+	/**
+	 * Used to load a property file or get the reference of it if already created.
+	 *
+	 * @param path The path of the file.
+	 * @return The properties object.
+	 * @throws IOException If the file couldn't be read.
+	 */
 	private Properties getProperties(String path) throws IOException
 	{
 		if(properties.containsKey(path))

@@ -25,6 +25,12 @@ public class DataHandler
 {
 	private final static ArrayList<XMLStringObjectiveCategory> strings;
 
+	/**
+	 * Get a random element from the given categories.
+	 *
+	 * @param categories The categories to get the element from (use xx/* to include all xx subcategories).
+	 * @return A random element.
+	 */
 	public static XMLStringObjectiveElement getRandomFromCategories(String... categories)
 	{
 
@@ -46,6 +52,11 @@ public class DataHandler
 		return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
 	}
 
+	/**
+	 * Used to get all the XML elements sorted.
+	 *
+	 * @return The elements.
+	 */
 	public static ArrayList<XMLStringObjectiveElement> getAllSorted()
 	{
 		ArrayList<XMLStringObjectiveElement> list = new ArrayList<>();

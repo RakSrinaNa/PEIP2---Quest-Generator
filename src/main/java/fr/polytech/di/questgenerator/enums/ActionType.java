@@ -144,6 +144,7 @@ public enum ActionType
 	/**
 	 * Generate a subquest for the action.
 	 *
+	 * @param parent The parent action, null if none.
 	 * @param depth The depth of the subquest.
 	 * @param objectives The objectives for the subquest.
 	 * @return An Optional object containing the Quest.

@@ -13,10 +13,18 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 /**
+ * Button to be used in the events frame.
+ *
  * Created by MrCraftCod on 03/03/2016.
  */
 public class EventNode extends Button
 {
+	/**
+	 * Constructor.
+	 *
+	 * @param gameListener The gamelistener to which we'll send the events.
+	 * @param method The method we are simulating.
+	 */
 	public EventNode(GameListener gameListener, Method method)
 	{
 		super(method.getName());

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Optional;
 
 /**
+ * Used to help the transfer of objectives.
+ *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class ObjectiveHelper

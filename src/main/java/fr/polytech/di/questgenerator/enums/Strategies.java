@@ -140,7 +140,7 @@ public enum Strategies
 	 * Pick a random Strategy for a given Motivation.
 	 *
 	 * @param motivation The Motivation the Strategy picked needs to be.
-	 * @return A rantom Strategy with the wanted Motivation.
+	 * @return A random Strategy with the wanted Motivation.
 	 */
 	public static Strategies getByMotivation(Motivations motivation)
 	{
@@ -164,6 +164,7 @@ public enum Strategies
 	/**
 	 * Create a quest.
 	 *
+	 * @param parent The parent action, null if none.
 	 * @param depth The depth of the quest.
 	 * @param objectives The objectives for the quest.
 	 * @return A quest.

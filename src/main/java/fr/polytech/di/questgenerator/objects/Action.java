@@ -13,7 +13,7 @@ import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 
 /**
  * Define an actionType to do.
- * <p>
+ *
  * Created by COUCHOUD Thomas & COLEAU Victor.
  */
 public class Action implements GameListener
@@ -220,6 +220,11 @@ public class Action implements GameListener
 		return this.getParentQuest().isActionDoable(this);
 	}
 
+	/**
+	 * Used to get the parent quest.
+	 *
+	 * @return The parent quest.
+	 */
 	public Quest getParentQuest()
 	{
 		return this.parentQuest;
@@ -235,21 +240,43 @@ public class Action implements GameListener
 		this.parentQuest = quest;
 	}
 
+	/**
+	 * Used to get the action we have to do, including its sub actions if present.
+	 *
+	 * @return The Action to do.
+	 */
 	public Action getActionToDo()
 	{
 		return this.subquest.isPresent() ? this.subquest.get().getActionToDo() : this;
 	}
 
+	/**
+	 * Used to notify to the parent quest that an action has been done.
+	 *
+	 * @param action The action done.
+	 */
 	public void notifyActionDone(Action action)
 	{
 		this.getParentQuest().notifyActionDone(action);
 	}
 
+	/**
+	 * Used to notify to the parent quest that a quest has been done.
+	 *
+	 * @param quest The quest done.
+	 */
 	public void notifyQuestDone(Quest quest)
 	{
 		this.getParentQuest().notifyQuestDone(quest);
 	}
 
+	/**
+	 * Used to know if the objective given is the one wanted.
+	 *
+	 * @param objectiveType The objectivetype to test.
+	 * @param objective The objective value.
+	 * @return True if it's the correct one, false if not.
+ 	 */
 	private boolean isCorrectObjective(ObjectiveType objectiveType, XMLStringObjectiveElement objective)
 	{
 		return this.getObjective(objectiveType).is(objective);
@@ -585,6 +612,12 @@ public class Action implements GameListener
 		return false;
 	}
 
+	/**
+	 * Used to write itself into an XML file.
+	 *
+	 * @param out The XMLWriter.
+	 * @throws XMLStreamException If the action couldn't be written.
+	 */
 	public void createXML(XMLStreamWriter out) throws XMLStreamException
 	{
 		out.writeStartElement("action");

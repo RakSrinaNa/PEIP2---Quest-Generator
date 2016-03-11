@@ -35,6 +35,7 @@ public class ActionNode extends HBox
 	/**
 	 * Constructor.
 	 *
+	 * @param mainRefresh The parent container that must be refreshable.
 	 * @param doable Tell if the interface should take care if an action is doable or not.
 	 * @param action The action to display.
 	 */
@@ -114,6 +115,9 @@ public class ActionNode extends HBox
 		}
 	}
 
+	/**
+	 * used to switch the done status.
+	 */
 	private void switchDoneStatus()
 	{
 		if(action != null)
@@ -121,6 +125,9 @@ public class ActionNode extends HBox
 		this.mainRefresh.refresh();
 	}
 
+	/**
+	 * Used to refresh the Node.
+	 */
 	public void refresh()
 	{
 		if(subquest != null)
@@ -138,6 +145,11 @@ public class ActionNode extends HBox
 		}
 	}
 
+	/**
+	 * Used to set the doable parameter. This one define if we should take care of the progression of teh quest for the printing.
+	 *
+	 * @param doable True if we take care of the progression, false if not.
+	 */
 	public void setDoable(boolean doable)
 	{
 		this.doable = doable;

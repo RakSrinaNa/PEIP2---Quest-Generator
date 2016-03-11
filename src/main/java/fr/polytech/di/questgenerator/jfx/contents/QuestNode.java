@@ -24,6 +24,7 @@ public class QuestNode extends VBox
 	/**
 	 * Constructor.
 	 *
+	 * @param mainRefresh The parent container that must be refreshable.
 	 * @param doable Tell if the interface should take care if an action is doable or not.
 	 * @param quest The quest to display.
 	 * @param depth The depth of the Quest.
@@ -100,27 +101,48 @@ public class QuestNode extends VBox
 			this.actions.getChildren().add(new ActionNode(mainRefresh, this.doable, action));
 	}
 
+	/**
+	 * Used to refresh the Node.
+	 */
 	public void refresh()
 	{
 		this.actions.getChildren().stream().filter(node -> node instanceof ActionNode).forEach(node -> ((ActionNode) node).refresh());
 	}
 
+	/**
+	 * Used to get teh quest.
+	 *
+	 * @return the quest.
+	 */
 	public Quest getQuest()
 	{
 		return this.quest;
 	}
 
+	/**
+	 * Used to get the doable value.
+	 *
+	 * @return True if we take care of the progression, false if not.
+	 */
 	public boolean getDoable()
 	{
 		return this.doable;
 	}
 
+	/**
+	 * Used to set the doable parameter. This one define if we should take care of the progression of teh quest for the printing.
+	 *
+	 * @param doable True if we take care of the progression, false if not.
+	 */
 	public void setDoable(boolean doable)
 	{
 		this.doable = doable;
 		this.getChildren().stream().filter(child -> child instanceof ActionNode).forEach(child -> ((ActionNode) child).setDoable(doable));
 	}
 
+	/**
+	 * Used to change the reload the current displayed quest.
+	 */
 	public void reloadQuest()
 	{
 		modifyQuest(this.getQuest());

@@ -15,5 +15,5 @@ public enum Motivations
 	CONQUEST,
 	WEALTH,
 	ABILITY,
-	EQUIPMENT;
+	EQUIPMENT
 }

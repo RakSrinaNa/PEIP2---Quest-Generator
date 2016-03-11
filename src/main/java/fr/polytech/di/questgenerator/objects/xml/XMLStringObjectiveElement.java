@@ -40,9 +40,7 @@ public class XMLStringObjectiveElement implements Comparable<XMLStringObjectiveE
 		if(QuestGenerator.getDebug())
 		{
 			if(this.path.equals("class"))
-			{
 				return "{" + this.value + "}";
-			}
 			return "[(" + this.path + ") " + this.value + "]";
 		}
 		return this.value;
@@ -73,11 +71,22 @@ public class XMLStringObjectiveElement implements Comparable<XMLStringObjectiveE
 		return false;
 	}
 
+	/**
+	 * Used to know if two elements are the same.
+	 *
+	 * @param element The elements to test with.
+	 * @return True if equals, false if not.
+	 */
 	public boolean is(XMLStringObjectiveElement element)
 	{
 		return element != null && (element == this || (this.getValue().equals(element.getValue()) && this.getPath().equals(element.getPath())));
 	}
 
+	/**
+	 * used to get the path of this element.
+	 *
+	 * @return The path.
+	 */
 	public String getPath()
 	{
 		return this.path;

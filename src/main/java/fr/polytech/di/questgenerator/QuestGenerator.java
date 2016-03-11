@@ -18,11 +18,21 @@ public class QuestGenerator
 {
 	private static boolean debug = false;
 
+	/**
+	 * Used to get the max depth.
+	 *
+	 * @return The max depth.
+	 */
 	public static int getMaxDepth()
 	{
 		return maxDepth;
 	}
 
+	/**
+	 * Used to set the max depth.
+	 *
+	 * @param maxDepth The max depth to set.
+	 */
 	public static void setMaxDepth(int maxDepth)
 	{
 		QuestGenerator.maxDepth = maxDepth;
@@ -43,6 +53,7 @@ public class QuestGenerator
 	/**
 	 * Start a quest randomly.
 	 *
+	 * @param parent The parent action, null if none.
 	 * @param depth The depth of the quest.
 	 * @param objectives The objectives for the quest.
 	 * @return A Quest.
@@ -55,6 +66,7 @@ public class QuestGenerator
 	/**
 	 * Start a subquest randomly.
 	 *
+	 * @param parent The parent action, null if none.
 	 * @param depth The depth of the quest.
 	 * @param objectives The objectives for the quest.
 	 * @return A Quest.
@@ -78,6 +90,7 @@ public class QuestGenerator
 	/**
 	 * Create a quest randomly that is from the given Motivation.
 	 *
+	 * @param parent The parent action, null if none.
 	 * @param motivation The Motivation of the Strategy that will be picked.
 	 * @param depth The depth of the quest.
 	 * @param objectives The objectives for the quest.
@@ -88,11 +101,21 @@ public class QuestGenerator
 		return Strategies.getByMotivation(motivation).createQuest(parent, depth, objectives);
 	}
 
+	/**
+	 * Used to get the debug status.
+	 *
+	 * @return The debug status.
+	 */
 	public static boolean getDebug()
 	{
 		return debug;
 	}
 
+	/**
+	 * Used to set the debug status.
+	 *
+	 * @param debug The status to set.
+	 */
 	public static void setDebug(boolean debug)
 	{
 		QuestGenerator.debug = debug;

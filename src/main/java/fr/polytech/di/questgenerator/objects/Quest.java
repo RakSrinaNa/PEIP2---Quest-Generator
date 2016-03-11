@@ -27,6 +27,7 @@ public class Quest implements GameListener
 	/**
 	 * Constructor.
 	 *
+	 * @param parent The parent action, null if none.
 	 * @param actions The list of Action defining the quest.
 	 */
 	public Quest(Action parent, Action... actions)
@@ -37,6 +38,7 @@ public class Quest implements GameListener
 	/**
 	 * Constructor.
 	 *
+	 * @param parent The parent action, null if none.
 	 * @param description The description of the quest.
 	 * @param actions The list of Action defining the quest.
 	 */
@@ -177,6 +179,11 @@ public class Quest implements GameListener
 		return true;
 	}
 
+	/**
+	 * Used to get the action we have to do, including its sub actions if present.
+	 *
+	 * @return The Action to do.
+	 */
 	public Action getActionToDo()
 	{
 		for(Action a : this.actions)
@@ -185,11 +192,21 @@ public class Quest implements GameListener
 		return null;
 	}
 
+	/**
+	 * Used to get the parent Action.
+	 *
+	 * @return The parent action, null if none.
+	 */
 	public Action getParent()
 	{
 		return this.parent;
 	}
 
+	/**
+	 * Used to notify to the parent action and the listeners that a quest has been done.
+	 *
+	 * @param quest The quest done.
+	 */
 	public void notifyQuestDone(Quest quest)
 	{
 		for(QuestListener listener : questListeners)
@@ -198,6 +215,11 @@ public class Quest implements GameListener
 			getParent().notifyQuestDone(quest);
 	}
 
+	/**
+	 * Used to notify to the parent action and the listeners that an action has been done.
+	 *
+	 * @param action The action done.
+	 */
 	public void notifyActionDone(Action action)
 	{
 		for(QuestListener listener : questListeners)
@@ -208,6 +230,11 @@ public class Quest implements GameListener
 			notifyQuestDone(this);
 	}
 
+	/**
+	 * Used to add a quest listener.
+	 *
+	 * @param questListener The listener.
+	 */
 	public void addQuestListener(QuestListener questListener)
 	{
 		this.questListeners.add(questListener);

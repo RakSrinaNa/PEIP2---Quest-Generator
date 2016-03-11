@@ -21,8 +21,7 @@ public interface ActionExecutor
 	/**
 	 * Generate the quest.
 	 *
-	 *
-	 * @param parent
+	 * @param parent The parent action of the quest, null if none.
 	 * @param depth The depth of the quest.
 	 * @param objectives The objectives for the quest.
 	 * @return The Quest.
@@ -68,7 +67,7 @@ public interface ActionExecutor
 	}
 
 	/**
-	 * Used to get the sentence for the objective.
+	 * Used to get the description sentence for the quest.
 	 *
 	 * @param key The key of the sentence.
 	 * @param args The arguments for the sentence.

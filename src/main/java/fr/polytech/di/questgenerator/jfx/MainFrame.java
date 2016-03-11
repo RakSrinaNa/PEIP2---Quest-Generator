@@ -148,6 +148,9 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 		return root;
 	}
 
+	/**
+	 * Used to export the current displayed quest.
+	 */
 	private void export()
 	{
 		ChoiceDialog<String> dialog = new ChoiceDialog<>(null, "PNG", "XML", "RAW", "ACTIONS");
@@ -225,11 +228,19 @@ public class MainFrame extends Application implements MainRefresh, GameListener
 
 	}
 
+	/**
+	 * Used to display a new random quest.
+	 */
 	private void reloadQuest()
 	{
 		quest.modifyQuest(QuestGenerator.createNewRandomQuest());
 	}
 
+	/**
+	 * Used to create the event frame content.
+	 *
+	 * @return The parent element.
+	 */
 	private Parent createEventContent()
 	{
 		VBox pane = new VBox(5);
