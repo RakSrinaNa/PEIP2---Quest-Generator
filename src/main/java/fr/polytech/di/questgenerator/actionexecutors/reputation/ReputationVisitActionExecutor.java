@@ -23,8 +23,8 @@ public class ReputationVisitActionExecutor implements ActionExecutor
 		Quest quest = new Quest(parent);
 		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
 		Action actionGotoVisit = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/dangerous/*"))));
-		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)));
+		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)), parent == null);
 		Action actionReport = new Action(quest, this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)), false);
-		return Quest.initQuest(quest, getSentence("Reputation_Visit", actionGotoVisit.getObjective(OBJECTIVE), objectivePnj), actionGotoVisit, actionGotoReport, actionReport);
+		return Quest.initQuest(quest, getSentence("Reputation_Visit", actionGotoVisit.getObjective(OBJECTIVE), actionReport.getObjective(OBJECTIVE)), actionGotoVisit, actionGotoReport, actionReport);
 	}
 }

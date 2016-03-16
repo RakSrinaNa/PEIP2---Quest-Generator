@@ -25,7 +25,7 @@ public class ReputationKillActionExecutor implements ActionExecutor
 		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
 		Action actionGotoKill = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjKill)));
 		Action actionKill = new Action(quest, this.getClass(), depth, ActionType.KILL, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjKill)));
-		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
+		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), parent == null);
 		Action actionReport = new Action(quest, this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
 		return Quest.initQuest(quest, getSentence("Reputation_Kill", pnjKill, pnjReport), actionGotoKill, actionKill, actionGotoReport, actionReport);
 	}

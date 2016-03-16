@@ -21,8 +21,8 @@ public class SerenityCheck1ActionExecutor implements ActionExecutor
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Quest quest = new Quest(parent);
-		XMLStringObjectiveElement pnjListen = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
 		ObjectiveHelper pnjReportHelper = new ObjectiveHelper(OBJECTIVE, OBJECTIVE, DataHandler.getRandomFromCategories(parent, "pnj/being/*"));
+		XMLStringObjectiveElement pnjListen = DataHandler.getRandomFromCategories(parent, pnjReportHelper.getValue(objectives).getPath());
 		Action actionGotoListen = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjListen)));
 		Action actionListen = new Action(quest, this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjListen)), false);
 		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, pnjReportHelper), parent == null);

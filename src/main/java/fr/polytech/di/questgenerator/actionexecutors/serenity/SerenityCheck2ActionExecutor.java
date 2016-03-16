@@ -23,11 +23,11 @@ public class SerenityCheck2ActionExecutor implements ActionExecutor
 		Quest quest = new Quest(parent);
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent, "object/personal/*");
 		XMLStringObjectiveElement pnjTake = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
-		XMLStringObjectiveElement pnjGive = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
+		ObjectiveHelper pnjGiveHelper = new ObjectiveHelper(OBJECTIVE, OBJECTIVE, DataHandler.getRandomFromCategories(parent, "pnj/being/*"));
 		Action actionGotoTake = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjTake)));
 		Action actionTake = new Action(quest, this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(PNJ, pnjTake)), false);
-		Action actionGotoGive = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjGive)));
-		Action actionGive = new Action(quest, this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, OBJECTIVE, pnjGive)), false);
-		return Quest.initQuest(quest, getSentence("Serenity_Check2", pnjGive, pnjTake), actionGotoTake, actionTake, actionGotoGive, actionGive);
+		Action actionGotoGive = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, pnjGiveHelper), parent == null);
+		Action actionGive = new Action(quest, this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, pnjGiveHelper.getValue(objectives))), false);
+		return Quest.initQuest(quest, getSentence("Serenity_Check2", pnjGiveHelper.getValue(objectives), pnjTake), actionGotoTake, actionTake, actionGotoGive, actionGive);
 	}
 }

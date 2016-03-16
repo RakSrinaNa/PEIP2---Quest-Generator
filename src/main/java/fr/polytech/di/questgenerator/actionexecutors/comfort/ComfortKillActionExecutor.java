@@ -27,6 +27,6 @@ public class ComfortKillActionExecutor implements ActionExecutor
 		Action actionDamage = new Action(quest, this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjKill)), false);
 		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
 		Action actionReport = new Action(quest, this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
-		return Quest.initQuest(quest, getSentence("Comfort_Kill", pnjReport, pnjKill), actionGotoKill, actionDamage, actionGotoReport, actionReport);
+		return Quest.initQuest(quest, getSentence("Comfort_Kill", actionReport.getObjective(OBJECTIVE), pnjKill), actionGotoKill, actionDamage, actionGotoReport, actionReport);
 	}
 }
