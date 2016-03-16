@@ -20,9 +20,9 @@ public class ProtectionDiversion1ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/diversion/*");
-		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories("area/place/*");
-		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, OBJECTIVE, DataHandler.getRandomFromCategories("pnj/being/*"))));
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "object/diversion/*");
+		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "area/place/*");
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, OBJECTIVE, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*"))));
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveArea)), false);
 		return new Quest(parent, getSentence("Protection_Diversion1", actionGet.getObjective(LOC_OBJECTIVE), objectiveArea), actionGet, actionGoto, actionUse);

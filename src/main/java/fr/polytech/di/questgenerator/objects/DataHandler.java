@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -33,6 +34,18 @@ public class DataHandler
 	 */
 	public static XMLStringObjectiveElement getRandomFromCategories(String... categories)
 	{
+		return getRandomFromCategories(null, categories);
+	}
+
+	/**
+	 * Get a random element from the given categories.
+	 *
+	 * @param blackList A list of the elements that can't be picked.
+	 * @param categories The categories to get the element from (use xx/* to include all xx subcategories).
+	 * @return A random element.
+	 */
+	public static XMLStringObjectiveElement getRandomFromCategories(Collection<XMLStringObjectiveElement> blackList, String... categories)
+	{
 		ArrayList<XMLStringObjectiveElement> candidates = new ArrayList<>();
 		for(String category : categories)
 		{
@@ -46,6 +59,7 @@ public class DataHandler
 			if(categoryObj.isPresent())
 				candidates.addAll(categoryObj.get().getAllValues(subcategories));
 		}
+		candidates.removeAll(blackList);
 		if(candidates.isEmpty())
 			return new XMLStringObjectiveElement("", Arrays.toString(categories) + " - " + ThreadLocalRandom.current().nextInt(1000));
 		return candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));

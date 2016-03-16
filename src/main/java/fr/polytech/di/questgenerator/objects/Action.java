@@ -6,8 +6,7 @@ import fr.polytech.di.questgenerator.interfaces.GameListener;
 import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
 import static fr.polytech.di.questgenerator.enums.ActionType.*;
 import static fr.polytech.di.questgenerator.enums.ObjectiveType.*;
 
@@ -638,5 +637,35 @@ public class Action implements GameListener
 		if(this.subquest.isPresent())
 			this.subquest.get().createXML(out);
 		out.writeEndElement();
+	}
+
+	/**
+	 * Used to get all the used objectives in the action and its parents.
+	 *
+	 * @return A list of the elements used.
+	 */
+	public Collection<XMLStringObjectiveElement> getUsedObjectives()
+	{
+		ArrayList<XMLStringObjectiveElement> objectives = new ArrayList<>();
+		objectives.addAll(this.getParentQuest().getUsedObjectives());
+		objectives.addAll(this.getObjectivesValues());
+		return objectives;
+	}
+
+	private Collection<XMLStringObjectiveElement> getObjectivesValues()
+	{
+		if(this.getObjectives().isPresent())
+			return this.getObjectives().get().values();
+		return Collections.emptyList();
+	}
+
+	/**
+	 * Used to get the objectives of the action.
+	 *
+	 * @return The optional hashmap of the objectives.
+	 */
+	private Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> getObjectives()
+	{
+		return this.objectives;
 	}
 }

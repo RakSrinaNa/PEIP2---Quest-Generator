@@ -20,9 +20,9 @@ public class SerenityCheck2ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/personal/*");
-		XMLStringObjectiveElement pnjTake = DataHandler.getRandomFromCategories("pnj/being/*");
-		XMLStringObjectiveElement pnjGive = DataHandler.getRandomFromCategories("pnj/being/*");
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "object/personal/*");
+		XMLStringObjectiveElement pnjTake = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
+		XMLStringObjectiveElement pnjGive = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
 		Action actionGotoTake = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjTake)));
 		Action actionTake = new Action(this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(PNJ, pnjTake)), false);
 		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjGive)));

@@ -20,9 +20,9 @@ public class ConquestStealActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement pnjSteal = DataHandler.getRandomFromCategories("pnj/being/*");
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/stuff/*");
-		XMLStringObjectiveElement pnjGive = DataHandler.getRandomFromCategories("pnj/being/*");
+		XMLStringObjectiveElement pnjSteal = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "object/stuff/*");
+		XMLStringObjectiveElement pnjGive = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
 		Action actionGotoSteal = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjSteal)));
 		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(PNJ, pnjSteal)));
 		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjGive)));

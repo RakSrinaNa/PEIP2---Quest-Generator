@@ -7,10 +7,7 @@ import fr.polytech.di.questgenerator.objects.xml.XMLStringObjectiveElement;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * A quest.
@@ -505,5 +502,17 @@ public class Quest implements GameListener
 					sb.append("\n\t").append(line);
 		}
 		return sb.toString().split("\n");
+	}
+
+	/**
+	 * Used to get all the used objectives of its parents.
+	 *
+	 * @return A list of the elements used.
+	 */
+	public Collection<XMLStringObjectiveElement> getUsedObjectives()
+	{
+		if(this.getParent() != null)
+			return this.getParent().getUsedObjectives();
+		return Collections.emptyList();
 	}
 }

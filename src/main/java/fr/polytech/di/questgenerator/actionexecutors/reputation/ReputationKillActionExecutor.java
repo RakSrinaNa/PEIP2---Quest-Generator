@@ -20,8 +20,8 @@ public class ReputationKillActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement pnjKill = DataHandler.getRandomFromCategories("pnj/boss/*");
-		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories("pnj/being/*");
+		XMLStringObjectiveElement pnjKill = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/boss/*");
+		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
 		Action actionGotoKill = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjKill)));
 		Action actionKill = new Action(this.getClass(), depth, ActionType.KILL, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjKill)));
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));

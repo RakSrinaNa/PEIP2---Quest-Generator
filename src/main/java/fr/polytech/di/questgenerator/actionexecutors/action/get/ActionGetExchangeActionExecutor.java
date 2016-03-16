@@ -20,14 +20,14 @@ public class ActionGetExchangeActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories("object/*");
-		XMLStringObjectiveElement pnjGet = DataHandler.getRandomFromCategories("pnj/being/*", "area/*");
-		XMLStringObjectiveElement pnjExchange = DataHandler.getRandomFromCategories("pnj/being/*");
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "object/*");
+		XMLStringObjectiveElement pnjGet = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*", "area/*");
+		XMLStringObjectiveElement pnjExchange = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
 		ObjectiveHelper getLocHelper;
 		if(pnjGet.isInPath("pnj/being/*"))
 			getLocHelper = new ObjectiveHelper(LOC_OBJECTIVE, pnjGet);
 		else
-			getLocHelper = new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories("pnj/being/*"));
+			getLocHelper = new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*"));
 		Action actionGotoSteal = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjGet)));
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), getLocHelper));
 		Action actionGotoSubquest = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjExchange)));
