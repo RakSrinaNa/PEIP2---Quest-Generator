@@ -66,6 +66,21 @@ public class DataHandler
 	}
 
 	/**
+	 * Get a specified element by its path and value.
+	 *
+	 * @param path The path of th element.
+	 * @param value The value of the element.
+	 * @return The specified element, null if not found.
+	 */
+	public static XMLStringObjectiveElement getElement(String path, String value)
+	{
+		Optional<XMLStringObjectiveCategory> category = XMLStringObjectiveCategory.getCategoryByName(strings, path);
+		if(category.isPresent())
+			return category.get().getElement(value);
+		return null;
+	}
+
+	/**
 	 * Initialize the strings.
 	 */
 	static

@@ -158,4 +158,18 @@ public class XMLStringObjectiveCategory
 	{
 		return parent == null ? this.name : (parent.getPath() + "/" + this.name);
 	}
+
+	/**
+	 * Get an element by its value.
+	 *
+	 * @param value The value of the element.
+	 * @return The element.
+	 */
+	public XMLStringObjectiveElement getElement(String value)
+	{
+		for(XMLStringObjectiveElement element : this.getAllValues(false))
+			if(element.isValue(value))
+				return element;
+		return null;
+	}
 }

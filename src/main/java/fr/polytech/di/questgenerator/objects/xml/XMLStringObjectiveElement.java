@@ -97,4 +97,15 @@ public class XMLStringObjectiveElement implements Comparable<XMLStringObjectiveE
 	{
 		return this.getValue().compareTo(o.getValue());
 	}
+
+	/**
+	 * Test if the values are the same.
+	 *
+	 * @param value The value to test.
+	 * @return True if they are the same, false if not.
+	 */
+	public boolean isValue(String value)
+	{
+		return value != null && this.getValue().equals(value);
+	}
 }
