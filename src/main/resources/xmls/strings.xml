@@ -23,20 +23,20 @@
             <element value="White-Chapel, Capital of the West"/>
         </category>
         <category value="wonder">
-            <element value="the Tree of Life"/>
-            <element value="the Fairy's forest"/>
-            <element value="the Old Sorcerer's grave"/>
+            <element value="Tree of Life"/>
+            <element value="Fairy's forest"/>
+            <element value="Old Sorcerer's grave"/>
         </category>
         <category value="dangerous">
-            <element value="the Active Volcano"/>
-            <element value="the Death desert"/>
-            <element value="the Toxic Swamp"/>
-            <element value="the Cristal Cave"/>
+            <element value="Active Volcano"/>
+            <element value="Death desert"/>
+            <element value="Toxic Swamp"/>
+            <element value="Cristal Cave"/>
         </category>
         <category value="job">
-            <element value="the Broken Water Well"/>
-            <element value="the Ruined House"/>
-            <element value="the Incended Tower"/>
+            <element value="Broken Water Well"/>
+            <element value="Ruined House"/>
+            <element value="Incended Tower"/>
         </category>
         <category value="fortification">
             <element value="Drawbridge"/>
