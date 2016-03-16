@@ -72,7 +72,7 @@ public class QuestGenerator
 	 */
 	public static Quest createRandomSubquest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		return Strategies.getRandom().createQuest(parent, depth, objectives);
+		return Strategies.getRandomSubquest().createQuest(parent, depth, objectives);
 	}
 
 	/**

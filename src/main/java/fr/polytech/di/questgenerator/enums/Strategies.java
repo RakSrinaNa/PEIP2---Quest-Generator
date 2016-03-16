@@ -66,7 +66,7 @@ public enum Strategies
 	PROTECTION_GUARD(Motivations.PROTECTION, ProtectionGuardActionExecutor.class),
 
 	CONQUEST_ATTACK(Motivations.CONQUEST, ConquestAttackActionExecutor.class),
-	CONQUEST_STEAL(Motivations.CONQUEST, ConquestStealActionExecutor.class),
+	CONQUEST_STEAL(Motivations.CONQUEST, ConquestStealActionExecutor.class, true),
 
 	WEALTH_GATHER(Motivations.WEALTH, WealthGatherActionExecutor.class),
 	WEALTH_STEAL(Motivations.WEALTH, WealthStealActionExecutor.class),

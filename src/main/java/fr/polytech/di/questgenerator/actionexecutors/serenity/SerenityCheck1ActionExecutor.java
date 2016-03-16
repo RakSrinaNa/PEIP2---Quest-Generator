@@ -22,11 +22,11 @@ public class SerenityCheck1ActionExecutor implements ActionExecutor
 	{
 		Quest quest = new Quest(parent);
 		XMLStringObjectiveElement pnjListen = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
-		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
+		ObjectiveHelper pnjReportHelper = new ObjectiveHelper(OBJECTIVE, OBJECTIVE, DataHandler.getRandomFromCategories(parent, "pnj/being/*"));
 		Action actionGotoListen = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjListen)));
 		Action actionListen = new Action(quest, this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjListen)), false);
-		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
-		Action actionReport = new Action(quest, this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
-		return Quest.initQuest(quest, getSentence("Serenity_Check1", pnjReport, pnjListen), actionGotoListen, actionListen, actionGotoReport, actionReport);
+		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, pnjReportHelper), parent == null);
+		Action actionReport = new Action(quest, this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, pnjReportHelper), false);
+		return Quest.initQuest(quest, getSentence("Serenity_Check1", pnjReportHelper.getValue(objectives), pnjListen), actionGotoListen, actionListen, actionGotoReport, actionReport);
 	}
 }
