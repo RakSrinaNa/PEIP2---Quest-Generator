@@ -20,11 +20,12 @@ public class ProtectionDiversion1ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
+		Quest quest = new Quest(parent);
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent, "object/diversion/*");
 		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories(parent, "area/place/*");
-		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, OBJECTIVE, DataHandler.getRandomFromCategories(parent, "pnj/being/*"))));
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
-		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveArea)), false);
-		return new Quest(parent, getSentence("Protection_Diversion1", actionGet.getObjective(LOC_OBJECTIVE), objectiveArea), actionGet, actionGoto, actionUse);
+		Action actionGet = new Action(quest, this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, OBJECTIVE, DataHandler.getRandomFromCategories(parent, "pnj/being/*"))));
+		Action actionGoto = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
+		Action actionUse = new Action(quest, this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveArea)), false);
+		return Quest.initQuest(quest, getSentence("Protection_Diversion1", actionGet.getObjective(LOC_OBJECTIVE), objectiveArea), actionGet, actionGoto, actionUse);
 	}
 }

@@ -19,8 +19,9 @@ public class ActionStealTakeActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionKill = new Action(this.getClass(), depth, ActionType.KILL, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ)));
-		Action actionTake = new Action(this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET), new ObjectiveHelper(PNJ, PNJ)), false);
-		return new Quest(parent, actionKill, actionTake);
+		Quest quest = new Quest(parent);
+		Action actionKill = new Action(quest, this.getClass(), depth, ActionType.KILL, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, PNJ)));
+		Action actionTake = new Action(quest, this.getClass(), depth, ActionType.TAKE, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET), new ObjectiveHelper(PNJ, PNJ)), false);
+		return Quest.initQuest(quest, actionKill, actionTake);
 	}
 }

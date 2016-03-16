@@ -20,13 +20,14 @@ public class ConquestStealActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
+		Quest quest = new Quest(parent);
 		XMLStringObjectiveElement pnjSteal = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent, "object/stuff/*");
 		XMLStringObjectiveElement pnjGive = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
-		Action actionGotoSteal = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjSteal)));
-		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(PNJ, pnjSteal)));
-		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjGive)));
-		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, pnjGive)), false);
-		return new Quest(parent, getSentence("Conquest_Steal", pnjGive, objectiveObject, pnjSteal), actionGotoSteal, actionSteal, actionGotoGive, actionGive);
+		Action actionGotoSteal = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjSteal)));
+		Action actionSteal = new Action(quest, this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(PNJ, pnjSteal)));
+		Action actionGotoGive = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjGive)));
+		Action actionGive = new Action(quest, this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, pnjGive)), false);
+		return Quest.initQuest(quest, getSentence("Conquest_Steal", pnjGive, objectiveObject, pnjSteal), actionGotoSteal, actionSteal, actionGotoGive, actionGive);
 	}
 }

@@ -20,9 +20,10 @@ public class EquipmentStealActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
+		Quest quest = new Quest(parent);
 		XMLStringObjectiveElement pnjObjective = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjObjective)));
-		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories(parent, "object/stuff/*")), new ObjectiveHelper(PNJ, pnjObjective)));
-		return new Quest(parent, getSentence("Equipment_Steal", actionSteal.getObjective(OBJ_GET)), actionGoto, actionSteal);
+		Action actionGoto = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjObjective)));
+		Action actionSteal = new Action(quest, this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories(parent, "object/stuff/*")), new ObjectiveHelper(PNJ, pnjObjective)));
+		return Quest.initQuest(quest, getSentence("Equipment_Steal", actionSteal.getObjective(OBJ_GET)), actionGoto, actionSteal);
 	}
 }

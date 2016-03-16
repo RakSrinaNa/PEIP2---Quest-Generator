@@ -20,7 +20,8 @@ public class WealthMakeActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "object/personal/*", "object/luxury/*"))), false);
-		return new Quest(parent, getSentence("Wealth_Make", actionRepair.getObjective(OBJECTIVE)), actionRepair);
+		Quest quest = new Quest(parent);
+		Action actionRepair = new Action(quest, this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "object/personal/*", "object/luxury/*"))), false);
+		return Quest.initQuest(quest, getSentence("Wealth_Make", actionRepair.getObjective(OBJECTIVE)), actionRepair);
 	}
 }

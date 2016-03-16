@@ -20,13 +20,14 @@ public class ActionGotoExploreActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
+		Quest quest = new Quest(parent);
 		ObjectiveHelper objectiveHelper;
 		if(objectives.get().get(OBJECTIVE).isInPath("pnj/being/*"))
 			objectiveHelper = new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/*"));
 		else
 			objectiveHelper = new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/wild/*"));
-		Action actionExplore = new Action(this.getClass(), depth, ActionType.EXPLORE, buildObjective(objectives, objectiveHelper), false);
-		return new Quest(parent, actionExplore);
+		Action actionExplore = new Action(quest, this.getClass(), depth, ActionType.EXPLORE, buildObjective(objectives, objectiveHelper), false);
+		return Quest.initQuest(quest, actionExplore);
 	}
 
 	@Override

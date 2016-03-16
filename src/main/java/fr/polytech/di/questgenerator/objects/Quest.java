@@ -18,35 +18,46 @@ public class Quest implements GameListener
 {
 	private final List<QuestListener> questListeners;
 	private final Action parent;
-	private final String description;
+	private String description;
 	private final LinkedHashSet<Action> actions;
 
 	/**
-	 * Constructor.
+	 * Used to initialize a quest.
 	 *
-	 * @param parent The parent action, null if none.
+	 * @param quest The quest to initialize.
 	 * @param actions The list of Action defining the quest.
+	 * @return The initialized quest.
 	 */
-	public Quest(Action parent, Action... actions)
+	public static Quest initQuest(Quest quest, Action... actions)
 	{
-		this(parent, null, actions);
+		return initQuest(quest, null, actions);
+	}
+
+	/**
+	 * Used to initialize a quest.
+	 *
+	 * @param quest The quest to initialize.
+	 * @param description The description of the quest.
+	 * @param actions The list of Action defining the quest.
+	 * @return The initialized quest.
+	 */
+	public static Quest initQuest(Quest quest, String description, Action... actions)
+	{
+		quest.setDescription(description);
+		quest.addActions(actions);
+		return quest;
 	}
 
 	/**
 	 * Constructor.
 	 *
 	 * @param parent The parent action, null if none.
-	 * @param description The description of the quest.
-	 * @param actions The list of Action defining the quest.
 	 */
-	public Quest(Action parent, String description, Action... actions)
+	public Quest(Action parent)
 	{
 		this.questListeners = new ArrayList<>();
+		this.actions = new LinkedHashSet<>();
 		this.parent = parent;
-		this.description = description;
-		this.actions = new LinkedHashSet<>(actions.length);
-		Collections.addAll(this.actions, actions);
-		this.actions.stream().forEach(a -> a.setParentQuest(this));
 	}
 
 	/**
@@ -514,5 +525,25 @@ public class Quest implements GameListener
 		if(this.getParent() != null)
 			return this.getParent().getUsedObjectives();
 		return Collections.emptyList();
+	}
+
+	/**
+	 * Used to set the description of the quest.
+	 *
+	 * @param description The description.
+	 */
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+
+	/**
+	 * Used to add actions to the quest.
+	 *
+	 * @param actions The actions to add.
+	 */
+	public void addActions(Action... actions)
+	{
+		Collections.addAll(this.actions, actions);
 	}
 }

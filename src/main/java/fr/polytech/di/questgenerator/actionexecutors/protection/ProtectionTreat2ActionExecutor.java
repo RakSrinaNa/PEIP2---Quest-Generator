@@ -20,9 +20,10 @@ public class ProtectionTreat2ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
+		Quest quest = new Quest(parent);
 		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories(parent, "area/job/*");
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
-		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)), false);
-		return new Quest(parent, getSentence("Protection_Treat2", objectiveArea), actionGoto, actionRepair);
+		Action actionGoto = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
+		Action actionRepair = new Action(quest, this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)), false);
+		return Quest.initQuest(quest, getSentence("Protection_Treat2", objectiveArea), actionGoto, actionRepair);
 	}
 }

@@ -22,85 +22,91 @@ public class Action implements GameListener
 	private final Optional<Quest> subquest;
 	private final boolean splittable;
 	private final int depth;
-	private Quest parentQuest;
+	private final Quest parentQuest;
 	private boolean done;
 
 	/**
 	 * Constructor.
 	 *
+	 * @param parentQuest The parent quest.
 	 * @param actionExecutorClass The ActionExecutor that built that Action.
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 */
-	public Action(Class actionExecutorClass, int depth, ActionType actionType)
+	public Action(Quest parentQuest, Class actionExecutorClass, int depth, ActionType actionType)
 	{
-		this(actionExecutorClass, depth, actionType, true);
+		this(parentQuest, actionExecutorClass, depth, actionType, true);
 	}
 
 	/**
 	 * Constructor.
 	 *
+	 * @param parentQuest The parent quest.
 	 * @param actionExecutorClass The ActionExecutor that built that Action.
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 * @param splittable Define if this Action can be splitted.
 	 */
-	public Action(Class actionExecutorClass, int depth, ActionType actionType, boolean splittable)
+	public Action(Quest parentQuest, Class actionExecutorClass, int depth, ActionType actionType, boolean splittable)
 	{
-		this(actionExecutorClass, depth, actionType, Optional.empty(), splittable);
+		this(parentQuest, actionExecutorClass, depth, actionType, Optional.empty(), splittable);
 	}
 
 	/**
 	 * Constructor.
-	 *
+	 * @param parentQuest The parent quest.
 	 * @param actionExecutorClass The ActionExecutor that built that Action.
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 */
-	public Action(Class actionExecutorClass, int depth, ActionType actionType, HashMap<ObjectiveType, XMLStringObjectiveElement> objectives)
+	public Action(Quest parentQuest, Class actionExecutorClass, int depth, ActionType actionType, HashMap<ObjectiveType, XMLStringObjectiveElement> objectives)
 	{
-		this(actionExecutorClass, depth, actionType, Optional.ofNullable(objectives));
+		this(parentQuest, actionExecutorClass, depth, actionType, Optional.ofNullable(objectives));
 	}
 
 	/**
 	 * Constructor.
 	 *
+	 * @param parentQuest The parent quest.
 	 * @param actionExecutorClass The ActionExecutor that built that Action.
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 */
-	public Action(Class actionExecutorClass, int depth, ActionType actionType, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
+	public Action(Quest parentQuest, Class actionExecutorClass, int depth, ActionType actionType, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		this(actionExecutorClass, depth, actionType, objectives, true);
+		this(parentQuest, actionExecutorClass, depth, actionType, objectives, true);
 	}
 
 	/**
 	 * Constructor.
 	 *
-	 * @param actionExecutorClass The ActionExecutor that built that Action.
-	 * @param depth The depth of the actionType.
-	 * @param actionType The ActionType associated to this Action.
-	 * @param objectives The objectives for the Action.
-	 * @param splittable Define if this Action can be splitted.
-	 */
-	public Action(Class actionExecutorClass, int depth, ActionType actionType, HashMap<ObjectiveType, XMLStringObjectiveElement> objectives, boolean splittable)
-	{
-		this(actionExecutorClass, depth, actionType, Optional.ofNullable(objectives), splittable);
-	}
-
-	/**
-	 * Constructor.
-	 *
+	 * @param parentQuest The parent quest.
 	 * @param actionExecutorClass The ActionExecutor that built that Action.
 	 * @param depth The depth of the actionType.
 	 * @param actionType The ActionType associated to this Action.
 	 * @param objectives The objectives for the Action.
 	 * @param splittable Define if this Action can be splitted.
 	 */
-	public Action(Class actionExecutorClass, int depth, ActionType actionType, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives, boolean splittable)
+	public Action(Quest parentQuest, Class actionExecutorClass, int depth, ActionType actionType, HashMap<ObjectiveType, XMLStringObjectiveElement> objectives, boolean splittable)
 	{
+		this(parentQuest, actionExecutorClass, depth, actionType, Optional.ofNullable(objectives), splittable);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param parentQuest The parent quest.
+	 * @param actionExecutorClass The ActionExecutor that built that Action.
+	 * @param depth The depth of the actionType.
+	 * @param actionType The ActionType associated to this Action.
+	 * @param objectives The objectives for the Action.
+	 * @param splittable Define if this Action can be splitted.
+	 */
+	public Action(Quest parentQuest, Class actionExecutorClass, int depth, ActionType actionType, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives, boolean splittable)
+	{
+		this.parentQuest = parentQuest;
 		this.depth = depth;
 		this.actionType = actionType;
 		if(!objectives.isPresent())
@@ -227,16 +233,6 @@ public class Action implements GameListener
 	public Quest getParentQuest()
 	{
 		return this.parentQuest;
-	}
-
-	/**
-	 * Set the parent quest of this action.
-	 *
-	 * @param quest The parent quest.
-	 */
-	public void setParentQuest(Quest quest)
-	{
-		this.parentQuest = quest;
 	}
 
 	/**

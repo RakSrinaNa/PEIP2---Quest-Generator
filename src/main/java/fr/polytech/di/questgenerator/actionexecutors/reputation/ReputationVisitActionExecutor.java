@@ -20,10 +20,11 @@ public class ReputationVisitActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
+		Quest quest = new Quest(parent);
 		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
-		Action actionGotoVisit = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/dangerous/*"))));
-		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)));
-		Action actionReport = new Action(this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)), false);
-		return new Quest(parent, getSentence("Reputation_Visit", actionGotoVisit.getObjective(OBJECTIVE), objectivePnj), actionGotoVisit, actionGotoReport, actionReport);
+		Action actionGotoVisit = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/dangerous/*"))));
+		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)));
+		Action actionReport = new Action(quest, this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, objectivePnj)), false);
+		return Quest.initQuest(quest, getSentence("Reputation_Visit", actionGotoVisit.getObjective(OBJECTIVE), objectivePnj), actionGotoVisit, actionGotoReport, actionReport);
 	}
 }

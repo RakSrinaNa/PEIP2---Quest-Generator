@@ -20,9 +20,10 @@ public class ProtectionGuardActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
+		Quest quest = new Quest(parent);
 		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories(parent, "area/place/*");
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
-		Action actionDefend = new Action(this.getClass(), depth, ActionType.DEFEND, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pickRandom(objectiveArea, DataHandler.getRandomFromCategories(parent, "area/fortification/*")))), false);
-		return new Quest(parent, getSentence(actionDefend.getObjective(OBJECTIVE).isInPath("area/place/*") ? "Protection_Guard_1" : "Protection_Guard_2", objectiveArea, actionDefend.getObjective(OBJECTIVE)), actionGoto, actionDefend);
+		Action actionGoto = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
+		Action actionDefend = new Action(quest, this.getClass(), depth, ActionType.DEFEND, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pickRandom(objectiveArea, DataHandler.getRandomFromCategories(parent, "area/fortification/*")))), false);
+		return Quest.initQuest(quest, getSentence(actionDefend.getObjective(OBJECTIVE).isInPath("area/place/*") ? "Protection_Guard_1" : "Protection_Guard_2", objectiveArea, actionDefend.getObjective(OBJECTIVE)), actionGoto, actionDefend);
 	}
 }

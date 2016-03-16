@@ -19,9 +19,10 @@ public class ActionGetGatherActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, LOC_OBJECTIVE)));
-		Action actionGather = new Action(this.getClass(), depth, ActionType.GATHER, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJ_GET)), false);
-		return new Quest(parent, actionGoto, actionGather);
+		Quest quest = new Quest(parent);
+		Action actionGoto = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, LOC_OBJECTIVE)));
+		Action actionGather = new Action(quest, this.getClass(), depth, ActionType.GATHER, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJ_GET)), false);
+		return Quest.initQuest(quest, actionGoto, actionGather);
 	}
 
 	@Override

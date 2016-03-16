@@ -20,8 +20,9 @@ public class ProtectionDiversion2ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/place/*"))));
-		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/fortification/*"))), false);
-		return new Quest(parent, getSentence("Protection_Diversion2", DataHandler.getRandomFromCategories(parent, "pnj/being/*"), actionGoto.getObjective(OBJECTIVE), actionDamage.getObjective(OBJECTIVE)), actionGoto, actionDamage);
+		Quest quest = new Quest(parent);
+		Action actionGoto = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/place/*"))));
+		Action actionDamage = new Action(quest, this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/fortification/*"))), false);
+		return Quest.initQuest(quest, getSentence("Protection_Diversion2", DataHandler.getRandomFromCategories(parent, "pnj/being/*"), actionGoto.getObjective(OBJECTIVE), actionDamage.getObjective(OBJECTIVE)), actionGoto, actionDamage);
 	}
 }

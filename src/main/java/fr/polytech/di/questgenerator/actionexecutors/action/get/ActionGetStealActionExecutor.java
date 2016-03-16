@@ -19,8 +19,9 @@ public class ActionGetStealActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionSteal = new Action(this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET), new ObjectiveHelper(PNJ, LOC_OBJECTIVE)));
-		return new Quest(parent, actionSteal);
+		Quest quest = new Quest(parent);
+		Action actionSteal = new Action(quest, this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, OBJ_GET), new ObjectiveHelper(PNJ, LOC_OBJECTIVE)));
+		return Quest.initQuest(quest, actionSteal);
 	}
 
 	@Override

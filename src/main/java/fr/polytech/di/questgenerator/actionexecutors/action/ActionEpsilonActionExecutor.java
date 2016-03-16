@@ -16,6 +16,7 @@ public class ActionEpsilonActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
+		Quest quest = new Quest(parent);
 		return Quest.getEpsilon(parent);
 	}
 }

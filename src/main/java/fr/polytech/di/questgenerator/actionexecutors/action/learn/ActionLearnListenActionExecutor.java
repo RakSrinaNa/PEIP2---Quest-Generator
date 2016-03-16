@@ -20,6 +20,7 @@ public class ActionLearnListenActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
+		Quest quest = new Quest(parent);
 		XMLStringObjectiveElement objectiveObj = DataHandler.getRandomFromCategories(parent, "pnj/being/*", "area/*");
 		ObjectiveHelper listenHelper;
 		ObjectiveHelper subquestHelper;
@@ -34,9 +35,9 @@ public class ActionLearnListenActionExecutor implements ActionExecutor
 			listenHelper = new ObjectiveHelper(OBJECTIVE, pnjListen);
 			subquestHelper = new ObjectiveHelper(OBJECTIVE, pnjListen);
 		}
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveObj)));
-		Action actionSubquest = new Action(this.getClass(), depth, ActionType.QUEST, buildObjective(objectives, subquestHelper));
-		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, listenHelper), false);
-		return new Quest(parent, actionGoto, actionSubquest, actionListen);
+		Action actionGoto = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveObj)));
+		Action actionSubquest = new Action(quest, this.getClass(), depth, ActionType.QUEST, buildObjective(objectives, subquestHelper));
+		Action actionListen = new Action(quest, this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, listenHelper), false);
+		return Quest.initQuest(quest, actionGoto, actionSubquest, actionListen);
 	}
 }

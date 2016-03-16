@@ -19,9 +19,10 @@ public class ActionGotoLearnActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionLearn = new Action(this.getClass(), depth, ActionType.LEARN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE)));
-		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE)), false);
-		return new Quest(parent, actionLearn, actionGoto);
+		Quest quest = new Quest(parent);
+		Action actionLearn = new Action(quest, this.getClass(), depth, ActionType.LEARN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE)));
+		Action actionGoto = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE)), false);
+		return Quest.initQuest(quest, actionLearn, actionGoto);
 	}
 
 	@Override

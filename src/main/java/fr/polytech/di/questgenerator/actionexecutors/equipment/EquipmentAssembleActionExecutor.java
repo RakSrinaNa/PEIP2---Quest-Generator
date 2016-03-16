@@ -20,7 +20,8 @@ public class EquipmentAssembleActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionRepair = new Action(this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "object/stuff/*"))), false);
-		return new Quest(parent, getSentence("Equipment_Assemble", actionRepair.getObjective(OBJECTIVE)), actionRepair);
+		Quest quest = new Quest(parent);
+		Action actionRepair = new Action(quest, this.getClass(), depth, ActionType.REPAIR, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "object/stuff/*"))), false);
+		return Quest.initQuest(quest, getSentence("Equipment_Assemble", actionRepair.getObjective(OBJECTIVE)), actionRepair);
 	}
 }
