@@ -20,10 +20,10 @@ public class KnowledgeUseItemActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "object/usable/*");
-		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
-		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "area/wonder/*");
-		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*"))));
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent, "object/usable/*");
+		XMLStringObjectiveElement objectivePNJ = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
+		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories(parent, "area/wonder/*");
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories(parent, "pnj/being/*"))));
 		Action actionGotoUse = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveArea)), false);
 		Action actionGotoGive = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePNJ)));

@@ -20,9 +20,9 @@ public class ActionLearnGiveActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "object/*");
-		XMLStringObjectiveElement objectiveListen = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
-		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "area/*"))));
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent, "object/*");
+		XMLStringObjectiveElement objectiveListen = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/*"))));
 		Action actionGive = new Action(this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveListen)), false);
 		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveListen)), false);
 		return new Quest(parent, actionGet, actionGive, actionListen);

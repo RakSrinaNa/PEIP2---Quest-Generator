@@ -20,8 +20,8 @@ public class KnowledgeInterviewActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement pnjListen = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
-		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
+		XMLStringObjectiveElement pnjListen = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
+		XMLStringObjectiveElement pnjReport = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
 		Action actionGotoListen = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjListen)));
 		Action actionListen = new Action(this.getClass(), depth, ActionType.LISTEN, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjListen)), false);
 		Action actionGotoReport = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));

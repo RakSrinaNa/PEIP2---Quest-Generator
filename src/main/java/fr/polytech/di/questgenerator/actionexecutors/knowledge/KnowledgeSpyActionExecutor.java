@@ -20,7 +20,7 @@ public class KnowledgeSpyActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionSpy = new Action(this.getClass(), depth, ActionType.SPY, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*"))));
+		Action actionSpy = new Action(this.getClass(), depth, ActionType.SPY, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "pnj/being/*"))));
 		return new Quest(parent, getSentence("Knowledge_Spy", actionSpy.getObjective(OBJECTIVE)), actionSpy);
 	}
 }

@@ -11,10 +11,7 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -34,7 +31,19 @@ public class DataHandler
 	 */
 	public static XMLStringObjectiveElement getRandomFromCategories(String... categories)
 	{
-		return getRandomFromCategories(null, categories);
+		return getRandomFromCategories(Collections.emptyList(), categories);
+	}
+
+	/**
+	 * Get a random element from the given categories.
+	 *
+	 * @param parent The parent action to use to use for the blacklist.
+	 * @param categories The categories to get the element from (use xx/* to include all xx subcategories).
+	 * @return A random element.
+	 */
+	public static XMLStringObjectiveElement getRandomFromCategories(Action parent, String... categories)
+	{
+		return getRandomFromCategories(parent == null ? Collections.emptyList() : parent.getUsedObjectives(), categories);
 	}
 
 	/**

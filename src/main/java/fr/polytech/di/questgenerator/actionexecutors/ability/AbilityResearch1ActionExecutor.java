@@ -20,8 +20,8 @@ public class AbilityResearch1ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "object/readable/learning/skill/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*", "area/place/*"))));
-		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "skill/magic/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "object/training/*"))), false);
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories(parent, "object/readable/learning/skill/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories(parent, "pnj/being/*", "area/place/*"))));
+		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, DataHandler.getRandomFromCategories(parent, "skill/magic/*")), new ObjectiveHelper(LOC_OBJECTIVE, DataHandler.getRandomFromCategories(parent, "object/training/*"))), false);
 		return new Quest(parent, getSentence("Ability_Research1"), actionGet, actionUse);
 	}
 }

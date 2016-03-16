@@ -20,7 +20,7 @@ public class ActionLearnListenActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObj = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*", "area/*");
+		XMLStringObjectiveElement objectiveObj = DataHandler.getRandomFromCategories(parent, "pnj/being/*", "area/*");
 		ObjectiveHelper listenHelper;
 		ObjectiveHelper subquestHelper;
 		if(objectiveObj.isInPath("pnj/being/*"))
@@ -30,7 +30,7 @@ public class ActionLearnListenActionExecutor implements ActionExecutor
 		}
 		else
 		{
-			XMLStringObjectiveElement pnjListen = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
+			XMLStringObjectiveElement pnjListen = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
 			listenHelper = new ObjectiveHelper(OBJECTIVE, pnjListen);
 			subquestHelper = new ObjectiveHelper(OBJECTIVE, pnjListen);
 		}

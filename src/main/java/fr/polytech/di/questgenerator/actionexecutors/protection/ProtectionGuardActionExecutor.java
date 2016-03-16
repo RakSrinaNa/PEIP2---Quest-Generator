@@ -20,9 +20,9 @@ public class ProtectionGuardActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "area/place/*");
+		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories(parent, "area/place/*");
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
-		Action actionDefend = new Action(this.getClass(), depth, ActionType.DEFEND, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pickRandom(objectiveArea, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "area/fortification/*")))), false);
+		Action actionDefend = new Action(this.getClass(), depth, ActionType.DEFEND, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pickRandom(objectiveArea, DataHandler.getRandomFromCategories(parent, "area/fortification/*")))), false);
 		return new Quest(parent, getSentence(actionDefend.getObjective(OBJECTIVE).isInPath("area/place/*") ? "Protection_Guard_1" : "Protection_Guard_2", objectiveArea, actionDefend.getObjective(OBJECTIVE)), actionGoto, actionDefend);
 	}
 }

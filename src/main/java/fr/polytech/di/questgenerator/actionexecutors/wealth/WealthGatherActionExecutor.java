@@ -20,9 +20,9 @@ public class WealthGatherActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "area/mine/*");
+		XMLStringObjectiveElement objectiveArea = DataHandler.getRandomFromCategories(parent, "area/mine/*");
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveArea)));
-		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "object/material/*")), new ObjectiveHelper(LOC_OBJECTIVE, objectiveArea)));
+		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, DataHandler.getRandomFromCategories(parent, "object/material/*")), new ObjectiveHelper(LOC_OBJECTIVE, objectiveArea)));
 		return new Quest(parent, getSentence("Wealth_Gather", objectiveArea, actionGet.getObjective(OBJ_GET)), actionGoto, actionGet);
 	}
 }

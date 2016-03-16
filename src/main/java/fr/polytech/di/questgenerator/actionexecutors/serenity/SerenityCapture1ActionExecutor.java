@@ -20,9 +20,9 @@ public class SerenityCapture1ActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "object/stuff/capture/*");
-		XMLStringObjectiveElement objectiveGive = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
-		XMLStringObjectiveElement objectiveCapture = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
+		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent, "object/stuff/capture/*");
+		XMLStringObjectiveElement objectiveGive = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
+		XMLStringObjectiveElement objectiveCapture = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveGive)));
 		Action actionGotoUse = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveCapture)));
 		Action actionUse = new Action(this.getClass(), depth, ActionType.USE, buildObjective(objectives, new ObjectiveHelper(OBJ_USE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, objectiveCapture)), false);

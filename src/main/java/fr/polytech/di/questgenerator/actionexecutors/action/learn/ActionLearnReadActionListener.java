@@ -20,8 +20,8 @@ public class ActionLearnReadActionListener implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectivePlace = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "area/place/*");
-		XMLStringObjectiveElement objectiveRead = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "object/readable/learning/*");
+		XMLStringObjectiveElement objectivePlace = DataHandler.getRandomFromCategories(parent, "area/place/*");
+		XMLStringObjectiveElement objectiveRead = DataHandler.getRandomFromCategories(parent, "object/readable/learning/*");
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePlace)));
 		Action actionGet = new Action(this.getClass(), depth, ActionType.GET, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveRead), new ObjectiveHelper(LOC_OBJECTIVE, objectivePlace)));
 		Action actionRead = new Action(this.getClass(), depth, ActionType.READ, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectiveRead)), false);

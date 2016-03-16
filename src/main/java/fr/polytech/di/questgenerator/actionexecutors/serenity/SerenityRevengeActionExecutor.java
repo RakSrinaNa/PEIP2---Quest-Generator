@@ -20,7 +20,7 @@ public class SerenityRevengeActionExecutor implements ActionExecutor
 	@Override
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
-		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "pnj/being/*");
+		XMLStringObjectiveElement objectivePnj = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
 		Action actionGoto = new Action(this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePnj)));
 		Action actionDamage = new Action(this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, objectivePnj)), false);
 		return new Quest(parent, getSentence("Serenity_Revenge", objectivePnj), actionGoto, actionDamage);

@@ -22,9 +22,9 @@ public class ActionGotoExploreActionExecutor implements ActionExecutor
 	{
 		ObjectiveHelper objectiveHelper;
 		if(objectives.get().get(OBJECTIVE).isInPath("pnj/being/*"))
-			objectiveHelper = new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "area/*"));
+			objectiveHelper = new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/*"));
 		else
-			objectiveHelper = new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent.getUsedObjectives(), "area/wild/*"));
+			objectiveHelper = new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "area/wild/*"));
 		Action actionExplore = new Action(this.getClass(), depth, ActionType.EXPLORE, buildObjective(objectives, objectiveHelper), false);
 		return new Quest(parent, actionExplore);
 	}
