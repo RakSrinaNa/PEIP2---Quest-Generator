@@ -26,7 +26,7 @@ public class SerenityRescueActionExecutor implements ActionExecutor
 		Action actionGotoDamage = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjEscort)));
 		Action actionDamage = new Action(quest, this.getClass(), depth, ActionType.DAMAGE, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, DataHandler.getRandomFromCategories(parent, "pnj/being/*"))), false);
 		Action actionEscort = new Action(quest, this.getClass(), depth, ActionType.ESCORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjEscort)), false);
-		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)));
+		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), parent == null);
 		Action actionReport = new Action(quest, this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
 		return Quest.initQuest(quest, getSentence("Serenity_Rescue", pnjEscort, actionDamage.getObjective(OBJECTIVE), actionReport.getObjective(OBJECTIVE)), actionGotoDamage, actionDamage, actionEscort, actionGotoReport, actionReport);
 	}

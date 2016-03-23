@@ -23,11 +23,10 @@ public class ConquestStealActionExecutor implements ActionExecutor
 		Quest quest = new Quest(parent);
 		XMLStringObjectiveElement pnjSteal = DataHandler.getRandomFromCategories(parent, "pnj/being/*");
 		XMLStringObjectiveElement objectiveObject = DataHandler.getRandomFromCategories(parent, "object/stuff/*");
-		ObjectiveHelper pnjGiveHelper = new ObjectiveHelper(OBJECTIVE, OBJECTIVE, DataHandler.getRandomFromCategories(parent, "pnj/being/*"));
 		Action actionGotoSteal = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjSteal)));
 		Action actionSteal = new Action(quest, this.getClass(), depth, ActionType.STEAL, buildObjective(objectives, new ObjectiveHelper(OBJ_GET, objectiveObject), new ObjectiveHelper(PNJ, pnjSteal)));
-		Action actionGotoGive = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, pnjGiveHelper), parent == null);
-		Action actionGive = new Action(quest, this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), pnjGiveHelper), false);
-		return Quest.initQuest(quest, getSentence("Conquest_Steal", pnjGiveHelper.getValue(objectives), objectiveObject, pnjSteal), actionGotoSteal, actionSteal, actionGotoGive, actionGive);
+		Action actionGotoGive = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, DataHandler.getRandomFromCategories(parent, "pnj/being/*"))), parent == null);
+		Action actionGive = new Action(quest, this.getClass(), depth, ActionType.GIVE, buildObjective(objectives, new ObjectiveHelper(OBJ_GIVE, objectiveObject), new ObjectiveHelper(LOC_OBJECTIVE, actionGotoGive.getObjective(OBJECTIVE))), false);
+		return Quest.initQuest(quest, getSentence("Conquest_Steal", actionGotoGive.getObjective(OBJECTIVE), objectiveObject, pnjSteal), actionGotoSteal, actionSteal, actionGotoGive, actionGive);
 	}
 }

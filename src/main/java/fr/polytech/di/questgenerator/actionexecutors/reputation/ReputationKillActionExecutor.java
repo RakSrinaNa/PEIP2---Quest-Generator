@@ -27,6 +27,6 @@ public class ReputationKillActionExecutor implements ActionExecutor
 		Action actionKill = new Action(quest, this.getClass(), depth, ActionType.KILL, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, pnjKill)));
 		Action actionGotoReport = new Action(quest, this.getClass(), depth, ActionType.GOTO, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), parent == null);
 		Action actionReport = new Action(quest, this.getClass(), depth, ActionType.REPORT, buildObjective(objectives, new ObjectiveHelper(OBJECTIVE, OBJECTIVE, pnjReport)), false);
-		return Quest.initQuest(quest, getSentence("Reputation_Kill", pnjKill, pnjReport), actionGotoKill, actionKill, actionGotoReport, actionReport);
+		return Quest.initQuest(quest, getSentence("Reputation_Kill", pnjKill, actionReport.getObjective(OBJECTIVE)), actionGotoKill, actionKill, actionGotoReport, actionReport);
 	}
 }

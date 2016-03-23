@@ -18,6 +18,6 @@ public class ActionQuestActionExecutor implements ActionExecutor
 	public Quest generateQuest(Action parent, int depth, Optional<HashMap<ObjectiveType, XMLStringObjectiveElement>> objectives)
 	{
 		Quest quest = new Quest(parent);
-		return QuestGenerator.createRandomSubquest(parent, 0, objectives);
+		return QuestGenerator.createRandomSubquest(parent, depth, objectives);
 	}
 }
