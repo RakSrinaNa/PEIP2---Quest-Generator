@@ -3,12 +3,16 @@ package fr.polytech.di.questgenerator.jfx.contents;
 import fr.polytech.di.questgenerator.enums.Resources;
 import fr.polytech.di.questgenerator.interfaces.MainRefresh;
 import fr.polytech.di.questgenerator.objects.Action;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.RotateTransition;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 /**
  * Element displaying an action to do with its subquest.
@@ -67,6 +71,7 @@ public class ActionNode extends HBox
 	{
 		this.imageArrow = new ImageView(this.subquest == null ? TRANSPARENT_IMAGE : OPENED_IMAGE);
 		this.imageArrow.setTranslateY(5);
+		this.imageArrow.setPickOnBounds(true);
 		this.imageArrow.setOnMouseReleased(event -> switchSubquestStatus());
 		return this.imageArrow;
 	}
@@ -108,10 +113,38 @@ public class ActionNode extends HBox
 	{
 		if(subquest != null)
 		{
+			int duration = 500;
 			boolean newState = !subquest.isVisible();
-			subquest.setVisible(newState);
-			subquest.setManaged(newState);
-			imageArrow.setImage(newState ? OPENED_IMAGE : CLOSED_IMAGE);
+			ParallelTransition parallelTransition = new ParallelTransition();
+			FadeTransition fadeTransition;
+			RotateTransition rotateTransition;
+			if(newState)
+			{
+				subquest.setVisible(true);
+				subquest.setManaged(true);
+				fadeTransition = new FadeTransition(Duration.millis(duration), subquest);
+				fadeTransition.setFromValue(0);
+				fadeTransition.setToValue(1);
+				rotateTransition = new RotateTransition(Duration.millis(duration), imageArrow);
+				rotateTransition.setFromAngle(-90f);
+				rotateTransition.setToAngle(0);
+			}
+			else
+			{
+				fadeTransition = new FadeTransition(Duration.millis(duration), subquest);
+				fadeTransition.setFromValue(1);
+				fadeTransition.setToValue(0);
+				rotateTransition = new RotateTransition(Duration.millis(duration), imageArrow);
+				rotateTransition.setFromAngle(0);
+				rotateTransition.setToAngle(-90f);
+				fadeTransition.play();
+				parallelTransition.setOnFinished(evt -> {
+					subquest.setVisible(false);
+					subquest.setManaged(false);
+				});
+			}
+			parallelTransition.getChildren().addAll(fadeTransition, rotateTransition);
+			parallelTransition.play();
 		}
 	}
 
