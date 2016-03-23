@@ -23,7 +23,7 @@ public enum Resources
 	XMLS("xmls"),
 	JFX("jfx"),
 	JFX_IMAGE("jfx/images"),
-	LANG("lang");
+	PROPERTIES("properties");
 
 	private static final HashMap<String, Properties> properties = new HashMap<>();
 	private final String rootPath;

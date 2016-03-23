@@ -75,6 +75,6 @@ public interface ActionExecutor
 	 */
 	default String getSentence(String key, XMLStringObjectiveElement... args)
 	{
-		return MessageFormat.format(Resources.LANG.getPropertyString("QuestSentences", key), (Object[]) args);
+		return MessageFormat.format(Resources.PROPERTIES.getPropertyString("QuestSentences", key), (Object[]) args);
 	}
 }

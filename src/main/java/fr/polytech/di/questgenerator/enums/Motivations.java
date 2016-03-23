@@ -8,17 +8,27 @@ import org.apache.commons.math3.distribution.EnumeratedIntegerDistribution;
  */
 public enum Motivations
 {
-	KNOWLEDGE(0.183),
-	COMFORT(0.016),
-	REPUTATION(0.065),
-	SERENITY(0.137),
-	PROTECTION(0.182),
-	CONQUEST(0.202),
-	WEALTH(0.02),
-	ABILITY(0.011),
-	EQUIPMENT(0.185);
+	KNOWLEDGE(Resources.PROPERTIES.getPropertyString("MotivationsProbabilities", "knowledge")),
+	COMFORT(Resources.PROPERTIES.getPropertyString("MotivationsProbabilities", "comfort")),
+	REPUTATION(Resources.PROPERTIES.getPropertyString("MotivationsProbabilities", "reputation")),
+	SERENITY(Resources.PROPERTIES.getPropertyString("MotivationsProbabilities", "serenity")),
+	PROTECTION(Resources.PROPERTIES.getPropertyString("MotivationsProbabilities", "protection")),
+	CONQUEST(Resources.PROPERTIES.getPropertyString("MotivationsProbabilities", "conquest")),
+	WEALTH(Resources.PROPERTIES.getPropertyString("MotivationsProbabilities", "wealth")),
+	ABILITY(Resources.PROPERTIES.getPropertyString("MotivationsProbabilities", "ability")),
+	EQUIPMENT(Resources.PROPERTIES.getPropertyString("MotivationsProbabilities", "equipment"));
 
 	private final double probability;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param probability The probability for this motivation to be picked up randomly.
+	 */
+	Motivations(String probability)
+	{
+		this(Double.parseDouble(probability));
+	}
 
 	/**
 	 * Constructor.
