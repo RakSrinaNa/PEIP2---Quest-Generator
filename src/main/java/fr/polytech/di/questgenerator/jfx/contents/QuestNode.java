@@ -40,6 +40,7 @@ public class QuestNode extends VBox
 				"-fx-border-style: solid;" +
 				"-fx-border-width: 2;" +
 				"-fx-border-radius: 5;" +
+				"-fx-background-radius: 5;" +
 				"-fx-border-color: black;");
 		this.actions = new VBox();
 		this.actions.setSpacing(5);
