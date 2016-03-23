@@ -122,8 +122,7 @@ public enum Strategies
 	 */
 	public static Strategies getRandom()
 	{
-		Strategies[] strategies = Strategies.values();
-		return strategies[ThreadLocalRandom.current().nextInt(strategies.length)];
+		return getByMotivation(Motivations.getRandom());
 	}
 
 	/**
