@@ -220,9 +220,7 @@ public class Action implements GameListener
 	 */
 	public boolean isDoable()
 	{
-		if(this.getParentQuest() == null)
-			return true;
-		return this.getParentQuest().isActionDoable(this);
+		return this.getParentQuest() == null || this.getParentQuest().isActionDoable(this);
 	}
 
 	/**
